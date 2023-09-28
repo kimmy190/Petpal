@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Shelter Update Form</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+
+<div class="max-w-xl mx-auto bg-white p-8 rounded shadow-md">
+    <h2 class="text-2xl font-semibold mb-4">Update Pet Shelter Information</h2>
+    <form action="#" method="post">
+
+        <!-- Divider with Heading -->
+        <div class="my-6 border-b border-gray-300">
+            <h2 class="text-lg  font-semibold">Shelter Showcase</h2>
+        </div>
+        <!-- Mission Statement Field -->
+        <div class="mb-4">
+            <label for="mission-statement" class="block font-medium text-gray-700">Mission Statement</label>
+            <textarea id="mission-statement" name="mission_statement" class="mt-1 p-2 w-full border rounded-md" rows="4" placeholder="Enter mission statement"></textarea>
+        </div>
+
+        <!-- Shelter Logo Upload Field -->
+
+        <div class="flex flex-col items-center justify-center">
+            <!-- Shelter Logo Preview -->
+            <div class="mb-4">
+                <img id="logo-preview" src="resources/shelter/shelter_logo.png" alt="Logo Preview" class="w-32 h-32 rounded-full object-cover">
+            </div>
+        <div class="mb-4">
+            <label for="shelter-logo" class="text-gray-600">Update Shelter Logo</label>
+            <input type="file" id="shelter-logo" name="shelter-logo" accept="image/*" class="hidden">
+            <button type="button" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">Select Image</button>
+        </div>
+        </div>
+        <!-- Image Upload Field -->
+        <div class="mb-4">
+            <label for="image-upload" class="block font-medium text-gray-700">Shelter Gallery</label>
+            <div class="flex flex-col items-center  gap-4 mt-2">
+                <!-- Image Preview -->
+                <div class="flex flex-row gap-4 space-between flex-wrap">
+                    <div class="w-16 h-16 bg-gray-200  overflow-hidden transition-transform transform hover:scale-105">
+                        <img src="resources/shelter/shelter_1.png" alt="Image Preview" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-16 h-16 bg-gray-200  overflow-hidden transition-transform transform hover:scale-105">
+                        <img src="resources/shelter/shelter_2.png" alt="Image Preview" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-16 h-16 bg-gray-200  overflow-hidden transition-transform transform hover:scale-105">
+                        <img src="resources/shelter/shelter_2.png" alt="Image Preview" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <!-- Upload Button -->
+                <div class="mb-4">
+                    <!-- <label for="profile-picture" class="text-gray-600">Update shelter gallery</label> -->
+                    <input type="file" id="profile-picture" name="profile-picture" accept="image/*" class="hidden">
+                    <button type="button" onclick="document.getElementById('profile-picture').click()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">Add image</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider with Heading -->
+        <div class="my-6 border-b border-gray-300">
+            <h2 class="text-lg  font-semibold">Contact Info</h2>
+        </div>
+
+        <!-- Address Field -->
+        <div class="mb-4">
+            <label for="address" class="block font-medium text-gray-700">Address</label>
+            <input type="text" id="address" name="address" class="mt-1 p-2 w-full border rounded-md" placeholder="Enter address">
+        </div>
+
+        <!-- City Field -->
+        <div class="mb-4">
+            <label for="city" class="block font-medium text-gray-700">City</label>
+            <input type="text" id="city" name="city" class="mt-1 p-2 w-full border rounded-md" placeholder="Enter city">
+        </div>
+
+        <!-- Country Field -->
+        <div class="mb-4">
+            <label for="country" class="block font-medium text-gray-700">Country</label>
+            <input type="text" id="country" name="country" class="mt-1 p-2 w-full border rounded-md" placeholder="Enter country">
+        </div>
+
+        <!-- Postal Code Field -->
+        <div class="mb-4">
+            <label for="postal-code" class="block font-medium text-gray-700">Postal Code</label>
+            <input type="text" id="postal-code" name="postal_code" class="mt-1 p-2 w-full border rounded-md" placeholder="Enter postal code">
+        </div>
+
+        <!-- Phone Field -->
+        <div class="mb-4">
+            <label for="phone-number" class="block font-medium text-gray-700">Phone number</label>
+            <input type="text" id="phone-number" name="phone_number" class="mt-1 p-2 w-full border rounded-md" placeholder="Enter phone number">
+        </div>
+        <!-- Email Field -->
+        <div class="mb-4">
+            <label for="email" class="block font-medium text-gray-700">Email</label>
+            <input type="text" id="phone-number" name="phone_number" class="mt-1 p-2 w-full border rounded-md" placeholder="Enter email">
+        </div>
+
+
+
+        <!-- Submit Button -->
+        <div class="mt-6">
+            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Update</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
