@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Shelter Detail</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
+</head>
+
+<body class="flex flex-col justify-center items-center">
+    <div class="flex justify-center items-center p-3">
+        <div class="rounded-full w-[50px] h-[50px] mr-1 mb-1">
+            <img src="resources/shelter/shelter_logo.png">
+        </div>
+        <h1 class="text-5xl">Toronto Adoption Center</h1>
+    </div>
+    <section id="shelter-info" class="p-2 w-3/4 mb-3">
+        <div
+            class="flex flex-col bg-gray-100 border border-gray-200 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:flex-row md:max w-full">
+            <div class="relative w-full h-[500px] mx-2 overflow-auto">
+                <h1 class="text-4xl mb-4">Mission Statement</h1>
+                <p class="mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eget elementum
+                    lorem.
+                    Etiam sodales ex ac pharetra lacinia. Aenean sit amet erat sed diam ultrices venenatis at ac
+                    magna.
+                    Suspendisse suscipit, ligula sed sodales fringilla, ligula diam interdum mauris, tempus
+                    tincidunt
+                    arcu diam fermentum nisi. Morbi rhoncus tellus sit amet arcu bibendum, nec rutrum quam pharetra.
+                    Ut
+                    venenatis accumsan risus a mattis. Maecenas hendrerit eleifend lorem, non finibus nunc molestie
+                    eget. Aliquam nibh purus, cursus eu libero et, convallis sodales lectus. Suspendisse gravida
+                    sapien
+                    sed ex pellentesque lacinia. Nulla mollis erat mattis, placerat justo sed, euismod enim. Proin
+                    ut
+                    interdum tortor. Pellentesque ac felis tempus odio sollicitudin tempor. Curabitur pharetra neque
+                    ut
+                    nisl rutrum, ac vehicula nulla pellentesque. Morbi sagittis quam et luctus ullamcorper.
+                </p>
+                <div class="absolute y-0py-1 h-1/6 w-full">
+                    <h1 class="text-4xl mb-4">Contact us!</h1>
+                    <p>Our address is 10 Dundas St E Suite 900, Toronto, ON M7A 2A1. </p>
+                    <p>If you have any questions, feel
+                        free to visit us or call us at 416-123-1234 </p>
+                </div>
+            </div>
+            <div id="carousel" class="relative w-full h-[500px] bg-gray-200" data-te-carousel-init
+                data-te-ride="carousel">
+                <!--Carousel indicators-->
+                <div class="absolute bottom-0 left-0 right-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0"
+                    data-te-carousel-indicators>
+                    <button type="button" data-te-target="#carousel" data-te-slide-to="0" data-te-carousel-active
+                        class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-te-target="#carousel" data-te-slide-to="1"
+                        class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+                        aria-label="Slide 2"></button>
+                </div>
+
+                <!--Carousel items-->
+                <div class="relative w-full h-full overflow-hidden after:clear-both after:block after:content-['']">
+                    <!--First item-->
+                    <div class="relative float-left -mr-[100%] w-full h-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                        data-te-carousel-active data-te-carousel-item style="backface-visibility: hidden">
+                        <img src="resources/shelter/shelter_1.png" class="block object-contain w-full h-full rounded"
+                            alt="..." />
+                    </div>
+                    <!--Second item-->
+                    <div class="relative float-left -mr-[100%] hidden w-full h-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                        data-te-carousel-item style="backface-visibility: hidden">
+                        <img src="resources/shelter/shelter_2.png" class="block object-contain h-full w-full rounded"
+                            alt="..." />
+                    </div>
+                </div>
+
+                <!-- Carousel controls - prev item
+                <button
+                    class="absolute bottom-0 left-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-black opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-black hover:no-underline hover:opacity-90 hover:outline-none focus:text-black focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+                    type="button" data-te-target="#carousel" data-te-slide="prev">
+                    <span class="inline-block h-8 w-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="h-6 w-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                        </svg>
+                    </span>
+                    <span
+                        class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Previous</span>
+                </button>
+                Carousel controls - next item
+                <button
+                    class="absolute bottom-0 right-0 top-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-black opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-black hover:no-underline hover:opacity-90 hover:outline-none focus:text-black focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+                    type="button" data-te-target="#carousel" data-te-slide="next">
+                    <span class="inline-block h-8 w-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="h-6 w-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </span>
+                    <span
+                        class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Next</span>
+                </button> -->
+            </div>
+        </div>
+    </section>
+
+    <h2 class="text-5xl mt-3 mb-1 p-2">Pets Available for Adoption</h2>
+    <h2 class="pb-3">Create lasting memories with a new loving companion!</h2>
+
+    <section id="shelter-pets" class="w-8/12 p-3">
+        <div class="grid-cols-1 sm:grid md:grid-cols-3 bg-gray-100 border border-gray-200 p-1 rounded-lg">
+            <div
+                class="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                <a href="pet_detail.html">
+                    <img src="resources/pets/australian_terrier.png" class="object-contain h-full w-full" alt="Pet 1">
+                </a>
+                <div class="p-6">
+                    <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                        Ralph - 3 years - Austrailian Terrier
+                    </h5>
+                    <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                        Hi there! This is a description of what I love doing!
+                    </p>
+                </div>
+            </div>
+            <div
+                class="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                <a href="pet_detail.html">
+                    <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
+
+                </a>
+                <div class="p-6">
+                    <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                        Betsy - 3 years - Boston Terrier
+                    </h5>
+                    <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                        Hi there! This is a description of what I love doing!
+                    </p>
+                </div>
+            </div>
+            <div
+                class="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                <a href="pet_detail.html">
+                    <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
+
+                </a>
+                <div class="p-6">
+                    <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                        Betsy - 3 years - Boston Terrier
+                    </h5>
+                    <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                        Hi there! This is a description of what I love doing!
+                    </p>
+                </div>
+            </div>
+            <div
+                class="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                <a href="pet_detail.html">
+                    <img src="resources/pets/australian_terrier.png" class="object-contain h-full w-full" alt="Pet 1">
+                </a>
+                <div class="p-6">
+                    <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                        Ralph - 3 years - Austrailian Terrier
+                    </h5>
+                    <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+                        Hi there! This is a description of what I love doing!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <h2 class="text-5xl mt-3 mb-1 p-2">Reviews</h2>
+    <h2 class="pb-3">Tell us about your adoption experience!</h2>
+
+
+    <section id="shelter-reviews" class="w-10/12">
+
+        <div class="grid-cols-1 sm:grid md:grid-cols-2 bg-gray-100 border border-gray-200 p-1 rounded-lg">
+            <div
+                class="px-3 py-1 mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                <div class="flex items-center justify-start">
+                    <img src="resources/users/user_1.png" class="object-cover rounded-full w-[50px] h-[50px] mr-1 mb-1">
+                    <p class="font-bold">Sean S.</p>
+                </div>
+                <div>
+                    <ul class="my-1 flex list-none gap-1 p-0" data-te-rating-init data-te-readonly="true"
+                        data-te-value="5">
+                        <li>
+                            <span class="text-primary [&>svg]:h-5 [&>svg]:w-5" data-te-rating-icon-ref>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                </svg>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="text-primary [&>svg]:h-5 [&>svg]:w-5" data-te-rating-icon-ref>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                </svg>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="text-primary [&>svg]:h-5 [&>svg]:w-5" data-te-rating-icon-ref>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                </svg>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="text-primary [&>svg]:h-5 [&>svg]:w-5" data-te-rating-icon-ref>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                </svg>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="text-primary [&>svg]:h-5 [&>svg]:w-5" data-te-rating-icon-ref>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                </svg>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pb-3">
+                    I love this shelter! I adopted Lucy a week ago, and I can't believe how well accustomed she's
+                    gotten. The adoption process was super quick and easy too! Can't recommend this shelter enough.
+                </div>
+                <div class="flex flex-col w-full">
+                    <div class="flex flex-row w-full mb-3">
+                        <div class="w-1/6 bg-yellow-100">
+                        </div>
+                        <div class="w-5/6 bg-yellow-100">
+                            <div class="flex items-center justify-start">
+                                <div class="rounded-full w-[50px] h-[50px] mr-1 mb-1">
+                                    <img src="resources/shelter/shelter_logo.png">
+                                </div>
+                                <p class="font-bold">Toronto Adoption Center</p>
+                            </div>
+                            <div>
+                                Thanks for the positive review, Sean! We hope that Lucy's brother Ralph gets adopted
+                                soon!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-row w-full mb-3">
+                        <div class="w-1/6">
+                        </div>
+                        <div class="w-5/6">
+                            <div class="flex items-center justify-start">
+                                <img src="resources/users/user_1.png"
+                                    class="object-cover rounded-full w-[50px] h-[50px] mr-1 mb-1">
+                                <p class="font-bold">Sean S.</p>
+                            </div>
+                            <div>
+                                Oh, wow, I didn't even notice that Ralph was up for adoption! I'll see if I can adopt
+                                him as well!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-row w-full">
+                        <div class="w-1/6">
+                        </div>
+                        <div class="w-5/6">
+                            <div class="relative" data-te-input-wrapper-init>
+                                <textarea
+                                    class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                    id="reply" rows="3" placeholder="Your message"></textarea>
+                                <label for="reply"
+                                    class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
+                                    Reply...</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="px-3 py-1 mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                <div class="flex items-center justify-start">
+                    <img src="resources/users/user_2.png" class="object-cover rounded-full w-[50px] h-[50px] mr-1 mb-1">
+                    <p class="font-bold">Patricia P.</p>
+                </div>
+                <div>
+                    <ul class="my-1 flex list-none gap-1 p-0" data-te-rating-init data-te-readonly="true"
+                        data-te-value="3">
+                        <li>
+                            <span class="text-primary [&>svg]:h-5 [&>svg]:w-5" data-te-rating-icon-ref>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                </svg>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="text-primary [&>svg]:h-5 [&>svg]:w-5" data-te-rating-icon-ref>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                </svg>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="text-primary [&>svg]:h-5 [&>svg]:w-5" data-te-rating-icon-ref>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                </svg>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="text-primary [&>svg]:h-5 [&>svg]:w-5" data-te-rating-icon-ref>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                </svg>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="text-primary [&>svg]:h-5 [&>svg]:w-5" data-te-rating-icon-ref>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                </svg>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pb-3">
+                    The pets here are lovely, and I can tell they're treated well. However, the adoption process took
+                    very long, and I'm not satisfied with the support I've gotten from Toronto Adoption Center.
+                </div>
+                <div class="flex flex-row w-full mb-3">
+                    <div class="w-1/6">
+                    </div>
+                    <div class="w-5/6">
+                        <div class="flex items-center justify-start">
+                            <img src="resources/users/user_1.png"
+                                class="object-cover rounded-full w-[50px] h-[50px] mr-1 mb-1">
+                            <p class="font-bold">Sean S.</p>
+                        </div>
+                        <div>
+                            Huh. I've never experienced something like this from the Toronto Adoption Center.
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col w-full">
+                    <div class="flex flex-row w-full mb-3">
+                        <div class="w-1/6 bg-yellow-100">
+                        </div>
+                        <div class="w-5/6 bg-yellow-100">
+                            <div class="flex items-center justify-start">
+                                <div class="rounded-full w-[50px] h-[50px] mr-1 mb-1">
+                                    <img src="resources/shelter/shelter_logo.png">
+                                </div>
+                                <p class="font-bold">Toronto Adoption Center</p>
+                            </div>
+                            <div>
+                                I'm sorry to hear that, Patricia. We're working on streamlining our adoption process as
+                                much as possible. If you ever decide to adopt another pet from us, let us make it up to
+                                you!
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="flex flex-row w-full">
+                    <div class="w-1/6">
+                    </div>
+                    <div class="w-5/6">
+                        <div class="relative" data-te-input-wrapper-init>
+                            <textarea
+                                class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                id="reply" rows="3" placeholder="Your message"></textarea>
+                            <label for="reply"
+                                class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
+                                Reply...</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="px-3 py-1 mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                <div>
+                    <ul class="my-2 flex list-none gap-1 p-0" data-te-rating-init>
+                        <li>
+                            <span class="text-primary [&>svg]:h-5 [&>svg]:w-5" title="Bad" data-te-rating-icon-ref>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                </svg>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="text-primary [&>svg]:h-5 [&>svg]:w-5" title="Poor" data-te-rating-icon-ref>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                </svg>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="text-primary [&>svg]:h-5 [&>svg]:w-5" title="OK" data-te-rating-icon-ref>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                </svg>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="text-primary [&>svg]:h-5 [&>svg]:w-5" title="Good" data-te-rating-icon-ref>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                </svg>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="text-primary [&>svg]:h-5 [&>svg]:w-5" title="Excellent"
+                                data-te-rating-icon-ref>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                                </svg>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative" data-te-input-wrapper-init>
+                    <textarea
+                        class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                        id="review" rows="3" placeholder="Your message"></textarea>
+                    <label for="review"
+                        class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
+                        Leave a review</label>
+                </div>
+            </div>
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
+
+</body>
+
+</html>

@@ -7,16 +7,24 @@
     <title>Pet Shelter Detail</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
-
-    <!-- <style>.sepcial {
-    content: "";
-    display: block;
-    padding-top: 100%;
-    }
-    </style> -->
 </head>
 
-<body class="flex flex-col justify-center items-center">
+<body class="relative flex flex-col justify-center items-center">
+
+    <div
+        class="bg-gray-200 border border-gray-300 fixed top-0 right-0 w-[100px] m-3 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+        <div class="w-full ">
+            Edit Tool
+        </div>
+        <a href="./shelter_detail_shelter_view_editable.html">
+            <svg class="w-full hover:scale-110" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+            </svg>
+        </a>
+    </div>
+
     <div class="flex justify-center items-center p-3">
         <div class="rounded-full w-[50px] h-[50px] mr-1 mb-1">
             <img src="resources/shelter/shelter_logo.png">
@@ -261,7 +269,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-row w-full">
+                    <div class="flex flex-row w-full mb-3">
                         <div class="w-1/6">
                         </div>
                         <div class="w-5/6">
@@ -274,6 +282,20 @@
                                 Oh, wow, I didn't even notice that Ralph was up for adoption! I'll see if I can adopt
                                 him as well!
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-row w-full">
+                    <div class="w-1/6">
+                    </div>
+                    <div class="w-5/6">
+                        <div class="relative" data-te-input-wrapper-init>
+                            <textarea
+                                class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                id="reply" rows="3" placeholder="Your message"></textarea>
+                            <label for="reply"
+                                class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
+                                Reply...</label>
                         </div>
                     </div>
                 </div>
@@ -373,16 +395,25 @@
                     </div>
 
                 </div>
+                <div class="flex flex-row w-full">
+                    <div class="w-1/6">
+                    </div>
+                    <div class="w-5/6">
+                        <div class="relative" data-te-input-wrapper-init>
+                            <textarea
+                                class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                                id="reply" rows="3" placeholder="Your message"></textarea>
+                            <label for="reply"
+                                class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
+                                Reply...</label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
     </section>
 
-    <!-- Add a form for users to leave new reviews -->
-
-    <!-- Add a form for users to inquire about pet adoption -->
-
-    <!-- Add other sections as per your requirements -->
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
 
 </body>
