@@ -401,6 +401,19 @@
                 </a>
             </button>
         </div>
+        <div id="errorMessage" class="hidden bg-red-100 text-red-700 px-4 py-2 rounded mt-4">
+            You already have an application for this pet.
+        </div>
+
+        <script>
+            const adoptButton = document.getElementById('adoptButton');
+            const errorMessage = document.getElementById('errorMessage');
+
+            adoptButton.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent the default link behavior
+                errorMessage.style.display = 'block'; // Show the error message
+            });
+        </script>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
