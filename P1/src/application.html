@@ -126,26 +126,44 @@
                             placeholder="Enter Your Answer Here"></textarea>
                     </div>
 
-                    <p class="font-bold">Do you own or rent your home?<span class="text-red-500">*</span></p>
-                    <div class="text-center mb-4">
-                        <label class="block mb-2">
-                            <input type="radio" class="form-radio text-blue-600" name="choice" value="yes">
-                            <span class="ml-2">Own</span>
-                        </label>
+                    <label for="pet_ownership" class="mt-1 p-2 block font-bold text-gray-700">Do you own or rent your
+                        home?<span class="text-red-500">*</span></label>
+                    <div class="mb-10">
+                        <div class="text-center mb-4">
+                            <label class="block mb-2">
+                                <input type="radio" class="form-radio text-blue-600" name="choice" value="own">
+                                <span class="ml-2">Own</span>
+                            </label>
 
-                        <label class="block">
-                            <input type="radio" class="form-radio text-red-600" name="choice" value="no">
-                            <span class="ml-2">Rent</span>
-                        </label>
+                            <label class="block">
+                                <input type="radio" class="form-radio text-red-600" name="choice" value="rent">
+                                <span class="ml-2">Rent</span>
+                            </label>
+                        </div>
                     </div>
 
                 </div>
 
-                <div class="flex justify-center">
+                <div class="flex justify-start mb-10">
                     <input type="checkbox" class="form-checkbox text-indigo-600 mr-3">
                     <p class="input-left-text" required>I have read and agree to the terms and conditions.</p>
-
                 </div>
+
+                <div class="flex justify-start mb-20">
+                    <ul>
+                        <li class="font-bold">
+                            By clicking the submit button, I verify all of the above information is true and accurate.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="flex items-center mb-4">
+                    <label for="signature" class="block mt-1 p-2 font-bold text-gray-700 mr-4">Signature<span
+                            class="text-red-500">*</span></label>
+                    <input type="text" id="signature" name="signature" class="block mt-1 p-2 w-full border rounded-md"
+                        style="width: 250px;" placeholder="Signature">
+                </div>
+
                 <div class="flex justify-center">
                     <button class="m-3">
                         <a href="pet_adoption.html"
@@ -158,6 +176,7 @@
                 </div>
             </div>
         </form>
+
     </section>
 
 </body>
