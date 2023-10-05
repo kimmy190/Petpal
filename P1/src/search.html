@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Page</title>
     <!-- Include the Tailwind CSS stylesheet -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
+    <script src="https://cdn.tailwindcss.com/3.3.0"></script>
+
 </head>
 
 <body class="bg-gray-100 m-3">
@@ -28,285 +31,315 @@
 
     <div class="min-h-screen flex flex-col items-center my-8 mx-2 ">
         <div class="bg-white p-8 rounded-lg shadow-md w-4/5 mb-5">
-            <div class=" max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
-                <h1 class="text-3xl font-bold tracking-tight text-gray-900">Find a pet</h1>
+            <div class=" max-w-5xl  py-6 ">
+                <h1 class="text-3xl font-bold tracking-tight text-gray-900">Find a pet to adopt</h1>
             </div>
             <!-- Search Bar with Dropdowns -->
             <div class="flex flex-col md:flex-row items-center mb-4">
                 <!-- Search Input -->
-                <label for="search" class="mb-2 md:mb-0 mr-4">Location</label>
-                <select id="search" name="search" placeholder="Choose a location"
-                    class="w-full border rounded-l md:rounded-none px-3 py-2 focus:outline-none focus:border-blue-500 mb-2 md:mb-0">
-                    <option value="">Any Shelter</option>
-                    <option value="">Toronto Humane Society</option>
-                    <option value="">Toronto Humane Society</option>
-                </select>
-                <!-- Filtering Dropdown -->
-                <label for="filter" class="mb-2 md:mb-0 mx-4">Filter</label>
-                <select id="filter"
-                    class="border rounded-l md:rounded-none px-3 py-2 focus:outline-none focus:border-blue-500 mb-2 md:mb-0">
-                    <option value="filter1">Filter 1</option>
-                    <option value="filter2">Filter 2</option>
-                    <option value="filter3">Filter 3</option>
-                </select>
-                <!-- Sorting Dropdown -->
-                <label for="sort" class="mb-2 md:mb-0 mx-4">Sort</label>
-                <select id="sort"
-                    class="border rounded-r md:rounded-none px-3 py-2 focus:outline-none focus:border-blue-500">
-                    <option value="sort1">Sort 1</option>
-                    <option value="sort2">Sort 2</option>
-                    <option value="sort3">Sort 3</option>
-                </select>
+                <div class="w-full">
+                    <select id="search" name="search" placeholder="Choose a location" data-te-select-filter="true" data-te-select-init data-te-select-size="lg">
+                        <option value="1">Any Shelter</option>
+                        <option value="2">Toronto Humane Society</option>
+                        <option value="3">Toronto Animal Services</option>
+                    </select>
+                    <label data-te-select-label-ref for="search">Choose a shelter</label>
+                </div>
             </div>
             <hr class="p-1">
             <div class="flex flex-wrap justify-between space-4">
-                <div class="w-full md:w-1/5">
-                    <!-- Breed Dropdown -->
-                    <label for="breed" class="mb-2 md:mb-0 mr-4">Breed</label>
-                    <select id="breed"
-                        class="block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-200 focus:border-indigo-300">
-                        <option value="">Any breed</option>
-                        <!-- Add your breed options here -->
-                    </select>
-                </div>
-
-                <div class="w-full md:w-1/5">
-                    <!-- Age Dropdown -->
-                    Age
-                    <select
-                        class="block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-200 focus:border-indigo-300">
-                        <option value="">Select Age</option>
-                        <!-- Add your age options here -->
-                    </select>
-                </div>
-
-                <div class="w-full md:w-1/5">
-                    <!-- Size Dropdown -->
-                    Size
-                    <select
-                        class="block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-200 focus:border-indigo-300">
-                        <option value="">Select Size</option>
-                        <!-- Add your size options here -->
-                    </select>
-                </div>
-
-                <div class="w-full md:w-1/5">
-                    <!-- Gender Dropdown -->
-                    Gender
-                    <select
-                        class="block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-200 focus:border-indigo-300">
-                        <option value="">Select Gender</option>
-                        <!-- Add your gender options here -->
-                    </select>
-                </div>
             </div>
         </div>
-        <div class="bg-white p-8 rounded-lg shadow-md w-full">
-            <!-- May or may not need pagination -->
-            <div class="flex flex-col items-center md:flex-col-reverse md:items-end">
-                <nav aria-label="Pagination">
-                    <ul class="inline-flex -space-x-px text-sm">
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Prev</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-current="page"
-                                class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+        <div class="flex flex-row m-4 container md:max-w-full  bg-white rounded-lg shadow-md">
+            <!-- TODO not collapsed by default when screen size is at least medium -->
+            <div  class="p-4 shadow-md hidden md:visible w-[220px] md:w-[300px] flex-none sm:flex-none sm:basis-1/4flex " data-te-collapse-item data-te-collapse-horizontal id="collapseWidthExample">
 
-            <!-- List of Empty Skeleton Cards (in a row format) -->
-            <div class="grid grid-cols-1 sm:grid md:grid-cols-4 gap-4">
-                <!-- Skeleton Card 1 -->
-                <div
-                    class="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
-                    <a href="pet_detail.html">
-                        <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
-
-                    </a>
-                    <div class="p-6">
-                        <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                            Betsy - 3 years - Boston Terrier
-                        </h5>
-                        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                            Hi there! This is a description of what I love doing!
-                        </p>
+                <div class="flex flex-col w-full">
+                    <div class="w-full">
+                        <label for="species" class="mb-4 md:mb-0 mr-4 font-bold">Species</label>
+                        <select id="species" data-te-select-init data-te-select-clear-button="true" multiple >
+                            <option value="1">Dogs</option>
+                            <option value="2">Cats</option>
+                            <option value="3">Small pets</option>
+                            <!-- Add your breed options here -->
+                        </select>
                     </div>
-                </div>
-                <div
-                    class="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
-                    <a href="pet_detail.html">
-                        <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
-
-                    </a>
-                    <div class="p-6">
-                        <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                            Betsy - 3 years - Boston Terrier
-                        </h5>
-                        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                            Hi there! This is a description of what I love doing!
-                        </p>
+                    <hr class="mt-4 mb-2">
+                    <div class="w-full">
+                        <!-- Breed Dropdown -->
+                        <label for="breed" class="mb-4 md:mb-0 mr-4 font-bold">Breed</label>
+                        <select id="breed" disabled data-te-select-init data-te-select-clear-button="true" multiple >
+                            <option value="2">Golden Retreiver</option>
+                            <option value="3">German Shepherd</option>
+                            <option value="4">Boston Terrier</option>
+                            <option value="5">Labrador</option>
+                            <!-- Add your breed options here -->
+                        </select>
                     </div>
-                </div>
-                <div
-                    class="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
-                    <a href="pet_detail.html">
-                        <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
+                    <hr class="mt-4 mb-2">
+                    <div class="w-full">
+                        <!-- Gender Radio -->
+                        <label for="gender" class="mb-4 md:mb-0 mr-4 font-bold">Gender</label>
+                        <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+                            <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault01" />
+                            <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault01">
+                                Male
+                            </label>
+                        </div>
+                        <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+                            <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault02" checked />
+                            <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault02">
+                                Female
+                            </label>
+                        </div>
 
-                    </a>
-                    <div class="p-6">
-                        <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                            Betsy - 3 years - Boston Terrier
-                        </h5>
-                        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                            Hi there! This is a description of what I love doing!
-                        </p>
                     </div>
-                </div>
-                <!-- Skeleton Card 1 -->
-                <div
-                    class="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
-                    <a href="pet_detail.html">
-                        <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
+                    <hr class="mt-4 mb-2">
+                    <div class="w-full">
+                        <!-- Age Radio -->
+                        <label for="age" class="mb-4 md:mb-0 mr-4 font-bold">Age</label>
+                        <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+                            <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault01" />
+                            <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault01">
+                                Less than 1 year old
+                            </label>
+                        </div>
+                        <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+                            <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault02" checked />
+                            <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault02">
+                                1 - 4
+                            </label>
+                        </div>
+                        <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+                            <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault02" checked />
+                            <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault02">
+                                4 + 
+                            </label>
+                        </div>
 
-                    </a>
-                    <div class="p-6">
-                        <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                            Betsy - 3 years - Boston Terrier
-                        </h5>
-                        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                            Hi there! This is a description of what I love doing!
-                        </p>
                     </div>
-                </div>
-                <!-- Add more cards as needed -->
-                <div
-                    class="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
-                    <a href="pet_detail.html">
-                        <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
 
-                    </a>
-                    <div class="p-6">
-                        <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                            Betsy - 3 years - Boston Terrier
-                        </h5>
-                        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                            Hi there! This is a description of what I love doing!
-                        </p>
-                    </div>
-                </div>
-                <div
-                    class="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
-                    <a href="pet_detail.html">
-                        <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
+                    <hr class="mt-4 mb-2">
+                    <div class="w-full">
+                        <!-- Size Radio -->
+                        <label for="size" class="mb-4 md:mb-0 mr-4 font-bold">Size</label>
+                        <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+                            <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault01" />
+                            <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault01">
+                                Small
+                            </label>
+                        </div>
+                        <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+                            <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault02" checked />
+                            <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault02">
+                                Medium
+                            </label>
+                        </div>
+                        <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+                            <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault02" checked />
+                            <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault02">
+                                Large
+                            </label>
+                        </div>
 
-                    </a>
-                    <div class="p-6">
-                        <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                            Betsy - 3 years - Boston Terrier
-                        </h5>
-                        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                            Hi there! This is a description of what I love doing!
-                        </p>
-                    </div>
-                </div>
-                <div
-                    class="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
-                    <a href="pet_detail.html">
-                        <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
-
-                    </a>
-                    <div class="p-6">
-                        <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                            Betsy - 3 years - Boston Terrier
-                        </h5>
-                        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                            Hi there! This is a description of what I love doing!
-                        </p>
-                    </div>
-                </div>
-                <!-- Skeleton Card 1 -->
-                <div
-                    class="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
-                    <a href="pet_detail.html">
-                        <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
-
-                    </a>
-                    <div class="p-6">
-                        <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                            Betsy - 3 years - Boston Terrier
-                        </h5>
-                        <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                            Hi there! This is a description of what I love doing!
-                        </p>
                     </div>
                 </div>
             </div>
 
+            <div class="md:grow p-8 bg-white">
+                <!-- May or may not need pagination -->
+                <div class="gap-4 flex flex-row flex-wrap justify-between items-center md:items-end">
+                    <div class="flex flex-row items-center gap-x-4">
+
+                        <a class=" justify-center rounded-md bg-indigo-600 px-3 py-3 text-md font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" type="button" data-te-collapse-init data-te-target="#collapseWidthExample" data-te-ripple-init data-te-ripple-color="light" aria-expanded="false" aria-controls="collapseWidthExample">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+                        </svg>
+
+                    </a>
+                        <p class="bold"> 15+ pets available </p>
+                    </div>
+
+                        <div class="gap-4 flex flex-row flex-wrap space-between md:items-end">
+                            <div>
+                                <select id="sort" data-te-select-init >
+                                    <option value="sort1">Sort 1</option>
+                                    <option value="sort2">Sort 2</option>
+                                    <option value="sort3">Sort 3</option>
+                                </select>
+                                <label data-te-select-label-ref for="sort" class="mb-2 md:mb-0 mx-4">Sort</label>
+                            </div>
+                            <nav aria-label="Pagination">
+                                <ul class="list-style-none flex">
+                                    <li>
+                                        <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white" href="#">Prev</a>
+                                    </li>
+                                    <li>
+                                        <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white" href="#">Next</a>
+                                    </li>
+                                </ul>
+
+                            </nav>
+                        </div>
+                </div>
+
+                <!-- List of Empty Skeleton Cards (in a row format) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+                    <!-- Skeleton Card 1 -->
+                    <div  class="
+                                   relative max-w-sm  bg-cover bg-no-repeat
+                                   mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                        <a href="pet_detail.html">
+                            <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
+
+                            <div class="flex-col flex-start p-6">
+                                <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    Betsy
+                                </h5>
+                                <hr class="my-2">
+                                <p> Gender: Male </p>
+                                <p> Age: 3 years </p>
+                                <p> Breed: Boston Terrier </p>
+                                <p> Size: Large </p>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsl(0,0%,98.4%,0.2)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:shadow-lg hover:opacity-100"></div>
+                        </a>
+                </div>
+                    <div  class="
+                                   relative max-w-sm  bg-cover bg-no-repeat
+                                   mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                        <a href="pet_detail.html">
+                            <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
+
+                            <div class="flex-col flex-start p-6">
+                                <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    Betsy
+                                </h5>
+                                <hr class="my-2">
+                                <p> Gender: Male </p>
+                                <p> Age: 3 years </p>
+                                <p> Breed: Boston Terrier </p>
+                                <p> Size: Large </p>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsl(0,0%,98.4%,0.2)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:shadow-lg hover:opacity-100"></div>
+                        </a>
+                </div>
+                    <div  class="
+                                   relative max-w-sm  bg-cover bg-no-repeat
+                                   mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                        <a href="pet_detail.html">
+                            <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
+
+                            <div class="flex-col flex-start p-6">
+                                <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    Betsy
+                                </h5>
+                                <hr class="my-2">
+                                <p> Gender: Male </p>
+                                <p> Age: 3 years </p>
+                                <p> Breed: Boston Terrier </p>
+                                <p> Size: Large </p>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsl(0,0%,98.4%,0.2)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:shadow-lg hover:opacity-100"></div>
+                        </a>
+                </div>
+                    <div  class="
+                                   relative max-w-sm  bg-cover bg-no-repeat
+                                   mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                        <a href="pet_detail.html">
+                            <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
+
+                            <div class="flex-col flex-start p-6">
+                                <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    Betsy
+                                </h5>
+                                <hr class="my-2">
+                                <p> Gender: Male </p>
+                                <p> Age: 3 years </p>
+                                <p> Breed: Boston Terrier </p>
+                                <p> Size: Large </p>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsl(0,0%,98.4%,0.2)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:shadow-lg hover:opacity-100"></div>
+                        </a>
+                </div>
+                    <div  class="
+                                   relative max-w-sm  bg-cover bg-no-repeat
+                                   mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                        <a href="pet_detail.html">
+                            <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
+
+                            <div class="flex-col flex-start p-6">
+                                <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    Betsy
+                                </h5>
+                                <hr class="my-2">
+                                <p> Gender: Male </p>
+                                <p> Age: 3 years </p>
+                                <p> Breed: Boston Terrier </p>
+                                <p> Size: Large </p>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsl(0,0%,98.4%,0.2)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:shadow-lg hover:opacity-100"></div>
+                        </a>
+                </div>
+                    <div  class="
+                                   relative max-w-sm  bg-cover bg-no-repeat
+                                   mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                        <a href="pet_detail.html">
+                            <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
+
+                            <div class="flex-col flex-start p-6">
+                                <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    Betsy
+                                </h5>
+                                <hr class="my-2">
+                                <p> Gender: Male </p>
+                                <p> Age: 3 years </p>
+                                <p> Breed: Boston Terrier </p>
+                                <p> Size: Large </p>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsl(0,0%,98.4%,0.2)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:shadow-lg hover:opacity-100"></div>
+                        </a>
+                </div>
+                    <div  class="
+                                   relative max-w-sm  bg-cover bg-no-repeat
+                                   mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                        <a href="pet_detail.html">
+                            <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
+
+                            <div class="flex-col flex-start p-6">
+                                <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    Betsy
+                                </h5>
+                                <hr class="my-2">
+                                <p> Gender: Male </p>
+                                <p> Age: 3 years </p>
+                                <p> Breed: Boston Terrier </p>
+                                <p> Size: Large </p>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsl(0,0%,98.4%,0.2)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:shadow-lg hover:opacity-100"></div>
+                        </a>
+                </div>
+            </div>
+
             <div class="flex flex-col items-center md:flex-col-reverse md:items-end">
                 <nav aria-label="Pagination">
-                    <ul class=" inline-flex -space-x-px text-sm">
+                    <ul class="list-style-none flex">
                         <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Prev</a>
+                            <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white" href="#">Prev</a>
                         </li>
                         <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-current="page"
-                                class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                            <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white" href="#">Next</a>
                         </li>
                     </ul>
-                </nav>
 
+                </nav>
             </div>
         </div>
-
     </div>
 
-    <!-- Include the Tailwind CSS JavaScript for dropdowns and other components -->
-    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.js"></script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
 </body>
 
 </html>

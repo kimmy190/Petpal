@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- font awseome icon -->
+    <script src="https://kit.fontawesome.com/199027eb42.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+
+    <title>Pet Pal - Home</title>
+</head>
+<body>
+    <!-- Navbar (You can customize it as needed) -->
+    <nav class="py-4 px-6">
+        <div class="container mx-auto flex justify-between  items-center ">
+            <!-- Brand Logo -->
+            <div class="text-3xl font-bold">
+                <a href="#">Pet Pal</a>
+            </div>
+            
+            <!-- Navigation Links -->
+            <ul class="flex space-x-5 text-base">
+                <li><a href="#" class="mx-2 hover:underline">Home</a></li>
+                <li><a href="#" class="mx-2 hover:underline">About</a></li>
+                <li><a href="./application.html" class="mx-2 hover:underline">Adopt</a></li>
+                <li><a href="#" class="mx-2 hover:underline">Contact</a></li>
+            </ul>       
+            <!-- login and signup -->
+            <div class="space-x-4">
+                <a href="./login.html" class="text-black text-base hover:underline">Login</a>
+                <!-- text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" -->
+                <!-- have a drop down as a signup for pet shelter / pet seeker -->
+                <div class="inline-block relative">
+                    <button id="dropdown-signup" class="bg-black text-base text-white hover:bg-blue-700 hover:text-white rounded-lg py-1.5 px-5 transition duration-300 ease-in-out">Sign Up</button>
+                    <!-- drop down menu for sign up -->
+                    <ul id="dropdown-signup-menu" class="hidden absolute right-0 left-0 bg-white text-gray-800 border border-gray-300 rounded-lg z-10">
+                        <li><a href="./shelter_signup.html" class="block px-4 py-2 hover:bg-gray-100">Shelter</a></li>
+                        <li><a href="./seeker_signup.html" class="block px-4 py-2 hover:bg-gray-100">Seeker</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Bar Section -->
+    <section class="bg-gray-100 py-20 text-center">
+        <!-- content inside the section -->
+        <div class="container mx-auto items-center">
+            <!-- title -->
+            <h2 class="text-4xl font-semibold mb-10">Find a Pet</h2>
+            <!-- search bar -->
+            <div class="container mx-auto mt-8 max-w-xl flex items-center">
+                <div class="max-w-xl w-full relative flex items-stretch">
+                    <input type="text" placeholder="Search for a pet to adopt" class="w-full px-7 py-3 border rounded-full focus:outline-none focus:ring focus:border-blue-400">
+                    <div class="absolute inset-y-0 right-0 flex items-center px-6">
+                        <button>
+                            <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
+                        </button>
+                    </div>
+                </div>
+                <button id="dropdown-search" class="inline-block">
+                    <img class="ml-2 w-6 h-6" src="./resources/main/filter.png" alt="filter logo">
+                </button>
+            </div>
+
+            <!-- filtering section that would be hidden -->
+            <div class="hidden mx-60" id="dropdown-menu-search">
+                <div class="flex flex-col md:flex-row items-center mb-4 my-5">
+                    <!-- Search Input -->
+                    <label for="search" class="mb-2 md:mb-0 mr-4">Location</label>
+                    <select id="search" name="search" placeholder="Choose a location"
+                        class="w-full border rounded-l md:rounded-md px-3 py-2 focus:outline-none focus:border-blue-500 mb-2 md:mb-0">
+                        <option value="">Any Shelter</option>
+                        <option value="">Toronto Humane Society</option>
+                        <option value="">Toronto Humane Society</option>
+                    </select>
+                    <!-- Filtering Dropdown -->
+                    <label for="filter" class="mb-2 md:mb-0 mx-4">Filter</label>
+                    <select id="filter"
+                        class="border rounded-l md:rounded-md px-3 py-2 focus:outline-none focus:border-blue-500 mb-2 md:mb-0">
+                        <option value="filter1">Filter 1</option>
+                        <option value="filter2">Filter 2</option>
+                        <option value="filter3">Filter 3</option>
+                    </select>
+                    <!-- Sorting Dropdown -->
+                    <label for="sort" class="mb-2 md:mb-0 mx-4">Sort</label>
+                    <select id="sort"
+                        class="border rounded-r md:rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
+                        <option value="sort1">Sort 1</option>
+                        <option value="sort2">Sort 2</option>
+                        <option value="sort3">Sort 3</option>
+                    </select>
+                </div>
+                <hr class="p-1">
+                <div class="flex flex-wrap justify-between space-4">
+                    <div class="w-full md:w-1/5">
+                        <!-- Breed Dropdown -->
+                        <!-- <label for="breed" class="mb-2 md:mb-0 mr-4"></label> -->
+                        <select id="breed" class="block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-200 focus:border-indigo-300">
+                            <option value="">Select Breed</option>
+                            <!-- Add your breed options here -->
+                        </select>
+                    </div>
+                    <div class="w-full md:w-1/5">
+                        <!-- Age Dropdown -->
+                        <select class="block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-200 focus:border-indigo-300">
+                            <option value="">Select Age</option>
+                            <!-- Add your age options here -->
+                        </select>
+                    </div>
+                    <div class="w-full md:w-1/5">
+                        <!-- Size Dropdown -->
+                        <select class="block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-200 focus:border-indigo-300">
+                            <option value="">Select Size</option>
+                            <!-- Add your size options here -->
+                        </select>
+                    </div>
+                    <div class="w-full md:w-1/5">
+                        <!-- Gender Dropdown -->
+                        <select class="block w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none focus:ring focus:ring-indigo-200 focus:border-indigo-300">
+                            <option value="">Select Gender</option>
+                            <!-- Add your gender options here -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pet Listings Section -->
+    <section class="py-20 px-40 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-semibold mb-16 text-center">Available Pets</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-16 pet-card">
+                <!-- Example pet card (repeat as needed) -->
+                <div class="bg-gray-100 rounded-md hover:shadow-md">
+                    <!-- Pet image -->
+                    <a href="./pet_detail.html">
+                    <img src="./resources/pets/australian_terrier.png" alt="Pet 1" class="w-full h-60 object-cover rounded-t-md">
+                    <!-- Pet details -->
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold">Pet Name</h3>
+                        <p class="text-gray-600">Breed: Breed Name</p>
+                        <p class="text-gray-600">Age: 2 years</p>
+                    </div>
+                    </a>
+                </div>
+                <!-- Repeat similar pet cards for other listings -->
+                <div class="bg-gray-100 rounded-md hover:shadow-md">
+                    <!-- Pet image -->
+                    <a href="./pet_detail.html">
+                    <img src="./resources/pets/australian_terrier.png" alt="Pet 1" class="w-full h-60 object-cover rounded-t-md">
+                    <!-- Pet details -->
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold">Pet Name</h3>
+                        <p class="text-gray-600">Breed: Breed Name</p>
+                        <p class="text-gray-600">Age: 2 years</p>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="bg-gray-100 rounded-md hover:shadow-md">
+                    <!-- Pet image -->
+                    <a href="./pet_detail.html">
+                    <img src="./resources/pets/australian_terrier.png" alt="Pet 1" class="w-full h-60 object-cover rounded-t-md">
+                    <!-- Pet details -->
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold">Pet Name</h3>
+                        <p class="text-gray-600">Breed: Breed Name</p>
+                        <p class="text-gray-600">Age: 2 years</p>
+                    </div>
+                    </a>
+                </div>
+
+                <div class="bg-gray-100 rounded-md hover:shadow-md">
+                    <!-- Pet image -->
+                    <a href="./pet_detail.html">
+                    <img src="./resources/pets/australian_terrier.png" alt="Pet 1" class="w-full h-60 object-cover rounded-t-md">
+                    <!-- Pet details -->
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold">Pet Name</h3>
+                        <p class="text-gray-600">Breed: Breed Name</p>
+                        <p class="text-gray-600">Age: 2 years</p>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-10 text-center">
+                <a href="./search.html">
+                <button class="bg-gray-600 text-white py-2 px-10 rounded-lg text-lg hover:bg-black focus:outline-none focus:ring focus:border-blue-400">
+                    See More
+                </button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="bg-gray-100 py-24 px-40">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-semibold mb-8">Customer Reviews</h2>
+            <div class="flex overflow-x-scroll space-x-4">
+                <!-- Example review card (repeat as needed) -->
+                <div class="bg-white rounded-md p-4 shadow-md flex-none w-72">
+                    <p class="text-gray-700">"I adopted my best friend from Pet Pal, and he's brought so much joy to my life!"</p>
+                    <p class="text-gray-600 mt-4">- Jane Doe</p>
+                </div>
+                <!-- Repeat similar review cards for other reviews -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-semibold mb-4">About Pet Pal</h2>
+            <p class="text-gray-600 leading-relaxed max-w-xl mx-auto">Pet Pal is a passionate community dedicated to connecting pets with loving families. We believe that every pet deserves a forever home, and we are committed to making that happen.</p>
+        </div>
+    </section>
+
+    <!-- Footer (You can customize it as needed) -->
+    <footer class="bg-blue-500 py-8 text-white text-center">
+        <div class="container mx-auto">
+            <p>&copy; 2023 Pet Pal. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
