@@ -50,9 +50,9 @@
             <div class="flex flex-wrap justify-between space-4">
             </div>
         </div>
-        <div class="flex flex-row m-4 container md:max-w-full">
+        <div class="flex flex-row m-4 container md:max-w-full  bg-white rounded-lg shadow-md">
             <!-- TODO not collapsed by default when screen size is at least medium -->
-            <div  class="hidden md:visible w-[200px] flex-none sm:flex-none sm:basis-1/4  bg-white p-4 rounded-lg shadow-md flex " data-te-collapse-item data-te-collapse-horizontal id="collapseWidthExample">
+            <div  class="p-4 shadow-md hidden md:visible w-[220px] md:w-[300px] flex-none sm:flex-none sm:basis-1/4flex " data-te-collapse-item data-te-collapse-horizontal id="collapseWidthExample">
 
                 <div class="flex flex-col w-full">
                     <div class="w-full">
@@ -146,7 +146,7 @@
                 </div>
             </div>
 
-            <div class="md:grow bg-white p-8 rounded-lg shadow-md">
+            <div class="md:grow p-8 bg-white">
                 <!-- May or may not need pagination -->
                 <div class="gap-4 flex flex-row flex-wrap justify-between items-center md:items-end">
                     <div class="flex flex-row items-center gap-x-4">
@@ -161,7 +161,7 @@
                         <p class="bold"> 15+ pets available </p>
                     </div>
 
-                        <div class="gap-4 flex flex-row space-between md:items-end">
+                        <div class="gap-4 flex flex-row flex-wrap space-between md:items-end">
                             <div>
                                 <select id="sort" data-te-select-init >
                                     <option value="sort1">Sort 1</option>
@@ -185,7 +185,7 @@
                 </div>
 
                 <!-- List of Empty Skeleton Cards (in a row format) -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 ">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
                     <!-- Skeleton Card 1 -->
                     <div  class="
                                    relative max-w-sm  bg-cover bg-no-repeat
@@ -324,31 +324,16 @@
 
             <div class="flex flex-col items-center md:flex-col-reverse md:items-end">
                 <nav aria-label="Pagination">
-                    <ul class=" inline-flex -space-x-px text-sm">
+                    <ul class="list-style-none flex">
                         <li>
-                            <a href="#" class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Prev</a>
+                            <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white" href="#">Prev</a>
                         </li>
                         <li>
-                            <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-                        </li>
-                        <li>
-                            <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                        </li>
-                        <li>
-                            <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-                        </li>
-                        <li>
-                            <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-                        </li>
-                        <li>
-                            <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                            <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white" href="#">Next</a>
                         </li>
                     </ul>
-                </nav>
 
+                </nav>
             </div>
         </div>
     </div>
