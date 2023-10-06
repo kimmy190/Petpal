@@ -3,102 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet"> -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Log In</title>
-    <style>
-        /* Center the content in the 5-section */
-        .center-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-    </style>
+    <!-- flowbite tailwind -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sign Up - Seeker</title>
 </head>
 <body>
-    <nav class="fixed z-10 w-full">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="./main.html" class="flex items-center">
-            <span class="self-center text-3xl font-bold whitespace-nowrap">Pet Pal</span>
-        </a>
-        </div>
-    </nav>
-    <div class="flex">
-        <!-- 2-section -->
-        <div class="w-2/5 relative">
-            <!-- <div class="p-8 pl-9 pt-4">
-                <a href="./main.html">
-                    <h1 class="text-3xl mb-4 font-bold">Pet</h1>
-                </a>
-            </div> -->
-            <div class="absolute inset-0 bg-cover bg-no-repeat bg-center">
-                <img src="./resources/login/paw.jpg" class="w-screen h-screen opacity-80" alt="pet paw">
+    <header>
+        <nav class="z-10 w-full md:fixed">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="./main.html" class="flex items-center">
+                <span class="self-center text-3xl font-bold whitespace-nowrap">Pet Pal</span>
+            </a>
             </div>
-        </div>
-        
-        <!-- 5-section -->
-        <div class="w-3/5">
-            <!-- Center the content in the 5-section -->
-            <div class="center-content">
-                <!-- Log-in form -->
-                <div class="p-8 rounded w-3/5">
-                    <h2 class="text-3xl mb-7 font-semibold">Pet Seeker Sign Up</h2>
+        </nav>
+    </header>
+    <section>
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <!-- <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900">
+                Pet Pal    
+            </a> -->
+            <div class="w-full bg-gray-50 rounded-lg shadow md:mt-0 sm:max-w-xl xl:p-0">
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <h1 class="text-xl mb-2 font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
+                        Seeker Sign Up
+                    </h1>
+                    
+
                     <form>
-                        <!-- first name & last name  -->
-                        <div class="flex justify-between mb-5">
+                        <div class="grid gap-6 mb-5 md:grid-cols-2">
                             <div>
-                                <label for="first-name" class="inline-block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                                <input type="text" id="first-name" name="first-name" placeholder="First Name" class="border-2 rounded-lg w-full py-3 px-3 text-gray-700 sm:text-sm leading-tight focus:outline-none focus:shadow-outline" required >
+                                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">First name</label>
+                                <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="John" required>
                             </div>
-                            <div> 
-                                <label for="last-name" class="inline-block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                                <input type="text" id="last-name" name="last-name" placeholder="Last Name" class="appearance-none border-2 rounded-lg w-full py-3 px-3 text-gray-700 sm:text-sm leading-tight focus:outline-none focus:shadow-outline" required>
+                            <div>
+                                <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Last name</label>
+                                <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Doe" required>
                             </div>
                         </div>
-                        <!-- email -->
                         <div class="mb-5">
-                            <label class="block text-gray-700 text-sm font-medium mb-2" for="username">Email</label>
-                            <input id="username" type="text" placeholder="Enter Email" required class="appearance-none border-2 rounded-lg w-full py-3 px-3 text-gray-700 sm:text-sm leading-tight focus:outline-none focus:shadow-outline">
-                        </div>
-                        <!-- password -->
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email address</label>
+                            <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="john.doe@company.com" required>
+                        </div> 
                         <div class="mb-5">
-                            <label class="block text-gray-700 text-sm font-medium mb-2" for="password">Password</label>
-                            <input id="password" type="password" placeholder="Enter Password" required class="appearance-none border-2 rounded-lg w-full py-3 px-3 text-gray-700 sm:text-sm leading-tight focus:outline-none focus:shadow-outline">
-                        </div>  
-                        <!-- consent check box -->
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                            <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required>
+                        </div> 
                         <div class="mb-5">
-                            <input type="checkbox" id="consent" name="consent" class="border-2 mr-2 leading-tight w-4 h-4">
-                            <label for="consent" class="text-gray-700 text-sm font-base">I agree to the Term and Condtions</label>
-                        </div>
-
-                        <!-- sign up button -->
-                        <div class="mb-5">
-                            <a href="./main_after_login.html">
-                            <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg w-full focus:outline-none focus:shadow-outline">
-                                Sign Up
-                            </button>
-                            </a>
-                        </div>
-
-                        <div>
-                            <p class="text-center font-base text-sm text-gray-400 mb-4">
-                                Not a Pet Seeker?
-                                <a href="./shelter_signup.html" class="font-medium leading-6 text-blue-500 hover:text-gray-700">Pet Shelter Sign Up</a>
-                            </p>
-                        </div>
-                        <div>
-                            <p class="text-center font-base text-sm text-gray-400">
-                                Already have an account?
-                                <a href="./login.html" class="font-medium leading-6 text-blue-500 hover:text-gray-700">Log In</a>
-                            </p>
+                            <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900">Confirm password</label>
+                            <input type="password" id="confirm_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required>
+                        </div> 
+                        <div class="flex items-start mb-5">
+                            <div class="flex items-center h-5">
+                            <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300" required>
+                            </div>
+                            <label for="remember" class="ml-2 text-sm font-medium text-gray-900 ">I agree with the <a href="#" class="text-blue-600 hover:underline">terms and conditions</a>.</label>
                         </div>
                         
+                        <button type="submit" class="text-white mb-5 bg-blue-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-medium w-full sm:w-full px-5 py-2.5 text-center">
+                            <a href="./main_after_login.html">Sign Up</a> 
+                            <!-- when get rid of the a tag inside button, will not proceed to main after login -->
+                        </button>
+
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">
+                                Not a Pet Seeker? <a href="./signup/first_shelter_signup.html" class="font-medium text-blue-600 hover:underline">Pet Shelter Sign Up</a>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">
+                                Already have an account? <a href="./login.html" class="font-medium text-blue-600 hover:underline">Login</a>
+                            </p>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    <!-- need to add for the dropdown menu to work -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 </body>
 </html>
