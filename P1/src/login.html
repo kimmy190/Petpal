@@ -3,82 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet"> -->
+    <!-- flowbite tailwind -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Log In</title>
-    <style>
-        /* Center the content in the 5-section */
-        .center-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-    </style>
+
 </head>
 <body>
-    <nav class="fixed z-10 w-full">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="./main.html" class="flex items-center">
-            <span class="self-center text-3xl font-bold whitespace-nowrap">Pet Pal</span>
-        </a>
-        </div>
-    </nav>
-    <div class="flex">
-        <!-- 2-section -->
-        <div class="w-2/5 relative">
-            <!-- <div class="p-8 pl-9 pt-4">
-                <a href="./main.html">
-                    <h1 class="text-3xl mb-4 font-bold">Pet</h1>
-                </a>
-            </div> -->
-            <div class="absolute inset-0 bg-cover bg-no-repeat bg-center">
-                <img src="./resources/login/paw.jpg" class="w-screen h-screen opacity-80" alt="pet paw">
+    <header>
+        <nav class="z-10 w-full md:fixed">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="./main.html" class="flex items-center">
+                <span class="self-center text-3xl font-bold whitespace-nowrap">Pet Pal</span>
+            </a>
             </div>
-        </div>
-        
-        <!-- 5-section -->
-        <div class="w-3/5">
-            <!-- Center the content in the 5-section -->
-            <div class="center-content">
-                <!-- Log-in form -->
-                <div class="p-8 rounded w-3/5">
-                    <h2 class="text-3xl mb-5 font-semibold text-center">Log In</h2>
-                    <form>
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-base font-semibold mb-2" for="username">Email</label>
-                            <input id="username" type="text" placeholder="Enter Email" required class="appearance-none border-2 rounded-lg w-full py-3 px-3 text-gray-700 sm:text-sm leading-tight focus:outline-none focus:shadow-outline">
-                        </div>
-                        <div class="mb-5">
-                            <label class="block text-gray-700 text-base font-semibold mb-2" for="password">Password</label>
-                            <input id="password" type="password" placeholder="Enter Password" required class="appearance-none border-2 rounded-lg w-full py-3 px-3 text-gray-700 mb-3 sm:text-sm leading-tight focus:outline-none focus:shadow-outline">
-                            
-                            <div class="text-center">
-                                <a href="#" class="inline-block align-baseline font-medium text-sm text-gray-400 hover:text-gray-800" >
-                                    Forgot Password?
-                                </a>
-                            </div>
-                        </div>
-                        <div class="mb-5">
-                            <a href="./main_after_login.html">
-                                <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg w-full focus:outline-none focus:shadow-outline">
-                                    Log In
-                                </button>
-                            </a>
-                            
+        </nav>
+    </header>
+    <section>
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <!-- <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900">
+                Pet Pal    
+            </a> -->
+            <div class="w-full bg-gray-50 rounded-lg shadow md:mt-0 sm:max-w-xl xl:p-0">
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
+                        Log In
+                    </h1>
+                    <form class="space-y-4 md:space-y-6" action="#">
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Email</label>
+                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required="">
                         </div>
                         <div>
-                            <p class="text-center font-medium text-sm text-gray-400">
-                                Don't have an account?
-                                <a href="./seeker_signup.html" class="font-semibold leading-6 text-blue-500 hover:text-gray-700">Sign Up</a>
-                            </p>
+                            <div class="flex justify-between items-center">
+                                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
+                                <a href="#" class="inline-block mb-2 text-sm font-light text-gray-500 hover:underline">Forgot Password?</a>
+                            </div>
+                            
+                            <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " required="">
+                            
                         </div>
-                        
+
+                        <button type="submit" class="w-full text-white bg-blue-600 hover:bg-primary-700 hover:bg-gray-900 :ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-medium px-5 py-2.5 text-center">Log In</button>
+                        <p class="text-sm font-medium text-gray-500">
+                            Don't have an account? <a href="./seeker_signup.html" class="font-medium text-blue-600 hover:underline">Sign Up</a>
+                        </p>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    <!-- need to add for the dropdown menu to work -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+
 </body>
 </html>
