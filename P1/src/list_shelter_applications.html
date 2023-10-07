@@ -4,14 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <!-- flowbite tailwind -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- font awseome icon -->
     <script src="https://kit.fontawesome.com/199027eb42.js" crossorigin="anonymous"></script>
-    <title>Pet Pal - Home</title>
+    <title>Pet Pal - Applications</title>
 </head>
 
 <body>
@@ -199,7 +197,7 @@
     <!-- Some hacky flex boxing -->
     <div class="flex justify-center mx-4">
         <div class="flex flex-col content-center   w-full md:w-3/4 lg:w-1/2">
-            <div class="flex flex-row items-center justify-between mx-4 my-2 ">
+            <div class="flex flex-row items-center justify-between  my-2 ">
                 <div>
                     <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-4xl "> Adoption Applications </h1>
                 </div>
@@ -207,11 +205,8 @@
                     <label for="sort" class="block  text-sm font-medium text-gray-900 dark:text-white">Sort</label>
                     <!-- TODO switch me to a button that is clickable to reverse order, that is sufficient here -->
                     <select id="sort" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option selected>Most Recent</option>
-                        <option value="US">Least recent </option>
-                        <option value="CA">Canada</option>
-                        <option value="FR">France</option>
-                        <option value="DE">Germany</option>
+                        <option value="1" selected>Most Recent</option>
+                        <option value="2">Least recent </option>
                     </select>
                 </div>
             </div>
@@ -233,19 +228,33 @@
                         <div class="flex flex-row flex-wrap items-center justify-between mt-4 gap-4 w-full">
                             <div class="flex flex-row items-center justify-start gap-4">
                                 <img class="w-20 h-20 rounded-full" src="resources/pets/DunDun2.png" alt="Rounded avatar">
-                                <div>
-                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                        Application from: Andre Daprato
-                                    </p>
-
-                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                        Created: December 31, 2023</p>
+                                <div class="flex flex-col items-start justify-center">
+                                    <p class="mr-2">Application to: </p>
+                                    <div class="flex justify-center items-center p-3">
+                                        <a href="shelter_detail_user_view.html"
+                                           class="relative flex justify-center text-center items-center transform transition duration-300 hover:scale-105">
+                                            <div class="rounded-full w-[10px] h-[10px] mr-1 mb-1">
+                                                <img src="resources/shelter/shelter_logo.png">
+                                            </div>
+                                            <h1 class="text-sm w-min md:w-auto">Toronto Adoption Center</h1>
+                                            <div class="relative self-start ml-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-3 h-3">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+                                                </svg>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400"> Created: December 31, 2023</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="flex justify-self-end "> <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View application</button>
+                            <div class="flex justify-self-end ">
+                                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View application</button>
                             </div>
                         </div>
-                    </div>
 
                 </li>
 
