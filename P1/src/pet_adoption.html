@@ -16,7 +16,7 @@
     </style> -->
 </head>
 
-<body class="flex flex-col justify-center items-center">
+<body class="flex flex-col justify-center items-center bg-gray-100 m-3">
     <div class="flex justify-center items-center p-3">
         <div class="rounded-full w-[50px] h-[50px] mr-1 mb-1">
             <img src="resources/shelter/shelter_logo.png">
@@ -29,61 +29,66 @@
             <div class="flex text-4xl justify-center p-3" style="color: red;">
                 Adoption Application, Contract, and Waiver
             </div>
-            <div class="bg-gray-100 border border-gray-200 p-1 rounded-lg">
+            <div class="bg-white border border-gray-200 p-1 rounded-lg">
                 <div class="grid-cols-2 sm:grid md:grid-cols-1 gap-4">
                     <label for="pet_name" class="mt-1 p-2 block font-bold text-gray-700">Name of Pet You Wish to
                         Adopt:<span class="text-red-500">*</span></label>
-                    <div class="mb-4">
-                        <input type="pet_name" id="pet_name" name="pet_name" class="mt-1 p-2 w-full border rounded-md"
-                            placeholder="Pet Name" required>
-                    </div>
+                    <input type="pet name" name="pet name" id="pet name"
+                        class="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4 mt-1"
+                        placeholder="Pet Name" required>
 
 
                     <label for="owner_name" class="mt-1 p-2 block font-bold text-gray-700">Your Name:<span
                             class="text-red-500">*</span></label>
-                    <div class="mb-4">
-                        <input type="owner_name" id="owner_name" name="owner_name"
-                            class="mt-1 p-2 w-full border rounded-md" placeholder="Full Name" required>
-                    </div>
+                    <input type="name" name="name" id="name"
+                        class="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4"
+                        placeholder="Full Name" required>
 
 
                     <label for="phone_number" class="mt-1 p-2 block font-bold text-gray-700">Phone Number:<span
                             class="text-red-500">*</span></label>
                     <div class="mb-4">
                         <div class="grid-cols-2 sm:grid md:grid-cols-1 gap-4">
-                            <input type="area_code" id="area_code" name="area_code"
-                                class="mt-1 p-2 w-full border rounded-md" placeholder="Area Code" required>
-                            <input type="phone_number" id="phone_number" name="phone_number"
-                                class="mt-1 p-2 w-full border rounded-md" placeholder="Phone Number" required>
+                            <input type="area code" name="area code" id="area code"
+                                class="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4"
+                                placeholder="Area Code" required="">
+                            <input type="phone number" name="phone number" id="phone number"
+                                class="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4"
+                                placeholder="Phone Number" required>
                         </div>
                     </div>
 
 
                     <label for="email" class="mt-1 p-2 block font-bold text-gray-700">Email:<span
                             class="text-red-500">*</span></label>
-                    <div class="mb-4">
-                        <input type="email" id="email" name="email" class="mt-1 p-2 w-full border rounded-md"
-                            placeholder="myname@example.com" required>
-                    </div>
+                    <input type="email" name="email" id="email"
+                        class="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4"
+                        placeholder="name@company.com" required>
 
                     <label for="address" class="mt-1 p-2 block font-bold text-gray-700">Address:<span
                             class="text-red-500">*</span></label>
                     <div class="mb-4">
                         <div class="grid-cols-1 sm:grid md:grid-cols-1">
-                            <input type="street address" id="street_address1" name="street_address1"
-                                class="mb-4 p-2 w-full border rounded-md" placeholder="Street Address" required>
-                            <input type="street address line 2" id="street_address2" name="street_address2"
-                                class="mb-4 p-2 w-full border rounded-md" placeholder="Street Address Line 2" required>
+                            <input type="street address 1" name="street address 1" id="street address 1"
+                                class="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4"
+                                placeholder="Street Address 1" required>
+                            <input type="street address 2" name="street address 2" id="street address 2"
+                                class="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4"
+                                placeholder="Street Address 2" required>
                             <div class="grid-cols-2 sm:grid md:grid-cols-1 gap-4">
-                                <input type="city" id="city" name="city" class="mb-3 p-2 w-full border rounded-md"
+                                <input type="city" name="city" id="city"
+                                    class="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4"
                                     placeholder="City" required>
-                                <input type="Province" id="Province" name="Province"
-                                    class="mb-4 p-2 w-full border rounded-md" placeholder="Province" required>
+                                <input type="province" name="province" id="province"
+                                    class="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4"
+                                    placeholder="Province" required>
                             </div>
                             <div class="grid-cols-2 sm:grid md:grid-cols-1 gap-4">
-                                <input type="postal_code" id="postal_code" name="postal_code"
-                                    class="mb-4 p-2 w-full border rounded-md" placeholder="Postal Code" required>
-                                <select id="country" class="mb-4 p-2 w-full border rounded-md">
+                                <input type="postal code" name="postal code" id="postal code"
+                                    class="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4"
+                                    placeholder="Postal Code" required>
+                                <select id="country"
+                                    class="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4">
                                     <option value="select">Country</option>
                                     <option value="country1">Canada</option>
                                     <option value="country2">United States of America</option>
@@ -96,24 +101,27 @@
                     <label for="pet_ownership" class="mt-1 p-2 block font-bold text-gray-700">Do you own any pets?<span
                             class="text-red-500">*</span></label>
                     <div class="mb-4">
-                        <div class="text-center mb-4">
-                            <label class="block mb-2">
-                                <input type="radio" class="form-radio text-blue-600" name="choice" value="yes">
-                                <span class="ml-2">Yes</span>
-                            </label>
+                        <div class="justify-center mb-4">
+                            <div>
+                                <label class="block mb-2">
+                                    <input type="radio" class="form-radio text-blue-600" name="choice" value="Yes">
+                                    <span class="ml-2">Yes</span>
+                                </label>
 
-                            <label class="block">
-                                <input type="radio" class="form-radio text-red-600" name="choice" value="no">
-                                <span class="ml-2">No</span>
-                            </label>
+                                <label class="block">
+                                    <input type="radio" class="form-radio text-red-600" name="choice" value="No">
+                                    <span class="ml-2">No</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
 
                     <label for="breed" class="mt-1 p-2 block font-bold text-gray-700">If yes, name the breed
                         and age.</label>
                     <div class="mb-4">
-                        <textarea type="breed" id="breed" name="breed" class="mt-1 p-2 w-full border rounded-md"
-                            style="resize: none; height: 200px;" placeholder="Enter Your Answer Here"></textarea>
+                        <textarea type="" name="" id=""
+                            class="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4 mt-2"
+                            style="height: 200px; resize: none;" placeholder="Enter Answer Here" required></textarea>
                     </div>
 
 
@@ -121,35 +129,40 @@
                         If
                         yes, what animal and for how long?<span class="text-red-500">*</span></label>
                     <div class="mb-4">
-                        <textarea type="past_pet" id="past_pet" name="past_pet"
-                            class="mt-1 p-2 w-full border rounded-md" style="resize: none; height: 200px;"
-                            placeholder="Enter Your Answer Here"></textarea>
+                        <div class="mb-4">
+                            <textarea type="" name="" id=""
+                                class="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4 mt-2"
+                                style="height: 200px; resize: none;" placeholder="Enter Answer Here"
+                                required></textarea>
+                        </div>
                     </div>
 
                     <label for="pet_ownership" class="mt-1 p-2 block font-bold text-gray-700">Do you own or rent your
                         home?<span class="text-red-500">*</span></label>
                     <div class="mb-10">
-                        <div class="text-center mb-4">
-                            <label class="block mb-2">
-                                <input type="radio" class="form-radio text-blue-600" name="choice" value="own">
-                                <span class="ml-2">Own</span>
-                            </label>
+                        <div class="justify-center mb-4">
+                            <div>
+                                <label class="block mb-2">
+                                    <input type="radio" class="form-radio text-blue-600" name="choice" value="own">
+                                    <span class="ml-2">Own</span>
+                                </label>
 
-                            <label class="block">
-                                <input type="radio" class="form-radio text-red-600" name="choice" value="rent">
-                                <span class="ml-2">Rent</span>
-                            </label>
+                                <label class="block">
+                                    <input type="radio" class="form-radio text-red-600" name="choice" value="rent">
+                                    <span class="ml-2">Rent</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="flex justify-start mb-10">
+                <div class="flex justify-start p-2 mb-10">
                     <input type="checkbox" class="form-checkbox text-indigo-600 mr-3">
                     <p class="input-left-text" required>I have read and agree to the terms and conditions.</p>
                 </div>
 
-                <div class="flex justify-start mb-20">
+                <div class="flex justify-start p-2 mb-20">
                     <ul>
                         <li class="font-bold">
                             By clicking the submit button, I verify all of the above information is true and
@@ -158,21 +171,18 @@
                     </ul>
                 </div>
 
-                <div class="flex items-center mb-4">
-                    <label for="signature" class="block mt-1 p-2 font-bold text-gray-700 mr-4">Signature<span
+                <div class="flex items-center mb-20">
+                    <label for="signature" class="block p-2 font-bold text-gray-700 mr-2">Signature<span
                             class="text-red-500">*</span></label>
-                    <input type="text" id="signature" name="signature" class="block mt-1 p-2 w-full border rounded-md"
-                        style="width: 250px;" placeholder="Your Signature">
+                    <input type="text" name="signature" id="signature"
+                        class="block bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                        style="width: 250px;" placeholder="Signature" required>
                 </div>
 
                 <div class="flex justify-center">
-                    <button class="m-3">
-                        <a href="pet_adoption.html"
-                            style="display: inline-block; padding: 10px 25px; background-color: #007bff; color: #fff; border: 2px solid #fff; text-decoration: none; border-radius: 10px; transition: background-color 0.3s;"
-                            onmouseover="this.style.backgroundColor = '#00008B';"
-                            onmouseout="this.style.backgroundColor = '#007bff';">
-                            Submit
-                        </a>
+                    <button type="button"
+                        class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                        Submit
                     </button>
                 </div>
             </div>
