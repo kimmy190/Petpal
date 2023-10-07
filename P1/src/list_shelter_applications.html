@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- flowbite tailwind -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- font awseome icon -->
+    <script src="https://kit.fontawesome.com/199027eb42.js" crossorigin="anonymous"></script>
+    <title>Pet Pal - Home</title>
+</head>
+
+<body>
+    <!-- Navbar (You can customize it as needed) -->
+    <!-- Navbar (You can customize it as needed) -->
+    <nav class="border-gray-200">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center">
+                <span class="self-center text-3xl font-semibold whitespace-nowrap">Pet Pal</span>
+            </a>
+            <div class="flex items-center md:order-2 items-center">
+                <!-- Notification bell drop down -->
+                <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" data-dropdown-offset-distance="26" data-dropdown-offset-skidding="-135" class="md:inline-flex md:items-center md:text-sm md:font-medium md:text-center md:text-gray-500 md:hover:text-gray-900 md:focus:outline-none hidden" type="button">
+                    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
+                        <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z" />
+                    </svg>
+                    <div class="relative flex">
+                        <div class="relative inline-flex w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-2 right-3"></div>
+                    </div>
+                </button>
+
+                <!-- Notification Dropdown menu -->
+                <div id="dropdownNotification" class="hidden md:z-20 md:w-full md:max-w-sm md:bg-white md:divide-y md:divide-gray-100 md:rounded-lg md:shadow md:border" aria-labelledby="dropdownNotificationButton">
+                    <div class="hidden md:block md:px-4 md:py-2 md:font-medium md:text-center md:text-gray-700 md:rounded-t-lg md:bg-gray-50">
+                        Notifications
+                    </div>
+                    <div class="md:divide-y md:divide-gray-100">
+                        <a href="#" class="hidden md:flex md:px-4 md:py-3 md:hover:bg-gray-100">
+                            <!-- <div class="flex-shrink-0">
+                            <img class="rounded-full w-11 h-11" src="/docs/images/people/profile-picture-1.jpg" alt="Jese image">
+                            <div class="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-blue-600 border border-white rounded-full">
+                            <svg class="w-2 h-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                                <path d="M1 18h16a1 1 0 0 0 1-1v-6h-4.439a.99.99 0 0 0-.908.6 3.978 3.978 0 0 1-7.306 0 .99.99 0 0 0-.908-.6H0v6a1 1 0 0 0 1 1Z"/>
+                                <path d="M4.439 9a2.99 2.99 0 0 1 2.742 1.8 1.977 1.977 0 0 0 3.638 0A2.99 2.99 0 0 1 13.561 9H17.8L15.977.783A1 1 0 0 0 15 0H3a1 1 0 0 0-.977.783L.2 9h4.239Z"/>
+                            </svg>
+                            </div>
+                        </div> -->
+                            <div class="w-full pl-3">
+                                <div class="text-gray-500 text-sm mb-1.5 ">New message from <span class="font-semibold text-gray-900">Toronto Adoption Community</span>: "Hello! DunDun is available for adoption!"</div>
+                                <div class="text-xs text-blue-600">a few moments ago</div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="hidden md:flex md:px-4 md:py-3 md:hover:bg-gray-100">
+                            <!-- <div class="flex-shrink-0">
+                            <img class="rounded-full w-11 h-11" src="/docs/images/people/profile-picture-2.jpg" alt="Joseph image">
+                            <div class="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-gray-900 border border-white rounded-full ">
+                            <svg class="w-2 h-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                                <path d="M6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Zm11-3h-2V5a1 1 0 0 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 0 0 2 0V9h2a1 1 0 1 0 0-2Z"/>
+                            </svg>
+                            </div>
+                        </div> -->
+                            <div class="w-full pl-3">
+                                <div class="text-gray-500 text-sm mb-1.5"><span class="font-semibold text-gray-900">Timmy</span> has been adopted</div>
+                                <div class="text-xs text-blue-600">10 minutes ago</div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="hidden md:flex md:px-4 md:py-3 hover:bg-gray-100">
+                            <!-- <div class="flex-shrink-0">
+                            <img class="rounded-full w-11 h-11" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image">
+                            <div class="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-red-600 border border-white rounded-full ">
+                            <svg class="w-2 h-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                                <path d="M17.947 2.053a5.209 5.209 0 0 0-3.793-1.53A6.414 6.414 0 0 0 10 2.311 6.482 6.482 0 0 0 5.824.5a5.2 5.2 0 0 0-3.8 1.521c-1.915 1.916-2.315 5.392.625 8.333l7 7a.5.5 0 0 0 .708 0l7-7a6.6 6.6 0 0 0 2.123-4.508 5.179 5.179 0 0 0-1.533-3.793Z"/>
+                            </svg>
+                            </div>
+                        </div> -->
+                            <div class="w-full pl-3">
+                                <div class="text-gray-500 text-sm mb-1.5 "><span class="font-semibold text-gray-900">Bonnie Green</span> and <span class="font-medium text-gray-900 ">141 others</span> love your story. See it and view more stories.</div>
+                                <div class="text-xs text-blue-600 ">44 minutes ago</div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="hidden md:flex md:px-4 md:py-3 hover:bg-gray-100">
+                            <!-- <div class="flex-shrink-0">
+                            <img class="rounded-full w-11 h-11" src="/docs/images/people/profile-picture-4.jpg" alt="Leslie image">
+                            <div class="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-green-400 border border-white rounded-full ">
+                            <svg class="w-2 h-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                                <path d="M18 0H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2v4a1 1 0 0 0 1.707.707L10.414 13H18a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5 4h2a1 1 0 1 1 0 2h-2a1 1 0 1 1 0-2ZM5 4h5a1 1 0 1 1 0 2H5a1 1 0 0 1 0-2Zm2 5H5a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Zm9 0h-6a1 1 0 0 1 0-2h6a1 1 0 1 1 0 2Z"/>
+                            </svg>
+                            </div>
+                        </div> -->
+                            <div class="w-full pl-3">
+                                <div class="text-gray-500 text-sm mb-1.5 "><span class="font-semibold text-gray-900 ">Leslie Livingston</span> mentioned you in a comment: <span class="font-medium text-blue-500" href="#">@bonnie.green</span> what do you say?</div>
+                                <div class="text-xs text-blue-600 ">1 hour ago</div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="hidden md:flex md:px-4 md:py-3 hover:bg-gray-100">
+                            <!-- <div class="flex-shrink-0">
+                            <img class="rounded-full w-11 h-11" src="/docs/images/people/profile-picture-5.jpg" alt="Robert image">
+                            <div class="absolute flex items-center justify-center w-5 h-5 ml-6 -mt-5 bg-purple-500 border border-white rounded-full ">
+                            <svg class="w-2 h-2 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 14">
+                                <path d="M11 0H2a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm8.585 1.189a.994.994 0 0 0-.9-.138l-2.965.983a1 1 0 0 0-.685.949v8a1 1 0 0 0 .675.946l2.965 1.02a1.013 1.013 0 0 0 1.032-.242A1 1 0 0 0 20 12V2a1 1 0 0 0-.415-.811Z"/>
+                            </svg>
+                            </div>
+                        </div> -->
+                            <div class="w-full pl-3">
+                                <div class="text-gray-500 text-sm mb-1.5 "><span class="font-semibold text-gray-900 ">Robert Brown</span> posted a new video: Glassmorphism - learn how to implement the new design trend.</div>
+                                <div class="text-xs text-blue-600 ">3 hours ago</div>
+                            </div>
+                        </a>
+                    </div>
+                    <a href="#" class="hidden md:block md:py-2 md:text-sm md:font-medium md:text-center md:text-gray-900 md:rounded-b-lg md:bg-gray-50 md:hover:bg-gray-100">
+                        <div class="inline-flex items-center ">
+                            <svg class="w-4 h-4 mr-2 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 14">
+                                <path d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" />
+                            </svg>
+                            View all
+                        </div>
+                    </a>
+                </div>
+
+                <!-- End of notification bell dropdown -->
+
+                <!-- Profile Button  -->
+                <!-- <div class="relative">
+                    <img class="w-10 h-10 rounded-full" src="./resources/default-profile-image.jpg" alt="">
+                    <span class="top-0 left-7 absolute  w-3.5 h-3.5 bg-red-500 border-2 border-white rounded-full"></span>
+                </div> -->
+
+                <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-offset-distance="20" data-dropdown-offset-skidding="-60">
+                    <span class="sr-only">Open user menu</span>
+                    <!-- when no custom image , will insert this tag -->
+                    <!-- <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                        <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                    </div> -->
+                    <div class="relative">
+                        <img class="w-8 h-8 md:w-10 md:h-10 rounded-full" src="./resources/default-profile-image.jpg" alt="">
+                        <span class="top-0 left-7 absolute w-3.5 h-3.5 bg-red-500 border-2 border-white md:w-0 md:h-0 md:border-0 md:border-none rounded-full"></span>
+                    </div>
+                </button>
+                <!-- Dropdown menu -->
+                <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow border" id="user-dropdown">
+                    <div class="px-4 py-3 bg-gray-50">
+                        <span class="block text-sm text-gray-900 font-medium">Bonnie Green</span>
+                        <span class="block text-sm  text-gray-500 truncate">name@flowbite.com</span>
+                    </div>
+                    <ul class="py-2" aria-labelledby="user-menu-button">
+                        <li>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Notifications</a>
+                        </li>
+                    </ul>
+                    <div class="py-1">
+                        <a href="./main.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                    </div>
+                </div>
+                <!-- hamburger -->
+                <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-user" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+
+            </div>
+            <!-- Middle section -->
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
+                <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
+                    <li>
+                        <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:bg-transparent md:bg-gray-100 md:p-0" aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">About</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Adopt</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Some hacky flex boxing -->
+    <div class="flex justify-center mx-4">
+        <div class="flex flex-col content-center   w-full md:w-3/4 lg:w-1/2">
+            <div class="flex flex-row items-center justify-between mx-4 my-2 ">
+                <div>
+                    <h1 class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-4xl lg:text-4xl "> Adoption Applications </h1>
+                </div>
+                <div class="flex items-center gap-2">
+                    <label for="sort" class="block  text-sm font-medium text-gray-900 dark:text-white">Sort</label>
+                    <!-- TODO switch me to a button that is clickable to reverse order, that is sufficient here -->
+                    <select id="sort" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected>Most Recent</option>
+                        <option value="US">Least recent </option>
+                        <option value="CA">Canada</option>
+                        <option value="FR">France</option>
+                        <option value="DE">Germany</option>
+                    </select>
+                </div>
+            </div>
+            <ul class="w-full text-sm  font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                <li class="w-full border-b border-gray-200  dark:border-gray-600">
+                    <!-- content of application card -->
+                    <div class="flex flex-col p-4 ">
+                        <div class="flex justify-start items-center gap-4">
+                            <div>
+                                <h5 class="mb-2 text-xl md:text-2xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    Betsy
+                                </h5>
+                            </div>
+                            <div>
+                                <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">On Hold</span>
+
+                            </div>
+                        </div>
+                        <div class="flex flex-row flex-wrap items-center justify-between mt-4 gap-4 w-full">
+                            <div class="flex flex-row items-center justify-start gap-4">
+                                <img class="w-20 h-20 rounded-full" src="resources/pets/DunDun2.png" alt="Rounded avatar">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                        Application from: Andre Daprato
+                                    </p>
+
+                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                        Created: December 31, 2023</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-self-end "> <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View application</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </li>
+
+                <li class="w-full border-b border-gray-200  dark:border-gray-600">
+                    <!-- content of application card -->
+                    <div class="flex flex-col p-4 ">
+                        <div class="flex justify-start items-center gap-4">
+                            <div>
+                                <h5 class="mb-2 text-xl md:text-2xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    Betsy
+                                </h5>
+                            </div>
+                            <div>
+                                <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">On Hold</span>
+
+                            </div>
+                        </div>
+                        <div class="flex flex-row flex-wrap items-center justify-between mt-4 gap-4 w-full">
+                            <div class="flex flex-row items-center justify-start gap-4">
+                                <img class="w-20 h-20 rounded-full" src="resources/pets/DunDun2.png" alt="Rounded avatar">
+                                <div>
+                                    <p class="text-sm font-medium  text-gray-900 truncate dark:text-white">
+                                        Application from: Andre Daprato
+                                    </p>
+
+                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                        Created: December 31, 2023</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-self-end "> <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View application</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </li>
+                <li class="w-full border-b border-gray-200  dark:border-gray-600">
+                    <!-- content of application card -->
+                    <div class="flex flex-col p-4 ">
+                        <div class="flex justify-start items-center gap-4">
+                            <div>
+                                <h5 class="mb-2 text-xl md:text-2xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    Betsy
+                                </h5>
+                            </div>
+                            <div>
+                                <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">On Hold</span>
+
+                            </div>
+                        </div>
+                        <div class="flex flex-row flex-wrap items-center justify-between mt-4 gap-4 w-full">
+                            <div class="flex flex-row items-center justify-start gap-4">
+                                <img class="w-20 h-20 rounded-full" src="resources/pets/DunDun2.png" alt="Rounded avatar">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                        Application from: Andre Daprato
+                                    </p>
+
+                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                        Created: December 31, 2023</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-self-end "> <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View application</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </li>
+                <li class="w-full border-b border-gray-200  dark:border-gray-600">
+                    <!-- content of application card -->
+                    <div class="flex flex-col p-4 ">
+                        <div class="flex justify-start items-center gap-4">
+                            <div>
+                                <h5 class="mb-2 text-xl md:text-2xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    Betsy
+                                </h5>
+                            </div>
+                            <div>
+                                <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">On Hold</span>
+
+                            </div>
+                        </div>
+                        <div class="flex flex-row flex-wrap items-center justify-between mt-4 gap-4 w-full">
+                            <div class="flex flex-row items-center justify-start gap-4">
+                                <img class="w-20 h-20 rounded-full" data-popover-target="popover-default" src="resources/pets/DunDun2.png" alt="Rounded avatar">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                        Application from: Andre Daprato
+                                    </p>
+
+                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                        Created: December 31, 2023</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-self-end "> <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">View application</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+        <div data-popover id="popover-default" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+
+                    <div  class="
+                                   relative max-w-sm  bg-cover bg-no-repeat
+                                    flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                        <a href="pet_detail.html">
+                            <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full" alt="Pet 2">
+
+                            <div class="flex-col flex-start p-6">
+                                <h5 class="mb-2 text-xl  font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    Betsy
+                                </h5>
+                                <hr class="my-2">
+                                <p> Gender: Male </p>
+                                <p> Age: 3 years </p>
+                                <p> Breed: Boston Terrier </p>
+                                <p> Size: Large </p>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsl(0,0%,98.4%,0.2)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:shadow-lg hover:opacity-100"></div>
+                        </a>
+                </div>
+        </div>
+
+
+        <!-- Footer (You can customize it as needed) -->
+        <footer class="bg-blue-500 py-8 text-white text-center fixed bottom-0 left-0 z-20 w-full">
+            <div class="container mx-auto">
+                <p>&copy; 2023 Pet Pal. All rights reserved.</p>
+            </div>
+        </footer>
+
+
+
+        <!-- need to add for the dropdown menu to work -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+</body>
+
+</html>
