@@ -5,19 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Detail</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
+    <script src="https://cdn.tailwindcss.com/3.3.0"></script>
 </head>
 
 <body class="flex flex-col justify-center items-center bg-gray-100">
     <div class="flex justify-center items-center p-3">
-        <div class="rounded-full w-[50px] h-[50px] mr-1 mb-1">
-            <img src="resources/shelter/shelter_logo.png">
-        </div>
-        <h1 class="text-5xl">Toronto Adoption Center</h1>
+        <a href="shelter_detail_user_view.html"
+            class="relative flex justify-center text-center items-center transform transition duration-300 hover:scale-105">
+            <div class="rounded-full w-[50px] h-[50px] mr-1 mb-1">
+                <img src="resources/shelter/shelter_logo.png">
+            </div>
+            <h1 class="text-5xl w-min md:w-auto">Toronto Adoption Center</h1>
+            <div class="relative self-start ml-1">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+                </svg>
+
+            </div>
+
+        </a>
     </div>
 
-
+    <!-- 
     <div class="w-full flex justify-center">
         <div class="m-3">
             <div class="inline-flex">
@@ -32,7 +45,7 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div> -->
     <section id="pet_gallery" class="p-2 w-3/4 mb-3">
         <div
             class="w-full flex flex-col border bg-white border-gray-300 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:flex-row md:max">
@@ -60,7 +73,7 @@
             <div class="bg-white flex-col flex-start p-6 w-full">
                 <div
                     class="flex mb-2 text-2xl items-center font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                    <div class="flex w-1/2">
+                    <div class="flex w-1/2 flex-col md:flex-row">
                         <h5>
                             DunDun
                         </h5>
@@ -68,7 +81,7 @@
                         <a href="#"
                             class="transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
                             data-te-toggle="tooltip" title="DunDun is waiting to be adopted!">
-                            <div class="ml-3 bg-green-600 h-6 w-6 rounded-full text-right">
+                            <div class="md:ml-3 bg-green-600 h-6 w-6 rounded-full text-right">
 
                             </div>
                         </a>
