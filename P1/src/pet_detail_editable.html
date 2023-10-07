@@ -79,21 +79,46 @@
             class="w-full flex flex-col border bg-white border-gray-300 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:flex-row md:max">
 
             <div class="w-full grid-cols-1 sm:grid md:grid-cols-1 bg-white border border-gray-200 rounded-lg">
-                <div id="carousel" class="relative w-full bg-gray-200" data-te-carousel-init data-te-ride="carousel">
+                <div id="carousel" class="relative w-full bg-gray-200 h-[500px] md:h-auto" data-te-carousel-init
+                    data-te-ride="carousel">
                     <!--Carousel indicators-->
                     <div class="absolute bottom-0 left-0 right-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0"
                         data-te-carousel-indicators>
                         <button type="button" data-te-target="#carousel" data-te-slide-to="0" data-te-carousel-active
                             class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
                             aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-te-target="#carousel" data-te-slide-to="1"
+                            class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+                            aria-label="Slide 2"></button>
                     </div>
 
                     <!--Carousel items-->
                     <div class="relative w-full h-full overflow-hidden after:clear-both after:block after:content-['']">
                         <div class="relative float-left -mr-[100%] hidden w-full h-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
                             data-te-carousel-active data-te-carousel-item style="backface-visibility: hidden">
+                            <label class="block w-full h-full hover:cursor-pointer" for="image_submit">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor"
+                                    class="block absolute top-0 left-0 w-full h-full">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </label>
+                            <input class="hidden" type="file" id="image_submit" />
+                        </div>
+
+                        <!--Second item-->
+                        <div class="relative float-left -mr-[100%] hidden w-full h-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                            data-te-carousel-item style="backface-visibility: hidden">
                             <img src="resources/pets/DunDun2.png" class="block object-contain h-full w-full rounded"
                                 alt="..." />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor"
+                                class="absolute top-0 right-0 w-[100px] h-[100px] hover:cursor-pointer hover:scale-110">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
                         </div>
                     </div>
                 </div>
