@@ -21,9 +21,9 @@
         </nav>
     </header>
     <!-- Shelter Sign Up -->
-    <section>
+    <section class="bg-gray-50">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-            <div class="w-full bg-gray-50 rounded-lg shadow md:mt-0 sm:max-w-xl xl:p-0">
+            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-xl xl:p-0">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 class="text-xl mb-2 font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                         Shelter Sign Up
@@ -45,7 +45,7 @@
                             <p class="block mb-2 text-sm font-medium text-gray-900">Upload Shelter Logo</p>
                             <div class="grid gap-3 mb-6 md:grid-cols-5">
                                 <!-- shelter logo image -->
-                                <div class="md:col-span-1 relative w-10 h-10 md:w-16 md:h-16 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                <div class="md:col-span-1 relative w-10 h-10 sm:w-14 sm:h-14 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                                     <!-- <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg> -->
                                 </div>
                                 <div class="md:col-span-4">
@@ -58,6 +58,30 @@
                         
                         <!-- Shelter gallery -->
                         <div class="mb-5">
+                            <div class="flex justify-center mb-2">
+                                <div class="mr-4">
+                                    <div id="tooltip-jese" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                        Jese Leos
+                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
+                                    <img data-tooltip-target="tooltip-jese" class="w-10 h-10 sm:w-14 sm:h-14 rounded" src="../resources/shelter/shelter_1.png" alt="Medium avatar">
+                                </div>
+                                <div class="mr-4">
+                                    <div id="tooltip-roberta" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                        Roberta Casas
+                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
+                                    <img data-tooltip-target="tooltip-roberta" class="w-10 h-10 sm:w-14 sm:h-14 rounded" src="../resources/shelter/shelter_2.png" alt="Medium avatar">
+                                </div>
+                                <div>
+                                    <div id="tooltip-bonnie" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                        Bonnie Green
+                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
+                                    <img data-tooltip-target="tooltip-bonnie" class="w-10 h-10 sm:w-14 sm:h-14 rounded" src="../resources/shelter/shelter_3.jpg" alt="Medium avatar">
+                                </div>
+                            </div>
+
                             <p class="block mb-2 text-sm font-medium text-gray-900">Upload Shelter Pictures</p>
                             <div class="md:col-span-4">
                                 <label for="file_input"></label>
@@ -90,7 +114,7 @@
                         </div>
                         <div>
                             <p class="text-sm font-medium text-gray-500">
-                                Already have an account? <a href="./login.html" class="font-medium text-blue-600 hover:underline">Login</a>
+                                Already have an account? <a href="../login.html" class="font-medium text-blue-600 hover:underline">Login</a>
                             </p>
                         </div>
                     </form>
