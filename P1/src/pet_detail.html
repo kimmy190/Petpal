@@ -7,16 +7,9 @@
     <title>Pet Detail</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
-
-    <!-- <style>.sepcial {
-    content: "";
-    display: block;
-    padding-top: 100%;
-    }
-    </style> -->
 </head>
 
-<body class="flex flex-col justify-center items-center">
+<body class="flex flex-col justify-center items-center bg-gray-100">
     <div class="flex justify-center items-center p-3">
         <div class="rounded-full w-[50px] h-[50px] mr-1 mb-1">
             <img src="resources/shelter/shelter_logo.png">
@@ -40,74 +33,65 @@
             </div>
         </div>
     </div>
-    <section id="pet_gallery" class="w-10/12">
-        <div class="grid-cols-1 sm:grid md:grid-cols-1 bg-gray-100 border border-gray-200 p-1 rounded-lg">
+    <section id="pet_gallery" class="p-2 w-3/4 mb-3">
+        <div
+            class="w-full flex flex-col border bg-white border-gray-300 rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:flex-row md:max w-full">
 
-            <div class="flex items-center justify-center">
-                <h2 class="text-4xl mt-3 mb-1 p-2">Gallery</h2>
-            </div>
-            <div class="flex items-center justify-center">
-                <h2 class="text-2xl mb-1 p-2">DunDun</h2>
-            </div>
-            <div class="flex items-center justify-center">
-                <h2 class="text-1xl">Golden Doodle - 3 years</h2>
-            </div>
-            <br>
-            <div>
-                <div
-                    class="px-3 py-1 mx-3 mt-3 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
-                    <div class="flex items-center justify-center">
-                        <img src="resources/pets/DunDun2.png"
-                            class="flex object-cover w-[30vw] h-[30vh] m-2 rounded-lg">
+            <div class="w-full grid-cols-1 sm:grid md:grid-cols-1 bg-white border border-gray-200 rounded-lg">
+                <div id="carousel" class="relative w-full h-[500px] bg-gray-200" data-te-carousel-init
+                    data-te-ride="carousel">
+                    <!--Carousel indicators-->
+                    <div class="absolute bottom-0 left-0 right-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0"
+                        data-te-carousel-indicators>
+                        <button type="button" data-te-target="#carousel" data-te-slide-to="0" data-te-carousel-active
+                            class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-white bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+                            aria-current="true" aria-label="Slide 1"></button>
+                    </div>
+
+                    <!--Carousel items-->
+                    <div class="relative w-full h-full overflow-hidden after:clear-both after:block after:content-['']">
+                        <div class="relative float-left -mr-[100%] hidden w-full h-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
+                            data-te-carousel-active data-te-carousel-item style="backface-visibility: hidden">
+                            <img src="resources/pets/DunDun2.png" class="block object-contain h-full w-full rounded"
+                                alt="..." />
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="bg-white flex-col flex-start p-6 w-full">
+                <div
+                    class="flex mb-2 text-2xl items-center font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                    <h5 class="w-1/2">
+                        DunDun
+                    </h5>
+                    <h5 class="w-1/2 text-right">
+                        October 10th, 2023
+                    </h5>
+                </div>
 
-            <div class="flex items-center justify-center">
-                <ul class="my-1 flex list-none gap-1 p-0">
-                    <li class="flex items-center justify-start">
-                        <button>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
-                            </svg>
-                        </button>
-                    </li>
-                    <li class="flex items-center justify-start">
-                        <button>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                            </svg>
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-
-
-    <section id="pet_history" class="w-10/12">
-
-        <div class="grid-cols-1 sm:grid md:grid-cols-2 bg-gray-100 border border-gray-200 p-1 rounded-lg">
-            <div
-                class="px-3 py-1 mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
-                <h2 class="text-2xl mt-3 mb-1">Medical History</h2>
-                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.</div>
-
-
-            </div>
-
-            <div
-                class="px-3 py-1 mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
-                <h2 class="text-2xl mt-3 mb-1">Behaviour</h2>
+                <hr class="my-2">
+                <div class="flex items-center justify-center" style="justify-content: space-between;">
+                    <p class="font-bold mr-4"> Gender</p>
+                    <p> Female </p>
+                </div>
+                <div class="flex items-center justify-center" style="justify-content: space-between;">
+                    <p class="font-bold mr-4"> Age</p>
+                    <p> 2 years </p>
+                </div>
+                <div class="flex items-center justify-center" style="justify-content: space-between;">
+                    <p class="font-bold mr-4"> Breed</p>
+                    <p> Golden Doodle </p>
+                </div>
+                <div class="flex items-center justify-center" style="justify-content: space-between;">
+                    <p class="font-bold mr-4"> Size</p>
+                    <p> Small </p>
+                </div>
+                <div class="flex items-center justify-center" style="justify-content: space-between;">
+                    <p class="font-bold mr-4"> Location</p>
+                    <p> 10 Dundas St E Suite 900, Toronto, ON </p>
+                </div>
+                <h2 class="text-2xl mt-6 mb-1">Behaviour</h2>
+                <hr class="my-2">
 
                 <div class="flex items-center justify-center" style="justify-content: space-between;">
                     <p class="font-bold">Aggressive</p>
@@ -365,28 +349,60 @@
                             </span>
                         </li>
                     </ul>
+
                 </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="pet_history" class="w-10/12">
+
+        <div class="grid-cols-1 sm:grid md:grid-cols-2 bg-gray-100 p-1 rounded-lg">
+            <div
+                class="px-3 py-1 mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
+                <h2 class="text-2xl mt-3 mb-1">Medical History</h2>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                    labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                    ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum.</div>
+
 
             </div>
+
+
             <div
                 class="px-3 py-1 mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
                 <h2 class="text-2xl mt-3 mb-1">Requirements</h2>
-                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                    labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                    ut
                     aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
                     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
                     culpa qui officia deserunt mollit anim id est laborum.</div>
 
             </div>
+
+
+        </div>
+        <div class="grid-cols-1 bg-gray-100 p-1 rounded-lg">
 
             <div
                 class="px-3 py-1 mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
                 <h2 class="text-2xl mt-3 mb-1">Additional Comments</h2>
-                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla erat lacus, ullamcorper id venenatis
+                    et, porttitor ut arcu. Donec lectus felis, auctor eu laoreet eget, posuere id ligula. In hac
+                    habitasse platea dictumst. In gravida imperdiet metus, eget imperdiet quam vestibulum posuere. Duis
+                    et mauris enim. Donec eget cursus lectus, ut tincidunt diam. Maecenas porttitor dictum dolor vitae
+                    convallis. Nullam a cursus leo, at ultrices purus. Nulla scelerisque diam quis turpis gravida, ac
+                    lacinia felis placerat. Suspendisse vel vulputate nibh. Maecenas euismod metus nec felis sagittis,
+                    eu ultrices lacus viverra. Mauris sollicitudin vehicula rhoncus. Aenean in urna mi. Aliquam finibus
+                    fringilla augue, commodo pulvinar felis hendrerit in. Nam elementum posuere felis, a dignissim odio
+                    convallis sit amet.</div>
 
             </div>
         </div>
@@ -401,7 +417,6 @@
             </button>
         </div>
     </section>
-
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
 
 </body>
