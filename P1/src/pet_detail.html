@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
     <script src="https://cdn.tailwindcss.com/3.3.0"></script>
+    <!-- flowbite tailwind -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
 </head>
 
 <body class="flex flex-col justify-center items-center bg-gray-100">
@@ -73,7 +75,7 @@
             <div class="bg-white flex-col flex-start p-6 w-full">
                 <div
                     class="flex mb-2 text-2xl items-center font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                    <div class="flex w-1/2 flex-col md:flex-row">
+                    <div class="flex w-1/2 flex-col md:flex-row gap-4">
                         <h5>
                             DunDun
                         </h5>
@@ -81,9 +83,11 @@
                         <a href="#"
                             class="transititext-primary text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600"
                             data-te-toggle="tooltip" title="DunDun is available!">
-                            <div class="md:ml-3 bg-green-600 h-6 w-6 rounded-full text-right">
+                            <span
+                                class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                                Available
+                            </span>
 
-                            </div>
                         </a>
                     </div>
 
@@ -431,14 +435,10 @@
             </div>
         </div>
         <div class="flex justify-center">
-            <button class="m-3">
-                <a id="adoptButton" href="pet_adoption.html"
-                    style="display: inline-block; padding: 10px 25px; background-color: #007bff; color: #fff; border: 2px solid #fff; text-decoration: none; border-radius: 10px; transition: background-color 0.3s;"
-                    onmouseover="this.style.backgroundColor = '#00008B';"
-                    onmouseout="this.style.backgroundColor = '#007bff';">
-                    Adopt
-                </a>
-            </button>
+            <button type="button"
+                class="m-3 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                Adopt</button>
+
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
