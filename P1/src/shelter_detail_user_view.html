@@ -16,7 +16,7 @@
         <div class="rounded-full w-[50px] h-[50px] mr-1 mb-1">
             <img src="resources/shelter/shelter_logo.png">
         </div>
-        <h1 class="text-5xl">Toronto Adoption Center</h1>
+        <h1 class="text-5xl w-min md:w-auto">Toronto Adoption Center</h1>
     </div>
     <section id="shelter-info" class="p-2 w-3/4 mb-3">
         <div
@@ -463,14 +463,24 @@
                         <div class="w-1/6">
                         </div>
                         <div class="w-5/6">
-                            <div class="relative" data-te-input-wrapper-init>
-                                <textarea
-                                    class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                                    id="reply" rows="3" placeholder="Your message"></textarea>
-                                <label for="reply"
-                                    class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
-                                    Reply...</label>
-                            </div>
+                            <form>
+                                <div
+                                    class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                                    <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+                                        <label for="comment" class="sr-only">Your comment</label>
+                                        <textarea id="comment" rows="4"
+                                            class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+                                            placeholder="Write a comment..." required></textarea>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+                                        <button type="submit"
+                                            class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                                            Post comment
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -574,14 +584,23 @@
                     <div class="w-1/6">
                     </div>
                     <div class="w-5/6">
-                        <div class="relative" data-te-input-wrapper-init>
-                            <textarea
-                                class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                                id="reply" rows="3" placeholder="Your message"></textarea>
-                            <label for="reply"
-                                class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
-                                Reply...</label>
-                        </div>
+                        <form>
+                            <div
+                                class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                                <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+                                    <label for="comment" class="sr-only">Your comment</label>
+                                    <textarea id="comment" rows="4"
+                                        class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+                                        placeholder="Write a comment..." required></textarea>
+                                </div>
+                                <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+                                    <button type="submit"
+                                        class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                                        Post comment
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -637,14 +656,23 @@
                         </li>
                     </ul>
                 </div>
-                <div class="relative" data-te-input-wrapper-init>
-                    <textarea
-                        class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-2 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                        id="review" rows="3" placeholder="Your message"></textarea>
-                    <label for="review"
-                        class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary">
-                        Leave a review</label>
-                </div>
+                <form>
+                    <div
+                        class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                        <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+                            <label for="comment" class="sr-only">Your comment</label>
+                            <textarea id="comment" rows="4"
+                                class="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+                                placeholder="Write a review..." required></textarea>
+                        </div>
+                        <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+                            <button type="submit"
+                                class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                                Post review
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
 
     </section>
