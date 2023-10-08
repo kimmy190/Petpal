@@ -8,7 +8,7 @@
     <!-- flowbite tailwind -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Seeker Sign Up</title>
+    <title>Seeker Sign Up Error</title>
 </head>
 <body>
     <header>
@@ -47,29 +47,31 @@
                         
                         <div class="grid gap-6 mb-4 md:grid-cols-2">
                             <div>
-                                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">First name</label>
-                                <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Sean" required>
+                                <label for="first_name" class="block mb-2 text-sm font-medium text-red-500">First name</label>
+                                <input type="text" id="first_name" class="bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Sean" required>
                             </div>
                             <div>
-                                <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Last name</label>
-                                <input type="text" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Song" required>
+                                <label for="last_name" class="block mb-2 text-sm font-medium text-red-500">Last name</label>
+                                <input type="text" id="last_name" class="bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Song" required>
                             </div>
                         </div>
                         <div class="mb-4">
-                            <label for="location" class="block mb-2 text-sm font-medium text-gray-900">Location</label>
-                            <input type="location" id="location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Canada" required>
+                            <label for="location" class="block mb-2 text-sm font-medium text-red-500">Location</label>
+                            <input type="location" id="location" class="bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Canada" required>
                         </div>
                         <div class="mb-4">
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email address</label>
-                            <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="sean.song@gmail.com" required>
+                            <label for="email" class="block mb-2 text-sm font-medium text-red-500">Email address</label>
+                            <input type="email" id="email" class="bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="sean.song@gmail.com" required>
+                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600"><span class="font-medium">This email is already in-use</span></p>    
+
                         </div> 
                         <div class="mb-4">
-                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                            <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required>
+                            <label for="password" class="block mb-2 text-sm font-medium text-red-500">Password</label>
+                            <input type="password" id="password" class="bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required>
                         </div> 
                         <div class="mb-3">
-                            <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900">Confirm password</label>
-                            <input type="password" id="confirm_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required>
+                            <label for="confirm_password" class="block mb-2 text-sm font-medium text-red-500">Confirm password</label>
+                            <input type="password" id="confirm_password" class="bg-gray-50 border border-red-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required>
                         </div> 
                         <div class="flex items-start mb-5">
                             <div class="flex items-center h-5">
@@ -79,7 +81,7 @@
                         </div>
                         
                         <button type="submit" class="text-white mb-5 bg-blue-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-medium w-full sm:w-full px-5 py-2.5 text-center">
-                            <a href="./seeker_signup_error.html">Sign Up</a> 
+                            <a href="../main/main_after_login.html">Sign Up</a> 
                             <!-- when get rid of the a tag inside button, will not proceed to main after login -->
                         </button>
 
