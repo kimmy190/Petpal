@@ -83,49 +83,45 @@
     <!-- Search Bar Section -->
     <section class="bg-gray-100 py-20 text-center">
         <!-- content inside the section -->
-        <div class="container mx-auto flex flex-col items-center ">
-            <div class="bg-gray-100 w-full md:w-3/4 p-2 md:p-8 rounded-lg   mb-5">
-                <div class="flex flex-col justify-center  items-center mb-4">
-                    <div class="max-w-5xl  py-6 ">
-                        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Find a pet </h1>
+        <div class="container mx-auto items-center">
+            <!-- title -->
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-10">Find a Pet</h2>
+            <!-- search bar -->
+
+            <form class="flex items-center mx-auto max-w-xs sm:max-w-2xl">
+                <div class="flex w-full">
+                    <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only ">Your Email</label>
+                        <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100" type="button">All species<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
+                        </button>
+                    <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
+                        <ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdown-button">
+                        <li>
+                            <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Dogs</button>
+                        </li>
+                        <li>
+                            <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Cats</button>
+                        </li>
+                        <li>
+                            <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Snakes</button>
+                        </li>
+                        <li>
+                            <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100">Birds</button>
+                        </li>
+                        </ul>
                     </div>
-                    <!-- Search Input -->
-                    <div class="w-full">
-                        <form>
-                            <div class="flex">
-                                <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">All species <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                </svg></button>
-                                <div id="dropdown" class="z-50 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-                                        <li>
-                                            <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dogs</button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Cats</button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Snakes</button>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Birds</button>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="relative w-full">
-                                    <input type="search" id="search-dropdown" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-white rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Enter a location or the name of a shelter near you..." required>
-                                    <button type="submit" class="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-gray-800 rounded-r-lg border border-blue-700 hover:bg-gray-900 focus:ring-4 focus:ring-gray-300 ">
-                                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                        </svg>
-                                        <span class="sr-only">Search</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="relative w-full">
+                        <input type="search" id="search-dropdown" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-white rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter Location" required>
+                        <button type="submit" class="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-gray-700 rounded-r-lg border border-blue-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                            </svg>
+                            <span class="sr-only">Search</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </form>
+
         </div>
     </section>
 
@@ -136,188 +132,121 @@
         <div class="max-w-screen-xl flex flex-wrap justify-center mx-auto p-6 md:px-8 container">
             <div class="grid grid-cols-1 gap-5 md:gap-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
                 <!-- Card 1 -->
-                    <div class="relative max-w-sm  bg-cover bg-no-repeat
-                                mx-3 mt-6 flex flex-col self-start rounded-lg
-                                bg-white shadow-md sm:shrink-0 sm:grow sm:basis-0
-                                transition duration-300 ease-in-out hover:shadow-lg hover:opacity-80
-                                ">
-                        <a href="pet_detail.html">
-                            <div class="relative w-full h-64 min-h-64 max-h-64">
-                                <img class="w-full h-full object-cover rounded-t-lg" src="../resources/pets/cat.jpg"
-                                     alt="" />
-                            </div>
-
-                            <div class="flex-col flex-start p-5 pb-0">
-                                <!-- <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                                     Betsy
-                                     </h5>
-                                -->
-                                <div class="mb-2 flex justify-start items-center gap-4">
-                                    <div>
-                                        <h5 class=" text-xl md:text-2xl font-medium leading-tight text-gray-900 dark:text-neutral-50">
-                                            Betsy
-                                        </h5>
-                                    </div>
-                                    <div>
-                                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">On Hold</span>
-
-                                    </div>
-                                </div>
-
-                                <p class="text-medium text-gray-700"> Gender: Male </p>
-                                <p class="text-medium text-gray-700"> Age: 3 years </p>
-                                <p class="text-medium text-gray-700"> Breed: Boston Terrier </p>
-                                <p class="text-medium text-gray-700"> Size: Large </p>
-                                <p class="inline text-medium text-gray-700"> Shelter: 
-                                    <a  class="transform transition duration-300 hover:scale-105" href="shelter_detail_user_view.html" >
-                                            <span class=" text-medium text-gray-700
-                                                         ">Toronto Adoption Center</span>
-                                        </a>
-                                </p>
-                            </div>
+                <div class="max-h-max max-w-xs md:max-w-sm bg-white shadow rounded-lg 
+                            transition duration-300 ease-in-out hover:shadow-lg hover:opacity-80">
+                    <a href="../pet_detail.html">
+                        <div class="relative w-full h-56">
+                            <img class="w-full h-full object-cover rounded-t-lg"
+                                src="../resources/pets/DunDun2.png" alt="" />
+                        </div>
+                    </a>
+                    <div class="p-5 flex flex-col">
+                        <div class="flex justify-between">
+                            <a href="#">
+                                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900">DunDun</h5>
+                            </a>
                             <div>
-                                <p class="p-2 float-right text-sm text-gray-500"> Posted: December 31, 2023 </p>
+                                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">Available</span>
                             </div>
-
-                        </a>
+                        </div>
+                        <p class="text-medium text-gray-700">
+                            Male &#8226 3 years </p>
+                        <p class="text-medium text-gray-700">
+                            Boston Terrier </p>
+                        <p class="text-medium text-gray-700">
+                            Toronto Adoption Center </p>
+                        <p class="text-xs mt-2  text-gray-700">
+                            December 31, 2023 </p>
                     </div>
-                    <!-- Card 2 -->
-                    <div class="relative max-w-sm  bg-cover bg-no-repeat
-                                mx-3 mt-6 flex flex-col self-start rounded-lg
-                                bg-white shadow-md sm:shrink-0 sm:grow sm:basis-0
-                                transition duration-300 ease-in-out hover:shadow-lg hover:opacity-80
-                                ">
-                        <a href="pet_detail.html">
-                            <div class="relative w-full h-64 min-h-64 max-h-64">
-                                <img class="w-full h-full object-cover rounded-t-lg" src="../resources/pets/cat.jpg"
-                                     alt="" />
-                            </div>
+                </div>
 
-                            <div class="flex-col flex-start p-5 pb-0">
-                                <!-- <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                                     Betsy
-                                     </h5>
-                                -->
-                                <div class="mb-2 flex justify-start items-center gap-4">
-                                    <div>
-                                        <h5 class=" text-xl md:text-2xl font-medium leading-tight text-gray-900 dark:text-neutral-50">
-                                            Betsy
-                                        </h5>
-                                    </div>
-                                    <div>
-                                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">On Hold</span>
-
-                                    </div>
-                                </div>
-
-                                <p class="text-medium text-gray-700"> Gender: Male </p>
-                                <p class="text-medium text-gray-700"> Age: 3 years </p>
-                                <p class="text-medium text-gray-700"> Breed: Boston Terrier </p>
-                                <p class="text-medium text-gray-700"> Size: Large </p>
-                                <p class="inline text-medium text-gray-700"> Shelter: 
-                                    <a  class="transform transition duration-300 hover:scale-105" href="shelter_detail_user_view.html" >
-                                            <span class=" text-medium text-gray-700
-                                                         ">Toronto Adoption Center</span>
-                                        </a>
-                                </p>
-                            </div>
+                <!-- Card 2 -->
+                
+                <div class="max-h-max max-w-xs md:max-w-sm bg-white shadow rounded-lg 
+                            transition duration-300 ease-in-out hover:shadow-lg hover:opacity-80">
+                    <a href="../pet_detail.html">
+                        <div class="relative w-full h-56">
+                            <img class="w-full h-full object-cover rounded-t-lg"
+                                src="../resources/pets/boston_terrier.jpg" alt="" />
+                        </div>
+                    </a>
+                    <div class="p-5 flex flex-col">
+                        <div class="flex justify-between">
+                            <a href="#">
+                                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900">Terry</h5>
+                            </a>
                             <div>
-                                <p class="p-2 float-right text-sm text-gray-500"> Posted: December 31, 2023 </p>
+                                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">Available</span>
                             </div>
-
-                        </a>
+                        </div>
+                        <p class="text-medium text-gray-700">
+                            Male &#8226 3 years </p>
+                        <p class="text-medium text-gray-700">
+                            Boston Terrier </p>
+                        <p class="text-medium text-gray-700">
+                            Toronto Adoption Center </p>
+                        <p class="text-xs mt-2  text-gray-700">
+                            December 31, 2023 </p>
                     </div>
-                    <!-- Card 3 -->
-                    <div class="relative max-w-sm  bg-cover bg-no-repeat
-                                mx-3 mt-6 flex flex-col self-start rounded-lg
-                                bg-white shadow-md sm:shrink-0 sm:grow sm:basis-0
-                                transition duration-300 ease-in-out hover:shadow-lg hover:opacity-80
-                                ">
-                        <a href="pet_detail.html">
-                            <div class="relative w-full h-64 min-h-64 max-h-64">
-                                <img class="w-full h-full object-cover rounded-t-lg" src="../resources/pets/cat.jpg"
-                                     alt="" />
-                            </div>
+                </div>
 
-                            <div class="flex-col flex-start p-5 pb-0">
-                                <!-- <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                                     Betsy
-                                     </h5>
-                                -->
-                                <div class="mb-2 flex justify-start items-center gap-4">
-                                    <div>
-                                        <h5 class=" text-xl md:text-2xl font-medium leading-tight text-gray-900 dark:text-neutral-50">
-                                            Betsy
-                                        </h5>
-                                    </div>
-                                    <div>
-                                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">On Hold</span>
-
-                                    </div>
-                                </div>
-
-                                <p class="text-medium text-gray-700"> Gender: Male </p>
-                                <p class="text-medium text-gray-700"> Age: 3 years </p>
-                                <p class="text-medium text-gray-700"> Breed: Boston Terrier </p>
-                                <p class="text-medium text-gray-700"> Size: Large </p>
-                                <p class="inline text-medium text-gray-700"> Shelter: 
-                                    <a  class="transform transition duration-300 hover:scale-105" href="shelter_detail_user_view.html" >
-                                            <span class=" text-medium text-gray-700
-                                                         ">Toronto Adoption Center</span>
-                                        </a>
-                                </p>
-                            </div>
+                <!-- Card 3 -->
+                <div class="max-h-max max-w-xs md:max-w-sm bg-white shadow rounded-lg 
+                            transition duration-300 ease-in-out hover:shadow-lg hover:opacity-80">
+                    <a href="../pet_detail.html">
+                        <div class="relative w-full h-56">
+                            <img class="w-full h-full object-cover rounded-t-lg"
+                                src="../resources/pets/cat.jpg" alt="" />
+                        </div>
+                    </a>
+                    <div class="p-5 flex flex-col">
+                        <div class="flex justify-between">
+                            <a href="#">
+                                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900">Betsy</h5>
+                            </a>
                             <div>
-                                <p class="p-2 float-right text-sm text-gray-500"> Posted: December 31, 2023 </p>
+                                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">Available</span>
                             </div>
-
-                        </a>
+                        </div>
+                        <p class="text-medium text-gray-700">
+                            Male &#8226 3 years </p>
+                        <p class="text-medium text-gray-700">
+                            Boston Terrier </p>
+                        <p class="text-medium text-gray-700">
+                            Toronto Adoption Center </p>
+                        <p class="text-xs mt-2  text-gray-700">
+                            December 31, 2023 </p>
                     </div>
-                    <div class="relative max-w-sm  bg-cover bg-no-repeat
-                                mx-3 mt-6 flex flex-col self-start rounded-lg
-                                bg-white shadow-md sm:shrink-0 sm:grow sm:basis-0
-                                transition duration-300 ease-in-out hover:shadow-lg hover:opacity-80
-                                ">
-                        <a href="pet_detail.html">
-                            <div class="relative w-full h-64 min-h-64 max-h-64">
-                                <img class="w-full h-full object-cover rounded-t-lg" src="../resources/pets/cat.jpg"
-                                     alt="" />
-                            </div>
+                </div>
 
-                            <div class="flex-col flex-start p-5 pb-0">
-                                <!-- <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                                     Betsy
-                                     </h5>
-                                -->
-                                <div class="mb-2 flex justify-start items-center gap-4">
-                                    <div>
-                                        <h5 class=" text-xl md:text-2xl font-medium leading-tight text-gray-900 dark:text-neutral-50">
-                                            Betsy
-                                        </h5>
-                                    </div>
-                                    <div>
-                                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300">On Hold</span>
-
-                                    </div>
-                                </div>
-
-                                <p class="text-medium text-gray-700"> Gender: Male </p>
-                                <p class="text-medium text-gray-700"> Age: 3 years </p>
-                                <p class="text-medium text-gray-700"> Breed: Boston Terrier </p>
-                                <p class="text-medium text-gray-700"> Size: Large </p>
-                                <p class="inline text-medium text-gray-700"> Shelter:
-                                    <a  class="transform transition duration-300 hover:scale-105" href="shelter_detail_user_view.html" >
-                                            <span class=" text-medium text-gray-700
-                                                         ">Toronto Adoption Center</span>
-                                        </a>
-                                </p>
-                            </div>
+                <!-- Card 4 -->
+                <div class="max-h-max max-w-xs md:max-w-sm bg-white shadow rounded-lg 
+                            transition duration-300 ease-in-out hover:shadow-lg hover:opacity-80">
+                    <a href="../pet_detail.html">
+                        <div class="relative w-full h-56">
+                            <img class="w-full h-full object-cover rounded-t-lg"
+                                src="../resources/pets/australian_terrier.png" alt="" />
+                        </div>
+                    </a>
+                    <div class="p-5 flex flex-col">
+                        <div class="flex justify-between">
+                            <a href="#">
+                                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900">Buddy</h5>
+                            </a>
                             <div>
-                                <p class="p-2 float-right text-sm text-gray-500"> Posted: December 31, 2023 </p>
+                                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">Available</span>
                             </div>
-
-                        </a>
+                        </div>
+                        <p class="text-medium text-gray-700">
+                            Male &#8226 3 years </p>
+                        <p class="text-medium text-gray-700">
+                            Boston Terrier </p>
+                        <p class="text-medium text-gray-700">
+                            Toronto Adoption Center </p>
+                        <p class="text-xs mt-2  text-gray-700">
+                            December 31, 2023 </p>
                     </div>
+                </div>
             </div>
         </div>
         <!-- See More button -->
@@ -560,7 +489,7 @@
 
 
     <!-- Footer (You can customize it as needed) -->
-    <footer class="bg-gray-100 rounded-lg shadow">
+    <footer class="bg-gray-200 rounded-lg shadow">
         <div class="w-full max-w-screen-xl mx-auto p-4 py-8 lg:py-12 lg:pb-16">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <a href="./main.html" class="flex items-center mb-4 sm:mb-0">
