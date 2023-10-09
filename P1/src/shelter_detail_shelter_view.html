@@ -130,31 +130,34 @@
     <!-- <h2 class="pb-3">Create lasting memories with a new loving companion!</h2> -->
 
     <section id="shelter-pets" class="w-full p-3">
-        <div class="stretch flex flex-row m-4 md:max-w-full  bg-white rounded-lg shadow-md mb-0">
+        <div class="flex flex-col md:flex-row m-4 container md:max-w-full  bg-white rounded-lg shadow-md gap-4">
             <!-- TODO not collapsed by default when screen size is at least medium -->
-            <div class="p-4 shadow-md hidden md:visible w-[220px] md:w-[300px] flex-none sm:flex-none sm:basis-1/4flex "
-                data-te-collapse-item data-te-collapse-horizontal id="collapseWidthExample">
+            <div id="drawer-disabled-backdrop" class="hidden flex z-40 p-4 w-full md:w-[300px] flex-none
+                          -translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-disabled-backdrop-label">
 
                 <div class="flex flex-col w-full">
                     <div class="w-full">
-                        <label for="species" class="mb-4 md:mb-0 mr-4 font-bold">Species</label>
-                        <select id="species" data-te-select-init data-te-select-clear-button="true" multiple>
-                            <option value="1">Dogs</option>
-                            <option value="2">Cats</option>
-                            <option value="3">Small pets</option>
-                            <!-- Add your breed options here -->
-                        </select>
+                        <label for="species" class="mb-4 md:mb-2 mr-4 font-bold">Species</label>
+                            <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected>Any species</option>
+                                <option value="2">Dogs</option>
+                                <option value="3">Cats</option>
+                                <option value="4">Snakes</option>
+                                <option value="5">Birds</option>
+                            </select>
+
                     </div>
                     <hr class="mt-4 mb-2">
                     <div class="w-full">
                         <!-- Breed Dropdown -->
-                        <label for="breed" class="mb-4 md:mb-0 mr-4 font-bold">Breed</label>
-                        <select id="breed" disabled data-te-select-init data-te-select-clear-button="true" multiple>
+                        <!-- <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label> -->
+                        <label for="breed" class="mb-4 md:mb-2 mr-4 font-bold">Breed</label>
+                        <select id="breed" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected>Any breed</option>
                             <option value="2">Golden Retreiver</option>
                             <option value="3">German Shepherd</option>
                             <option value="4">Boston Terrier</option>
                             <option value="5">Labrador</option>
-                            <!-- Add your breed options here -->
                         </select>
                     </div>
                     <hr class="mt-4 mb-2">
@@ -162,21 +165,19 @@
                         <!-- Gender Radio -->
                         <label for="gender" class="mb-4 md:mb-0 mr-4 font-bold">Gender</label>
                         <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-                            <input
-                                class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                                type="radio" name="flexRadioDefault" id="radioDefault01" />
-                            <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault01">
-                                Male
-                            </label>
+                            <form>
+                                <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault01" />
+                                <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault01">
+                                    Male
+                                </label>
                         </div>
                         <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-                            <input
-                                class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                                type="radio" name="flexRadioDefault" id="radioDefault02" checked />
+                            <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault02" checked />
                             <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault02">
                                 Female
                             </label>
                         </div>
+                        </form>
 
                     </div>
                     <hr class="mt-4 mb-2">
@@ -184,30 +185,26 @@
                         <!-- Age Radio -->
                         <label for="age" class="mb-4 md:mb-0 mr-4 font-bold">Age</label>
                         <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-                            <input
-                                class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                                type="radio" name="flexRadioDefault" id="radioDefault01" />
+                            </form>
+                            <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault01" />
                             <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault01">
                                 Less than 1 year old
                             </label>
                         </div>
                         <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-                            <input
-                                class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                                type="radio" name="flexRadioDefault" id="radioDefault02" checked />
+                            <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault02" />
                             <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault02">
                                 1 - 4
                             </label>
                         </div>
                         <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-                            <input
-                                class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                                type="radio" name="flexRadioDefault" id="radioDefault02" checked />
+                            <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault02" />
                             <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault02">
                                 4 +
                             </label>
                         </div>
 
+                        </form>
                     </div>
 
                     <hr class="mt-4 mb-2">
@@ -215,171 +212,199 @@
                         <!-- Size Radio -->
                         <label for="size" class="mb-4 md:mb-0 mr-4 font-bold">Size</label>
                         <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-                            <input
-                                class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                                type="radio" name="flexRadioDefault" id="radioDefault01" />
-                            <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault01">
-                                Small
-                            </label>
+
+                            <form>
+                                <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault01" />
+                                <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault01">
+                                    Small
+                                </label>
                         </div>
                         <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-                            <input
-                                class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                                type="radio" name="flexRadioDefault" id="radioDefault02" checked />
+                            <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault02" />
                             <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault02">
                                 Medium
                             </label>
                         </div>
                         <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-                            <input
-                                class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                                type="radio" name="flexRadioDefault" id="radioDefault02" checked />
+                            <input class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]" type="radio" name="flexRadioDefault" id="radioDefault02" />
                             <label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault02">
                                 Large
                             </label>
                         </div>
 
+                        </form>
                     </div>
+                    <hr class="mt-4 mb-2">
+                    <div class="self-start">
+                        <button type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+                            Clear filters
+                        </button>
+                    </div>
+
                 </div>
             </div>
 
-            <div class="md:grow p-8 bg-white">
+            <div class="md:grow px-8 pt-4  bg-white">
                 <!-- May or may not need pagination -->
                 <div class="gap-4 flex flex-row flex-wrap justify-between items-center md:items-end">
                     <div class="flex flex-row items-center gap-x-4">
+                        <button id="showDrawer"  class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"type="button" aria-controls="drawer-disabled-backdrop">
 
-                        <a class=" justify-center rounded-md bg-indigo-600 px-3 py-3 text-md font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                            type="button" data-te-collapse-init data-te-target="#collapseWidthExample"
-                            data-te-ripple-init data-te-ripple-color="light" aria-expanded="false"
-                            aria-controls="collapseWidthExample">
-
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="h-6 w-6">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
                             </svg>
+                        </button>
 
                         </a>
-                        <p class="bold"> 3 pets available </p>
+                        <p class="bold">4 pets available </p>
                     </div>
 
                     <div class="gap-4 flex flex-row flex-wrap space-between md:items-end">
-                        <div>
-                            <select id="sort" data-te-select-init>
-                                <option value="sort1">Sort 1</option>
-                                <option value="sort2">Sort 2</option>
-                                <option value="sort3">Sort 3</option>
+                        <div >
+                            <label for="sort" class=" mb-2 text-sm font-medium text-gray-900 dark:text-white">Sort</label>
+                                <select id="sort" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+                                <option value="sort1">Most recent</option>
+                                <option value="sort2">Least Recent</option>
+                                <option value="sort3">Age</option>
                             </select>
-                            <label data-te-select-label-ref for="sort" class="mb-2 md:mb-0 mx-4">Sort</label>
                         </div>
-                        <nav aria-label="Pagination">
-                            <ul class="list-style-none flex">
-                                <li>
-                                    <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-                                        href="#">Prev</a>
-                                </li>
-                                <li>
-                                    <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-                                        href="#">Next</a>
-                                </li>
-                            </ul>
-
-                        </nav>
                     </div>
                 </div>
 
-                <!-- List of Empty Skeleton Cards (in a row format) -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
-                    <!-- Skeleton Card 1 -->
-                    <div
-                        class="
-                                           relative max-w-sm  bg-cover bg-no-repeat
-                                           mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
-                        <a href="pet_detail_shelter_view.html">
-                            <img src="resources/pets/boston_terrier.jpg" class="object-contain h-full w-full"
-                                alt="Pet 2">
-
-                            <div class="flex-col flex-start p-6">
-                                <h5
-                                    class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                                    Betsy
-                                </h5>
-                                <hr class="my-2">
-                                <p> Gender: Male </p>
-                                <p> Age: 3 years </p>
-                                <p> Breed: Boston Terrier </p>
-                                <p> Size: Large </p>
+                <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+                <!-- Card 1 -->
+                <div class="max-h-max max-w-xs md:max-w-sm bg-white shadow rounded-lg 
+                            transition duration-300 ease-in-out hover:shadow-lg hover:opacity-80">
+                    <a href="./pet_detail.html">
+                        <div class="relative w-full h-56">
+                            <img class="w-full h-full object-cover rounded-t-lg"
+                                src="./resources/pets/DunDun2.png" alt="" />
+                        </div>
+                    </a>
+                    <div class="p-5 flex flex-col">
+                        <div class="flex justify-between">
+                            <a href="#">
+                                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900">DunDun</h5>
+                            </a>
+                            <div>
+                                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">Available</span>
                             </div>
-                            <div
-                                class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsl(0,0%,98.4%,0.2)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:shadow-lg hover:opacity-100">
-                            </div>
-                        </a>
-                    </div>
-                    <div
-                        class="
-                    relative max-w-sm  bg-cover bg-no-repeat
-                    mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
-                        <a href="pet_detail_shelter_view.html">
-                            <img src="resources/pets/australian_terrier.png" class="object-contain h-full w-full"
-                                alt="Pet 2">
-
-                            <div class="flex-col flex-start p-6">
-                                <h5
-                                    class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                                    Ralph
-                                </h5>
-                                <hr class="my-2">
-                                <p> Gender: Male </p>
-                                <p> Age: 3 years </p>
-                                <p> Breed: Australian Terrier </p>
-                                <p> Size: Small </p>
-                            </div>
-                            <div
-                                class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsl(0,0%,98.4%,0.2)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:shadow-lg hover:opacity-100">
-                            </div>
-                        </a>
-                    </div>
-                    <div
-                        class="
-                                       relative max-w-sm  bg-cover bg-no-repeat
-                                       mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 sm:shrink-0 sm:grow sm:basis-0">
-                        <a href="pet_detail_shelter_view.html">
-                            <img src="resources/pets/DunDun2.png" class="object-contain h-full w-full" alt="Pet 2">
-
-                            <div class="flex-col flex-start p-6">
-                                <h5
-                                    class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                                    DunDun
-                                </h5>
-                                <hr class="my-2">
-                                <p> Gender: Female </p>
-                                <p> Age: 2 years </p>
-                                <p> Breed: Golden Doodle </p>
-                                <p> Size: Small </p>
-                            </div>
-                            <div
-                                class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsl(0,0%,98.4%,0.2)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:shadow-lg hover:opacity-100">
-                            </div>
-                        </a>
+                        </div>
+                        <p class="text-medium text-gray-700">
+                            Male &#8226 3 years </p>
+                        <p class="text-medium text-gray-700">
+                            Boston Terrier </p>
+                        <p class="text-medium text-gray-700">
+                            Toronto Adoption Center </p>
+                        <p class="text-xs mt-2  text-gray-700">
+                            December 28, 2022 </p>
                     </div>
                 </div>
 
-                <div class="flex flex-col items-center md:flex-col-reverse md:items-end">
+                <!-- Card 2 -->
+                <div class="max-h-max max-w-xs md:max-w-sm bg-white shadow rounded-lg 
+                            transition duration-300 ease-in-out hover:shadow-lg hover:opacity-80">
+                    <a href="./pet_detail.html">
+                        <div class="relative w-full h-56">
+                            <img class="w-full h-full object-cover rounded-t-lg"
+                                src="./resources/pets/boston_terrier.jpg" alt="" />
+                        </div>
+                    </a>
+                    <div class="p-5 flex flex-col">
+                        <div class="flex justify-between">
+                            <a href="#">
+                                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900">Terry</h5>
+                            </a>
+                            <div>
+                                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">Available</span>
+                            </div>
+                        </div>
+                        <p class="text-medium text-gray-700">
+                            Male &#8226 3 years </p>
+                        <p class="text-medium text-gray-700">
+                            Boston Terrier </p>
+                        <p class="text-medium text-gray-700">
+                            Toronto Adoption Center </p>
+                        <p class="text-xs mt-2  text-gray-700">
+                            December 28, 2022 </p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="max-h-max max-w-xs md:max-w-sm bg-white shadow rounded-lg 
+                            transition duration-300 ease-in-out hover:shadow-lg hover:opacity-80">
+                    <a href="./pet_detail.html">
+                        <div class="relative w-full h-56">
+                            <img class="w-full h-full object-cover rounded-t-lg"
+                                src="./resources/pets/cat.jpg" alt="" />
+                        </div>
+                    </a>
+                    <div class="p-5 flex flex-col">
+                        <div class="flex justify-between">
+                            <a href="#">
+                                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900">Betsy</h5>
+                            </a>
+                            <div>
+                                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">Available</span>
+                            </div>
+                        </div>
+                        <p class="text-medium text-gray-700">
+                            Male &#8226 3 years </p>
+                        <p class="text-medium text-gray-700">
+                            Boston Terrier </p>
+                        <p class="text-medium text-gray-700">
+                            Toronto Adoption Center </p>
+                        <p class="text-xs mt-2  text-gray-700">
+                            December 29, 2022 </p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="max-h-max max-w-xs md:max-w-sm bg-white shadow rounded-lg 
+                            transition duration-300 ease-in-out hover:shadow-lg hover:opacity-80">
+                    <a href="./pet_detail.html">
+                        <div class="relative w-full h-56">
+                            <img class="w-full h-full object-cover rounded-t-lg"
+                                src="./resources/pets/australian_terrier.png" alt="" />
+                        </div>
+                    </a>
+                    <div class="p-5 flex flex-col">
+                        <div class="flex justify-between">
+                            <a href="#">
+                                <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900">Buddy</h5>
+                            </a>
+                            <div>
+                                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">Available</span>
+                            </div>
+                        </div>
+                        <p class="text-medium text-gray-700">
+                            Male &#8226 3 years </p>
+                        <p class="text-medium text-gray-700">
+                            Boston Terrier </p>
+                        <p class="text-medium text-gray-700">
+                            Toronto Adoption Center </p>
+                        <p class="text-xs mt-2  text-gray-700">
+                            December 31, 2022 </p>
+                    </div>
+                </div>
+                </div>
+
+                <div class="my-4 flex flex-col items-center md:flex-col-reverse md:items-end">
                     <nav aria-label="Pagination">
                         <ul class="list-style-none flex">
                             <li>
-                                <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-                                    href="#">Prev</a>
+                                <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white" href="#">Prev</a>
                             </li>
                             <li>
-                                <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-                                    href="#">Next</a>
+                                <a class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white" href="#">Next</a>
                             </li>
                         </ul>
 
                     </nav>
                 </div>
             </div>
+        </div>
     </section>
 
     <h2 class="text-5xl mt-3 mb-1 p-2">Reviews</h2>
@@ -633,6 +658,8 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+    <script src="hack.js"></script>
 
 </body>
 
