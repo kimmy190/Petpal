@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet"> -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- flowbite tailwind -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sign Up - Shelter 2</title>
+</head>
+<body>
+    <header>
+        <nav class="z-10 w-full md:fixed">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="../main/main.html" class="flex items-center">
+                <span class="self-center text-3xl font-bold whitespace-nowrap">Pet Pal</span>
+            </a>
+            </div>
+        </nav>
+    </header>
+    <section class="bg-gray-50">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-xl xl:p-0">
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <!-- <h1 class="text-xl mb-2 font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
+                        Shelter Sign Up
+                    </h1> -->
+                    <form>
+                        <!-- Email -->
+                        <div class="mb-4">
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email address</label>
+                            <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="torontocentre@company.com" required>
+                        </div> 
+                        <!-- Password -->
+                        <div class="grid gap-3 md:grid-cols-2">
+                            <div class="mb-4">
+                                <label for="password" class="block text-sm font-medium text-gray-900">Password</label>
+                                <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required>
+                            </div>
+                            <div class="mb-5">
+                                <label for="confirm_password" class="block text-sm font-medium text-gray-900">Confirm password</label>
+                                <input type="password" id="confirm_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required>
+                            </div>
+                        </div>
+
+                        <!-- Address Section -->
+                        <div class="mb-4">
+                            <p class="block mb-2 text-sm font-medium text-gray-900">Address</p>
+                            <!-- country -->
+                            <label for="country" class="block mb-2 text-sm font-medium text-gray-900"></label>
+                            <input type="text" id="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Country" required>
+                            <!-- address line 1 -->
+                            <label class="block mb-2 text-sm font-medium text-gray-900" for="addr1"></label>
+                            <input type="text" id="addr1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Address Line 1" required>
+                            <!-- address line 2 -->
+                            <label class="block mb-2 text-sm font-medium text-gray-900" for="addr2"></label>
+                            <input type="text" id="addr2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Address Line 2" required>
+                            <!-- city &province -->
+                            <div class="grid gap-x-2 md:gap-y-2 md:grid-cols-2">
+                                <div>
+                                    <label for="city" class="block mb-2 text-sm font-medium text-gray-900"></label>
+                                    <input type="text" id="city" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="City/Town" required>
+                                </div>
+                                <div>
+                                    <label for="state" class="block mb-2 text-sm font-medium text-gray-900"></label>
+                                    <input type="text" id="state" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="State/Province" required>
+                                </div>
+                            </div>
+                            <!-- address line 2 -->
+                            <label class="block mb-2 text-sm font-medium text-gray-900" for="zip"></label>
+                            <input type="text" id="zip" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="ZIP/Postal Code" required>
+                        </div>
+
+                        <!-- Consent Statement -->
+                        <div class="flex items-start mb-2">
+                            <div class="flex items-center h-5">
+                            <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300" required>
+                            </div>
+                            <label for="remember" class="ml-2 text-sm font-medium text-gray-900 ">I agree with the <a href="#" class="text-blue-600 hover:underline">terms and conditions</a>.</label>
+                        </div>
+
+                        <div class="mb-2">
+                            <button type="button" class="text-black hover:text-blue-700 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2">
+                                <a href="./first_shelter_signup.html">
+                                <svg class="w-5 h-5 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                                </svg>
+                                </a>
+                                <span class="sr-only">left arrow</span>
+                            </button>
+                        </div>
+
+                        <button type="submit" class="text-white mb-5 bg-blue-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-medium w-full sm:w-full px-5 py-2.5 text-center">
+                            <a href="./shelter_signup_error.html">Sign Up</a> 
+                            <!-- when get rid of the a tag inside button, will not proceed to main after login -->
+                        </button>
+
+                        <!-- After Sign Up Button -->
+                        <div class="mb-2">
+                            <p class="text-sm font-medium text-gray-500">
+                                Not a Pet Shelter? <a href="./seeker_signup.html" class="font-medium text-blue-600 hover:underline">Pet Seeker Sign Up</a>
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">
+                                Already have an account? <a href="./login.html" class="font-medium text-blue-600 hover:underline">Login</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- need to add for the dropdown menu to work -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+</body>
+</html>
