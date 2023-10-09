@@ -18,7 +18,6 @@ document.getElementById("showDrawer").onclick = function toggleDrawer() {
             $targetEl.className = $targetEl.className.replace("hidden", "visible");
         },
     }
-
     const drawer = new Drawer($targetEl, options);
     if ($targetEl.className.includes("hidden")) {
         drawer.show();
