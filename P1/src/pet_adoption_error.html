@@ -16,11 +16,12 @@
 <body>
     <script src="./nav_login_seeker.js"></script>
 
-    <div class="flex flex-col justify-center items-center bg-gray-100">
+    <div class="flex flex-col justify-center items-center bg-gray-50 py-4">
         <div class="flex justify-center items-center p-3">
             <a href="shelter_detail_user_view.html"
                 class="relative flex justify-center text-center items-center transform transition duration-300 hover:scale-105">
-                <div class="rounded-full w-[50px] h-[50px] mr-1 mb-1">
+                <!-- logo image -->
+                <div class="rounded-full w-6 h-6 mr-2 mb-1">
                     <img src="resources/shelter/shelter_logo.png">
                 </div>
                 <h1 class="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl">Toronto Adoption Center</h1>
@@ -40,11 +41,14 @@
         <div class="ml-4 mr-4 mb-4" style="max-width: 100%;">
             <section id="application">
 
-                <form action="https://postman-echo.com/post" class="form mb-4 m-3">
-                    <div class=" flex text-3xl font-semibold justify-center p-3 text-gray-900">
+                <form action="https://postman-echo.com/post" class="shadow form mb-4 m-3">
+                    <!-- <div class=" flex text-3xl font-semibold justify-center p-3 text-gray-900">
                         Adoption Application, Contract, and Waiver
-                    </div>
-                    <div class="bg-white border border-gray-200 p-1 rounded-lg" style="max-width: 100%;">
+                    </div> -->
+                    <div class="bg-white border border-gray-200 p-4 sm:p-7 rounded-lg" style="max-width: 100%;">
+                        <div class=" flex text-xl md:text-2xl font-bold text-gray-900 mb-1">
+                            Adoption Application, Contract, and Waiver
+                        </div>
                         <div class=" grid-cols-2 sm:grid md:grid-cols-1 gap-4">
                             <label for="pet_name" class="mt-1 p-2 block font-bold text-gray-700">Name of Pet You Wish to
                                 Adopt:<span class="text-red-500">*</span></label>
@@ -207,12 +211,12 @@
 
                         </div>
 
-                        <div class="flex justify-start p-2 mb-10 items-center">
+                        <div class="flex justify-start p-2 mb-4 items-center">
                             <input type="checkbox" class="form-checkbox text-indigo-600 mr-3">
                             <p class="input-left-text" required>I have read and agree to the terms and conditions.</p>
                         </div>
 
-                        <div class="flex justify-start p-2 mb-20">
+                        <div class="flex justify-start mb-8">
                             <ul class="list-disc ml-4">
                                 <li class="font-bold mb-4">
                                     I agree to adopt the pet if the application is accepted, and will pay the adoption
