@@ -1,6 +1,6 @@
 document.write(`
 <!-- Footer (You can customize it as needed) -->
-    <footer class="bg-gray-100 rounded-lg shadow">
+    <footer class="bg-gray-200 rounded-lg shadow">
         <div class="w-full max-w-screen-xl mx-auto p-4 py-8 lg:py-12 lg:pb-16">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <a href="./main_after_login_shelter.html" class="flex items-center mb-4 sm:mb-0">
