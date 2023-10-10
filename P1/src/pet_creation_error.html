@@ -34,7 +34,7 @@
         <div class="fixed hidden md:block top-0 right-0 z-50">
             <div
                 class="relative bg-white rounded-full border border-gray-300 fixed w-[100px] m-3 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] text-center">
-                <a href="./pet_creation_error.html">
+                <a href="./shelter_detail_editable.html">
                     <svg class="w-full hover:scale-110" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -43,7 +43,7 @@
             </div>
             <div
                 class="relative bg-white rounded-full border border-gray-300 w-[100px] m-3 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] text-center">
-                <a href="./pet_creation_error.html">
+                <a href="./shelter_detail_editable.html">
                     <svg class="w-full hover:scale-110" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -56,7 +56,7 @@
             <div class="relative w-full h-16 flex">
                 <div
                     class="absolute left-0 top-0 bg-white rounded-full border border-gray-300 fixed w-16 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] text-center">
-                    <a href="./pet_creation_error.html">
+                    <a href="./shelter_detail_editable.html">
                         <svg class="w-full hover:scale-110" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -65,7 +65,7 @@
                 </div>
                 <div
                     class="absolute right-0 top-0 bg-white rounded-full border border-gray-300 w-16 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] text-center">
-                    <a href="./pet_creation_error.html">
+                    <a href="./shelter_detail_editable.html">
                         <svg class="w-full hover:scale-110" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -180,12 +180,18 @@
                     <div class="flex items-center justify-center" style="justify-content: space-between;">
                         <p class="font-bold mr-4"> Size</p>
                         <div class="text-base mb-4">
-                            <select data-te-select-init data-te-select-placeholder="Size">
-                                <option value="1">Small</option>
-                                <option value="2">Medium</option>
-                                <option value="3">Large</option>
-                            </select>
-                            <label data-te-select-label-ref>Size</label>
+                            <div class="border border-red-600 rounded border-1.5">
+
+                                <select data-te-select-init data-te-select-placeholder="Size">
+                                    <option value="1">Small</option>
+                                    <option value="2">Medium</option>
+                                    <option value="3">Large</option>
+                                </select>
+                                <label data-te-select-label-ref>Size</label>
+                            </div>
+                            <p id="outlined_error_help" class="text-xs text-red-600"><span class="font-medium">Size
+                                    not
+                                    specified!</span></p>
                         </div>
                     </div>
                     <div class="flex items-center justify-center" style="justify-content: space-between;">
