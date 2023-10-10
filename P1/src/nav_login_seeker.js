@@ -24,7 +24,7 @@ document.write(`
                         <a href="#" class="flex px-4 py-3 hover:bg-gray-100">
 
                         <div class="w-full pl-3">
-                            <div class="text-gray-500 text-sm mb-1.5 ">New message from <span class="font-semibold text-gray-900">Toronto Adoption Community</span>: "We've received your application for DunDun!"</div>
+                            <div class="text-gray-500 text-sm mb-1.5 ">New message from <span class="font-semibold text-gray-900">Toronto Adoption Center</span>: "We've received your application for DunDun!"</div>
                             <div class="text-xs text-blue-600">a few moments ago</div>
                         </div>
                         </a>
@@ -40,14 +40,14 @@ document.write(`
                         <a href="#" class="hidden md:flex md:px-4 md:py-3 hover:bg-gray-100">
 
                         <div class="w-full pl-3">
-                            <div class="text-gray-500 text-sm mb-1.5 "><span class="font-semibold text-gray-900">Toronto Community Centre</span> has posted <span class="font-medium text-gray-900 ">2 new</span> pets!</div>
+                            <div class="text-gray-500 text-sm mb-1.5 "><span class="font-semibold text-gray-900">Toronto Adoption Center</span> has posted <span class="font-medium text-gray-900 ">2 new</span> pets!</div>
                             <div class="text-xs text-blue-600 ">44 minutes ago</div>
                         </div>
                         </a>
 
                         <a href="#" class="hidden md:flex md:px-4 md:py-3 hover:bg-gray-100">
                         <div class="w-full pl-3">
-                            <div class="text-gray-500 text-sm mb-1.5 "><span class="font-semibold text-gray-900 ">Toronto Community Centre</span> has left a reply! <span class="font-medium text-blue-500" href="#">@sean.song</span> It costs ...</div>
+                            <div class="text-gray-500 text-sm mb-1.5 "><span class="font-semibold text-gray-900 ">Toronto Adoption Center</span> has left a reply! <span class="font-medium text-blue-500" href="#">@sean.song</span> It costs ...</div>
                             <div class="text-xs text-blue-600 ">1 hour ago</div>
                         </div>
                         </a>
@@ -139,7 +139,8 @@ document.write(`
 `);
 
 // <!-- Navbar (You can customize it as needed) -->
-{/* <nav class="border-gray-200">
+{
+  /* <nav class="border-gray-200">
 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a href="./main_after_login.html" class="flex items-center">
         <span class="self-center text-3xl font-semibold whitespace-nowrap">Pet Pal</span>
@@ -273,4 +274,5 @@ document.write(`
     </ul>
 </div>
 </div>
-</nav> */}
+</nav> */
+}
