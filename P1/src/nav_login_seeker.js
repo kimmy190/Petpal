@@ -25,7 +25,7 @@ document.write(`
                         <a href="#" class="flex px-4 py-3 hover:bg-gray-100">
 
                         <div class="w-full pl-3">
-                            <div class="text-gray-500 text-sm mb-1.5 ">New message from <span class="font-semibold text-gray-900">Toronto Adoption Community</span>: "Hello! DunDun is available for adoption!"</div>
+                            <div class="text-gray-500 text-sm mb-1.5 ">New message from <span class="font-semibold text-gray-900">Toronto Adoption Center</span>: "Hello! DunDun is available for adoption!"</div>
                             <div class="text-xs text-blue-600">a few moments ago</div>
                         </div>
                         </a>
@@ -41,14 +41,14 @@ document.write(`
                         <a href="#" class="hidden md:flex md:px-4 md:py-3 hover:bg-gray-100">
 
                         <div class="w-full pl-3">
-                            <div class="text-gray-500 text-sm mb-1.5 "><span class="font-semibold text-gray-900">Toronto Community Centre</span> has posted <span class="font-medium text-gray-900 ">2 new</span> pets!</div>
+                            <div class="text-gray-500 text-sm mb-1.5 "><span class="font-semibold text-gray-900">Toronto Adoption Center</span> has posted <span class="font-medium text-gray-900 ">2 new</span> pets!</div>
                             <div class="text-xs text-blue-600 ">44 minutes ago</div>
                         </div>
                         </a>
 
                         <a href="#" class="hidden md:flex md:px-4 md:py-3 hover:bg-gray-100">
                         <div class="w-full pl-3">
-                            <div class="text-gray-500 text-sm mb-1.5 "><span class="font-semibold text-gray-900 ">Toronto Community Centre</span> has left a reply! <span class="font-medium text-blue-500" href="#">@sean.song</span> It costs ...</div>
+                            <div class="text-gray-500 text-sm mb-1.5 "><span class="font-semibold text-gray-900 ">Toronto Adoption Center</span> has left a reply! <span class="font-medium text-blue-500" href="#">@sean.song</span> It costs ...</div>
                             <div class="text-xs text-blue-600 ">1 hour ago</div>
                         </div>
                         </a>
