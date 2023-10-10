@@ -17,7 +17,7 @@ document.write(`
                     </button>
                     
                     <!-- Notification Dropdown menu -->
-                    <div id="dropdownNotification" class="z-20 w-full max-w-xs sm:max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow border" aria-labelledby="dropdownNotificationButton">
+                    <div id="dropdownNotification" class="hidden z-20 w-full max-w-xs sm:max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow border" aria-labelledby="dropdownNotificationButton">
                     <div class="block px-4 py-2 font-medium text-center text-gray-700 rounded-t-lg bg-gray-50">
                         Notifications
                     </div>
