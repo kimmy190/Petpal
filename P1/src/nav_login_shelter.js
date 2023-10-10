@@ -1,12 +1,13 @@
 document.write(`
-<nav class="border-gray-200">
+<!-- Navbar (You can customize it as needed) -->
+    <nav class="border-gray-200">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="./main/main_after_login.html" class="flex items-center">
+            <a href="./main_after_login_shelter.html" class="flex items-center">
                 <span class="self-center text-3xl font-semibold whitespace-nowrap">Pet Pal</span>
             </a>
             <div class="flex items-center md:order-2 items-center">
                 <!-- Notification bell drop down -->    
-                <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" data-dropdown-offset-distance="26" data-dropdown-offset-skidding="-135" class="md:inline-flex md:items-center md:text-sm md:font-medium md:text-center md:text-gray-500 md:hover:text-gray-900 md:focus:outline-none hidden" type="button"> 
+                <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" data-dropdown-offset-distance="26" data-dropdown-offset-skidding="-100" class="inline-flex items-center text-sm font-medium text-center text-gray-500 hover:text-gray-900 focus:outline-none" type="button"> 
                     <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
                         <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z"/>
                     </svg>
@@ -16,12 +17,12 @@ document.write(`
                     </button>
                     
                     <!-- Notification Dropdown menu -->
-                    <div id="dropdownNotification" class="hidden md:z-20 md:w-full md:max-w-sm md:bg-white md:divide-y md:divide-gray-100 md:rounded-lg md:shadow md:border" aria-labelledby="dropdownNotificationButton">
-                    <div class="hidden md:block md:px-4 md:py-2 md:font-medium md:text-center md:text-gray-700 md:rounded-t-lg md:bg-gray-50">
+                    <div id="dropdownNotification" class="hidden z-20 w-full max-w-xs sm:max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow border" aria-labelledby="dropdownNotificationButton">
+                    <div class="block px-4 py-2 font-medium text-center text-gray-700 rounded-t-lg bg-gray-50">
                         Notifications
                     </div>
                     <div class="md:divide-y md:divide-gray-100">
-                        <a href="#" class="hidden md:flex md:px-4 md:py-3 md:hover:bg-gray-100">
+                        <a href="#" class="flex px-4 py-3 hover:bg-gray-100">
 
                         <div class="w-full pl-3">
                             <div class="text-gray-500 text-sm mb-1.5 ">New message from <span class="font-semibold text-gray-900">Bonnie Green</span>: "How much would it cost to adopt DunDun?"</div>
@@ -29,7 +30,7 @@ document.write(`
                         </div>
                         </a>
 
-                        <a href="#" class="hidden md:flex md:px-4 md:py-3 md:hover:bg-gray-100">
+                        <a href="#" class="flex px-4 py-3 hover:bg-gray-100">
 
                         <div class="w-full pl-3">
                             <div class="text-gray-500 text-sm mb-1.5"><span class="font-semibold text-gray-900">Timmy Clyde</span> has left a review!</div>
@@ -37,7 +38,7 @@ document.write(`
                         </div>
                         </a>
 
-                        <a href="#" class="hidden md:flex md:px-4 md:py-3 hover:bg-gray-100">
+                        <a href="#" class="flex px-4 py-3 hover:bg-gray-100">
                         <div class="w-full pl-3">
                             <div class="text-gray-500 text-sm mb-1.5 "><span class="font-medium text-gray-900 ">2 New Applications have been made!</div>
                             <div class="text-xs text-blue-600 ">1 hour ago</div>
@@ -45,7 +46,7 @@ document.write(`
                         </a>
 
                     </div>
-                    <a href="#" class="hidden md:block md:py-2 md:text-sm md:font-medium md:text-center md:text-gray-900 md:rounded-b-lg md:bg-gray-50 md:hover:bg-gray-100">
+                    <a href="#" class="block py-2 text-sm font-medium text-center text-gray-900 rounded-b-lg bg-gray-50 hover:bg-gray-100">
                         <div class="inline-flex items-center ">
                         <svg class="w-4 h-4 mr-2 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 14">
                             <path d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
@@ -64,8 +65,8 @@ document.write(`
                         <svg class="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                     </div> -->
                     <div class="relative">
-                        <img class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-100" src="../resources/shelter/shelter_logo.png" alt="">
-                        <span class="top-0 left-7 absolute w-3.5 h-3.5 bg-red-500 border-2 border-white md:w-0 md:h-0 md:border-0 md:border-none rounded-full"></span>
+                        <img class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gray-100" src="./resources/shelter/shelter_logo.png" alt="">
+                        <!-- <span class="top-0 left-7 absolute w-3.5 h-3.5 bg-red-500 border-2 border-white md:w-0 md:h-0 md:border-0 md:border-none rounded-full"></span> -->
                     </div>
                 </button>
                 <!-- Dropdown menu -->
@@ -91,7 +92,7 @@ document.write(`
                         </li>
                     </ul>
                     <div class="py-1">
-                        <a href="./main/main.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                        <a href="./main.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
                     </div>
                 </div>
                 <!-- hamburger -->
@@ -107,13 +108,13 @@ document.write(`
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
             <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
                 <li>
-                <a href="./main/main_after_login_shelter.html" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:bg-transparent md:bg-gray-100 md:p-0" aria-current="page">Home</a>
+                <a href="./main_after_login_shelter.html" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:bg-transparent md:bg-gray-100 md:p-0" aria-current="page">Home</a>
                 </li>
                 <li>
                 <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">About</a>
                 </li>
                 <li>
-                <a href="./navbar/adopt_shelter.html" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Adopt</a>
+                <a href="./adopt_shelter.html" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Adopt</a>
                 </li>
                 <li>
                 <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0">Contact</a>
@@ -122,6 +123,5 @@ document.write(`
             </ul>
         </div>
     </div>
-</nav>
+    </nav>
 `);
-
