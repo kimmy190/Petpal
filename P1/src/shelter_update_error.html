@@ -59,8 +59,13 @@
                             <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="torontocentre@company.com" required>
                         </div> 
                         <div class="mb-4">
-                            <label for="old_password" class="block mb-2 text-sm font-medium text-gray-900">Current password</label>
-                            <input type="password" id="old_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Enter password" required>
+                            <div class="relative">
+                                <label for="old_password" class="block mb-2 text-sm font-medium text-gray-900">Current password</label>
+                                <input type="password" id="old_password"  class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 appearance-none dark:text-white dark:border-red-500 border-red-600 dark:focus:border-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer" placeholder="Enter password " required/>
+
+                            </div>
+                            <p id="outlined_error_help" class="mt-2 text-xs text-red-600 dark:text-red-400"> Incorrect password.</p>
+
                         </div>
                         <!-- Password -->
                         <div class="grid gap-3 md:grid-cols-2">
@@ -107,7 +112,7 @@
                                 <!-- when get rid of the a tag inside button, will not proceed to main after login -->
                             </button>
                             <button type="submit" class="text-white mb-5 bg-blue-700 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-medium w-1/2 px-5 py-2.5 text-center">
-                                <a href="./shelter_update_error.html">Update</a>
+                                <a href="#">Update</a> 
                                 <!-- when get rid of the a tag inside button, will not proceed to main after login -->
                             </button>
                         </div>
