@@ -27,21 +27,20 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'accounts.PetSeeker'  # for custom model 
+AUTH_USER_MODEL = "accounts.PetSeeker"  # for custom model
 
 # Application definition
 
 INSTALLED_APPS = [
     "accounts",
     "phonenumber_field",
+    "pet_listing",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "pet_listing", 
-    
 ]
 
 MIDDLEWARE = [
@@ -128,3 +127,21 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_ROOT = "images/"
+
+
+# rest framework
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        #'rest_framework.permissions.AllowAny',
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+}
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+}
