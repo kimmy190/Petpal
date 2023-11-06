@@ -28,7 +28,7 @@ class PetListing(models.Model):
 
     # TODO: may wnat to make this "Shelter" instead of "User"...?
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
+    pet_name = models.CharField(max_length=50)
     status = models.CharField(max_length=50, choices=Statuses.choices)
     publication_date = models.DateTimeField(auto_now_add=True)
 

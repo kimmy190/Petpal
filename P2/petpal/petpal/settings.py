@@ -27,12 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = "accounts.PetSeeker"  # for custom model
+# AUTH_USER_MODEL = "accounts.PetSeeker"  # for custom model
 
 # Application definition
 
 INSTALLED_APPS = [
-    "accounts",
+    # "accounts",
     "phonenumber_field",
     "pet_listing",
     "django.contrib.admin",
@@ -126,14 +126,14 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-MEDIA_ROOT = "images/"
-
+MEDIA_ROOT = BASE_DIR / "images"
+MEDIA_URL = "images/"
 
 # rest framework
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        #'rest_framework.permissions.AllowAny',
-        "rest_framework.permissions.IsAuthenticated",
+        "rest_framework.permissions.AllowAny",
+        # "rest_framework.permissions.IsAuthenticated",
     ],
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
