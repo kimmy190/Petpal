@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "accounts",
+    # "accounts",
     "phonenumber_field",
     "pet_listing",
     "django.contrib.admin",
