@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
-class PetShelter(models.Model):
+class Shelter(models.Model):
     organization_name = models.CharField(max_length=200) # maybe can just username 
     logo_image = models.ImageField(upload_to='logo_images/', null=True, blank=True)
     # added custom library for phone number field 
@@ -24,7 +24,7 @@ class PetSeeker(AbstractUser):
     location = models.CharField(max_length=100, null=True, blank=True)
     is_shelter = models.BooleanField(default=False)
 
-    shelter = models.ForeignKey(PetShelter, on_delete=models.SET_NULL, null=True, blank=True)
+    shelter = models.ForeignKey(Shelter, on_delete=models.SET_NULL, null=True, blank=True)
 
 
 
