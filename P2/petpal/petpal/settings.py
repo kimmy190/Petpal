@@ -27,12 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# AUTH_USER_MODEL = "accounts.PetSeeker"  # for custom model
-
 # Application definition
 
 INSTALLED_APPS = [
-    # "accounts",
+    "accounts",
     "phonenumber_field",
     "pet_listing",
     "django.contrib.admin",
@@ -145,3 +143,7 @@ from datetime import timedelta
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
 }
+
+
+# AUTH_USER_MODEL = "accounts.PetSeeker"  # for custom model
+AUTH_USER_MODEL = 'accounts.PetUser'
