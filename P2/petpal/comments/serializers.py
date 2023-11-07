@@ -7,7 +7,7 @@ from .models import ApplicationComment, ShelterComment
 class ShelterCommentSerializer(ModelSerializer):
     class Meta:
         model = ShelterComment
-        fields = ("body", "author", "created_at")
+        fields = ("id", "body", "author", "created_at")
     author = serializers.CharField(read_only=True)
     created_at = serializers.DateTimeField(read_only=True)
 
@@ -16,5 +16,5 @@ class ShelterCommentSerializer(ModelSerializer):
 class ApplicationCommentSerializer(ModelSerializer):
     class Meta:
         model = ApplicationComment
-        fields = "__all__"
+        fields = ("id", "body", "author", "created_at")
 
