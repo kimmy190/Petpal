@@ -23,4 +23,5 @@ urlpatterns = [
     path("api/", include("api.urls")),
     path("admin/", admin.site.urls),
     path("pet_listing/", include("pet_listing.urls", namespace="pet_listing")),
+    path("comments/", include("comments.urls", namespace="comments")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
