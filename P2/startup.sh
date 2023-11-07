@@ -7,6 +7,9 @@ pip install django
 # Pillow
 pip install pillow
 
+# install Phone number field 
+pip install django-phonenumber-field phonenumbers
+
 # Django REST framework
 pip install djangorestframework
 pip install markdown       # Markdown support for the browsable API.

@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "accounts",
     "phonenumber_field",
     "pet_listing",
+    "comments",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -146,4 +147,4 @@ SIMPLE_JWT = {
 
 
 # AUTH_USER_MODEL = "accounts.PetSeeker"  # for custom model
-AUTH_USER_MODEL = 'accounts.PetUser'
+AUTH_USER_MODEL = 'accounts.PetSeeker'

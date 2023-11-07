@@ -1,16 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
-class PetSeeker(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
-    location = models.CharField(max_length=100, null=True, blank=True)
-
-
-class Shelter():
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+class PetShelter(models.Model):
     organization_name = models.CharField(max_length=200) # maybe can just username 
     logo_image = models.ImageField(upload_to='logo_images/', null=True, blank=True)
     # added custom library for phone number field 
@@ -24,3 +17,14 @@ class Shelter():
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     zip = models.CharField(max_length=10)
+
+
+class PetSeeker(AbstractUser):
+    profile_image = models.ImageField(upload_to='profile_images/', null=True, blank=True)
+    location = models.CharField(max_length=100, null=True, blank=True)
+    is_shelter = models.BooleanField(default=False)
+
+    shelter = models.ForeignKey(PetShelter, on_delete=models.SET_NULL, null=True, blank=True)
+
+
+
