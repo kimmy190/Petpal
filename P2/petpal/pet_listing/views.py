@@ -1,8 +1,4 @@
 # Create your views here.
-
-from typing import Any
-from django.http import HttpRequest, HttpResponse
-from django.views.generic.edit import CreateView, UpdateView
 from .models import PetListing, PetListingImage
 from .serializers import PetListingSerializer, PetListingImageSerializer
 from rest_framework.generics import (
@@ -10,12 +6,19 @@ from rest_framework.generics import (
     RetrieveUpdateDestroyAPIView,
     RetrieveDestroyAPIView,
 )
-from rest_framework import viewsets
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.pagination import PageNumberPagination
+
+
+# Taken from https://stackoverflow.com/questions/31785966/django-rest-framework-turn-on-pagination-on-a-viewset-like-modelviewset-pagina
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 100
+    page_size_query_param = "page_size"
+    max_page_size = 1000
 
 
 # Taken from https://b0uh.github.io/drf-viewset-permission-policy-per-method.html
@@ -43,7 +46,25 @@ class PetListingCreateView(PermissionPolicyMixin, ListCreateAPIView):
     serializer_class = PetListingSerializer
     permission_classes = [IsAuthenticated]
     permission_classes_per_method = {"GET": []}
-    queryset = PetListing.objects.all()
+    pagination_class = StandardResultsSetPagination
+
+    def get_queryset(self):
+        order_by = self.request.GET.get("order_by", "id")
+        use_id = True
+        for field in PetListing._meta.get_fields():
+            if field.name == order_by:
+                use_id = False
+                break
+        if use_id:
+            order_by = "id"
+
+        filter = {}
+        filter["status"] = self.request.GET.get("status", "Available")
+        for filter_param in ["owner", "breed", "age", "size"]:
+            if filter_param in self.request.GET:
+                filter[filter_param] = self.request.GET[filter_param]
+
+        return PetListing.objects.filter(**filter).order_by(order_by)
 
     def perform_create(self, serializer):
         # TODO: Change this to shelter
@@ -88,15 +109,10 @@ class PetListingView(PermissionPolicyMixin, RetrieveUpdateDestroyAPIView):
         pet_images = serializer.validated_data.pop("images", tuple())
         pet_listing = serializer.save()
 
-        # TODO: Right now, we delete images.
-        # This is fine if we're doing an update,
-        # but if we're doing a patch, we should maybe only
-        #  update what's changed
-        # Possibly look at https://stackoverflow.com/questions/53236669/django-rest-framework-list-update-api-view
-        pet_listing.petlistingimage_set.all().delete()
-
-        for image in pet_images:
-            PetListingImage.objects.create(image=image, pet_listing=pet_listing)
+        if pet_images:
+            pet_listing.petlistingimage_set.all().delete()
+            for image in pet_images:
+                PetListingImage.objects.create(image=image, pet_listing=pet_listing)
 
     def perform_destroy(self, instance):
         instance.delete()

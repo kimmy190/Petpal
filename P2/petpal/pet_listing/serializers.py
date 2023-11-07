@@ -17,7 +17,6 @@ class PetListingSerializer(ModelSerializer):
         model = PetListing
         fields = "__all__"
 
-    id = serializers.IntegerField(read_only=True)
     owner = serializers.PrimaryKeyRelatedField(read_only=True)
     images = serializers.ListField(child=serializers.ImageField(), write_only=True)
 
