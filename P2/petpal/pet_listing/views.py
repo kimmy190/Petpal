@@ -74,12 +74,10 @@ class PetListingCreateView(PermissionPolicyMixin, ListCreateAPIView):
     def perform_create(self, serializer):
         owner = self.request.user
 
-        location = owner.location
-
         pet_images = serializer.validated_data.pop("images", tuple())
 
         pet_listing = PetListing.objects.create(
-            **serializer.validated_data, owner=owner, location=location
+            **serializer.validated_data, owner=owner
         )
 
         for image in pet_images:
