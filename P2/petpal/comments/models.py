@@ -17,7 +17,9 @@ class ShelterComment(Comment):
     shelter = models.ForeignKey(Shelter, on_delete=models.CASCADE)
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)]
     )
-    # reply = models.ForeignKey(Reply, null=True, on_delete=models.CASCADE)
+
+class Reply(Comment):
+    reply = models.ForeignKey(ShelterComment, on_delete=models.CASCADE)
 
 
 class ApplicationComment(Comment):
