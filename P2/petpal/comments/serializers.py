@@ -3,18 +3,15 @@ from rest_framework import serializers
 
 from .models import ApplicationComment, ShelterComment
 
-
-class ShelterCommentSerializer(ModelSerializer):
+class CommentSerializer(ModelSerializer):
     class Meta:
+        abstract = True
         model = ShelterComment
         fields = ("id", "body", "author", "created_at")
-    author = serializers.CharField(read_only=True)
-    created_at = serializers.DateTimeField(read_only=True)
+        read_only_fields = ["author", "created_at"]
 
-
-
-class ApplicationCommentSerializer(ModelSerializer):
+class ShelterCommentSerializer(CommentSerializer):
     class Meta:
-        model = ApplicationComment
-        fields = ("id", "body", "author", "created_at")
-
+        model = ShelterComment
+        fields = ("id", "rating", "body", "author", "created_at")
+        read_only_fields = ["author", "created_at"]
