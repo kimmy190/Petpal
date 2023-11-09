@@ -39,26 +39,38 @@ class PermissionPolicyMixin:
             )
         super().check_permissions(request)
 
+# permissions
+
 
 class ApplicationCreateView(CreateAPIView):
-    # need to check if pet available + add permissions
     serializer_class = ApplicationSerializer
+    # permission_classes = [IsAuthenticated]
+    # permission_classes_per_method = {"POST": []}
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        return Response(serializer.data)
+        # if not request.user.is_authenticated:
+        #     return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
+        owner = self.request.user
+        pet_listing = get_object_or_404(
+            PetListing, owner=owner, pk=self.kwargs["pet_listing"]
+        )
+        if pet_listing.Statuses == "Available":
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            self.perform_create(serializer)
+            return Response(serializer.data)
+        else:
+            return Response({"error": "The selected pet is not available"}, status=status.HTTP_400_BAD_REQUEST)
 
     def perform_create(self, serializer):
-        serializer.save()
+        serializer.save(owner=self.request.user)
 
-# need to check if only specific shelter application + add permissions
+# need to check if only specific shelter application + add permissions + update last_update_time w comment
 
 
 class ApplicationListView(ListAPIView):
     serializer_class = ApplicationSerializer
-    permission_classes_per_method = {"GET: []"}
+    # permission_classes_per_method = {"GET: []"}
     pagination_class = StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_fields = ['status']
@@ -68,7 +80,7 @@ class ApplicationListView(ListAPIView):
         queryset = Application.objects.all()
         return queryset
 
-# need to identify shelter or user + permissions
+# permissions
 
 
 class ApplicationUpdateView(RetrieveUpdateAPIView):
@@ -78,12 +90,24 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
 
     def update(self, request, *args, **kwargs):
         application = self.get_object()
+        owner = request.user
 
-        # if request.user == application.owner:
-        new_status = request.data.get('status', '').capitalize()
+        # if shelter, can update to Accepted or Rejected
+        if owner.is_shelter:
+            new_status = request.data.get('status', '').capitalize()
+            if new_status != "ACCEPTED" or new_status != "REJECTED":
+                return Response({"error": "Choose between Accepted or Rejected"}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                application.status = new_status
+                application.save()
 
-        application.status = new_status
-        application.save()
+        else:
+            new_status = request.data.get('status', '').capitalize()
+            if new_status != "WITHDRAW":
+                return Response({"error": "Can only withdraw application"}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                application.status = new_status
+                application.save()
 
         # Return a success response
         return Response(
