@@ -29,13 +29,16 @@ class ShelterCommentListCreateView(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     def perform_create(self, serializer):
         # TODO: Change this to shelter
+        serializer.is_valid(raise_exception=True)
         author = self.request.user
 
         shelter = get_object_or_404(Shelter, pk=self.kwargs["shelter"])
-
-        if author.shelter == shelter:
+        parent = self.request.query_params.get("parent")
+        if parent is not None:
+            parent = get_object_or_404(ShelterComment, pk=parent)
+        if parent is None and author.shelter == shelter:
             raise PermissionDenied
-        serializer.save(author=author, shelter=shelter)
+        serializer.save(author=author, shelter=shelter, parent=parent)
 
     def get_queryset(self):
         return ShelterComment.objects.all().filter(shelter=self.kwargs["shelter"]).order_by("-created_at")
@@ -69,14 +72,17 @@ class ApplicationCommentListCreateView(ListCreateAPIView):
             return ApplicationComment.objects.all().filter(shelter=self.request.user).order_by("-created_at")
 
 
-# class ApplicationCommentListView(ListAPIView):
+
+# class ReplyListCreateView(ListCreateAPIView):
 #     serializer_class = CommentSerializer
 #     permission_classes = [IsAuthenticated]
-
-# class ShelterCommentListView(ListAPIView):
-#     serializer_class = ShelterCommentSerializer
-#     permission_classes = [IsAuthenticated]
 #     pagination_class = CommentResultsSetPagination
+
+#     permission_classes = [IsAuthenticated]
+#     def perform_create(self, serializer):
+#         author = self.request.user
+#         shelter = get_object_or_404(Shelter, pk=self.kwargs["shelter"])
+#         serializer.save(author=author, shelter=shelter)
 
 #     def get_queryset(self):
 #         return ShelterComment.objects.all().filter(shelter=self.kwargs["shelter"]).order_by("-created_at")

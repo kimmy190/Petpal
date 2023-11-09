@@ -13,5 +13,6 @@ class CommentSerializer(ModelSerializer):
 class ShelterCommentSerializer(CommentSerializer):
     class Meta:
         model = ShelterComment
-        fields = ("id", "rating", "body", "author", "created_at")
+        fields = ("id", "rating", "body", "author", "created_at", "parent")
         read_only_fields = ["author", "created_at"]
+        depth = 1

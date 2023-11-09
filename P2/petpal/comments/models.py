@@ -18,7 +18,7 @@ class ShelterComment(Comment):
     rating = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(5)]
     )
-    # reply = models.ForeignKey(Reply, null=True, on_delete=models.CASCADE)
+    parent = models.ForeignKey('self', null=True, on_delete=models.CASCADE)
 
 
 class ApplicationComment(Comment):
