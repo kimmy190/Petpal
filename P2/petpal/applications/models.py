@@ -24,7 +24,7 @@ class Application(models.Model):
         max_length=10, choices=Status.choices, default=Status.PENDING)
     creation_time = models.DateTimeField(auto_now_add=True)
     last_update_time = models.DateTimeField(auto_now=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    # owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # Inputs
     pet_name = models.CharField(max_length=50)

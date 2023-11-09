@@ -5,5 +5,5 @@ from .views import ApplicationCreateView, ApplicationUpdateView, ApplicationList
 app_name = "applications"
 urlpatterns = [path("", ApplicationCreateView.as_view()),
                path("<int:pk>/update/", ApplicationUpdateView.as_view()),
-               path("<int:pk>", ApplicationListView.as_view()),
+               path("list/", ApplicationListView.as_view()),
                ]
