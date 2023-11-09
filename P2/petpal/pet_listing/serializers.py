@@ -38,7 +38,7 @@ class PetListingSerializer(ModelSerializer):
         # )
         fields = "__all__"
 
-    location = serializers.CharField(read_only=True, source="owner.location")
+    location = serializers.CharField(read_only=True, source="owner.shelter.address1")
     owner = serializers.PrimaryKeyRelatedField(read_only=True)
     images = serializers.ListField(child=serializers.ImageField(), write_only=True)
 

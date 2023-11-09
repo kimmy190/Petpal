@@ -12,6 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.pagination import PageNumberPagination
+from django.core.exceptions import PermissionDenied
 
 
 # Taken from https://stackoverflow.com/questions/31785966/django-rest-framework-turn-on-pagination-on-a-viewset-like-modelviewset-pagina
@@ -155,11 +156,7 @@ class PetListingImageView(PermissionPolicyMixin, RetrieveDestroyAPIView):
     serializer_class = PetListingImageSerializer
     permission_classes = [IsShelterPermission]
     permission_classes_per_method = {"GET": []}
-
-    def get_queryset(self):
-        if self.request.method == "GET":
-            return PetListingImage.objects.all()
-        return PetListingImage.objects.filter(pet_listing=self.kwargs["pet_listing"])
+    queryset = PetListingImage.objects.all()
 
     def get_object(self):
         return get_object_or_404(
@@ -169,4 +166,6 @@ class PetListingImageView(PermissionPolicyMixin, RetrieveDestroyAPIView):
         )
 
     def perform_destroy(self, instance):
+        if instance.pet_listing.owner != self.request.user:
+            raise PermissionDenied()
         instance.delete()
