@@ -15,6 +15,27 @@ class PetListingImageSerializer(ModelSerializer):
 class PetListingSerializer(ModelSerializer):
     class Meta:
         model = PetListing
+        # fields = (
+        #     "owner",
+        #     "pet_name",
+        #     "status",
+        #     "publication_date",
+        #     "gender",
+        #     "age",
+        #     "breed",
+        #     "size",
+        #     "location",
+        #     "behavior_aggresive",
+        #     "behavior_social",
+        #     "behavior_noisy",
+        #     "behavior_scared",
+        #     "behavior_friendly",
+        #     "medical_history",
+        #     "requirements",
+        #     "additional_comments",
+        #     "images",
+        #     "id",
+        # )
         fields = "__all__"
 
     owner = serializers.PrimaryKeyRelatedField(read_only=True)

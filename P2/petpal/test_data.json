@@ -1,12 +1,12 @@
 [
   {
-    "model": "auth.user",
+    "model": "accounts.PetSeeker",
     "pk": 1,
     "fields": {
       "password": "pbkdf2_sha256$600000$TuGCYv6go4eWERr32Uh5DI$wJSkvfGuyLT0XXE3/Jqg7ZHMCgqisW3JGDRDnPo9Z5Q=",
       "last_login": "2023-10-20T10:44:04.011Z",
       "is_superuser": true,
-      "username": "jack",
+      "username": "shelter",
       "first_name": "",
       "last_name": "",
       "email": "",
@@ -14,7 +14,49 @@
       "is_active": true,
       "date_joined": "2023-10-20T10:27:24.611Z",
       "groups": [],
-      "user_permissions": []
+      "user_permissions": [],
+      "is_shelter": true,
+      "location": "1 Avenue ave."
+    }
+  },
+  {
+    "model": "accounts.PetSeeker",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$TuGCYv6go4eWERr32Uh5DI$wJSkvfGuyLT0XXE3/Jqg7ZHMCgqisW3JGDRDnPo9Z5Q=",
+      "last_login": "2023-10-20T10:44:04.011Z",
+      "is_superuser": true,
+      "username": "user",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2023-10-20T10:27:24.611Z",
+      "groups": [],
+      "user_permissions": [],
+      "is_shelter": false,
+      "location": "2 Avenue ave."
+    }
+  },
+  {
+    "model": "accounts.PetSeeker",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$TuGCYv6go4eWERr32Uh5DI$wJSkvfGuyLT0XXE3/Jqg7ZHMCgqisW3JGDRDnPo9Z5Q=",
+      "last_login": "2023-10-20T10:44:04.011Z",
+      "is_superuser": true,
+      "username": "shelter2",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2023-10-20T10:27:24.611Z",
+      "groups": [],
+      "user_permissions": [],
+      "is_shelter": true,
+      "location": "3 Avenue ave."
     }
   }
 ]

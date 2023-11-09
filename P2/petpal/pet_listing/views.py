@@ -21,6 +21,11 @@ class StandardResultsSetPagination(PageNumberPagination):
     max_page_size = 1000
 
 
+class IsShelterPermission(IsAuthenticated):
+    def has_permission(self, request, view):
+        return super().has_permission(request, view) and request.user.is_shelter
+
+
 # Taken from https://b0uh.github.io/drf-viewset-permission-policy-per-method.html
 class PermissionPolicyMixin:
     def check_permissions(self, request):
@@ -44,7 +49,7 @@ class PermissionPolicyMixin:
 
 class PetListingCreateView(PermissionPolicyMixin, ListCreateAPIView):
     serializer_class = PetListingSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsShelterPermission]
     permission_classes_per_method = {"GET": []}
     pagination_class = StandardResultsSetPagination
 
@@ -67,11 +72,9 @@ class PetListingCreateView(PermissionPolicyMixin, ListCreateAPIView):
         return PetListing.objects.filter(**filter).order_by(order_by)
 
     def perform_create(self, serializer):
-        # TODO: Change this to shelter
         owner = self.request.user
 
-        # TODO: get location from shelter
-        location = "Location"
+        location = owner.location
 
         pet_images = serializer.validated_data.pop("images", tuple())
 
@@ -97,7 +100,7 @@ class PetListingCreateView(PermissionPolicyMixin, ListCreateAPIView):
 
 class PetListingView(PermissionPolicyMixin, RetrieveUpdateDestroyAPIView):
     serializer_class = PetListingSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsShelterPermission]
     permission_classes_per_method = {"GET": []}
 
     def get_queryset(self):
@@ -120,7 +123,7 @@ class PetListingView(PermissionPolicyMixin, RetrieveUpdateDestroyAPIView):
 
 class PetListingImageCreateView(PermissionPolicyMixin, ListCreateAPIView):
     serializer_class = PetListingImageSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsShelterPermission]
     permission_classes_per_method = {"GET": []}
 
     def get_queryset(self):
@@ -128,7 +131,6 @@ class PetListingImageCreateView(PermissionPolicyMixin, ListCreateAPIView):
         return PetListingImage.objects.filter(pet_listing=self.kwargs["pet_listing"])
 
     def perform_create(self, serializer):
-        # TODO: Change this to shelter
         owner = self.request.user
         pet_listing = get_object_or_404(
             PetListing, owner=owner, pk=self.kwargs["pet_listing"]
@@ -153,7 +155,7 @@ class PetListingImageCreateView(PermissionPolicyMixin, ListCreateAPIView):
 
 class PetListingImageView(PermissionPolicyMixin, RetrieveDestroyAPIView):
     serializer_class = PetListingImageSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsShelterPermission]
     permission_classes_per_method = {"GET": []}
 
     def get_queryset(self):

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+from accounts.models import PetSeeker
 
 
 # Create your models here.
@@ -26,14 +27,13 @@ class PetListing(models.Model):
         MEDIUM = "Medium"
         SMALL = "Small"
 
-    # TODO: may wnat to make this "Shelter" instead of "User"...?
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(PetSeeker, on_delete=models.CASCADE)
     pet_name = models.CharField(max_length=50)
     status = models.CharField(max_length=50, choices=Statuses.choices)
     publication_date = models.DateTimeField(auto_now_add=True)
 
     gender = models.CharField(max_length=50, choices=Genders.choices)
-    age = models.CharField(max_length=10)
+    age = models.IntegerField()
     breed = models.CharField(max_length=50, choices=Breeds.choices)
     size = models.CharField(max_length=50, choices=Sizes.choices)
     location = models.CharField(max_length=255, editable=False)
