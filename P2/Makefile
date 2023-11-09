@@ -1,7 +1,7 @@
 clean-and-setup: clean setup
 	
 clean:
-	rm petpal/db.sqlite3
+	rm -rf petpal/db.sqlite3
 
 setup:
 	petpal/manage.py makemigrations
