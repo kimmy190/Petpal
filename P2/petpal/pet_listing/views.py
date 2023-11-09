@@ -73,12 +73,12 @@ class PetListingCreateView(PermissionPolicyMixin, ListCreateAPIView):
         return PetListing.objects.filter(**filter).order_by(order_by)
 
     def perform_create(self, serializer):
-        owner = self.request.user
+        shelter = self.request.user.shelter
 
         pet_images = serializer.validated_data.pop("images", tuple())
 
         pet_listing = PetListing.objects.create(
-            **serializer.validated_data, owner=owner
+            **serializer.validated_data, shelter=shelter
         )
 
         for image in pet_images:
@@ -105,7 +105,7 @@ class PetListingView(PermissionPolicyMixin, RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         if self.request.method == "GET":
             return PetListing.objects.all()
-        return PetListing.objects.filter(owner=self.request.user)
+        return PetListing.objects.filter(shelter=self.request.user.shelter)
 
     def perform_update(self, serializer):
         pet_images = serializer.validated_data.pop("images", tuple())
@@ -130,9 +130,9 @@ class PetListingImageCreateView(PermissionPolicyMixin, ListCreateAPIView):
         return PetListingImage.objects.filter(pet_listing=self.kwargs["pet_listing"])
 
     def perform_create(self, serializer):
-        owner = self.request.user
+        shelter = self.request.user.shelter
         pet_listing = get_object_or_404(
-            PetListing, owner=owner, pk=self.kwargs["pet_listing"]
+            PetListing, shelter=shelter, pk=self.kwargs["pet_listing"]
         )
 
         pet_listing_image = PetListingImage.objects.create(
