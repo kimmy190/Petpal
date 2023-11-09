@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 
 class Application(models.Model):
@@ -20,11 +21,15 @@ class Application(models.Model):
         ('rent', 'Rent'),
     )
 
+    owner = models.ForeignKey(
+        get_user_model(), on_delete=models.CASCADE, default=None, blank=True, null=True)
+    shelter = models.CharField(
+        max_length=50, default="Toronto Adoption Center")
+
     status = models.CharField(
         max_length=10, choices=Status.choices, default=Status.PENDING)
     creation_time = models.DateTimeField(auto_now_add=True)
     last_update_time = models.DateTimeField(auto_now=True)
-    # owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # Inputs
     pet_name = models.CharField(max_length=50)

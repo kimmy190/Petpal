@@ -14,9 +14,9 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 
 class StandardResultsSetPagination(PageNumberPagination):
-    page_size = 100
+    page_size = 10
     page_size_query_param = "page_size"
-    max_page_size = 1000
+    max_page_size = 10
 
 
 # Taken from https://b0uh.github.io/drf-viewset-permission-policy-per-method.html
@@ -41,7 +41,7 @@ class PermissionPolicyMixin:
 
 
 class ApplicationCreateView(CreateAPIView):
-    # need to check if pet available
+    # need to check if pet available + add permissions
     serializer_class = ApplicationSerializer
 
     def create(self, request, *args, **kwargs):
@@ -52,6 +52,8 @@ class ApplicationCreateView(CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save()
+
+# need to check if only specific shelter application + add permissions
 
 
 class ApplicationListView(ListAPIView):
@@ -66,22 +68,25 @@ class ApplicationListView(ListAPIView):
         queryset = Application.objects.all()
         return queryset
 
+# need to identify shelter or user + permissions
+
 
 class ApplicationUpdateView(RetrieveUpdateAPIView):
+    queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
     # permission_classes = [IsAuthenticated]
 
-    def get_queryset(self):
-        return Application.objects.filter(owner_name=self.request.user)
+    def update(self, request, *args, **kwargs):
+        application = self.get_object()
 
-    def perform_update(self, serializer):
-        application = serializer.instance
+        # if request.user == application.owner:
+        new_status = request.data.get('status', '').capitalize()
 
-        # Shelter can update the status from pending to accepted or denied
-        if application.status == "PENDING" and application.pet_listing.owner == self.request.user:
-            serializer.save()
-        # Pet seeker can update the status from pending or accepted to withdrawn
-        elif application.status in ["Pending", "Accepted"] and application.owner_name == self.request.user:
-            serializer.save()
-        else:
-            return Response("You don't have permission to update this application status.", status=status.HTTP_403_FORBIDDEN)
+        application.status = new_status
+        application.save()
+
+        # Return a success response
+        return Response(
+            self.get_serializer(application).data,
+            status=status.HTTP_200_OK
+        )
