@@ -33,6 +33,8 @@ class ShelterCommentListCreateView(ListCreateAPIView):
 
         shelter = get_object_or_404(Shelter, pk=self.kwargs["shelter"])
 
+        if author.shelter == shelter:
+            raise PermissionDenied
         serializer.save(author=author, shelter=shelter)
 
     def get_queryset(self):
