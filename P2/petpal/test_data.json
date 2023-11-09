@@ -1,6 +1,40 @@
 [
   {
-    "model": "accounts.PetSeeker",
+    "model": "accounts.shelter",
+    "pk": 1,
+    "fields": {
+      "organization_name": "",
+      "logo_image": "",
+      "phone_number": "",
+      "shelter_image": "",
+      "mission_statement": "",
+      "country": "",
+      "address1": "Location location1",
+      "address2": null,
+      "city": "",
+      "state": "",
+      "zip": ""
+    }
+  },
+  {
+    "model": "accounts.shelter",
+    "pk": 2,
+    "fields": {
+      "organization_name": "",
+      "logo_image": "",
+      "phone_number": "",
+      "shelter_image": "",
+      "mission_statement": "",
+      "country": "",
+      "address1": "Location location2",
+      "address2": null,
+      "city": "",
+      "state": "",
+      "zip": ""
+    }
+  },
+  {
+    "model": "accounts.petseeker",
     "pk": 1,
     "fields": {
       "password": "pbkdf2_sha256$600000$TuGCYv6go4eWERr32Uh5DI$wJSkvfGuyLT0XXE3/Jqg7ZHMCgqisW3JGDRDnPo9Z5Q=",
@@ -13,15 +47,16 @@
       "is_staff": true,
       "is_active": true,
       "date_joined": "2023-10-20T10:27:24.611Z",
-      "groups": [],
-      "user_permissions": [],
-      "is_shelter": true,
+      "profile_image": "",
       "location": "1 Avenue ave.",
-      "shelter": 1
+      "is_shelter": true,
+      "shelter": 1,
+      "groups": [],
+      "user_permissions": []
     }
   },
   {
-    "model": "accounts.PetSeeker",
+    "model": "accounts.petseeker",
     "pk": 2,
     "fields": {
       "password": "pbkdf2_sha256$600000$TuGCYv6go4eWERr32Uh5DI$wJSkvfGuyLT0XXE3/Jqg7ZHMCgqisW3JGDRDnPo9Z5Q=",
@@ -34,14 +69,16 @@
       "is_staff": true,
       "is_active": true,
       "date_joined": "2023-10-20T10:27:24.611Z",
-      "groups": [],
-      "user_permissions": [],
+      "profile_image": "",
+      "location": "2 Avenue ave.",
       "is_shelter": false,
-      "location": "2 Avenue ave."
+      "shelter": null,
+      "groups": [],
+      "user_permissions": []
     }
   },
   {
-    "model": "accounts.PetSeeker",
+    "model": "accounts.petseeker",
     "pk": 3,
     "fields": {
       "password": "pbkdf2_sha256$600000$TuGCYv6go4eWERr32Uh5DI$wJSkvfGuyLT0XXE3/Jqg7ZHMCgqisW3JGDRDnPo9Z5Q=",
@@ -54,17 +91,855 @@
       "is_staff": true,
       "is_active": true,
       "date_joined": "2023-10-20T10:27:24.611Z",
-      "groups": [],
-      "user_permissions": [],
+      "profile_image": "",
+      "location": "3 Avenue ave.",
       "is_shelter": true,
-      "location": "3 Avenue ave."
+      "shelter": 2,
+      "groups": [],
+      "user_permissions": []
     }
   },
   {
-    "model": "accounts.Shelter",
+    "model": "pet_listing.petlisting",
     "pk": 1,
     "fields": {
-      "address1": "Location location"
+      "shelter": 2,
+      "pet_name": "Franks",
+      "status": "Available",
+      "publication_date": "2023-11-09T22:46:22.212Z",
+      "gender": "Male",
+      "age": 10,
+      "breed": "Golden Doodle",
+      "size": "Large",
+      "location": "",
+      "behavior_aggresive": 0,
+      "behavior_social": 0,
+      "behavior_noisy": 0,
+      "behavior_scared": 0,
+      "behavior_friendly": 0,
+      "medical_history": "OLD",
+      "requirements": "Medicines",
+      "additional_comments": "fun"
     }
+  },
+  {
+    "model": "pet_listing.petlisting",
+    "pk": 2,
+    "fields": {
+      "shelter": 2,
+      "pet_name": "Cindy",
+      "status": "Available",
+      "publication_date": "2023-11-09T22:47:33.628Z",
+      "gender": "Female",
+      "age": 2,
+      "breed": "Boston Terrier",
+      "size": "Small",
+      "location": "",
+      "behavior_aggresive": 0,
+      "behavior_social": 0,
+      "behavior_noisy": 0,
+      "behavior_scared": 0,
+      "behavior_friendly": 0,
+      "medical_history": "OLD",
+      "requirements": "Medicines",
+      "additional_comments": "fun"
+    }
+  },
+  {
+    "model": "pet_listing.petlisting",
+    "pk": 3,
+    "fields": {
+      "shelter": 2,
+      "pet_name": "Oldy",
+      "status": "Withdrawn",
+      "publication_date": "2023-11-09T22:48:29.195Z",
+      "gender": "Male",
+      "age": 100,
+      "breed": "Australian Terrier",
+      "size": "Small",
+      "location": "",
+      "behavior_aggresive": 0,
+      "behavior_social": 0,
+      "behavior_noisy": 0,
+      "behavior_scared": 0,
+      "behavior_friendly": 0,
+      "medical_history": "OLD",
+      "requirements": "Medicines",
+      "additional_comments": "fun"
+    }
+  },
+  {
+    "model": "pet_listing.petlisting",
+    "pk": 4,
+    "fields": {
+      "shelter": 2,
+      "pet_name": "Oldy2",
+      "status": "Adopted",
+      "publication_date": "2023-11-09T22:49:04.874Z",
+      "gender": "Female",
+      "age": 100,
+      "breed": "Golden Doodle",
+      "size": "Medium",
+      "location": "",
+      "behavior_aggresive": 0,
+      "behavior_social": 0,
+      "behavior_noisy": 0,
+      "behavior_scared": 0,
+      "behavior_friendly": 0,
+      "medical_history": "OLD",
+      "requirements": "Medicines",
+      "additional_comments": "fun"
+    }
+  },
+  {
+    "model": "pet_listing.petlisting",
+    "pk": 5,
+    "fields": {
+      "shelter": 2,
+      "pet_name": "Sally",
+      "status": "Adopted",
+      "publication_date": "2023-11-09T22:49:37.785Z",
+      "gender": "Female",
+      "age": 50,
+      "breed": "Boston Terrier",
+      "size": "Small",
+      "location": "",
+      "behavior_aggresive": 5,
+      "behavior_social": 0,
+      "behavior_noisy": 0,
+      "behavior_scared": 0,
+      "behavior_friendly": 0,
+      "medical_history": "OLD",
+      "requirements": "Medicines",
+      "additional_comments": "fun"
+    }
+  },
+  {
+    "model": "pet_listing.petlisting",
+    "pk": 6,
+    "fields": {
+      "shelter": 2,
+      "pet_name": "Sally",
+      "status": "Pending",
+      "publication_date": "2023-11-09T22:50:55.628Z",
+      "gender": "Female",
+      "age": 1,
+      "breed": "Golden Doodle",
+      "size": "Large",
+      "location": "",
+      "behavior_aggresive": 5,
+      "behavior_social": 0,
+      "behavior_noisy": 0,
+      "behavior_scared": 0,
+      "behavior_friendly": 0,
+      "medical_history": "She not good health",
+      "requirements": "Medicines",
+      "additional_comments": "fun"
+    }
+  },
+  {
+    "model": "pet_listing.petlisting",
+    "pk": 7,
+    "fields": {
+      "shelter": 2,
+      "pet_name": "Chad",
+      "status": "Available",
+      "publication_date": "2023-11-09T22:51:41.815Z",
+      "gender": "Male",
+      "age": 3,
+      "breed": "Golden Doodle",
+      "size": "Large",
+      "location": "",
+      "behavior_aggresive": 5,
+      "behavior_social": 0,
+      "behavior_noisy": 0,
+      "behavior_scared": 0,
+      "behavior_friendly": 0,
+      "medical_history": "He not good health",
+      "requirements": "Medicines",
+      "additional_comments": "fun"
+    }
+  },
+  {
+    "model": "pet_listing.petlisting",
+    "pk": 8,
+    "fields": {
+      "shelter": 1,
+      "pet_name": "Chad's Son",
+      "status": "Available",
+      "publication_date": "2023-11-09T22:52:34.859Z",
+      "gender": "Male",
+      "age": 1,
+      "breed": "Australian Terrier",
+      "size": "Small",
+      "location": "",
+      "behavior_aggresive": 5,
+      "behavior_social": 0,
+      "behavior_noisy": 0,
+      "behavior_scared": 0,
+      "behavior_friendly": 0,
+      "medical_history": "He not good health",
+      "requirements": "Medicines",
+      "additional_comments": "fun"
+    }
+  },
+  {
+    "model": "pet_listing.petlisting",
+    "pk": 9,
+    "fields": {
+      "shelter": 1,
+      "pet_name": "ChiChi",
+      "status": "Available",
+      "publication_date": "2023-11-09T22:53:12.079Z",
+      "gender": "Male",
+      "age": 12,
+      "breed": "Australian Terrier",
+      "size": "Medium",
+      "location": "",
+      "behavior_aggresive": 5,
+      "behavior_social": 0,
+      "behavior_noisy": 0,
+      "behavior_scared": 0,
+      "behavior_friendly": 0,
+      "medical_history": "He not good health",
+      "requirements": "Medicines",
+      "additional_comments": "fun"
+    }
+  },
+  {
+    "model": "pet_listing.petlisting",
+    "pk": 10,
+    "fields": {
+      "shelter": 1,
+      "pet_name": "Xeres",
+      "status": "Pending",
+      "publication_date": "2023-11-09T22:54:27.849Z",
+      "gender": "Female",
+      "age": 23,
+      "breed": "Australian Terrier",
+      "size": "Large",
+      "location": "",
+      "behavior_aggresive": 5,
+      "behavior_social": 0,
+      "behavior_noisy": 0,
+      "behavior_scared": 0,
+      "behavior_friendly": 0,
+      "medical_history": "very healthy",
+      "requirements": "Medicines",
+      "additional_comments": "fun"
+    }
+  },
+  {
+    "model": "pet_listing.petlistingimage",
+    "pk": 1,
+    "fields": {
+      "pet_listing": 1,
+      "image": "pet_listing_images/n02110958_15877_L68GQH2.jpg"
+    }
+  },
+  {
+    "model": "pet_listing.petlistingimage",
+    "pk": 2,
+    "fields": {
+      "pet_listing": 2,
+      "image": "pet_listing_images/n02110958_15877_xNnXdHI.jpg"
+    }
+  },
+  {
+    "model": "pet_listing.petlistingimage",
+    "pk": 3,
+    "fields": {
+      "pet_listing": 3,
+      "image": "pet_listing_images/n02110958_15877_t4IR3nn.jpg"
+    }
+  },
+  {
+    "model": "pet_listing.petlistingimage",
+    "pk": 4,
+    "fields": {
+      "pet_listing": 4,
+      "image": "pet_listing_images/n02110958_15877_kP9x5x3.jpg"
+    }
+  },
+  {
+    "model": "pet_listing.petlistingimage",
+    "pk": 5,
+    "fields": {
+      "pet_listing": 5,
+      "image": "pet_listing_images/n02110958_15877_rU87Jef.jpg"
+    }
+  },
+  {
+    "model": "pet_listing.petlistingimage",
+    "pk": 6,
+    "fields": {
+      "pet_listing": 6,
+      "image": "pet_listing_images/n02110958_15877_WNVHhQm.jpg"
+    }
+  },
+  {
+    "model": "pet_listing.petlistingimage",
+    "pk": 7,
+    "fields": {
+      "pet_listing": 7,
+      "image": "pet_listing_images/n02110958_15877_DAXKLqj.jpg"
+    }
+  },
+  {
+    "model": "pet_listing.petlistingimage",
+    "pk": 8,
+    "fields": {
+      "pet_listing": 8,
+      "image": "pet_listing_images/n02110958_15877_aSV9IV7.jpg"
+    }
+  },
+  {
+    "model": "pet_listing.petlistingimage",
+    "pk": 9,
+    "fields": {
+      "pet_listing": 9,
+      "image": "pet_listing_images/n02110958_15877_GTPuUvD.jpg"
+    }
+  },
+  {
+    "model": "pet_listing.petlistingimage",
+    "pk": 10,
+    "fields": {
+      "pet_listing": 10,
+      "image": "pet_listing_images/n02110958_15877_l7Cypst.jpg"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add shelter",
+      "content_type": 1,
+      "codename": "add_shelter"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change shelter",
+      "content_type": 1,
+      "codename": "change_shelter"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete shelter",
+      "content_type": 1,
+      "codename": "delete_shelter"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view shelter",
+      "content_type": 1,
+      "codename": "view_shelter"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 2,
+      "codename": "add_petseeker"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 2,
+      "codename": "change_petseeker"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 2,
+      "codename": "delete_petseeker"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 2,
+      "codename": "view_petseeker"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add application",
+      "content_type": 3,
+      "codename": "add_application"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change application",
+      "content_type": 3,
+      "codename": "change_application"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete application",
+      "content_type": 3,
+      "codename": "delete_application"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view application",
+      "content_type": 3,
+      "codename": "view_application"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add pet listing",
+      "content_type": 4,
+      "codename": "add_petlisting"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change pet listing",
+      "content_type": 4,
+      "codename": "change_petlisting"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete pet listing",
+      "content_type": 4,
+      "codename": "delete_petlisting"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view pet listing",
+      "content_type": 4,
+      "codename": "view_petlisting"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add pet listing image",
+      "content_type": 5,
+      "codename": "add_petlistingimage"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change pet listing image",
+      "content_type": 5,
+      "codename": "change_petlistingimage"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete pet listing image",
+      "content_type": 5,
+      "codename": "delete_petlistingimage"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view pet listing image",
+      "content_type": 5,
+      "codename": "view_petlistingimage"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add comment",
+      "content_type": 6,
+      "codename": "add_comment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change comment",
+      "content_type": 6,
+      "codename": "change_comment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete comment",
+      "content_type": 6,
+      "codename": "delete_comment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view comment",
+      "content_type": 6,
+      "codename": "view_comment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add shelter comment",
+      "content_type": 7,
+      "codename": "add_sheltercomment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change shelter comment",
+      "content_type": 7,
+      "codename": "change_sheltercomment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete shelter comment",
+      "content_type": 7,
+      "codename": "delete_sheltercomment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view shelter comment",
+      "content_type": 7,
+      "codename": "view_sheltercomment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add application comment",
+      "content_type": 8,
+      "codename": "add_applicationcomment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change application comment",
+      "content_type": 8,
+      "codename": "change_applicationcomment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete application comment",
+      "content_type": 8,
+      "codename": "delete_applicationcomment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view application comment",
+      "content_type": 8,
+      "codename": "view_applicationcomment"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 9,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 9,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 9,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 9,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 10,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 10,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 10,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 10,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 11,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 11,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 11,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 11,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 12,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 12,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 12,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 12,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 13,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 13,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 13,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 13,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": { "app_label": "accounts", "model": "shelter" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": { "app_label": "accounts", "model": "petseeker" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": { "app_label": "applications", "model": "application" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": { "app_label": "pet_listing", "model": "petlisting" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": { "app_label": "pet_listing", "model": "petlistingimage" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": { "app_label": "comments", "model": "comment" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": { "app_label": "comments", "model": "sheltercomment" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": { "app_label": "comments", "model": "applicationcomment" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": { "app_label": "admin", "model": "logentry" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": { "app_label": "auth", "model": "permission" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": { "app_label": "auth", "model": "group" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": { "app_label": "contenttypes", "model": "contenttype" }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": { "app_label": "sessions", "model": "session" }
   }
 ]
