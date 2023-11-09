@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
+from accounts.models import Shelter
+from accounts.models import PetSeeker
 
 
 class Application(models.Model):
@@ -21,10 +22,8 @@ class Application(models.Model):
         ('rent', 'Rent'),
     )
 
-    owner = models.ForeignKey(
-        get_user_model(), on_delete=models.CASCADE, default=None, blank=True, null=True)
-    shelter = models.CharField(
-        max_length=50, default="Toronto Adoption Center")
+    owner = models.ForeignKey(PetSeeker, on_delete=models.CASCADE)
+    shelter = models.ForeignKey(Shelter, on_delete=models.CASCADE)
 
     status = models.CharField(
         max_length=10, choices=Status.choices, default=Status.PENDING)
