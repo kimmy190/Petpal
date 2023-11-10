@@ -330,6 +330,62 @@
     }
   },
   {
+    "model": "applications.application",
+    "pk": 1,
+    "fields": {
+      "applicant": 1,
+      "pet_listing": 1,
+      "shelter": 1,
+      "status": "Pending",
+      "creation_time": "2023-11-08T12:00:00Z",
+      "last_update_time": "2023-11-08T12:00:00Z",
+      "pet_name": "Example Pet",
+      "owner_name": "John Doe",
+      "area_code": "1234",
+      "phone_number": "5678901234",
+      "email": "john.doe@example.com",
+      "address1": "123 Main St",
+      "address2": "Apt 4",
+      "city": "Example City",
+      "state": "Example State",
+      "zip": "12345",
+      "country": "Example Country",
+      "pet_ownership": "yes",
+      "breed": "Example Breed",
+      "past_pet": "Example Past Pet",
+      "home_ownership": "own",
+      "signature": "John Doe"
+    }
+  },
+  {
+    "model": "applications.application",
+    "pk": 2,
+    "fields": {
+      "applicant": 2,
+      "pet_listing": 2,
+      "shelter": 2,
+      "status": "Pending",
+      "creation_time": "2023-11-08T12:00:00Z",
+      "last_update_time": "2023-11-08T12:00:00Z",
+      "pet_name": "Example Pet",
+      "owner_name": "John Doe",
+      "area_code": "123",
+      "phone_number": "4567890",
+      "email": "john.doe@example.com",
+      "address1": "123 Main St",
+      "address2": "Apt 4",
+      "city": "Cityville",
+      "state": "Stateville",
+      "zip": "12345",
+      "country": "Countryland",
+      "pet_ownership": "yes",
+      "breed": "Labrador Retriever",
+      "past_pet": "I had a cat before.",
+      "home_ownership": "own",
+      "signature": "John Doe"
+    }
+  },
+  {
     "model": "pet_listing.petlistingimage",
     "pk": 1,
     "fields": {
@@ -880,66 +936,105 @@
   {
     "model": "contenttypes.contenttype",
     "pk": 1,
-    "fields": { "app_label": "accounts", "model": "shelter" }
+    "fields": {
+      "app_label": "accounts",
+      "model": "shelter"
+    }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 2,
-    "fields": { "app_label": "accounts", "model": "petseeker" }
+    "fields": {
+      "app_label": "accounts",
+      "model": "petseeker"
+    }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 3,
-    "fields": { "app_label": "applications", "model": "application" }
+    "fields": {
+      "app_label": "applications",
+      "model": "application"
+    }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 4,
-    "fields": { "app_label": "pet_listing", "model": "petlisting" }
+    "fields": {
+      "app_label": "pet_listing",
+      "model": "petlisting"
+    }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 5,
-    "fields": { "app_label": "pet_listing", "model": "petlistingimage" }
+    "fields": {
+      "app_label": "pet_listing",
+      "model": "petlistingimage"
+    }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 6,
-    "fields": { "app_label": "comments", "model": "comment" }
+    "fields": {
+      "app_label": "comments",
+      "model": "comment"
+    }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 7,
-    "fields": { "app_label": "comments", "model": "sheltercomment" }
+    "fields": {
+      "app_label": "comments",
+      "model": "sheltercomment"
+    }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 8,
-    "fields": { "app_label": "comments", "model": "applicationcomment" }
+    "fields": {
+      "app_label": "comments",
+      "model": "applicationcomment"
+    }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 9,
-    "fields": { "app_label": "admin", "model": "logentry" }
+    "fields": {
+      "app_label": "admin",
+      "model": "logentry"
+    }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 10,
-    "fields": { "app_label": "auth", "model": "permission" }
+    "fields": {
+      "app_label": "auth",
+      "model": "permission"
+    }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 11,
-    "fields": { "app_label": "auth", "model": "group" }
+    "fields": {
+      "app_label": "auth",
+      "model": "group"
+    }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 12,
-    "fields": { "app_label": "contenttypes", "model": "contenttype" }
+    "fields": {
+      "app_label": "contenttypes",
+      "model": "contenttype"
+    }
   },
   {
     "model": "contenttypes.contenttype",
     "pk": 13,
-    "fields": { "app_label": "sessions", "model": "session" }
+    "fields": {
+      "app_label": "sessions",
+      "model": "session"
+    }
   }
 ]

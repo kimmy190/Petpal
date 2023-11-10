@@ -1,11 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
-from accounts.models import Shelter
-from accounts.models import PetSeeker
+from accounts.models import PetSeeker, Shelter
+from pet_listing.models import PetListing
 
 
 class Application(models.Model):
-    # Application
     class Status(models.TextChoices):
         PENDING = "Pending", "Pending"
         ACCEPTED = "Accepted", "Accepted"
@@ -22,19 +21,20 @@ class Application(models.Model):
         ('rent', 'Rent'),
     )
 
-    owner = models.ForeignKey(PetSeeker, on_delete=models.CASCADE)
+    applicant = models.ForeignKey(PetSeeker, on_delete=models.CASCADE)
+    pet_listing = models.ForeignKey(PetListing, on_delete=models.CASCADE)
     shelter = models.ForeignKey(Shelter, on_delete=models.CASCADE)
 
     status = models.CharField(
-        max_length=10, choices=Status.choices, default=Status.PENDING)
+        max_length=10, choices=Status.choices, default=Status.PENDING, editable=True)
     creation_time = models.DateTimeField(auto_now_add=True)
     last_update_time = models.DateTimeField(auto_now=True)
 
-    # Inputs
+    # names
     pet_name = models.CharField(max_length=50)
     owner_name = models.CharField(max_length=50, default="")
 
-    # may need edit
+    # contacts
     area_code = models.CharField(max_length=4)
     phone_number = models.CharField(max_length=10)
     email = models.EmailField()
@@ -47,7 +47,7 @@ class Application(models.Model):
     zip = models.CharField(max_length=10)
     country = models.CharField(max_length=100)
 
-    # Others
+    # other
     pet_ownership = models.CharField(
         max_length=3, choices=PET_OWNERSHIP_CHOICES)
     breed = models.TextField()
