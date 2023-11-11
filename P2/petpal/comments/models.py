@@ -1,6 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from accounts.models import PetSeeker, Shelter
+from accounts.models import PetSeeker, PetShelter
 from applications.models import Application
 
 
@@ -11,14 +11,17 @@ class Comment(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     # TODO switch to our custom user
     author = models.ForeignKey(PetSeeker, on_delete=models.CASCADE)
+    class Meta:
+        abstract = True
 
 
 class ShelterComment(Comment):
-    shelter = models.ForeignKey(Shelter, on_delete=models.CASCADE)
+    shelter = models.ForeignKey(PetShelter, on_delete=models.CASCADE)
     rating = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(5)]
     )
-    parent = models.ForeignKey('self', null=True, on_delete=models.CASCADE)
+class Reply(Comment):
+    parent = models.ForeignKey(PetShelter, on_delete=models.CASCADE)
 
 
 class ApplicationComment(Comment):

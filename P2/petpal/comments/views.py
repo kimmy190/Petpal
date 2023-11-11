@@ -4,16 +4,16 @@ from django.shortcuts import render
 from django.core.exceptions import PermissionDenied
 from rest_framework.generics import (
     ListCreateAPIView,
-    # CreateAPIView,
+    CreateAPIView,
     RetrieveUpdateDestroyAPIView,
     RetrieveDestroyAPIView,
 )
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import (IsAuthenticated, IsAuthenticatedOrReadOnly)
 from rest_framework.pagination import PageNumberPagination
 
 from applications.models import Application
-from accounts.models import PetSeeker, Shelter
-from .models import ApplicationComment, ShelterComment, Comment
+from accounts.models import PetSeeker, PetShelter
+from .models import ApplicationComment, ShelterComment
 from .serializers import *
 
 
@@ -26,13 +26,13 @@ class CommentResultsSetPagination(PageNumberPagination):
 # Create your views here.
 class ShelterCommentListCreateView(ListCreateAPIView):
     serializer_class = ShelterCommentSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
     def perform_create(self, serializer):
         # TODO: Change this to shelter
         serializer.is_valid(raise_exception=True)
         author = self.request.user
 
-        shelter = get_object_or_404(Shelter, pk=self.kwargs["shelter"])
+        shelter = get_object_or_404(PetShelter, pk=self.kwargs["shelter"])
         parent = self.request.query_params.get("parent")
         if parent is not None:
             parent = get_object_or_404(ShelterComment, pk=parent)
@@ -41,7 +41,7 @@ class ShelterCommentListCreateView(ListCreateAPIView):
         serializer.save(author=author, shelter=shelter, parent=parent)
 
     def get_queryset(self):
-        return ShelterComment.objects.all().filter(shelter=self.kwargs["shelter"]).order_by("-created_at")
+        return ShelterComment.objects.select_related("reply").all().filter(shelter=self.kwargs["shelter"]).order_by("-created_at")
 
 class ApplicationCommentListCreateView(ListCreateAPIView):
     serializer_class = CommentSerializer
@@ -56,12 +56,11 @@ class ApplicationCommentListCreateView(ListCreateAPIView):
             raise PermissionDenied
         application.last_update_time = datetime.now()
         application.save()
+        # ApplicationComment.objects.create(
+        #     **serializer.validated_data, author=author,
+        # )
 
-        comment = Comment.objects.create(
-            **serializer.validated_data, author=author,
-        )
-
-        self.response_data = ShelterCommentSerializer(comment).data
+        serializer.save(author=author)
 
 
 
@@ -73,16 +72,12 @@ class ApplicationCommentListCreateView(ListCreateAPIView):
 
 
 
-# class ReplyListCreateView(ListCreateAPIView):
-#     serializer_class = CommentSerializer
-#     permission_classes = [IsAuthenticated]
-#     pagination_class = CommentResultsSetPagination
+class ReplyCreateView(CreateAPIView):
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated]
 
-#     permission_classes = [IsAuthenticated]
-#     def perform_create(self, serializer):
-#         author = self.request.user
-#         shelter = get_object_or_404(Shelter, pk=self.kwargs["shelter"])
-#         serializer.save(author=author, shelter=shelter)
-
-#     def get_queryset(self):
-#         return ShelterComment.objects.all().filter(shelter=self.kwargs["shelter"]).order_by("-created_at")
+    permission_classes = [IsAuthenticated]
+    def perform_create(self, serializer):
+        author = self.request.user
+        parent = get_object_or_404(ShelterComment, pk=self.kwargs["parent"])
+        serializer.save(author=author, parent=parent)

@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-from accounts.models import Shelter
+from accounts.models import PetShelter as Shelter
 
 
 # Create your models here.
