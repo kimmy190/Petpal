@@ -9,6 +9,8 @@ pip install pillow
 
 # install Phone number field 
 pip install django-phonenumber-field phonenumbers
+# writes nested serializers 
+pip install drf-writable-nested
 
 # Django REST framework
 pip install djangorestframework
