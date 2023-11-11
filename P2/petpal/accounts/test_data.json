@@ -1,0 +1,207 @@
+import json
+// creating new seeker 
+
+// with no data 
+{
+
+}
+
+// did not specify some fields 
+{
+    "username": "seeker1",
+    "email": "bob@gmail",
+    "first_name": "jack", 
+    "last_name": "sun",
+    "password" : "123Onlyps@",
+    "password2":  "123Onlyps@",
+    "location": ""
+}
+
+// with wrong email
+{
+    "username": "seeker1",
+    "email": "bob@gmail",
+    "first_name": "jack", 
+    "last_name": "sun",
+    "password" : "123Onlyps@",
+    "password2":  "123Onlyps@",
+    "location": "Canada"
+}
+
+// with too short password 
+{
+    "username": "seeker1",
+    "email": "bob@gmail.com",
+    "first_name": "jack", 
+    "last_name": "sun",
+    "password" : "123",
+    "password2":  "",
+    "location": "Canada"
+}
+
+// with different password 
+{
+    "username": "seeker1",
+    "email": "bob@gmail.com",
+    "first_name": "jack", 
+    "last_name": "sun",
+    "password" : "123@Test",
+    "password2":  "123@",
+    "location": "Canada"
+}
+
+// succesfully create user 
+{
+    "username": "seeker1",
+    "email": "bob@gmail.com",
+    "first_name": "jack", 
+    "last_name": "sun",
+    "password" : "123@Test",
+    "password2":  "123@Test",
+    "location": "Canada"
+}
+
+// trying to create user w the same username 
+{
+    "username": "seeker1",
+    "email": "bob@gmail.com",
+    "first_name": "jack", 
+    "last_name": "sun",
+    "password" : "123Onlyps@",
+    "password2":  "123Onlyps@",
+    "location": "Canada"
+}
+
+// trying to create user w the diff username & same email 
+{
+    "username": "seeker12",
+    "email": "bob@gmail.com",
+    "first_name": "bob", 
+    "last_name": "sun",
+    "password" : "123Onlyps@",
+    "password2":  "123Onlyps@",
+    "location": "Canada"
+}
+
+// SEEKER UPDATE
+// send empty data , returns the original info 
+{
+
+}
+
+// change username to already existing username 
+{
+    "username": "seeker2",
+}
+
+// gives message that this username is alr in use 
+{
+    "username": "seeker2",
+}
+
+// pass in blank data for field that cannot be blank 
+{
+    "location": ""
+}
+
+// pass in short password 
+{
+    "password": "123sw", 
+    "password2": "" 
+}
+
+// pw1 != pw2 
+{
+    "password": "123@RRsw", 
+    "password2": "123RR1" 
+}
+
+// update success , returns changed object 
+{
+    "username": "seeker_new"
+}
+
+// SHELTER CREATE 
+
+//  wrong phone number  
+{
+    "username" : "Shelter2", 
+    "email": "shelter2@shelter.ca",
+    "password": "Test123@",
+    "password2": "Test123@", 
+    "shelter":{
+        "organization_name": "Toronto New Shelter",
+        "phone_number": "+1",
+        "mission_statement": "Our mission is to provide a safe haven for pets.",
+        "country": "Canada",
+        "address1": "123 Main Street",
+        "address2": "Unit 101",
+        "city": "Toronto",
+        "state": "ON",
+        "zip": "MW34E3", 
+        "images": [
+        ]
+    }
+}
+
+// field not typed 
+{
+    "username" : "Shelter2", 
+    "email": "shelter2@shelter.ca",
+    "password": "Test123@",
+    "password2": "Test123@", 
+    "shelter":{
+
+    }
+}
+
+// succesfully create 
+{
+    "username" : "Shelter1", 
+    "email": "shelter1@shelter.ca",
+    "password": "Test123@",
+    "password2": "Test123@", 
+    "shelter":{
+        "organization_name": "Toronto New Shelter",
+        "phone_number": "+16044011234",
+        "mission_statement": "Our mission is to provide a safe haven for pets.",
+        "country": "Canada",
+        "address1": "123 Main Street",
+        "address2": "Unit 101",
+        "city": "Toronto",
+        "state": "ON",
+        "zip": "MW34E3", 
+        "images": [
+        ]
+    }
+}
+
+// UPDATE SHELTER
+{
+    "username":"newshelter"
+}
+
+// change name 
+{
+    "username":"newshelter",
+    "shelter":{
+        "organization_name": "Bear Shelter"
+    }
+}
+
+// change to invalid data type 
+{
+    "shelter":{
+        "phone_number": "+112345678"
+    }
+}
+// valid phonenumber 
+{
+    "shelter":{
+        "phone_number": "+16093452893"
+    }
+}
+// invalid email 
+{
+    "email": "kkekw@"
+}
