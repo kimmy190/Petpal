@@ -56,6 +56,16 @@ class ApplicationCreateView(CreateAPIView):
         pet_listing = get_object_or_404(
             PetListing, id=self.kwargs["pet_listing"]
         )
+
+        # User can only create one application for a pet listing
+        existing_application = Application.objects.filter(
+            applicant=request.user,
+            pet_listing=pet_listing
+        ).first()
+
+        if existing_application:
+            return Response({"error": "You already have an application for this pet"}, status=status.HTTP_400_BAD_REQUEST)
+
         if pet_listing.status == "Available":
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
