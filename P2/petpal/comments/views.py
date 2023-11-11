@@ -70,9 +70,9 @@ class ApplicationCommentListCreateView(ListCreateAPIView):
         serializer.save(author=author, application=application)
 
     def get_queryset(self):
-        if self.request.user.shelter:
+        try:
             return ApplicationComment.objects.all().filter(shelter=self.request.user.shelter).order_by("-created_at")
-        else:
+        except ObjectDoesNotExist:
             return ApplicationComment.objects.all().filter(shelter=self.request.user).order_by("-created_at")
 
 
