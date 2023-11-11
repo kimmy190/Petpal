@@ -24,5 +24,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("applications/", include("applications.urls", namespace="applications")),
     path("pet_listing/", include("pet_listing.urls", namespace="pet_listing")),
-    path("comments/", include("comments.urls", namespace="comments")),
+    path(
+        "comments/",
+        include("comments.urls", namespace="comments"),
+    ),
+    path("notification/", include("notification.urls", namespace="notification")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

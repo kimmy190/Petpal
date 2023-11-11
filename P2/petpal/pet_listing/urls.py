@@ -10,7 +10,7 @@ from .views import (
 app_name = "pet_listing"
 urlpatterns = [
     path("", PetListingCreateView.as_view()),
-    path("<int:pk>", PetListingView.as_view()),
+    path("<int:pk>", PetListingView.as_view(), name="get"),
     path(
         "<int:pet_listing>/image/",
         PetListingImageCreateView.as_view(),
