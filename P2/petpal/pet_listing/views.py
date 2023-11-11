@@ -24,7 +24,7 @@ class StandardResultsSetPagination(PageNumberPagination):
 
 class IsShelterPermission(IsAuthenticated):
     def has_permission(self, request, view):
-        return super().has_permission(request, view) and request.user.is_shelter
+        return super().has_permission(request, view) and request.user.shelter
 
 
 # Taken from https://b0uh.github.io/drf-viewset-permission-policy-per-method.html
