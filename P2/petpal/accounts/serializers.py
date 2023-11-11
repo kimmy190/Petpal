@@ -54,7 +54,7 @@ class SeekerSerializer(ModelSerializer):
     def create(self, validated_data): 
         validated_data.pop('password2', None) 
         validated_data.pop('groups', None)
-        instance = PetSeeker.objects.create(**validated_data)
+        instance = PetSeeker.objects.create_user(**validated_data)
         instance.save()
         return instance
 
@@ -103,7 +103,7 @@ class ShelterSerializer(WritableNestedModelSerializer):
         shleter_data = validated_data.pop("shelter")
 
         validated_data.pop('password2')
-        user = PetSeeker.objects.create(**validated_data)
+        user = PetSeeker.objects.create_user(**validated_data)
 
         # first create pet shelter info  
         images = shleter_data.pop('images', tuple()) 
