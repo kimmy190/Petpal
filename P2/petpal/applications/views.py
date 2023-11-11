@@ -9,7 +9,6 @@ from pet_listing.models import PetListing
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
-from accounts.models import PetSeeker
 
 # Taken from https://stackoverflow.com/questions/31785966/django-rest-framework-turn-on-pagination-on-a-viewset-like-modelviewset-pagina
 

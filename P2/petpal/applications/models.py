@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from accounts.models import PetSeeker, Shelter
+from accounts.models import PetSeeker, PetShelter
 from pet_listing.models import PetListing
 
 
@@ -23,7 +23,7 @@ class Application(models.Model):
 
     applicant = models.ForeignKey(PetSeeker, on_delete=models.CASCADE)
     pet_listing = models.ForeignKey(PetListing, on_delete=models.CASCADE)
-    shelter = models.ForeignKey(Shelter, on_delete=models.CASCADE)
+    shelter = models.ForeignKey(PetShelter, on_delete=models.CASCADE)
 
     status = models.CharField(
         max_length=10, choices=Status.choices, default=Status.PENDING, editable=True)
