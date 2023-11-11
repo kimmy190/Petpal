@@ -1,104 +1,98 @@
 [
-  {
-    "model": "accounts.shelter",
-    "pk": 1,
-    "fields": {
-      "organization_name": "",
-      "logo_image": "",
-      "phone_number": "",
-      "shelter_image": "",
-      "mission_statement": "",
-      "country": "",
-      "address1": "Location location1",
-      "address2": null,
-      "city": "",
-      "state": "",
-      "zip": ""
-    }
-  },
-  {
-    "model": "accounts.shelter",
-    "pk": 2,
-    "fields": {
-      "organization_name": "",
-      "logo_image": "",
-      "phone_number": "",
-      "shelter_image": "",
-      "mission_statement": "",
-      "country": "",
-      "address1": "Location location2",
-      "address2": null,
-      "city": "",
-      "state": "",
-      "zip": ""
-    }
-  },
-  {
-    "model": "accounts.petseeker",
-    "pk": 1,
-    "fields": {
-      "password": "pbkdf2_sha256$600000$TuGCYv6go4eWERr32Uh5DI$wJSkvfGuyLT0XXE3/Jqg7ZHMCgqisW3JGDRDnPo9Z5Q=",
-      "last_login": "2023-10-20T10:44:04.011Z",
-      "is_superuser": true,
-      "username": "shelter",
-      "first_name": "",
-      "last_name": "",
-      "email": "",
-      "is_staff": true,
-      "is_active": true,
-      "date_joined": "2023-10-20T10:27:24.611Z",
-      "profile_image": "",
-      "location": "1 Avenue ave.",
-      "is_shelter": true,
-      "shelter": 1,
-      "groups": [],
-      "user_permissions": []
-    }
-  },
-  {
-    "model": "accounts.petseeker",
-    "pk": 2,
-    "fields": {
-      "password": "pbkdf2_sha256$600000$TuGCYv6go4eWERr32Uh5DI$wJSkvfGuyLT0XXE3/Jqg7ZHMCgqisW3JGDRDnPo9Z5Q=",
-      "last_login": "2023-10-20T10:44:04.011Z",
-      "is_superuser": true,
-      "username": "user",
-      "first_name": "",
-      "last_name": "",
-      "email": "",
-      "is_staff": true,
-      "is_active": true,
-      "date_joined": "2023-10-20T10:27:24.611Z",
-      "profile_image": "",
-      "location": "2 Avenue ave.",
-      "is_shelter": false,
-      "shelter": null,
-      "groups": [],
-      "user_permissions": []
-    }
-  },
-  {
-    "model": "accounts.petseeker",
-    "pk": 3,
-    "fields": {
-      "password": "pbkdf2_sha256$600000$TuGCYv6go4eWERr32Uh5DI$wJSkvfGuyLT0XXE3/Jqg7ZHMCgqisW3JGDRDnPo9Z5Q=",
-      "last_login": "2023-10-20T10:44:04.011Z",
-      "is_superuser": true,
-      "username": "shelter2",
-      "first_name": "",
-      "last_name": "",
-      "email": "",
-      "is_staff": true,
-      "is_active": true,
-      "date_joined": "2023-10-20T10:27:24.611Z",
-      "profile_image": "",
-      "location": "3 Avenue ave.",
-      "is_shelter": true,
-      "shelter": 2,
-      "groups": [],
-      "user_permissions": []
-    }
-  },
+    {
+        "model": "accounts.petseeker", 
+        "pk": 1, 
+        "fields": {
+            "password": "pbkdf2_sha256$600000$XixSlkj87Bn2tTB0lhfJKJ$3VNmEQEHJC9apapiNJQ9Y0+N88zGnYTI64kBEluDqQY=", 
+            "last_login": null, 
+            "is_superuser": false, 
+            "username": "seeker100", 
+            "first_name": "jack", 
+            "last_name": "sun", 
+            "email": "jack100@gmail.com", 
+            "is_staff": false, 
+            "is_active": true, 
+            "date_joined": "2023-11-11T22:16:49.378Z", 
+            "profile_image": "profile_images/profile1_btU6SGZ.jpg", 
+            "location": "Canada", 
+            "groups": [], 
+            "user_permissions": []
+        }
+    }, 
+    {
+        "model": "accounts.petseeker", 
+        "pk": 2, 
+        "fields": {
+            "password": "pbkdf2_sha256$600000$mDBPvLgvZ9sPUHdSX4nDQu$CosDKv6HS1DbrkdUaHFONI3BhrIls86q9e5N2zkdj2M=", 
+            "last_login": null, 
+            "is_superuser": false, 
+            "username": "Shelter1", 
+            "first_name": "", 
+            "last_name": "", 
+            "email": "shelter1@gmail.ca", 
+            "is_staff": false, 
+            "is_active": true, 
+            "date_joined": "2023-11-11T22:17:12.940Z", 
+            "profile_image": "", 
+            "location": null, 
+            "groups": [], 
+            "user_permissions": []
+        }
+    }, 
+    {
+        "model": "accounts.petseeker", 
+        "pk": 3, 
+        "fields": {
+            "password": "pbkdf2_sha256$600000$3iJBzAeMa7gyXc4eRUVubP$kvNmWn6j970mimkEWeFH1DGqeFbdbhAlJs+ObV2SHXY=", 
+            "last_login": null, 
+            "is_superuser": false, 
+            "username": "Shelter2", 
+            "first_name": "", 
+            "last_name": "", 
+            "email": "shelter2@gmail.ca", 
+            "is_staff": false, 
+            "is_active": true, 
+            "date_joined": "2023-11-11T22:17:43.721Z", 
+            "profile_image": "", 
+            "location": null, 
+            "groups": [], 
+            "user_permissions": []
+        }
+    }, 
+    {
+        "model": "accounts.petshelter", 
+        "pk": 1, 
+        "fields": {
+            "shelter": 2, 
+            "organization_name": "Vancouver Shelter", 
+            "logo_image": "", 
+            "phone_number": "+16473081980", 
+            "mission_statement": "Provide safe place ajaj", 
+            "country": "Country", 
+            "address1": "123 Bronze Street", 
+            "address2": "", 
+            "city": "Vancouver", 
+            "state": "BC", 
+            "zip": "V6M4H1"
+        }
+    }, 
+    {
+        "model": "accounts.petshelter", 
+        "pk": 2, 
+        "fields": {
+            "shelter": 3,
+            "organization_name": "Toronto Shelter", 
+            "logo_image": "", 
+            "phone_number": "+16473081980", 
+            "mission_statement": "Provide safe place ajaj", 
+            "country": "Country", 
+            "address1": "123 Bronze Street", 
+            "address2": "", 
+            "city": "Toronto", 
+            "state": "ON", 
+            "zip": "V6M4H1"
+        }
+    }, 
   {
     "model": "pet_listing.petlisting",
     "pk": 1,
