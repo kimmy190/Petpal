@@ -9,8 +9,14 @@ from pet_listing.models import PetListing
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from accounts.models import PetSeeker
 
 # Taken from https://stackoverflow.com/questions/31785966/django-rest-framework-turn-on-pagination-on-a-viewset-like-modelviewset-pagina
+
+
+class IsShelterPermission(IsAuthenticated):
+    def has_permission(self, request, view):
+        return super().has_permission(request, view) and request.user.is_shelter
 
 
 class StandardResultsSetPagination(PageNumberPagination):
@@ -39,22 +45,18 @@ class PermissionPolicyMixin:
             )
         super().check_permissions(request)
 
-# permissions
+# permissions + users cant create if already have application
 
 
 class ApplicationCreateView(CreateAPIView):
     serializer_class = ApplicationSerializer
-    # permission_classes = [IsAuthenticated]
-    # permission_classes_per_method = {"POST": []}
+    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
-        # if not request.user.is_authenticated:
-        #     return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
-        owner = self.request.user
         pet_listing = get_object_or_404(
-            PetListing, owner=owner, pk=self.kwargs["pet_listing"]
+            PetListing, id=self.kwargs["pet_listing"]
         )
-        if pet_listing.Statuses == "Available":
+        if pet_listing.status == "Available":
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
             self.perform_create(serializer)
@@ -63,21 +65,32 @@ class ApplicationCreateView(CreateAPIView):
             return Response({"error": "The selected pet is not available"}, status=status.HTTP_400_BAD_REQUEST)
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        applicant = self.request.user
+        pet_listing = get_object_or_404(
+            PetListing, id=self.kwargs["pet_listing"]
+        )
+        serializer.validated_data['applicant'] = applicant
+        serializer.validated_data['pet_listing'] = pet_listing
+        serializer.validated_data['shelter'] = applicant.shelter
+        serializer.save()
 
-# need to check if only specific shelter application + add permissions + update last_update_time w comment
+# permissions
 
 
 class ApplicationListView(ListAPIView):
     serializer_class = ApplicationSerializer
-    # permission_classes_per_method = {"GET: []"}
     pagination_class = StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_fields = ['status']
     ordering_fields = ['creation_time', 'last_update_time']
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        queryset = Application.objects.all()
+        owner = self.request.user
+        if owner.is_shelter:
+            queryset = Application.objects.filter(shelter=owner.shelter)
+        else:
+            queryset = Application.objects.filter(applicant=owner)
         return queryset
 
 # permissions
@@ -86,23 +99,25 @@ class ApplicationListView(ListAPIView):
 class ApplicationUpdateView(RetrieveUpdateAPIView):
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     def update(self, request, *args, **kwargs):
         application = self.get_object()
-        owner = request.user
 
         # if shelter, can update to Accepted or Rejected
-        if owner.is_shelter:
-            new_status = request.data.get('status', '').capitalize()
-            if new_status != "ACCEPTED" or new_status != "REJECTED":
+        applicant = self.request.user
+        if applicant.is_shelter:
+            new_status = request.data.get('status', '')
+            print(new_status)
+            if new_status != "Accepted" and new_status != "Rejected":
                 return Response({"error": "Choose between Accepted or Rejected"}, status=status.HTTP_400_BAD_REQUEST)
             else:
                 application.status = new_status
                 application.save()
 
+        # if applicant, can update to Withdraw
         else:
-            new_status = request.data.get('status', '').capitalize()
+            new_status = request.data.get('status', '')
             if new_status != "WITHDRAW":
                 return Response({"error": "Can only withdraw application"}, status=status.HTTP_400_BAD_REQUEST)
             else:

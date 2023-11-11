@@ -330,6 +330,62 @@
     }
   },
   {
+    "model": "applications.application",
+    "pk": 1,
+    "fields": {
+      "applicant": 1,
+      "pet_listing": 1,
+      "shelter": 1,
+      "status": "Pending",
+      "creation_time": "2023-11-08T12:00:00Z",
+      "last_update_time": "2023-11-08T12:00:00Z",
+      "pet_name": "Example Pet",
+      "owner_name": "John Doe",
+      "area_code": "1234",
+      "phone_number": "5678901234",
+      "email": "john.doe@example.com",
+      "address1": "123 Main St",
+      "address2": "Apt 4",
+      "city": "Example City",
+      "state": "Example State",
+      "zip": "12345",
+      "country": "Example Country",
+      "pet_ownership": "yes",
+      "breed": "Example Breed",
+      "past_pet": "Example Past Pet",
+      "home_ownership": "own",
+      "signature": "John Doe"
+    }
+  },
+  {
+    "model": "applications.application",
+    "pk": 2,
+    "fields": {
+      "applicant": 2,
+      "pet_listing": 2,
+      "shelter": 2,
+      "status": "Pending",
+      "creation_time": "2023-11-08T12:00:00Z",
+      "last_update_time": "2023-11-08T12:00:00Z",
+      "pet_name": "Example Pet",
+      "owner_name": "John Doe",
+      "area_code": "123",
+      "phone_number": "4567890",
+      "email": "john.doe@example.com",
+      "address1": "123 Main St",
+      "address2": "Apt 4",
+      "city": "Cityville",
+      "state": "Stateville",
+      "zip": "12345",
+      "country": "Countryland",
+      "pet_ownership": "yes",
+      "breed": "Labrador Retriever",
+      "past_pet": "I had a cat before.",
+      "home_ownership": "own",
+      "signature": "John Doe"
+    }
+  },
+  {
     "model": "pet_listing.petlistingimage",
     "pk": 1,
     "fields": {
