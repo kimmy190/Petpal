@@ -15,7 +15,7 @@ from applications.models import Application
 from accounts.models import PetSeeker, PetShelter
 from .models import ApplicationComment, ShelterComment
 from .serializers import *
-
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class CommentResultsSetPagination(PageNumberPagination):
@@ -27,24 +27,29 @@ class CommentResultsSetPagination(PageNumberPagination):
 class ShelterCommentListCreateView(ListCreateAPIView):
     serializer_class = ShelterCommentSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+    pagination_class = CommentResultsSetPagination
     def perform_create(self, serializer):
         # TODO: Change this to shelter
         serializer.is_valid(raise_exception=True)
         author = self.request.user
 
         shelter = get_object_or_404(PetShelter, pk=self.kwargs["shelter"])
-        parent = self.request.query_params.get("parent")
-        if parent is not None:
-            parent = get_object_or_404(ShelterComment, pk=parent)
-        if parent is None and author.shelter == shelter:
-            raise PermissionDenied
-        serializer.save(author=author, shelter=shelter, parent=parent)
+        # parent = self.request.query_params.get("parent")
+        # if parent is not None:
+            # parent = get_object_or_404(ShelterComment, pk=parent)
+        try:
+            if author.shelter == shelter:
+                raise PermissionDenied
+        except ObjectDoesNotExist:
+            pass
+        serializer.save(author=author, shelter=shelter)
 
     def get_queryset(self):
-        return ShelterComment.objects.select_related("reply").all().filter(shelter=self.kwargs["shelter"]).order_by("-created_at")
+        return ShelterComment.objects.all().filter(shelter=self.kwargs["shelter"]).order_by("-created_at")
+        # return ShelterComment.objects.all().filter(shelter=self.kwargs["shelter"]).order_by("-created_at")
 
 class ApplicationCommentListCreateView(ListCreateAPIView):
-    serializer_class = CommentSerializer
+    serializer_class = ApplicationCommentSerializer
     permission_classes = [IsAuthenticated]
     pagination_class = CommentResultsSetPagination
 
@@ -52,17 +57,17 @@ class ApplicationCommentListCreateView(ListCreateAPIView):
         # TODO: Change this to shelter
         author = self.request.user
         application = get_object_or_404(Application, pk=self.kwargs['application'])
-        if author != application.owner and author.shelter != application.shelter:
+        if author != application.applicant:
             raise PermissionDenied
+        try:
+            if author.shelter != application.shelter:
+                raise PermissionDenied
+        except ObjectDoesNotExist:
+            pass
+
         application.last_update_time = datetime.now()
         application.save()
-        # ApplicationComment.objects.create(
-        #     **serializer.validated_data, author=author,
-        # )
-
-        serializer.save(author=author)
-
-
+        serializer.save(author=author, application=application)
 
     def get_queryset(self):
         if self.request.user.shelter:
@@ -73,7 +78,7 @@ class ApplicationCommentListCreateView(ListCreateAPIView):
 
 
 class ReplyCreateView(CreateAPIView):
-    serializer_class = CommentSerializer
+    serializer_class = ReplySerializer
     permission_classes = [IsAuthenticated]
 
     permission_classes = [IsAuthenticated]

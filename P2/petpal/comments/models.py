@@ -21,7 +21,7 @@ class ShelterComment(Comment):
         validators=[MinValueValidator(0), MaxValueValidator(5)]
     )
 class Reply(Comment):
-    parent = models.ForeignKey(PetShelter, on_delete=models.CASCADE)
+    parent = models.ForeignKey(ShelterComment, related_name="reply", on_delete=models.CASCADE)
 
 
 class ApplicationComment(Comment):
