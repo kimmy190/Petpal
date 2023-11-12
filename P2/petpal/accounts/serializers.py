@@ -74,7 +74,7 @@ class ShelterInfoSerializer(WritableNestedModelSerializer):
 
     class Meta:
         model = PetShelter 
-        fields = ["shelter", "id", "organization_name", "logo_image", "phone_number", 
+        fields = ["user", "id", "organization_name", "logo_image", "phone_number", 
                     "mission_statement","country", "address1", "address2", "city", 
                     "state", "zip", "images" ]
     # def create(self, validated_data): 
@@ -107,7 +107,7 @@ class ShelterSerializer(WritableNestedModelSerializer):
 
         # first create pet shelter info  
         images = shleter_data.pop('images', tuple()) 
-        shelter_info = PetShelter.objects.create(shelter=user, **shleter_data)
+        shelter_info = PetShelter.objects.create(user=user, **shleter_data)
         
         for image_data in images:
             ShelterImage.objects.create(shelter=shelter_info, image=image_data)

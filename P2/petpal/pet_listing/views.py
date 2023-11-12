@@ -13,6 +13,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.pagination import PageNumberPagination
 from django.core.exceptions import PermissionDenied
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Taken from https://stackoverflow.com/questions/31785966/django-rest-framework-turn-on-pagination-on-a-viewset-like-modelviewset-pagina
@@ -24,7 +25,10 @@ class StandardResultsSetPagination(PageNumberPagination):
 
 class IsShelterPermission(IsAuthenticated):
     def has_permission(self, request, view):
-        return super().has_permission(request, view) and request.user.shelter
+        try:
+            return super().has_permission(request, view) and request.user.shelter
+        except ObjectDoesNotExist:
+            return False
 
 
 # Taken from https://b0uh.github.io/drf-viewset-permission-policy-per-method.html

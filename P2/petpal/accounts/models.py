@@ -8,7 +8,7 @@ class PetSeeker(AbstractUser):
     location = models.CharField(max_length=100, null=True, blank=True)
 
 class PetShelter(models.Model): 
-    shelter = models.OneToOneField(PetSeeker, related_name='shelter',on_delete=models.CASCADE, default="")
+    user = models.OneToOneField(PetSeeker, related_name='shelter',on_delete=models.CASCADE, default="")
     organization_name = models.CharField(max_length=200) # maybe can just username 
     logo_image = models.ImageField(upload_to='logo_images/', null=True, blank=True)
     # added custom library for phone number field 
