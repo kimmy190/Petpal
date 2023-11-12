@@ -21,6 +21,6 @@ class ShelterCommentSerializer(ModelSerializer):
         model = ShelterComment
         fields = ("id", "rating", "body", "author", "created_at", "reply")
         read_only_fields = ["author", "created_at"]
-        depth = 1
+        # depth = 1
     reply = ReplySerializer(many=True, read_only=True)
 

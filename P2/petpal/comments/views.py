@@ -17,7 +17,6 @@ from .models import ApplicationComment, ShelterComment
 from .serializers import *
 from django.core.exceptions import ObjectDoesNotExist
 
-
 class CommentResultsSetPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = "page_size"
@@ -29,14 +28,8 @@ class ShelterCommentListCreateView(ListCreateAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     pagination_class = CommentResultsSetPagination
     def perform_create(self, serializer):
-        # TODO: Change this to shelter
-        serializer.is_valid(raise_exception=True)
         author = self.request.user
-
         shelter = get_object_or_404(PetShelter, pk=self.kwargs["shelter"])
-        # parent = self.request.query_params.get("parent")
-        # if parent is not None:
-            # parent = get_object_or_404(ShelterComment, pk=parent)
         try:
             if author.shelter == shelter:
                 raise PermissionDenied
@@ -46,7 +39,6 @@ class ShelterCommentListCreateView(ListCreateAPIView):
 
     def get_queryset(self):
         return ShelterComment.objects.all().filter(shelter=self.kwargs["shelter"]).order_by("-created_at")
-        # return ShelterComment.objects.all().filter(shelter=self.kwargs["shelter"]).order_by("-created_at")
 
 class ApplicationCommentListCreateView(ListCreateAPIView):
     serializer_class = ApplicationCommentSerializer
@@ -54,7 +46,6 @@ class ApplicationCommentListCreateView(ListCreateAPIView):
     pagination_class = CommentResultsSetPagination
 
     def perform_create(self, serializer):
-        # TODO: Change this to shelter
         author = self.request.user
         application = get_object_or_404(Application, pk=self.kwargs['application'])
         if author != application.applicant:
@@ -75,12 +66,8 @@ class ApplicationCommentListCreateView(ListCreateAPIView):
         except ObjectDoesNotExist:
             return ApplicationComment.objects.all().filter(shelter=self.request.user).order_by("-created_at")
 
-
-
 class ReplyCreateView(CreateAPIView):
     serializer_class = ReplySerializer
-    permission_classes = [IsAuthenticated]
-
     permission_classes = [IsAuthenticated]
     def perform_create(self, serializer):
         author = self.request.user
