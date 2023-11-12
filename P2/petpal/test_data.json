@@ -60,6 +60,26 @@
         }
       }, 
       {
+        "model": "accounts.petseeker",
+        "pk": 8,
+        "fields": {
+          "password": "pbkdf2_sha256$600000$VwapQpGHSCV2AD6crnbZ1V$73i/yrCPw8HVuFEus4asASG4XHhpWINxt0mEaIs+WXY=",
+          "last_login": null,
+          "is_superuser": false,
+          "username": "Shelter2",
+          "first_name": "",
+          "last_name": "",
+          "email": "shelter2@gmail.ca",
+          "is_staff": false,
+          "is_active": true,
+          "date_joined": "2023-11-12T01:46:49.546Z",
+          "profile_image": "",
+          "location": null,
+          "groups": [],
+          "user_permissions": []
+        }
+      }, 
+      {
         "model": "accounts.petshelter",
         "pk": 2,
         "fields": {
@@ -76,6 +96,23 @@
           "zip": "V6M4H1"
         }
       }, 
+      {
+        "model": "accounts.petshelter",
+        "pk": 3,
+        "fields": {
+          "user": 8,
+          "organization_name": "Toronto Shelter",
+          "logo_image": "logo_images/winter_WspkeQP.jpeg",
+          "phone_number": "+16473081980",
+          "mission_statement": "Provide safe place for pets",
+          "country": "Country",
+          "address1": "123 Main Street",
+          "address2": "",
+          "city": "Vancouver",
+          "state": "BC",
+          "zip": "V6M4H1"
+        }
+      },
   {
     "model": "pet_listing.petlisting",
     "pk": 1,
