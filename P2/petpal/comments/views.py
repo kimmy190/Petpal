@@ -16,7 +16,6 @@ from accounts.models import PetSeeker, PetShelter
 from .models import ApplicationComment, ShelterComment
 from .serializers import *
 from django.core.exceptions import ObjectDoesNotExist
-from petpal.core import IsShelterPermission
 
 class CommentResultsSetPagination(PageNumberPagination):
     page_size = 10
