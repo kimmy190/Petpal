@@ -24,8 +24,11 @@ class CanViewSeekerProfile(BasePermission):
                     # should be shelter , else false 
                     if shelter.application_set.filter(applicant_id=view.kwargs['pk']).exists():
                     # if shelter.application_set.filter(shelter=shelter).exists(): #acceess application set 
-                        return True  # Shelters can only view pet seekers' profiles if they have active application w them
-                    
+                        if request.method in permissions.SAFE_METHODS:
+                            return True  # Shelters can only view pet seekers' profiles if they have active application w them
+                        else: 
+                            # not allowed to update / delete 
+                            return False 
                 else: 
                     # is a pet seeker
                     return int(request.user.id) == int(view.kwargs['pk'])
