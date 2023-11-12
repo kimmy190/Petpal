@@ -13,11 +13,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 # Taken from https://stackoverflow.com/questions/31785966/django-rest-framework-turn-on-pagination-on-a-viewset-like-modelviewset-pagina
 
 
-class IsShelterPermission(IsAuthenticated):
-    def has_permission(self, request, view):
-        return super().has_permission(request, view) and request.user.is_shelter
-
-
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = "page_size"
@@ -43,8 +38,6 @@ class PermissionPolicyMixin:
                 handler.__name__.upper()
             )
         super().check_permissions(request)
-
-# permissions + users cant create if already have application
 
 
 class ApplicationCreateView(CreateAPIView):
@@ -114,30 +107,33 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
 
     def update(self, request, *args, **kwargs):
         application = self.get_object()
-
+        applicant = self.request.user
         # if shelter, can update to Accepted or Rejected
-
-        if application.applicant == self.request.user:
-            applicant = self.request.user
-            try:
-                if applicant.shelter is not None:
+        try:
+            if applicant.shelter is not None:
+                # check permission
+                if application.shelter == applicant.shelter:
                     new_status = request.data.get('status', '')
                     if new_status != "Accepted" and new_status != "Rejected":
                         return Response({"error": "Choose between Accepted or Rejected"}, status=status.HTTP_400_BAD_REQUEST)
                     else:
                         application.status = new_status
                         application.save()
+                else:
+                    return Response({"error": "You do not have access to this application"}, status=status.HTTP_400_BAD_REQUEST)
 
-            # if applicant, can update to Withdraw
-            except:
+        # if applicant, can update to Withdraw
+        except:
+            # check permission
+            if application.applicant == self.request.user:
                 new_status = request.data.get('status', '')
                 if new_status != "Withdrawn":
                     return Response({"error": "Can only withdraw application"}, status=status.HTTP_400_BAD_REQUEST)
                 else:
                     application.status = new_status
                     application.save()
-        else:
-            return Response({"error": "You do not have access to this application"}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({"error": "You do not have access to this application"}, status=status.HTTP_400_BAD_REQUEST)
 
         # Success
         return Response(
