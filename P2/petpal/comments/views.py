@@ -16,6 +16,7 @@ from accounts.models import PetSeeker, PetShelter
 from .models import ApplicationComment, ShelterComment
 from .serializers import *
 from django.core.exceptions import ObjectDoesNotExist
+from petpal.core import IsShelterPermission
 
 class CommentResultsSetPagination(PageNumberPagination):
     page_size = 10
@@ -48,13 +49,12 @@ class ApplicationCommentListCreateView(ListCreateAPIView):
     def perform_create(self, serializer):
         author = self.request.user
         application = get_object_or_404(Application, pk=self.kwargs['application'])
-        if author != application.applicant:
-            raise PermissionDenied
         try:
             if author.shelter != application.shelter:
                 raise PermissionDenied
         except ObjectDoesNotExist:
-            pass
+            if author != application.applicant:
+                raise PermissionDenied
 
         application.last_update_time = datetime.now()
         application.save()
@@ -62,9 +62,11 @@ class ApplicationCommentListCreateView(ListCreateAPIView):
 
     def get_queryset(self):
         try:
-            return ApplicationComment.objects.all().filter(shelter=self.request.user.shelter).order_by("-created_at")
+            return ApplicationComment.objects.all().filter(application__shelter=self.request.user.shelter,
+                                                           application=self.kwargs['application']).order_by("-created_at")
         except ObjectDoesNotExist:
-            return ApplicationComment.objects.all().filter(shelter=self.request.user).order_by("-created_at")
+            return ApplicationComment.objects.all().filter(application=self.kwargs['application'],
+                                                           application__applicant=self.request.user).order_by("-created_at")
 
 class ReplyCreateView(CreateAPIView):
     serializer_class = ReplySerializer
