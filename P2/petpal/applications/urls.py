@@ -10,8 +10,8 @@ def favicon_404(request):
     return HttpResponseNotFound()
 
 
-urlpatterns = [path("<int:pet_listing>/", ApplicationCreateView.as_view()),
-               path("<int:pk>/update",
+urlpatterns = [path("pet_listing/<int:pet_listing>/", ApplicationCreateView.as_view()),
+               path("<int:pk>/",
                     ApplicationUpdateView.as_view()),
                path("", ApplicationListView.as_view()),
                ]

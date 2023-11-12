@@ -8,7 +8,7 @@ class Application(models.Model):
     class Status(models.TextChoices):
         PENDING = "Pending", "Pending"
         ACCEPTED = "Accepted", "Accepted"
-        DENIED = "Denied", "Denied"
+        REJECTED = "Rejected", "Rejected"
         WITHDRAWN = "Withdrawn", "Withdrawn"
 
     PET_OWNERSHIP_CHOICES = (
@@ -26,7 +26,7 @@ class Application(models.Model):
     shelter = models.ForeignKey(PetShelter, on_delete=models.CASCADE)
 
     status = models.CharField(
-        max_length=10, choices=Status.choices, default=Status.PENDING, editable=True)
+        max_length=10, choices=Status.choices, editable=True)
     creation_time = models.DateTimeField(auto_now_add=True)
     last_update_time = models.DateTimeField(auto_now=True)
 

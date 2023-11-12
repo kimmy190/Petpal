@@ -52,26 +52,30 @@ class ApplicationCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
-        pet_listing = get_object_or_404(
-            PetListing, id=self.kwargs["pet_listing"]
-        )
+        try:
+            if request.user.shelter:
+                return Response({"error": "Shelters cannot create application"}, status=status.HTTP_400_BAD_REQUEST)
+        except:
+            pet_listing = get_object_or_404(
+                PetListing, id=self.kwargs["pet_listing"]
+            )
 
-        # User can only create one application for a pet listing
-        existing_application = Application.objects.filter(
-            applicant=request.user,
-            pet_listing=pet_listing
-        ).first()
+            # User can only create one application for a pet listing
+            existing_application = Application.objects.filter(
+                applicant=request.user,
+                pet_listing=pet_listing
+            ).first()
 
-        if existing_application:
-            return Response({"error": "You already have an application for this pet"}, status=status.HTTP_400_BAD_REQUEST)
+            if existing_application:
+                return Response({"error": "You already have an application for this pet"}, status=status.HTTP_400_BAD_REQUEST)
 
-        if pet_listing.status == "Available":
-            serializer = self.get_serializer(data=request.data)
-            serializer.is_valid(raise_exception=True)
-            self.perform_create(serializer)
-            return Response(serializer.data)
-        else:
-            return Response({"error": "The selected pet is not available"}, status=status.HTTP_400_BAD_REQUEST)
+            if pet_listing.status == "Available":
+                serializer = self.get_serializer(data=request.data)
+                serializer.is_valid(raise_exception=True)
+                self.perform_create(serializer)
+                return Response(serializer.data)
+            else:
+                return Response({"error": "The selected pet is not available"}, status=status.HTTP_400_BAD_REQUEST)
 
     def perform_create(self, serializer):
         applicant = self.request.user
@@ -80,10 +84,9 @@ class ApplicationCreateView(CreateAPIView):
         )
         serializer.validated_data['applicant'] = applicant
         serializer.validated_data['pet_listing'] = pet_listing
-        serializer.validated_data['shelter'] = applicant.shelter
+        serializer.validated_data['shelter'] = pet_listing.shelter
+        serializer.validated_data['status'] = "Pending"
         serializer.save()
-
-# permissions
 
 
 class ApplicationListView(ListAPIView):
@@ -96,13 +99,12 @@ class ApplicationListView(ListAPIView):
 
     def get_queryset(self):
         owner = self.request.user
-        if owner.is_shelter:
-            queryset = Application.objects.filter(shelter=owner.shelter)
-        else:
+        try:
+            if owner.shelter is not None:
+                queryset = Application.objects.filter(shelter=owner.shelter)
+        except:
             queryset = Application.objects.filter(applicant=owner)
         return queryset
-
-# permissions
 
 
 class ApplicationUpdateView(RetrieveUpdateAPIView):
@@ -114,26 +116,30 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
         application = self.get_object()
 
         # if shelter, can update to Accepted or Rejected
-        applicant = self.request.user
-        if applicant.is_shelter:
-            new_status = request.data.get('status', '')
-            print(new_status)
-            if new_status != "Accepted" and new_status != "Rejected":
-                return Response({"error": "Choose between Accepted or Rejected"}, status=status.HTTP_400_BAD_REQUEST)
-            else:
-                application.status = new_status
-                application.save()
 
-        # if applicant, can update to Withdraw
+        if application.applicant == self.request.user:
+            applicant = self.request.user
+            try:
+                if applicant.shelter is not None:
+                    new_status = request.data.get('status', '')
+                    if new_status != "Accepted" and new_status != "Rejected":
+                        return Response({"error": "Choose between Accepted or Rejected"}, status=status.HTTP_400_BAD_REQUEST)
+                    else:
+                        application.status = new_status
+                        application.save()
+
+            # if applicant, can update to Withdraw
+            except:
+                new_status = request.data.get('status', '')
+                if new_status != "Withdrawn":
+                    return Response({"error": "Can only withdraw application"}, status=status.HTTP_400_BAD_REQUEST)
+                else:
+                    application.status = new_status
+                    application.save()
         else:
-            new_status = request.data.get('status', '')
-            if new_status != "WITHDRAW":
-                return Response({"error": "Can only withdraw application"}, status=status.HTTP_400_BAD_REQUEST)
-            else:
-                application.status = new_status
-                application.save()
+            return Response({"error": "You do not have access to this application"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Return a success response
+        # Success
         return Response(
             self.get_serializer(application).data,
             status=status.HTTP_200_OK
