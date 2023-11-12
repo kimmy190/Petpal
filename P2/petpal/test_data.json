@@ -342,6 +342,33 @@
       "requirements": "Medicines",
       "additional_comments": "fun"
     }
+  },{
+    "model": "applications.application",
+    "pk": 1,
+    "fields": {
+      "applicant": 5,
+      "pet_listing": 2,
+      "shelter": 2,
+      "status": "Pending",
+      "creation_time": "2023-11-12T14:42:36.866Z",
+      "last_update_time": "2023-11-12T14:42:36.866Z",
+      "pet_name": "Franks",
+      "owner_name": "Jack",
+      "area_code": "1234",
+      "phone_number": "1234567890",
+      "email": "example@example.com",
+      "address1": "123 Main St",
+      "address2": null,
+      "city": "City",
+      "state": "State",
+      "zip": "12345",
+      "country": "Country",
+      "pet_ownership": "yes",
+      "breed": "Golden Doodle",
+      "past_pet": "NA",
+      "home_ownership": "own",
+      "signature": "Jack"
+    }
   },
   {
     "model": "applications.application",
