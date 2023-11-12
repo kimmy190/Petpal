@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, ListField, EmailField, CharField
+from rest_framework.serializers import ModelSerializer, PrimaryKeyRelatedField, ListField, EmailField, CharField, ImageField
 from .models import PetSeeker, PetShelter, ShelterImage
 
 # from https://medium.com/django-rest/django-rest-framework-login-and-register-user-fd91cf6029d5 
@@ -61,7 +61,6 @@ class SeekerSerializer(ModelSerializer):
 
 class ShelterImageSerializer(ModelSerializer):
     # default going to be the current logged in shelter 
-    # shelter = PrimaryKeyRelatedField(read_only=True)
     class Meta:
         model = ShelterImage
         fields = "__all__"
@@ -70,14 +69,13 @@ class ShelterImageSerializer(ModelSerializer):
 
 
 class ShelterInfoSerializer(WritableNestedModelSerializer):
-    images = ListField(child = ShelterImageSerializer(), write_only=True)
+    images = ListField(child = ImageField(), write_only=True)
 
     class Meta:
         model = PetShelter 
         fields = ["user", "id", "organization_name", "logo_image", "phone_number", 
                     "mission_statement","country", "address1", "address2", "city", 
                     "state", "zip", "images" ]
-    # def create(self, validated_data): 
 
 
 class ShelterSerializer(WritableNestedModelSerializer):
