@@ -70,7 +70,7 @@ class PetListingCreateView(PermissionPolicyMixin, ListCreateAPIView):
 
         filter = {}
         filter["status"] = self.request.GET.get("status", "Available")
-        for filter_param in ["owner", "breed", "age", "size"]:
+        for filter_param in ["shelter", "breed", "age", "size"]:
             if filter_param in self.request.GET:
                 filter[filter_param] = self.request.GET[filter_param]
 
@@ -170,6 +170,6 @@ class PetListingImageView(PermissionPolicyMixin, RetrieveDestroyAPIView):
         )
 
     def perform_destroy(self, instance):
-        if instance.pet_listing.owner != self.request.user:
+        if instance.pet_listing.shelter != self.request.user.shelter:
             raise PermissionDenied()
         instance.delete()

@@ -4,11 +4,11 @@ from accounts.models import PetSeeker
 
 class Notification(models.Model):
     class NotificationTypes(models.TextChoices):
-        APPLICATION_MESSAGE = "Application Message"
-        STATUS_UPDATE = "Status Update"
-        NEW_PET_LISTING = "New Pet Listing"
-        NEW_REVIEW = "New Review"
-        NEW_APPLICATION = "New Application"
+        APPLICATION_COMMENT = "Application Comment"
+        PET_LISTING = "Pet Listing"
+        REVIEW_COMMENT = "Review Comment"
+        REVIEW_REPLY = "Review Reply"
+        APPLICATION = "Application"
 
     seeker = models.ForeignKey(PetSeeker, on_delete=models.CASCADE, editable=False)
     message = models.CharField(max_length=200)
