@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from .serializers import SeekerSerializer, ShelterSerializer, ShelterImageSerializer, ShelterInfoSerializer
 from .models import PetSeeker, PetShelter, ShelterImage
 from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import BasePermission
@@ -12,6 +12,10 @@ from rest_framework.exceptions import PermissionDenied
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import permissions
 
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = "page_size"
+    max_page_size = 10
 
 # Create your views here.
 class CanViewSeekerProfile(BasePermission):
