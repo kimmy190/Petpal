@@ -24,6 +24,16 @@ class CommentResultsSetPagination(PageNumberPagination):
 
 # Create your views here.
 class ShelterCommentListCreateView(ListCreateAPIView):
+    """
+    Comments from users on a given shelter.
+
+    - A GET request returns all comments and replies to those comments for
+    the given shelter.
+
+    - A POST request adds a new comment to the shelter if the
+    current user is logged in, and is not the shelter.
+
+    """
     serializer_class = ShelterCommentSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
     pagination_class = CommentResultsSetPagination
