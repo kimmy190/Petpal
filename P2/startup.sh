@@ -20,6 +20,11 @@ pip install django-filter  # Filtering support
 # Json web token
 pip install djangorestframework-simplejwt
 
+# swagger docs
+pip install drf-yasg
+pip install pyyaml
+pip install packaging
+
 
 petpal/manage.py makemigrations
 petpal/manage.py migrate
