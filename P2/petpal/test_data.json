@@ -80,7 +80,6 @@
     }
   },
   {
-    // admin 
     "model": "accounts.petseeker",
     "pk": 9,
     "fields": {
@@ -142,7 +141,7 @@
 
   {
     "model": "accounts.petshelter",
-    "pk": 2,
+    "pk": 1,
     "fields": {
       "user": 6,
       "organization_name": "Toronto Shelter",
@@ -159,7 +158,7 @@
   },
   {
     "model": "accounts.petshelter",
-    "pk": 3,
+    "pk": 2,
     "fields": {
       "user": 8,
       "organization_name": "Toronto Shelter",
@@ -176,7 +175,7 @@
   },
   {
     "model": "accounts.petshelter",
-    "pk": 4,
+    "pk": 3,
     "fields": {
       "user": 10,
       "organization_name": "Best Pet Shelter",
@@ -197,7 +196,7 @@
     "fields": {
       "applicant": 5,
       "pet_listing": 2,
-      "shelter": 2,
+      "shelter": 1,
       "status": "Pending",
       "creation_time": "2023-11-12T14:42:36.866Z",
       "last_update_time": "2023-11-12T14:42:36.866Z",
@@ -225,7 +224,7 @@
     "fields": {
       "applicant": 11,
       "pet_listing": 2,
-      "shelter": 2,
+      "shelter": 1,
       "status": "Withdrawn",
       "creation_time": "2023-11-13T21:24:07.018Z",
       "last_update_time": "2023-11-13T21:41:30.028Z",
@@ -246,40 +245,12 @@
       "home_ownership": "own",
       "signature": "seeker3"
     }
-  }, 
-  {
-    "model": "applications.application",
-    "pk": 2,
-    "fields": {
-      "applicant": 7,
-      "pet_listing": 7,
-      "shelter": 2,
-      "status": "Pending",
-      "creation_time": "2023-11-08T12:00:00Z",
-      "last_update_time": "2023-11-08T12:00:00Z",
-      "pet_name": "Example Pet",
-      "owner_name": "John Doe",
-      "area_code": "123",
-      "phone_number": "4567890",
-      "email": "john.doe@example.com",
-      "address1": "123 Main St",
-      "address2": "Apt 4",
-      "city": "Cityville",
-      "state": "Stateville",
-      "zip": "12345",
-      "country": "Countryland",
-      "pet_ownership": "yes",
-      "breed": "Labrador Retriever",
-      "past_pet": "I had a cat before.",
-      "home_ownership": "own",
-      "signature": "John Doe"
-    }
   },
   {
     "model": "pet_listing.petlisting",
     "pk": 1,
     "fields": {
-      "shelter": 2,
+      "shelter": 1,
       "pet_name": "Franks",
       "status": "Available",
       "publication_date": "2023-11-09T22:46:22.212Z",
@@ -302,7 +273,7 @@
     "model": "pet_listing.petlisting",
     "pk": 2,
     "fields": {
-      "shelter": 2,
+      "shelter": 1,
       "pet_name": "Cindy",
       "status": "Available",
       "publication_date": "2023-11-09T22:47:33.628Z",
