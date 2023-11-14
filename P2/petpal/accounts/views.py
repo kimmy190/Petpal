@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from .serializers import SeekerSerializer, ShelterSerializer, ShelterImageSerializer, ShelterInfoSerializer
 from .models import PetSeeker, PetShelter, ShelterImage
 from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import BasePermission
@@ -12,6 +12,10 @@ from rest_framework.exceptions import PermissionDenied
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import permissions
 
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = "page_size"
+    max_page_size = 10
 
 # Create your views here.
 class CanViewSeekerProfile(BasePermission):
@@ -24,8 +28,14 @@ class CanViewSeekerProfile(BasePermission):
                     # should be shelter , else false 
                     if shelter.application_set.filter(applicant_id=view.kwargs['pk']).exists():
                     # if shelter.application_set.filter(shelter=shelter).exists(): #acceess application set 
-                        if request.method in permissions.SAFE_METHODS:
-                            return True  # Shelters can only view pet seekers' profiles if they have active application w them
+                        if request.method in permissions.SAFE_METHODS: 
+                            # check if they are active 
+                            application = shelter.application_set.get(applicant_id=view.kwargs['pk'])
+                            if application.status == "Pending":
+                                return True 
+                            else: 
+                                # application not active 
+                                return False  
                         else: 
                             # not allowed to update / delete 
                             return False 
@@ -37,6 +47,7 @@ class CanViewSeekerProfile(BasePermission):
 class PetSeekerCreate(CreateAPIView):
     # can view list of Pet shelters 
     # can create pet shelter 
+    # no auth only 
     permission_classes = [AllowAny]
     serializer_class = SeekerSerializer
 
@@ -53,7 +64,6 @@ class PetSeekerDetail(RetrieveUpdateDestroyAPIView):
         #     # Handle the PermissionDenied exception here
         #     # For instance, return a custom response or redirect
         #     return Response({"error": "You are not authorized to view this profile"}, status=status.HTTP_403_FORBIDDEN)
-    
 
 class PetShelterListCreate(ListCreateAPIView):
     permission_classes = [AllowAny]
