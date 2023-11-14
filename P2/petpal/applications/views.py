@@ -43,11 +43,11 @@ class PermissionPolicyMixin:
 
 class ApplicationCreateView(CreateAPIView):
     """
-    Create a new application for a specific pet listing to adopt a pet.
+    Create a new application for an Available pet listing to adopt a pet.
 
     - A POST request creates the application.
     - Application cannot be deleted unless the pet listing is deleted.
-    - Only Users can create applications (Shelters cannot create applications)
+    - Only Users can create applications (Shelters cannot create applications).
     """
     serializer_class = ApplicationSerializer
     permission_classes = [IsAuthenticated]
@@ -123,7 +123,8 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
     """
     Update the status of existing application.
 
-    - A PATCH request updates the status (can only update the status) of an application.
+    - A GET request gets the existing application information.
+    A PUT/PATCH request updates the status (can only update the status) of an application.
     By default, applications are created with status "Pending."
 
     - Users can update their appilcation status to "Withdrawn."
