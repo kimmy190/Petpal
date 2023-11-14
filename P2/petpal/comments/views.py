@@ -32,7 +32,6 @@ class ShelterCommentListCreateView(ListCreateAPIView):
 
     - A POST request adds a new comment to the shelter if the
     current user is logged in, and is not the shelter.
-
     """
     serializer_class = ShelterCommentSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -51,6 +50,16 @@ class ShelterCommentListCreateView(ListCreateAPIView):
         return ShelterComment.objects.all().filter(shelter=self.kwargs["shelter"]).order_by("-created_at")
 
 class ApplicationCommentListCreateView(ListCreateAPIView):
+    """Comments from users on a given application.
+
+    - A GET request returns all comments on an application 
+
+    - A POST request adds a new comment to the list of comments on the given application
+
+    Requests are only permitted if the current user is the shelter receiving the application or the current
+    user is the applicant.
+
+    """
     serializer_class = ApplicationCommentSerializer
     permission_classes = [IsAuthenticated]
     pagination_class = CommentResultsSetPagination
@@ -78,6 +87,12 @@ class ApplicationCommentListCreateView(ListCreateAPIView):
                                                            application__applicant=self.request.user).order_by("-created_at")
 
 class ReplyCreateView(CreateAPIView):
+    """Replies to a given comment
+
+    - A POST request adds a new reply to a given shelter comment.
+
+    Any logged in user can reply to a comment.
+    """
     serializer_class = ReplySerializer
     permission_classes = [IsAuthenticated]
     def perform_create(self, serializer):

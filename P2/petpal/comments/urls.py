@@ -14,8 +14,7 @@ urlpatterns = [
         ShelterCommentListCreateView.as_view(),
         name="get_shelter_list",
     ),
-    path("replies/<int:parent>", ReplyCreateView.as_view()),
-    # path("shelter/<int:shelter>", ShelterCommentListView.as_view()),
+    path("shelter/replies/<int:parent>", ReplyCreateView.as_view()),
     path(
         "application/<int:application>",
         ApplicationCommentListCreateView.as_view(),
