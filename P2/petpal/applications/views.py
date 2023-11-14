@@ -9,6 +9,7 @@ from pet_listing.models import PetListing
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from django.core.exceptions import PermissionDenied
 
 # Taken from https://stackoverflow.com/questions/31785966/django-rest-framework-turn-on-pagination-on-a-viewset-like-modelviewset-pagina
 
@@ -41,6 +42,13 @@ class PermissionPolicyMixin:
 
 
 class ApplicationCreateView(CreateAPIView):
+    """
+    Create a new application for a specific pet listing to adopt a pet.
+
+    - A POST request creates the application.
+    - Application cannot be deleted unless the pet listing is deleted.
+    - Only Users can create applications (Shelters cannot create applications)
+    """
     serializer_class = ApplicationSerializer
     permission_classes = [IsAuthenticated]
 
@@ -83,6 +91,17 @@ class ApplicationCreateView(CreateAPIView):
 
 
 class ApplicationListView(ListAPIView):
+    """
+    Full list of applications for either User or Shelter.
+
+    - A GET request returns all applications with the given filter and order.
+    By default, there are no filters. You can filter the listings by status (Accepted, Rejected, Pending, Withdrawn).
+    You can order the applications by creation_time or last_update_time.
+
+    - For Shelters, it will display a list of all incoming applications from users.
+
+    - For Users, it will display a list of all outgoing applications to shelters.
+    """
     serializer_class = ApplicationSerializer
     pagination_class = StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -101,6 +120,16 @@ class ApplicationListView(ListAPIView):
 
 
 class ApplicationUpdateView(RetrieveUpdateAPIView):
+    """
+    Update the status of existing application.
+
+    - A PATCH request updates the status (can only update the status) of an application.
+    By default, applications are created with status "Pending."
+
+    - Users can update their appilcation status to "Withdrawn."
+
+    - Shelters can update their application status to either "Accepted" or "Rejected."
+    """
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
     permission_classes = [IsAuthenticated]
