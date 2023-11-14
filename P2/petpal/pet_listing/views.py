@@ -53,6 +53,17 @@ class PermissionPolicyMixin:
 
 
 class PetListingCreateView(PermissionPolicyMixin, ListCreateAPIView):
+    """
+    PetListings for shelters.
+
+    - A GET request returns all pet listings with the given filter and order.
+    By default, the results are ordered by id and with a filter to only show available pet listingts.
+    You can order the listings by any field in the PetListing model.
+    You can filter the listings by shelter, breed, age, size, and status
+
+    - A POST request creates a new pet listing object. Only shelters can POST.
+    """
+
     serializer_class = PetListingSerializer
     permission_classes = [IsShelterPermission]
     permission_classes_per_method = {"GET": []}
@@ -102,6 +113,15 @@ class PetListingCreateView(PermissionPolicyMixin, ListCreateAPIView):
 
 
 class PetListingView(PermissionPolicyMixin, RetrieveUpdateDestroyAPIView):
+    """
+    Interact with a specific PetListing.
+
+    - A GET request retrieves the pet listing.
+    - A PATCH/PUT request updates the pet listing. If a new images array is specified, the old images are deleted.
+    Only a shelter can send a PATCH/PUT request.
+    - A DELETE request deletes the pet listing. Only a shelter can send a DELETE request.
+    """
+
     serializer_class = PetListingSerializer
     permission_classes = [IsShelterPermission]
     permission_classes_per_method = {"GET": []}
@@ -125,6 +145,13 @@ class PetListingView(PermissionPolicyMixin, RetrieveUpdateDestroyAPIView):
 
 
 class PetListingImageCreateView(PermissionPolicyMixin, ListCreateAPIView):
+    """
+    Images for a PetListing.
+
+    - A GET request returns all images for a specific pet listing.
+    - A POST request adds a new image for a specific pet listing. Only the shelter that owns the pet listing can send a POST request.
+    """
+
     serializer_class = PetListingImageSerializer
     permission_classes = [IsShelterPermission]
     permission_classes_per_method = {"GET": []}
@@ -157,6 +184,14 @@ class PetListingImageCreateView(PermissionPolicyMixin, ListCreateAPIView):
 
 
 class PetListingImageView(PermissionPolicyMixin, RetrieveDestroyAPIView):
+    """
+
+    Interact with a specific image.
+
+    - A GET request returns the specific image.
+    - A DELETE request deletes a specific image. Only the shelter that owns the pet listing can send a DELETE request.
+    """
+
     serializer_class = PetListingImageSerializer
     permission_classes = [IsShelterPermission]
     permission_classes_per_method = {"GET": []}

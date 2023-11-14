@@ -27,6 +27,16 @@ class NotificationPagination(PageNumberPagination):
 
 
 class NotificaitonListCreate(ListCreateAPIView):
+    """
+    Notifications for users.
+
+    - A GET request returns a paginated list of all notifications for the current user.
+
+    - A POST request adds a new notification for the current user.
+      You must specify the type of notification (notification_type) and the object id (notification_type_id) of the model indicated by notification_type
+      The link for the notification is automatically generated based off these parameters.
+    """
+
     serializer_class = NotificationSerializer
     permission_classes = [IsAuthenticated]
     pagination_class = NotificationPagination
@@ -103,6 +113,16 @@ class NotificaitonListCreate(ListCreateAPIView):
 
 
 class NotificationRUD(RetrieveUpdateDestroyAPIView):
+    """
+    Interact with a specific notification
+
+    - A GET request returns a specific notification available to the user.
+
+    - A PATCH/PUT request modifies the notification. Only the was_read field can be updated.
+
+    - A DELETE request deletes the notificaiton.
+    """
+
     serializer_class = NotificationSerializer
     permission_classes = [IsAuthenticated]
 
