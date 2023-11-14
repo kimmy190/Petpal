@@ -45,27 +45,46 @@ class CanViewSeekerProfile(BasePermission):
             return False
 
 class PetSeekerCreate(CreateAPIView):
-    # can view list of Pet shelters 
-    # can create pet shelter 
-    # no auth only 
+    """
+    A view for creating a new pet seeker. 
+
+    - A POST request with required data creates a pet seeker. 
+    It operates with no authentication requirements.      
+    """ 
     permission_classes = [AllowAny]
     serializer_class = SeekerSerializer
 
 class PetSeekerDetail(RetrieveUpdateDestroyAPIView):
-    # permission_classes = [IsAuthenticated]
-    # can only be shown to pet shelters who has an active application w them 
+    """
+    A view for retrieving, updating, and deleting a specific pet seeker's details.
+
+    Seeker can only view their own profile and shelters can only view pet seeker's profile
+    if they have an active application(application status=pending) with the shelter.
+    Only pet seeker is allowed to update/delete their own profile. 
+
+    - A GET request retrieves the detail of pet seeker. 
+    - A PATCH/PUT request with modified data updates the per seeker information.
+    - A DELETE request deletes the pet seeker. 
+    """
     permission_classes = [CanViewSeekerProfile]
     serializer_class = SeekerSerializer
 
     def get_object(self):
-        # try:
+        """
+        Get the specific pet seeker object based on the provided ID.
+        """ 
         return get_object_or_404(PetSeeker, id=self.kwargs['pk'])
-        # except PermissionDenied:
-        #     # Handle the PermissionDenied exception here
-        #     # For instance, return a custom response or redirect
-        #     return Response({"error": "You are not authorized to view this profile"}, status=status.HTTP_403_FORBIDDEN)
+
 
 class PetShelterListCreate(ListCreateAPIView):
+    """
+    A view for creating a new pet shelter and listing all the shelters. 
+
+    - A POST request with required data creates a pet shelter. 
+    It operates with no authentication requirements.    
+
+    - A GET request retrieves the list of all pet shelters.
+    """ 
     permission_classes = [AllowAny]
     serializer_class = ShelterSerializer
 
@@ -74,7 +93,6 @@ class PetShelterListCreate(ListCreateAPIView):
         return PetSeeker.objects.filter(shelter__isnull=False)
 
 class IsShelterOwner(BasePermission):
-    # def has_object_permission(self, request, view, obj):
     def has_permission(self, request, view):
         # If it's a GET request, allow any user to view the shelter.
         if request.method in permissions.SAFE_METHODS:
@@ -85,17 +103,21 @@ class IsShelterOwner(BasePermission):
             # return obj.shelter == request.user
             return request.user.id == view.kwargs['pk'] 
         return False
-        # return obj == request.user.shelter
-        # return False 
+    
 
 class PetShelterDetail(RetrieveUpdateDestroyAPIView):
+    """
+    A view for retrieving, updating, and deleting a specific pet shelter's details.
+
+    Any user (shelter or seeker) can see the profile of a shelter. 
+    Only pet shelter is allowed to update/delete their own profile. 
+
+    - A GET request retrieves the detail of pet shelter. 
+    - A PATCH/PUT request with modified data updates the pet shelter information.
+    - A DELETE request deletes the pet shelter. 
+    """
     permission_classes = [IsAuthenticated, IsShelterOwner]
     serializer_class = ShelterSerializer
 
     def get_object(self):
         return get_object_or_404(PetSeeker, id=self.kwargs['pk'])
-    
-    # def put(self, request, *args, **kwargs):
-    #     return self.partial_update(request, *args, **kwargs)
-
-    
