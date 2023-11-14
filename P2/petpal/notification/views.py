@@ -31,6 +31,8 @@ class NotificaitonListCreate(ListCreateAPIView):
     Notifications for users.
 
     - A GET request returns a paginated list of all notifications for the current user.
+    These notifications are ordered by their creation date.
+    It is possible to filter by whether the notification was read by setting the "was_read" query parameter to "True" or "False".
 
     - A POST request adds a new notification for the current user.
       You must specify the type of notification (notification_type) and the object id (notification_type_id) of the model indicated by notification_type
@@ -47,8 +49,12 @@ class NotificaitonListCreate(ListCreateAPIView):
         )
 
         filter = {}
-        if "was_read" in self.request.GET:
-            filter["was_read"] = self.request.GET.get("was_read", "")
+        if "was_read" in self.request.GET and self.request.GET["was_read"] in [
+            "True",
+            "False",
+        ]:
+            filter["was_read"] = self.request.GET["was_read"]
+
         return notifcations.filter(**filter)
 
     def perform_create(self, serializer):
