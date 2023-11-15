@@ -32,7 +32,7 @@ class Application(models.Model):
 
     # names
     pet_name = models.CharField(max_length=50)
-    owner_name = models.CharField(max_length=50, default="")
+    owner_name = models.CharField(max_length=50)
 
     # contacts
     area_code = models.CharField(max_length=4)

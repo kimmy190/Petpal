@@ -135,6 +135,28 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
     serializer_class = ApplicationSerializer
     permission_classes = [IsAuthenticated]
 
+    def get(self, request, *args, **kwargs):
+        application = self.get_object()
+        applicant = self.request.user
+
+        try:
+            if applicant.shelter is not None:
+                if applicant.shelter != application.shelter:
+                    raise PermissionDenied()
+                else:
+                    return Response(
+                        self.get_serializer(application).data,
+                        status=status.HTTP_200_OK
+                    )
+        except:
+            if applicant != application.applicant:
+                raise PermissionDenied()
+            else:
+                return Response(
+                    self.get_serializer(application).data,
+                    status=status.HTTP_200_OK
+                )
+
     def update(self, request, *args, **kwargs):
         application = self.get_object()
         applicant = self.request.user
@@ -142,23 +164,24 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
         try:
             if applicant.shelter is not None:
                 # check permission
-                if application.shelter == applicant.shelter:
+                if application.shelter == applicant.shelter and application.status == "Pending":
                     new_status = request.data.get('status', '')
                     if new_status != "Accepted" and new_status != "Rejected":
-                        return Response({"error": "Choose between Accepted or Rejected"}, status=status.HTTP_400_BAD_REQUEST)
+                        return Response({"error": "Can only change status to Accepted or Rejected"}, status=status.HTTP_400_BAD_REQUEST)
                     else:
                         application.status = new_status
                         application.save()
                 else:
+                    raise PermissionDenied
                     return Response({"error": "You do not have access to this application"}, status=status.HTTP_400_BAD_REQUEST)
 
         # if applicant, can update to Withdraw
         except:
             # check permission
-            if application.applicant == self.request.user:
+            if application.applicant == self.request.user and (application.status == "Accepted" or application.status == "Pending"):
                 new_status = request.data.get('status', '')
                 if new_status != "Withdrawn":
-                    return Response({"error": "Can only withdraw application"}, status=status.HTTP_400_BAD_REQUEST)
+                    return Response({"error": "Can only change status to Withdrawn"}, status=status.HTTP_400_BAD_REQUEST)
                 else:
                     application.status = new_status
                     application.save()
