@@ -42,8 +42,8 @@ class PetListingSerializer(ModelSerializer):
     shelter = serializers.PrimaryKeyRelatedField(read_only=True)
     images = serializers.ListField(child=serializers.ImageField(), write_only=True)
 
-    behavior_aggresive = serializers.IntegerField(default=0)
-    behavior_social = serializers.IntegerField(default=0)
-    behavior_noisy = serializers.IntegerField(default=0)
-    behavior_scared = serializers.IntegerField(default=0)
-    behavior_friendly = serializers.IntegerField(default=0)
+    behavior_aggresive = serializers.IntegerField(default=0, min_value=0, max_value=5)
+    behavior_social = serializers.IntegerField(default=0, min_value=0, max_value=5)
+    behavior_noisy = serializers.IntegerField(default=0, min_value=0, max_value=5)
+    behavior_scared = serializers.IntegerField(default=0, min_value=0, max_value=5)
+    behavior_friendly = serializers.IntegerField(default=0, min_value=0, max_value=5)
