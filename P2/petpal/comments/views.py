@@ -16,11 +16,24 @@ from accounts.models import PetSeeker, PetShelter
 from .models import ApplicationComment, ShelterComment
 from .serializers import *
 from django.core.exceptions import ObjectDoesNotExist
+from rest_framework.permissions import BasePermission
 
 class CommentResultsSetPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = "page_size"
     max_page_size = 50
+
+class CanViewApplicationPermission(BasePermission):
+    def has_permission(self, request, view):
+        author = request.user
+        application = get_object_or_404(Application, pk=view.kwargs['application'])
+        try:
+            if author.shelter != application.shelter:
+                return False
+        except ObjectDoesNotExist:
+            if author != application.applicant:
+                return False
+        return True
 
 # Create your views here.
 class ShelterCommentListCreateView(ListCreateAPIView):
@@ -61,19 +74,12 @@ class ApplicationCommentListCreateView(ListCreateAPIView):
 
     """
     serializer_class = ApplicationCommentSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, CanViewApplicationPermission]
     pagination_class = CommentResultsSetPagination
 
     def perform_create(self, serializer):
         author = self.request.user
         application = get_object_or_404(Application, pk=self.kwargs['application'])
-        try:
-            if author.shelter != application.shelter:
-                raise PermissionDenied
-        except ObjectDoesNotExist:
-            if author != application.applicant:
-                raise PermissionDenied
-
         application.last_update_time = datetime.now()
         application.save()
         serializer.save(author=author, application=application)
