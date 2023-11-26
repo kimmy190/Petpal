@@ -1,13 +1,13 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ShelterTitle from "../../components/ShelterTitle";
-import ReactCarousel from "../../components/Carousel";
+import ReactCarousel from "../../components/ReactCarousel";
 import SideBySide from "../../components/SideBySide";
 import PetListingDetails from "../../components/PetListingDetails";
 import Grid from "../../components/Grid";
 import Card from "../../components/Card";
 import { Link } from "react-router-dom/dist";
-const PetListing = (props) => {
+const PetListing = () => {
   const { pet_listing_id } = useParams();
   const navigate = useNavigate();
 
