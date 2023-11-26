@@ -47,23 +47,23 @@ const PetListingDetails = ({ petData }) => {
 
       <div className="flex items-center justify-between">
         <p className="font-semibold">Aggressive</p>
-        <ReactRating value={petData.behavior_aggresive} readOnly={true} />
+        <ReactRating value={petData.behavior_aggresive} />
       </div>
       <div className="flex items-center justify-between">
         <p className="font-semibold">Social</p>
-        <ReactRating value={petData.behavior_social} readOnly={true} />
+        <ReactRating value={petData.behavior_social} />
       </div>
       <div className="flex items-center justify-between">
         <p className="font-semibold">Noisy</p>
-        <ReactRating value={petData.behavior_noisy} readOnly={true} />
+        <ReactRating value={petData.behavior_noisy} />
       </div>
       <div className="flex items-center justify-between">
         <p className="font-semibold">Scared</p>
-        <ReactRating value={petData.behavior_scared} readOnly={true} />
+        <ReactRating value={petData.behavior_scared} />
       </div>
       <div className="flex items-center justify-between">
         <p className="font-semibold">Friendly</p>
-        <ReactRating value={petData.behavior_friendly} readOnly={true} />
+        <ReactRating value={petData.behavior_friendly} />
       </div>
     </div>
   );

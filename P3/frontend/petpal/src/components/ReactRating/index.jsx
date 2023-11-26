@@ -1,10 +1,14 @@
-const FilledStar = () => {
+import { useState } from "react";
+
+const FilledStar = ({ onMouseEnter, onClick }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="currentColor"
       className="mr-1 h-5 w-5 text-warning"
+      onMouseEnter={onMouseEnter}
+      onClick={onClick}
     >
       <path
         fillRule="evenodd"
@@ -15,7 +19,7 @@ const FilledStar = () => {
   );
 };
 
-const UnfilledStar = () => {
+const UnfilledStar = ({ onMouseEnter, onClick }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -24,6 +28,8 @@ const UnfilledStar = () => {
       strokeWidth="1.5"
       stroke="currentColor"
       className="mr-1 h-5 w-5 text-warning"
+      onMouseEnter={onMouseEnter}
+      onClick={onClick}
     >
       <path
         strokeLinecap="round"
@@ -37,23 +43,48 @@ function range(start, end) {
   return [...Array(end - start + 1).keys()].map((i) => i + start);
 }
 
-const ReactRating = ({ value, readOnly }) => {
+const ReactRating = ({ value, onClick }) => {
   // TODO: figure out interactive design when readOnly = true
   // Probably need to pass callbacks
+
+  const [numFilled, setNumFilled] = useState(value);
+
+  const onMouseEnter = (val) => () => {
+    if (onClick) {
+      setNumFilled(val);
+    }
+  };
+  const onStarClick = (val) => () => {
+    if (onClick) {
+      onClick(val);
+    }
+  };
+
   return (
-    <div className="flex items-center justify-start">
+    <div
+      className={
+        "flex items-center justify-start " +
+        (!!!onClick ? "" : "cursor-pointer")
+      }
+      onMouseLeave={() => {
+        setNumFilled(value);
+      }}
+    >
       <ul className="flex justify-center">
-        {range(1, value).map((val) => {
+        {range(1, 5).map((val) => {
           return (
             <li key={val}>
-              <FilledStar />
-            </li>
-          );
-        })}
-        {range(value + 1, 5).map((val) => {
-          return (
-            <li key={val}>
-              <UnfilledStar />
+              {val <= numFilled ? (
+                <FilledStar
+                  onMouseEnter={onMouseEnter(val)}
+                  onClick={onStarClick(val)}
+                />
+              ) : (
+                <UnfilledStar
+                  onMouseEnter={onMouseEnter(val)}
+                  onClick={onStarClick(val)}
+                />
+              )}
             </li>
           );
         })}

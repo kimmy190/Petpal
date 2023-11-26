@@ -8,6 +8,8 @@ import Card from "../../components/Card";
 import { UserContext } from "../../contexts/UserContext";
 import ConfrimDenyButton from "../../components/ConfirmDenyEditButtons";
 import EditableReactCarousel from "../../components/EditableReactCarousel";
+import EditablePetListingDetails from "../../components/EditablePetListingDetails";
+import TextArea from "../../components/TextArea";
 const PetListingEditable = () => {
   const { pet_listing_id } = useParams();
   const navigate = useNavigate();
@@ -103,10 +105,6 @@ const PetListingEditable = () => {
     perfromUseEffect();
   }, [pet_listing_id, navigate]);
 
-  const updateSpecificPetData = (field) => (value) => {
-    setPetData({ ...petData, [field]: [value] });
-  };
-
   const addNewImage = (image) => {
     setPetImages([
       {
@@ -167,6 +165,10 @@ const PetListingEditable = () => {
     navigate(`/pet_listing/${pet_listing_id}`);
   };
 
+  const updateParam = (field, value) => {
+    setPetData({ ...petData, [field]: [value] });
+  };
+
   return loadingData ? (
     <></>
   ) : (
@@ -179,17 +181,48 @@ const PetListingEditable = () => {
       <section id="pet_gallery" className="p-2 w-5/6 sm:w-3/4 mb-3">
         <SideBySide>
           <EditableReactCarousel images={petImages} addNewImage={addNewImage} />
-          <PetListingDetails petData={petData} />
+          <EditablePetListingDetails
+            petData={petData}
+            updateParam={updateParam}
+          />
         </SideBySide>
       </section>
       <section id="pet_history" className="w-5/6 sm:w-3/4 bg-50">
         <Grid cols={2}>
-          <Card title={"Medical History"}>{petData.medical_history}</Card>
-          <Card title={"Requirements"}>{petData.requirements}</Card>
+          <Card title={"Medical History"}>
+            <TextArea
+              title={"Medical History"}
+              rows={4}
+              onChange={(value) => {
+                updateParam("medical_history", value);
+              }}
+            >
+              {petData.medical_history}
+            </TextArea>
+          </Card>
+          <Card title={"Requirements"}>
+            <TextArea
+              title={"Requirements"}
+              rows={4}
+              onChange={(value) => {
+                updateParam("requirements", value);
+              }}
+            >
+              {petData.requirements}
+            </TextArea>
+          </Card>
         </Grid>
         <Grid cols={1}>
           <Card title={"Additional Comments"}>
-            {petData.additional_comments}
+            <TextArea
+              title={"Additional Comments"}
+              rows={4}
+              onChange={(value) => {
+                updateParam("additional_comments", value);
+              }}
+            >
+              {petData.additional_comments}
+            </TextArea>
           </Card>
         </Grid>
       </section>
