@@ -3,6 +3,7 @@ from rest_framework.generics import (
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView,
     CreateAPIView,
+    RetrieveDestroyAPIView
 )
 from rest_framework.permissions import IsAuthenticated
 from .serializers import (
@@ -122,7 +123,7 @@ class IsShelterOwner(BasePermission):
         # If it's an unsafe method (PUT, PATCH, DELETE)
         if hasattr(request.user, "shelter"):  # check if user is shelter
             # return obj.shelter == request.user
-            return request.user.id == view.kwargs["pk"]
+            return request.user.shelter.id == view.kwargs['pk'] 
         return False
 
 
@@ -165,3 +166,48 @@ class PetShelterDetail(PermissionPolicyMixin, RetrieveUpdateDestroyAPIView):
 
     def get_object(self):
         return get_object_or_404(PetShelter, id=self.kwargs["pk"]).user
+
+
+# retrieve, and update(only be done by user) the image for shelter 
+class PetShelterImageListCreate(ListCreateAPIView):
+    """
+    A view for listing all the images.   
+
+    - A GET request retrieves the list pet shelter images for a specific pet shelter
+    - A POST request adds a new image for a specific pet shelter
+    """ 
+    permission_classes = [IsAuthenticated, IsShelterOwner]
+    serializer_class = ShelterImageSerializer
+    queryset = ShelterImage.objects.all()
+
+    def get_queryset(self):
+        return ShelterImage.objects.filter(shelter=self.kwargs["pk"])
+    
+    def perform_create(self, serializer):
+        # Assuming the shelter is associated with the logged-in user
+        serializer.save(shelter=self.request.user.shelter)
+
+class PetShelterImageDetail(RetrieveDestroyAPIView):
+    """
+    A view for updating, retieving, updating, deleting a specific pet shelter's image 
+    
+    - A GET request returns the specific image 
+    - A DELETE request deletes the specific image 
+    """
+    permission_classes = [IsAuthenticated, IsShelterOwner]
+    serializer_class = ShelterImageSerializer
+    queryset = ShelterImage.objects.all()
+
+    def get_queryset(self):
+        return ShelterImage.objects.filter(shelter=self.kwargs["pk"])
+    
+    def get_object(self):
+        shelter_id = self.kwargs["pk"]; 
+        image_id = self.kwargs["img_id"];
+        return get_object_or_404(ShelterImage,shelter__id=shelter_id, id=image_id) 
+        # return ShelterImage.objects.get(shelter__id=shelter_id, id=image_id)  
+    
+    def perform_destroy(self, instance):
+        #delete the actual image file from storage
+        instance.image.delete()  # Assuming 'image' is the ImageField in ShelterImage model
+        instance.delete()
