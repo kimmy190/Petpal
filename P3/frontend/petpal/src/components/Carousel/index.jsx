@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Carousel, initTE } from "tw-elements";
+
 const ReactCarousel = ({ images }) => {
   const [imageSRC, setImageSRC] = useState();
 
@@ -85,7 +86,7 @@ const ReactCarousel = ({ images }) => {
             >
               <img
                 src={val}
-                class="block object-contain w-full h-full rounded"
+                className="block object-contain w-full h-full rounded"
                 alt="..."
               />
             </div>

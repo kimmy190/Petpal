@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
-const ShelterTitle = ({ name, logo, shelterID, link }) => {
+const ShelterTitle = ({ shelterData, link }) => {
+  const logo = shelterData.shelter.logo_image;
+  const name = shelterData.username;
+  const shelterID = shelterData.shelter.id;
+
   const SVG = () => (
     <div className="relative self-start ml-1">
       <svg
@@ -23,7 +27,7 @@ const ShelterTitle = ({ name, logo, shelterID, link }) => {
   const NameSection = () => (
     <>
       <div className="rounded-full w-6 h-6 mr-2 mb-1">
-        <img src={logo} />
+        <img src={logo} alt="logo" />
       </div>
       <h1 className="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl">
         {name}
