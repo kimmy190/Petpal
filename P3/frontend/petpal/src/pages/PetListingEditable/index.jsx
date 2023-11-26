@@ -1,7 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import ShelterTitle from "../../components/ShelterTitle";
-import ReactCarousel from "../../components/ReactCarousel";
 import SideBySide from "../../components/SideBySide";
 import PetListingDetails from "../../components/PetListingDetails";
 import Grid from "../../components/Grid";
@@ -18,8 +17,13 @@ const PetListingEditable = () => {
   const [shelterData, setShelterData] = useState();
   const [loadingData, setLoadingData] = useState(true);
   const [petImages, setPetImages] = useState([]);
-  const [newPetImages, setNewPetImages] = useState([]);
   const [deletedPetImageIds, setDeletedPetImageIds] = useState([]);
+  const [nextPetImageId, setNextPetImageId] = useState(0);
+
+  const onUploadedImageDelete = (currObj) => (images) => {
+    setPetImages(images.filter((image) => image.id !== currObj.id));
+    setDeletedPetImageIds([...deletedPetImageIds, currObj.id]);
+  };
 
   useEffect(() => {
     const perfromUseEffect = async () => {
@@ -71,19 +75,26 @@ const PetListingEditable = () => {
         return;
       }
       const petImagesJson = await petImagesResponse.json();
-
+      setNextPetImageId(petImagesJson[petImagesJson.length - 1].id + 1);
       setPetImages(
         await Promise.all(
-          petImagesJson.map(async (imageObj) => {
-            // TODO: How to fix this?? I think this issue goes away
-            // Once we upload using React
-            const url = imageObj.image.replace("http://127.0.0.1:8000", "");
-            const response = await fetch(url);
-            if (!response.ok) {
-              return "";
-            }
-            return URL.createObjectURL(await response.blob());
-          })
+          petImagesJson
+            .map(async (imageObj, i) => {
+              // TODO: How to fix this?? I think this issue goes away
+              // Once we upload using React.
+              // Nope, it does not.
+              const url = imageObj.image.replace("http://127.0.0.1:8000", "");
+              const response = await fetch(url);
+              if (!response.ok) {
+                return "";
+              }
+              return {
+                url: URL.createObjectURL(await response.blob()),
+                id: imageObj.id,
+                onDelete: onUploadedImageDelete(imageObj),
+              };
+            })
+            .reverse()
         )
       );
 
@@ -97,18 +108,28 @@ const PetListingEditable = () => {
   };
 
   const addNewImage = (image) => {
-    setPetImages([URL.createObjectURL(image), ...petImages]);
-    setNewPetImages([image, ...newPetImages]);
+    setPetImages([
+      {
+        url: URL.createObjectURL(image),
+        id: nextPetImageId,
+        onDelete: (images) => {
+          setPetImages(images.filter((image) => image.id !== nextPetImageId));
+        },
+        file: image,
+      },
+      ...petImages,
+    ]);
+    setNextPetImageId(nextPetImageId + 1);
   };
 
-  const uploadPetData = () => {
+  const uploadPetData = async () => {
     const body = new FormData();
 
     Object.keys(petData).forEach((key) => {
       body.append(key, petData[key]);
     });
 
-    fetch(`/pet_listing/${pet_listing_id}`, {
+    await fetch(`/pet_listing/${pet_listing_id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -116,26 +137,32 @@ const PetListingEditable = () => {
       body,
     });
 
-    newPetImages.forEach((image) => {
-      const imagePostBody = new FormData();
-      imagePostBody.append("image", image);
-      fetch(`/pet_listing/${pet_listing_id}/image/`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: imagePostBody,
-      });
-    });
+    await Promise.all(
+      petImages
+        .filter((image) => !!image.file)
+        .map((image) => {
+          const imagePostBody = new FormData();
+          imagePostBody.append("image", image.file);
+          fetch(`/pet_listing/${pet_listing_id}/image/`, {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            body: imagePostBody,
+          });
+        })
+    );
 
-    deletedPetImageIds.forEach((id) => {
-      fetch(`/pet_listing/${pet_listing_id}/image/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-    });
+    await Promise.all(
+      deletedPetImageIds.map((id) => {
+        return fetch(`/pet_listing/${pet_listing_id}/image/${id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      })
+    );
 
     navigate(`/pet_listing/${pet_listing_id}`);
   };
@@ -166,8 +193,6 @@ const PetListingEditable = () => {
           </Card>
         </Grid>
       </section>
-
-      <button onClick={uploadPetData}>Click me</button>
     </div>
   );
 };
