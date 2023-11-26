@@ -6,17 +6,20 @@ import SideBySide from "../../components/SideBySide";
 import PetListingDetails from "../../components/PetListingDetails";
 import Grid from "../../components/Grid";
 import Card from "../../components/Card";
-import { Link } from "react-router-dom/dist";
 import { UserContext } from "../../contexts/UserContext";
-import EditPageButtons from "../../components/EditPageButtons";
-const PetListing = () => {
+import ConfrimDenyButton from "../../components/ConfirmDenyEditButtons";
+import EditableReactCarousel from "../../components/EditableReactCarousel";
+const PetListingEditable = () => {
   const { pet_listing_id } = useParams();
   const navigate = useNavigate();
-  const { user } = useContext(UserContext);
+  const { user, token } = useContext(UserContext);
+
   const [petData, setPetData] = useState();
   const [shelterData, setShelterData] = useState();
   const [loadingData, setLoadingData] = useState(true);
   const [petImages, setPetImages] = useState([]);
+  const [newPetImages, setNewPetImages] = useState([]);
+  const [deletedPetImageIds, setDeletedPetImageIds] = useState([]);
 
   useEffect(() => {
     const perfromUseEffect = async () => {
@@ -49,6 +52,9 @@ const PetListing = () => {
       }
       const shelterJson = await shelterResponse.json();
       setShelterData(shelterJson);
+      if (user?.shelter?.id !== shelterJson.shelter.id) {
+        navigate("/home");
+      }
 
       const petImagesResponse = await fetch(
         `/pet_listing/${pet_listing_id}/image`,
@@ -65,20 +71,19 @@ const PetListing = () => {
         return;
       }
       const petImagesJson = await petImagesResponse.json();
+
       setPetImages(
         await Promise.all(
-          petImagesJson
-            .map(async (imageObj) => {
-              // TODO: How to fix this?? I think this issue goes away
-              // Once we upload using React
-              const url = imageObj.image.replace("http://127.0.0.1:8000", "");
-              const response = await fetch(url);
-              if (!response.ok) {
-                return "";
-              }
-              return URL.createObjectURL(await response.blob());
-            })
-            .reverse()
+          petImagesJson.map(async (imageObj) => {
+            // TODO: How to fix this?? I think this issue goes away
+            // Once we upload using React
+            const url = imageObj.image.replace("http://127.0.0.1:8000", "");
+            const response = await fetch(url);
+            if (!response.ok) {
+              return "";
+            }
+            return URL.createObjectURL(await response.blob());
+          })
         )
       );
 
@@ -87,19 +92,66 @@ const PetListing = () => {
     perfromUseEffect();
   }, [pet_listing_id, navigate]);
 
+  const updateSpecificPetData = (field) => (value) => {
+    setPetData({ ...petData, [field]: [value] });
+  };
+
+  const addNewImage = (image) => {
+    setPetImages([URL.createObjectURL(image), ...petImages]);
+    setNewPetImages([image, ...newPetImages]);
+  };
+
+  const uploadPetData = () => {
+    const body = new FormData();
+
+    Object.keys(petData).forEach((key) => {
+      body.append(key, petData[key]);
+    });
+
+    fetch(`/pet_listing/${pet_listing_id}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body,
+    });
+
+    newPetImages.forEach((image) => {
+      const imagePostBody = new FormData();
+      imagePostBody.append("image", image);
+      fetch(`/pet_listing/${pet_listing_id}/image/`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: imagePostBody,
+      });
+    });
+
+    deletedPetImageIds.forEach((id) => {
+      fetch(`/pet_listing/${pet_listing_id}/image/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    });
+
+    navigate(`/pet_listing/${pet_listing_id}`);
+  };
+
   return loadingData ? (
     <></>
   ) : (
     <div className="flex flex-col justify-center items-center bg-gray-50 py-3 min-h-screen">
-      {user?.shelter?.id === shelterData.shelter.id ? (
-        <EditPageButtons link={`/pet_listing/${pet_listing_id}/edit`} />
-      ) : (
-        <></>
-      )}
       <ShelterTitle shelterData={shelterData} link={true} />
+      <ConfrimDenyButton
+        onConfirm={uploadPetData}
+        onDeny={() => navigate(`/pet_listing/${pet_listing_id}`)}
+      />
       <section id="pet_gallery" className="p-2 w-5/6 sm:w-3/4 mb-3">
         <SideBySide>
-          <ReactCarousel images={petImages} />
+          <EditableReactCarousel images={petImages} addNewImage={addNewImage} />
           <PetListingDetails petData={petData} />
         </SideBySide>
       </section>
@@ -115,20 +167,9 @@ const PetListing = () => {
         </Grid>
       </section>
 
-      {/* TODO: what link to go to on click? */}
-      {user?.shelter?.id !== shelterData.shelter.id ? (
-        <div className="flex justify-center pb-10 bg-gray-50 pt-3">
-          <Link to="">
-            <button className="bg-gray-700 m-3 text-white text-lg font-semibold hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-6 py-2.5 mr-2 mb-2">
-              Adopt
-            </button>
-          </Link>
-        </div>
-      ) : (
-        <></>
-      )}
+      <button onClick={uploadPetData}>Click me</button>
     </div>
   );
 };
 
-export default PetListing;
+export default PetListingEditable;
