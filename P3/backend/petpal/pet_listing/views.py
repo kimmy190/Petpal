@@ -126,6 +126,9 @@ class PetListingView(PermissionPolicyMixin, RetrieveUpdateDestroyAPIView):
     permission_classes = [IsShelterPermission]
     permission_classes_per_method = {"GET": []}
 
+    # def patch(self, request, *args, **kwargs):
+    #     print("BODY", request.POST)
+
     def get_queryset(self):
         if self.request.method == "GET":
             return PetListing.objects.all()

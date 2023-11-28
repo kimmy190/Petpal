@@ -44,9 +44,6 @@ function range(start, end) {
 }
 
 const ReactRating = ({ value, onClick }) => {
-  // TODO: figure out interactive design when readOnly = true
-  // Probably need to pass callbacks
-
   const [numFilled, setNumFilled] = useState(value);
 
   const onMouseEnter = (val) => () => {

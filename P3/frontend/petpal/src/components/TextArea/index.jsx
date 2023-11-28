@@ -1,10 +1,10 @@
 import React from "react";
 
-const TextArea = ({ title, rows, children, onChange }) => {
+const TextArea = ({ title, rows, children, onChange, value }) => {
   return (
     <>
       <label
-        for={`${title}_textarea`}
+        htmlFor={`${title}_textarea`}
         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
       />
       <textarea
@@ -15,9 +15,8 @@ const TextArea = ({ title, rows, children, onChange }) => {
         onChange={(e) => {
           onChange(e.target.value);
         }}
-      >
-        {children}
-      </textarea>
+        value={value}
+      ></textarea>
     </>
   );
 };

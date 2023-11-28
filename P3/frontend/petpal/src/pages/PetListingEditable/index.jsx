@@ -2,7 +2,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import ShelterTitle from "../../components/ShelterTitle";
 import SideBySide from "../../components/SideBySide";
-import PetListingDetails from "../../components/PetListingDetails";
 import Grid from "../../components/Grid";
 import Card from "../../components/Card";
 import { UserContext } from "../../contexts/UserContext";
@@ -22,12 +21,11 @@ const PetListingEditable = () => {
   const [deletedPetImageIds, setDeletedPetImageIds] = useState([]);
   const [nextPetImageId, setNextPetImageId] = useState(0);
 
-  const onUploadedImageDelete = (currObj) => (images) => {
-    setPetImages(images.filter((image) => image.id !== currObj.id));
-    setDeletedPetImageIds([...deletedPetImageIds, currObj.id]);
-  };
-
   useEffect(() => {
+    const onUploadedImageDelete = (currObj) => (images) => {
+      setPetImages(images.filter((image) => image.id !== currObj.id));
+      setDeletedPetImageIds((prev) => [...prev, currObj.id]);
+    };
     const perfromUseEffect = async () => {
       const petResponse = await fetch(`/pet_listing/${pet_listing_id}`, {
         method: "GET",
@@ -103,7 +101,7 @@ const PetListingEditable = () => {
       setLoadingData(false);
     };
     perfromUseEffect();
-  }, [pet_listing_id, navigate]);
+  }, [navigate, pet_listing_id, user]);
 
   const addNewImage = (image) => {
     setPetImages([
@@ -141,7 +139,7 @@ const PetListingEditable = () => {
         .map((image) => {
           const imagePostBody = new FormData();
           imagePostBody.append("image", image.file);
-          fetch(`/pet_listing/${pet_listing_id}/image/`, {
+          return fetch(`/pet_listing/${pet_listing_id}/image/`, {
             method: "POST",
             headers: {
               Authorization: `Bearer ${token}`,
@@ -196,9 +194,8 @@ const PetListingEditable = () => {
               onChange={(value) => {
                 updateParam("medical_history", value);
               }}
-            >
-              {petData.medical_history}
-            </TextArea>
+              value={petData.medical_history}
+            ></TextArea>
           </Card>
           <Card title={"Requirements"}>
             <TextArea
@@ -207,9 +204,8 @@ const PetListingEditable = () => {
               onChange={(value) => {
                 updateParam("requirements", value);
               }}
-            >
-              {petData.requirements}
-            </TextArea>
+              value={petData.requirements}
+            ></TextArea>
           </Card>
         </Grid>
         <Grid cols={1}>
@@ -220,9 +216,8 @@ const PetListingEditable = () => {
               onChange={(value) => {
                 updateParam("additional_comments", value);
               }}
-            >
-              {petData.additional_comments}
-            </TextArea>
+              value={petData.additional_comments}
+            ></TextArea>
           </Card>
         </Grid>
       </section>

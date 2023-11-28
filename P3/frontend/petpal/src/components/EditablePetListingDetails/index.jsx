@@ -10,7 +10,7 @@ const EditablePetListingDetails = ({ petData, updateParam }) => {
     <div className="bg-white flex-col flex-start p-6 w-full">
       <div className="flex mb-2 md:text-2xl items-center font-medium leading-tight text-neutral-800 dark:text-neutral-50">
         <div className="flex w-full flex-col md:flex-row md:gap-4 justify-between items-baseline ">
-          <div class="grid sm:grid-cols-2 gap-2 mb-2 mr-5">
+          <div className="grid sm:grid-cols-2 gap-2 mb-2 mr-5">
             <div className="relative">
               <input
                 type="text"
@@ -23,7 +23,7 @@ const EditablePetListingDetails = ({ petData, updateParam }) => {
                 placeholder=""
               />
               <label
-                for="name"
+                htmlFor="name"
                 className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
               >
                 Name
@@ -45,7 +45,7 @@ const EditablePetListingDetails = ({ petData, updateParam }) => {
                   <option value="Withdrawn">Withdrawn</option>
                 </select>
                 <label
-                  for="status"
+                  htmlFor="status"
                   className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-900 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1"
                 >
                   Status
@@ -79,7 +79,7 @@ const EditablePetListingDetails = ({ petData, updateParam }) => {
         <p className="font-semibold mr-4"> Age</p>
         <div className="w-32 sm:w-48">
           <label
-            for="age"
+            htmlFor="age"
             className="block text-sm font-medium text-gray-900 dark:text-white"
           ></label>
           <input

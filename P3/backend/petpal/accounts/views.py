@@ -3,7 +3,7 @@ from rest_framework.generics import (
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView,
     CreateAPIView,
-    RetrieveDestroyAPIView
+    RetrieveDestroyAPIView,
 )
 from rest_framework.permissions import IsAuthenticated
 from .serializers import (
@@ -27,6 +27,27 @@ class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = "page_size"
     max_page_size = 10
+
+
+# Taken from https://b0uh.github.io/drf-viewset-permission-policy-per-method.html
+class PermissionPolicyMixin:
+    def check_permissions(self, request):
+        try:
+            # This line is heavily inspired from `APIView.dispatch`.
+            # It returns the method associated with an endpoint.
+            handler = getattr(self, request.method.lower())
+        except AttributeError:
+            handler = None
+
+        if (
+            handler
+            and self.permission_classes_per_method
+            and handler.__name__.upper() in self.permission_classes_per_method
+        ):
+            self.permission_classes = self.permission_classes_per_method.get(
+                handler.__name__.upper()
+            )
+        super().check_permissions(request)
 
 
 # Create your views here.
@@ -73,7 +94,7 @@ class PetSeekerCreate(CreateAPIView):
     serializer_class = SeekerSerializer
 
 
-class PetSeekerDetail(RetrieveUpdateDestroyAPIView):
+class PetSeekerDetail(PermissionPolicyMixin, RetrieveUpdateDestroyAPIView):
     """
     A view for retrieving, updating, and deleting a specific pet seeker's details.
 
@@ -87,6 +108,7 @@ class PetSeekerDetail(RetrieveUpdateDestroyAPIView):
     """
 
     permission_classes = [CanViewSeekerProfile]
+    permission_classes_per_method = {"GET": []}
     serializer_class = SeekerSerializer
 
     def get_object(self):
@@ -123,29 +145,8 @@ class IsShelterOwner(BasePermission):
         # If it's an unsafe method (PUT, PATCH, DELETE)
         if hasattr(request.user, "shelter"):  # check if user is shelter
             # return obj.shelter == request.user
-            return request.user.shelter.id == view.kwargs['pk'] 
+            return request.user.shelter.id == view.kwargs["pk"]
         return False
-
-
-# Taken from https://b0uh.github.io/drf-viewset-permission-policy-per-method.html
-class PermissionPolicyMixin:
-    def check_permissions(self, request):
-        try:
-            # This line is heavily inspired from `APIView.dispatch`.
-            # It returns the method associated with an endpoint.
-            handler = getattr(self, request.method.lower())
-        except AttributeError:
-            handler = None
-
-        if (
-            handler
-            and self.permission_classes_per_method
-            and handler.__name__.upper() in self.permission_classes_per_method
-        ):
-            self.permission_classes = self.permission_classes_per_method.get(
-                handler.__name__.upper()
-            )
-        super().check_permissions(request)
 
 
 class PetShelterDetail(PermissionPolicyMixin, RetrieveUpdateDestroyAPIView):
@@ -168,46 +169,51 @@ class PetShelterDetail(PermissionPolicyMixin, RetrieveUpdateDestroyAPIView):
         return get_object_or_404(PetShelter, id=self.kwargs["pk"]).user
 
 
-# retrieve, and update(only be done by user) the image for shelter 
-class PetShelterImageListCreate(ListCreateAPIView):
+# retrieve, and update(only be done by user) the image for shelter
+class PetShelterImageListCreate(PermissionPolicyMixin, ListCreateAPIView):
     """
-    A view for listing all the images.   
+    A view for listing all the images.
 
     - A GET request retrieves the list pet shelter images for a specific pet shelter
     - A POST request adds a new image for a specific pet shelter
-    """ 
+    """
+
     permission_classes = [IsAuthenticated, IsShelterOwner]
+    permission_classes_per_method = {"GET": []}
+
     serializer_class = ShelterImageSerializer
     queryset = ShelterImage.objects.all()
 
     def get_queryset(self):
         return ShelterImage.objects.filter(shelter=self.kwargs["pk"])
-    
+
     def perform_create(self, serializer):
         # Assuming the shelter is associated with the logged-in user
         serializer.save(shelter=self.request.user.shelter)
 
+
 class PetShelterImageDetail(RetrieveDestroyAPIView):
     """
-    A view for updating, retieving, updating, deleting a specific pet shelter's image 
-    
-    - A GET request returns the specific image 
-    - A DELETE request deletes the specific image 
+    A view for updating, retieving, updating, deleting a specific pet shelter's image
+
+    - A GET request returns the specific image
+    - A DELETE request deletes the specific image
     """
+
     permission_classes = [IsAuthenticated, IsShelterOwner]
     serializer_class = ShelterImageSerializer
     queryset = ShelterImage.objects.all()
 
     def get_queryset(self):
         return ShelterImage.objects.filter(shelter=self.kwargs["pk"])
-    
+
     def get_object(self):
-        shelter_id = self.kwargs["pk"]; 
-        image_id = self.kwargs["img_id"];
-        return get_object_or_404(ShelterImage,shelter__id=shelter_id, id=image_id) 
-        # return ShelterImage.objects.get(shelter__id=shelter_id, id=image_id)  
-    
+        shelter_id = self.kwargs["pk"]
+        image_id = self.kwargs["img_id"]
+        return get_object_or_404(ShelterImage, shelter__id=shelter_id, id=image_id)
+        # return ShelterImage.objects.get(shelter__id=shelter_id, id=image_id)
+
     def perform_destroy(self, instance):
-        #delete the actual image file from storage
+        # delete the actual image file from storage
         instance.image.delete()  # Assuming 'image' is the ImageField in ShelterImage model
         instance.delete()

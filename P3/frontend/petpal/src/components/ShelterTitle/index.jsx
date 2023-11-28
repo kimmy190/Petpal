@@ -1,10 +1,31 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const ShelterTitle = ({ shelterData, link }) => {
-  const logo = shelterData.shelter.logo_image;
   const name = shelterData.username;
   const shelterID = shelterData.shelter.id;
+  const [imageURL, setImageURL] = useState("");
+  useEffect(() => {
+    const perfromUseEffect = async () => {
+      const url = shelterData.shelter.logo_image.replace(
+        "http://127.0.0.1:8000",
+        ""
+      );
+      const imageResponse = await fetch(url, {
+        method: "GET",
+        redirect: "follow",
+        headers: {
+          accept: "application/json",
+        },
+      });
 
+      if (!imageResponse.ok) {
+        return;
+      }
+      setImageURL(URL.createObjectURL(await imageResponse.blob()));
+    };
+    perfromUseEffect();
+  }, [shelterData]);
   const SVG = () => (
     <div className="relative self-start ml-1">
       <svg
@@ -27,7 +48,7 @@ const ShelterTitle = ({ shelterData, link }) => {
   const NameSection = () => (
     <>
       <div className="rounded-full w-6 h-6 mr-2 mb-1">
-        <img src={logo} alt="logo" />
+        <img src={imageURL} alt="logo" />
       </div>
       <h1 className="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl">
         {name}
