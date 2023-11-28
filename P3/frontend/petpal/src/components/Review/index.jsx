@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReactRating from "../ReactRating";
 import { useNavigate } from "react-router-dom";
 import ProfileImage from "../ProfileImage";
 import PostReply from "../PostReply";
+import { UserContext } from "../../contexts/UserContext";
 
 // NOTE: shelterUserId != shelterID
 const Review = ({ review, shelterUserId }) => {
-  const [user, setUser] = useState();
+  const [reviewUser, setReviewUser] = useState();
   const [replyUsers, setReplyUsers] = useState();
-
+  const { user } = useContext(UserContext);
   const [loadingData, setLoadingData] = useState(true);
   const navigate = useNavigate();
 
@@ -27,7 +28,7 @@ const Review = ({ review, shelterUserId }) => {
         return;
       }
       const userJson = await userResponse.json();
-      setUser(userJson);
+      setReviewUser(userJson);
 
       setReplyUsers(
         await Promise.all(
@@ -61,8 +62,8 @@ const Review = ({ review, shelterUserId }) => {
   ) : (
     <div className="w-full">
       <div className="flex items-center justify-start">
-        <ProfileImage user={user} />
-        <p className="font-bold">{user.username}</p>
+        <ProfileImage user={reviewUser} />
+        <p className="font-bold">{reviewUser.username}</p>
       </div>
       <div className="my-1 flex list-none gap-1 p-0">
         <ReactRating value={review.rating} />
@@ -87,12 +88,16 @@ const Review = ({ review, shelterUserId }) => {
             </div>
           );
         })}
-        <div className="flex flex-row w-full">
-          <div className="w-1/6"></div>
-          <div className="w-5/6">
-            <PostReply commentId={review.id}></PostReply>
+        {user ? (
+          <div className="flex flex-row w-full">
+            <div className="w-1/6"></div>
+            <div className="w-5/6">
+              <PostReply commentId={review.id}></PostReply>
+            </div>
           </div>
-        </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

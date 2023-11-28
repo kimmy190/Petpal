@@ -8,6 +8,8 @@ import Card from "../../components/Card";
 import { UserContext } from "../../contexts/UserContext";
 import EditPageButtons from "../../components/EditPageButtons";
 import Review from "../../components/Review";
+import PostReview from "../../components/PostReview";
+import ShelterInfo from "../../components/ShelterInfo";
 const Shelter = () => {
   const { shelter_id } = useParams();
   const navigate = useNavigate();
@@ -16,7 +18,7 @@ const Shelter = () => {
   const [loadingData, setLoadingData] = useState(true);
   const [shelterImage, setShelterImages] = useState([]);
   const [reviews, setReviews] = useState([]);
-
+  console.log(!!user);
   useEffect(() => {
     const perfromUseEffect = async () => {
       const shelterResponse = await fetch(`/accounts/shelter/${shelter_id}`, {
@@ -77,7 +79,8 @@ const Shelter = () => {
         return;
       }
       const reviewJson = await reviewResponse.json();
-      setReviews(reviewJson.results);
+
+      setReviews(reviewJson.results.reverse());
       setLoadingData(false);
     };
     perfromUseEffect();
@@ -95,7 +98,7 @@ const Shelter = () => {
       <ShelterTitle shelterData={shelterData} />
       <section id="shelter-info" class="p-2 w-3/4 mb-3">
         <SideBySide>
-          <div>temp</div>
+          <ShelterInfo shelterData={shelterData} />
           <ReactCarousel images={shelterImage} />
         </SideBySide>
       </section>
@@ -130,6 +133,14 @@ const Shelter = () => {
               </Card>
             );
           })}
+          {(user && !user.shelter) ||
+          (user && user.shelter.id !== shelterData.shelter.id) ? (
+            <Card>
+              <PostReview shelterID={shelterData.shelter.id} />
+            </Card>
+          ) : (
+            <></>
+          )}
         </Grid>
       </section>
     </div>
