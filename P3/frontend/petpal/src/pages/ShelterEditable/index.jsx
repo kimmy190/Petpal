@@ -1,22 +1,18 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import ShelterTitle from "../../components/ShelterTitle";
-import ReactCarousel from "../../components/ReactCarousel";
 import SideBySide from "../../components/SideBySide";
 import Grid from "../../components/Grid";
 import Card from "../../components/Card";
 import { UserContext } from "../../contexts/UserContext";
-import EditPageButtons from "../../components/EditPageButtons";
 import Review from "../../components/Review";
-import PostReview from "../../components/PostReview";
-import ShelterInfo from "../../components/ShelterInfo";
 import EditableReactCarousel from "../../components/EditableReactCarousel";
 import ConfrimDenyButton from "../../components/ConfirmDenyEditButtons";
 import EditableShelterInfo from "../../components/EditableShelterInfo";
 const ShelterEditable = () => {
   const { shelter_id } = useParams();
   const navigate = useNavigate();
-  const { user, token } = useContext(UserContext);
+  const { token } = useContext(UserContext);
   const [shelterData, setShelterData] = useState();
   const [loadingData, setLoadingData] = useState(true);
   const [shelterImage, setShelterImages] = useState([]);
