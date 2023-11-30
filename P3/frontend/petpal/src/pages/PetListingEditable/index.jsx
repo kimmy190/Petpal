@@ -119,18 +119,13 @@ const PetListingEditable = () => {
   };
 
   const uploadPetData = async () => {
-    const body = new FormData();
-
-    Object.keys(petData).forEach((key) => {
-      body.append(key, petData[key]);
-    });
-
     await fetch(`/pet_listing/${pet_listing_id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
-      body,
+      body: JSON.stringify(petData),
     });
 
     await Promise.all(

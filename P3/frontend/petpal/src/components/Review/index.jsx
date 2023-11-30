@@ -6,7 +6,7 @@ import PostReply from "../PostReply";
 import { UserContext } from "../../contexts/UserContext";
 
 // NOTE: shelterUserId != shelterID
-const Review = ({ review, shelterUserId }) => {
+const Review = ({ review, shelterUserId, allowReply }) => {
   const [reviewUser, setReviewUser] = useState();
   const [replyUsers, setReplyUsers] = useState();
   const { user } = useContext(UserContext);
@@ -88,7 +88,7 @@ const Review = ({ review, shelterUserId }) => {
             </div>
           );
         })}
-        {user ? (
+        {allowReply && user ? (
           <div className="flex flex-row w-full">
             <div className="w-1/6"></div>
             <div className="w-5/6">

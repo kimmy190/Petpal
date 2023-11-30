@@ -5,8 +5,12 @@ const ShelterTitle = ({ shelterData, link }) => {
   const name = shelterData.username;
   const shelterID = shelterData.shelter.id;
   const [imageURL, setImageURL] = useState("");
+
   useEffect(() => {
     const perfromUseEffect = async () => {
+      if (!shelterData.shelter.logo_image) {
+        return;
+      }
       const url = shelterData.shelter.logo_image.replace(
         "http://127.0.0.1:8000",
         ""
@@ -26,6 +30,7 @@ const ShelterTitle = ({ shelterData, link }) => {
     };
     perfromUseEffect();
   }, [shelterData]);
+
   const SVG = () => (
     <div className="relative self-start ml-1">
       <svg

@@ -10,16 +10,27 @@ import EditPageButtons from "../../components/EditPageButtons";
 import Review from "../../components/Review";
 import PostReview from "../../components/PostReview";
 import ShelterInfo from "../../components/ShelterInfo";
-const Shelter = () => {
+import EditableReactCarousel from "../../components/EditableReactCarousel";
+import ConfrimDenyButton from "../../components/ConfirmDenyEditButtons";
+import EditableShelterInfo from "../../components/EditableShelterInfo";
+const ShelterEditable = () => {
   const { shelter_id } = useParams();
   const navigate = useNavigate();
-  const { user } = useContext(UserContext);
+  const { user, token } = useContext(UserContext);
   const [shelterData, setShelterData] = useState();
   const [loadingData, setLoadingData] = useState(true);
   const [shelterImage, setShelterImages] = useState([]);
+  const [deletedShelterImages, setDeletedShelterImages] = useState([]);
+  const [nextShelterImageId, setNextShelterImageId] = useState(0);
+
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     const perfromUseEffect = async () => {
+      const onUploadedImageDelete = (currObj) => (images) => {
+        setShelterImages(images.filter((image) => image.id !== currObj.id));
+        setDeletedShelterImages((prev) => [...prev, currObj.id]);
+      };
+
       const shelterResponse = await fetch(`/accounts/shelter/${shelter_id}`, {
         method: "GET",
         redirect: "follow",
@@ -49,6 +60,12 @@ const Shelter = () => {
         return;
       }
       const shelterImageJson = await shelterImageResponse.json();
+      if (shelterImageJson.length !== 0) {
+        setNextShelterImageId(
+          shelterImageJson[shelterImageJson.length - 1].id + 1
+        );
+      }
+
       setShelterImages(
         await Promise.all(
           shelterImageJson
@@ -60,7 +77,11 @@ const Shelter = () => {
               if (!response.ok) {
                 return "";
               }
-              return URL.createObjectURL(await response.blob());
+              return {
+                url: URL.createObjectURL(await response.blob()),
+                id: imageObj.id,
+                onDelete: onUploadedImageDelete(imageObj),
+              };
             })
             .reverse()
         )
@@ -85,20 +106,95 @@ const Shelter = () => {
     perfromUseEffect();
   }, [shelter_id, navigate]);
 
+  const addNewImage = (image) => {
+    setShelterImages([
+      {
+        url: URL.createObjectURL(image),
+        id: nextShelterImageId,
+        onDelete: (images) => {
+          setShelterImages(
+            images.filter((image) => image.id !== nextShelterImageId)
+          );
+        },
+        file: image,
+      },
+      ...shelterImage,
+    ]);
+    setNextShelterImageId(nextShelterImageId + 1);
+  };
+
+  const uploadShelterData = async () => {
+    console.log(shelterData);
+    console.log(JSON.stringify(shelterData));
+    const copy = { ...shelterData.shelter };
+
+    // This is really scuffed, and it should probably be done in the backend
+    delete copy.user;
+    delete copy.logo_image;
+
+    await fetch(`/accounts/shelter/${shelter_id}/`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ shelter: copy }),
+    });
+
+    await Promise.all(
+      shelterImage
+        .filter((image) => !!image.file)
+        .map((image) => {
+          const imagePostBody = new FormData();
+          imagePostBody.append("image", image.file);
+          return fetch(`/accounts/shelter/${shelter_id}/image/`, {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            body: imagePostBody,
+          });
+        })
+    );
+
+    await Promise.all(
+      deletedShelterImages.map((id) => {
+        return fetch(`/accounts/shelter/${shelter_id}/image/${id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      })
+    );
+
+    navigate(`/shelter/${shelter_id}`);
+  };
+
   return loadingData ? (
     <></>
   ) : (
     <div className="flex flex-col justify-center items-center bg-gray-50 py-3 min-h-screen">
-      {user?.shelter?.id === shelterData.shelter.id ? (
-        <EditPageButtons link={`/shelter/${shelter_id}/edit`} />
-      ) : (
-        <></>
-      )}
+      <ConfrimDenyButton
+        onConfirm={uploadShelterData}
+        onDeny={() => navigate(`/shelter/${shelter_id}`)}
+      />
       <ShelterTitle shelterData={shelterData} />
       <section id="shelter-info" class="p-2 w-3/4 mb-3">
         <SideBySide>
-          <ShelterInfo shelter={shelterData.shelter} />
-          <ReactCarousel images={shelterImage} />
+          <EditableShelterInfo
+            shelter={shelterData.shelter}
+            updateParam={(param, value) => {
+              setShelterData({
+                ...shelterData,
+                shelter: { ...shelterData.shelter, [param]: value },
+              });
+            }}
+          />
+          <EditableReactCarousel
+            images={shelterImage}
+            addNewImage={addNewImage}
+          />
         </SideBySide>
       </section>
 
@@ -128,26 +224,14 @@ const Shelter = () => {
           {reviews.map((review, i) => {
             return (
               <Card key={i}>
-                <Review
-                  review={review}
-                  shelterUserId={shelterData.id}
-                  allowReply={true}
-                />
+                <Review review={review} shelterUserId={shelterData.id} />
               </Card>
             );
           })}
-          {(user && !user.shelter) ||
-          (user && user.shelter.id !== shelterData.shelter.id) ? (
-            <Card>
-              <PostReview shelterID={shelterData.shelter.id} />
-            </Card>
-          ) : (
-            <></>
-          )}
         </Grid>
       </section>
     </div>
   );
 };
 
-export default Shelter;
+export default ShelterEditable;

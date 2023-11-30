@@ -4,6 +4,7 @@ import PetListing from "./pages/PetListing";
 import { UserContext, useUserContext } from "./contexts/UserContext";
 import PetListingEditable from "./pages/PetListingEditable";
 import Shelter from "./pages/Shelter";
+import ShelterEditable from "./pages/ShelterEditable";
 function App() {
   return (
     <UserContext.Provider value={useUserContext()}>
@@ -19,6 +20,10 @@ function App() {
               element={<PetListingEditable />}
             />
             <Route path="shelter/:shelter_id" element={<Shelter />} />
+            <Route
+              path="shelter/:shelter_id/edit"
+              element={<ShelterEditable />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const TextArea = ({ title, rows, children, onChange, value }) => {
+const TextArea = ({ title, rows, onChange, value }) => {
   return (
     <>
       <label
