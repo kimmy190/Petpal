@@ -1,6 +1,3 @@
-import { useState, useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
-import ReactRating from "../ReactRating";
 import TextArea from "../TextArea";
 
 const EditableShelterInfo = ({ shelter, updateParam }) => {

@@ -47,7 +47,7 @@ const EditableReactCarousel = ({ images, addNewImage }) => {
       <div className="relative w-full h-full overflow-hidden after:clear-both after:block after:content-['']">
         <div
           className={
-            active == 0
+            active === 0
               ? "relative float-left -mr-[100%] hidden w-full h-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none !block data-[te-carousel-fade]:opacity-100 data-[te-carousel-fade]:z-[1]"
               : "relative float-left -mr-[100%] hidden w-full h-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none hidden"
           }
@@ -63,7 +63,7 @@ const EditableReactCarousel = ({ images, addNewImage }) => {
         {images.map((obj, i) => {
           let className =
             "relative float-left -mr-[100%] hidden w-full h-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none ";
-          if (active == i + 1) {
+          if (active === i + 1) {
             className +=
               "!block data-[te-carousel-fade]:opacity-100 data-[te-carousel-fade]:z-[1]";
           } else {

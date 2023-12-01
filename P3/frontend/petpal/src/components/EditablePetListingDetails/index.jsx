@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import StatusTag from "../StatusTag";
+import React from "react";
 import ReactRating from "../ReactRating";
 
 const EditablePetListingDetails = ({ petData, updateParam }) => {

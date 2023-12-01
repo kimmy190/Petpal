@@ -11,7 +11,7 @@ const PageButtons = ({ page, setPage, disableRightButton }) => {
           "w-6 h-6 mr-2 " + (page === 1 ? "text-gray-300" : "cursor-pointer")
         }
         onClick={() => {
-          if (page != 1) {
+          if (page !== 1) {
             setPage(page - 1);
           }
         }}
