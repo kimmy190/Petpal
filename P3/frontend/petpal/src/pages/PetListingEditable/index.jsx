@@ -127,6 +127,7 @@ const PetListingEditable = () => {
       },
       body: JSON.stringify(petData),
     });
+    console.log(JSON.stringify(petData));
 
     await Promise.all(
       petImages
@@ -159,7 +160,7 @@ const PetListingEditable = () => {
   };
 
   const updateParam = (field, value) => {
-    setPetData({ ...petData, [field]: [value] });
+    setPetData({ ...petData, [field]: value });
   };
 
   return loadingData ? (
