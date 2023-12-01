@@ -114,7 +114,7 @@ const ShelterEditable = () => {
       } else {
         setDisableRightButton(false);
       }
-      setReviews(reviewJson.results.reverse());
+      setReviews(reviewJson.results);
     };
     perfromUseEffect();
   }, [shelter_id, page, navigate]);

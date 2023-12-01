@@ -97,7 +97,7 @@ const Shelter = () => {
       } else {
         setDisableRightButton(false);
       }
-      setReviews(reviewJson.results.reverse());
+      setReviews(reviewJson.results);
     };
     perfromUseEffect();
   }, [shelter_id, page, navigate]);
@@ -160,6 +160,10 @@ const Shelter = () => {
               </Card>
             );
           })}
+        </Grid>
+      </section>
+      <section id="post-shelter-reviews" class="w-1/2">
+        <Grid cols={1}>
           {(user && !user.shelter) ||
           (user && user.shelter.id !== shelterData.shelter.id) ? (
             <Card>
