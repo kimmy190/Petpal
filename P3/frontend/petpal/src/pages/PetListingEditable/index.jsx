@@ -127,7 +127,6 @@ const PetListingEditable = () => {
       },
       body: JSON.stringify(petData),
     });
-    console.log(JSON.stringify(petData));
 
     await Promise.all(
       petImages
