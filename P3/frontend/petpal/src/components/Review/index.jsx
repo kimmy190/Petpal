@@ -53,15 +53,10 @@ const Review = ({ review, shelterUserId, allowReply }) => {
       );
       setLoadingData(false);
     };
-    console.log("INSIDE", review, review.reply);
 
     perfromUseEffect();
   }, [review, navigate]);
 
-  useEffect(() => {
-    console.log("REVIEW CHANGED");
-  }, [review]);
-  console.log(review, review.reply);
   return loadingData ? (
     <></>
   ) : (
@@ -81,7 +76,7 @@ const Review = ({ review, shelterUserId, allowReply }) => {
             background += "bg-yellow-100";
           }
           return (
-            <div className="flex flex-row w-full mb-3">
+            <div className="flex flex-row w-full mb-3" key={reply.id}>
               <div className={"w-1/6 " + background}></div>
               <div className={"w-5/6 " + background}>
                 <div className="flex items-center justify-start">

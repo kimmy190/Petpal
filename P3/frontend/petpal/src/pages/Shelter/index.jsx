@@ -112,7 +112,7 @@ const Shelter = () => {
         <></>
       )}
       <ShelterTitle shelterData={shelterData} />
-      <section id="shelter-info" class="p-2 w-3/4 mb-3">
+      <section id="shelter-info" className="p-2 w-3/4 mb-3">
         <SideBySide>
           <ShelterInfo shelter={shelterData.shelter} />
           <ReactCarousel images={shelterImage} />
@@ -120,7 +120,7 @@ const Shelter = () => {
       </section>
 
       <h2
-        class="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl
+        className="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl
         mt-3 mb-1 p-2"
       >
         Pets Available for Adoption
@@ -129,7 +129,7 @@ const Shelter = () => {
         Create lasting memories with a new loving companion!
       </h2>
 
-      <section id="shelter-pets" class="flex justify-center w-full p-4">
+      <section id="shelter-pets" className="flex justify-center w-full p-4">
         {/** TODO: add search feature via Andre component */}
       </section>
 
@@ -147,7 +147,7 @@ const Shelter = () => {
         />
       </div>
 
-      <section id="shelter-reviews" class="w-10/12">
+      <section id="shelter-reviews" className="w-10/12">
         <Grid cols={2}>
           {reviews.map((review, i) => {
             return (
@@ -162,7 +162,7 @@ const Shelter = () => {
           })}
         </Grid>
       </section>
-      <section id="post-shelter-reviews" class="w-1/2">
+      <section id="post-shelter-reviews" className="w-1/2">
         <Grid cols={1}>
           {(user && !user.shelter) ||
           (user && user.shelter.id !== shelterData.shelter.id) ? (

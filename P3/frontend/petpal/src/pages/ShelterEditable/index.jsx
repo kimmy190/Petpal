@@ -137,8 +137,6 @@ const ShelterEditable = () => {
   };
 
   const uploadShelterData = async () => {
-    console.log(shelterData);
-    console.log(JSON.stringify(shelterData));
     const copy = { ...shelterData.shelter };
 
     // This is really scuffed, and it should probably be done in the backend
@@ -193,7 +191,7 @@ const ShelterEditable = () => {
         onDeny={() => navigate(`/shelter/${shelter_id}`)}
       />
       <ShelterTitle shelterData={shelterData} />
-      <section id="shelter-info" class="p-2 w-3/4 mb-3">
+      <section id="shelter-info" className="p-2 w-3/4 mb-3">
         <SideBySide>
           <EditableShelterInfo
             shelter={shelterData.shelter}
@@ -212,7 +210,7 @@ const ShelterEditable = () => {
       </section>
 
       <h2
-        class="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl
+        className="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl
         mt-3 mb-1 p-2"
       >
         Pets Available for Adoption
@@ -221,7 +219,7 @@ const ShelterEditable = () => {
         Create lasting memories with a new loving companion!
       </h2>
 
-      <section id="shelter-pets" class="flex justify-center w-full p-4">
+      <section id="shelter-pets" className="flex justify-center w-full p-4">
         {/** TODO: add search feature via Andre component */}
       </section>
 
@@ -239,7 +237,7 @@ const ShelterEditable = () => {
         />
       </div>
 
-      <section id="shelter-reviews" class="w-10/12">
+      <section id="shelter-reviews" className="w-10/12">
         <Grid cols={2}>
           {reviews.map((review, i) => {
             return (
