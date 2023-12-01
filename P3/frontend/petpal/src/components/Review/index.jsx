@@ -12,7 +12,6 @@ const Review = ({ review, shelterUserId, allowReply }) => {
   const { user } = useContext(UserContext);
   const [loadingData, setLoadingData] = useState(true);
   const navigate = useNavigate();
-
   useEffect(() => {
     const perfromUseEffect = async () => {
       const userResponse = await fetch(`/accounts/seeker/${review.author}`, {
@@ -54,9 +53,15 @@ const Review = ({ review, shelterUserId, allowReply }) => {
       );
       setLoadingData(false);
     };
+    console.log("INSIDE", review, review.reply);
+
     perfromUseEffect();
   }, [review, navigate]);
 
+  useEffect(() => {
+    console.log("REVIEW CHANGED");
+  }, [review]);
+  console.log(review, review.reply);
   return loadingData ? (
     <></>
   ) : (

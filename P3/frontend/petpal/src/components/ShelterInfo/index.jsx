@@ -5,7 +5,7 @@ const ShelterInfo = ({ shelter }) => {
         <h1 className="text-2xl mb-4 font-bold text-gray-900">
           Mission Statement
         </h1>
-        <p className="mb-6">{shelter.mission_statement}</p>
+        <p className="mb-6 whitespace-pre-line">{shelter.mission_statement}</p>
       </div>
       <h1 className="text-2xl mb-4 font-bold text-gray-900">Contact us!</h1>
       <p>

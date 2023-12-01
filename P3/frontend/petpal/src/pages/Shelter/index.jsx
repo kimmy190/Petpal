@@ -10,6 +10,7 @@ import EditPageButtons from "../../components/EditPageButtons";
 import Review from "../../components/Review";
 import PostReview from "../../components/PostReview";
 import ShelterInfo from "../../components/ShelterInfo";
+import PageButtons from "../../components/PageButtons";
 const Shelter = () => {
   const { shelter_id } = useParams();
   const navigate = useNavigate();
@@ -18,6 +19,9 @@ const Shelter = () => {
   const [loadingData, setLoadingData] = useState(true);
   const [shelterImage, setShelterImages] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [page, setPage] = useState(1);
+  const [disableRightButton, setDisableRightButton] = useState(false);
+
   useEffect(() => {
     const perfromUseEffect = async () => {
       const shelterResponse = await fetch(`/accounts/shelter/${shelter_id}`, {
@@ -66,24 +70,37 @@ const Shelter = () => {
         )
       );
 
-      const reviewResponse = await fetch(`/comments/shelter/${shelter_id}`, {
-        method: "GET",
-        redirect: "follow",
-        headers: {
-          accept: "application/json",
-        },
-      });
+      setLoadingData(false);
+    };
+    perfromUseEffect();
+  }, [shelter_id, navigate]);
+
+  useEffect(() => {
+    const perfromUseEffect = async () => {
+      const reviewResponse = await fetch(
+        `/comments/shelter/${shelter_id}?page=${page}`,
+        {
+          method: "GET",
+          redirect: "follow",
+          headers: {
+            accept: "application/json",
+          },
+        }
+      );
       if (!reviewResponse.ok) {
         navigate("/home");
         return;
       }
       const reviewJson = await reviewResponse.json();
-
+      if (!reviewJson.next) {
+        setDisableRightButton(true);
+      } else {
+        setDisableRightButton(false);
+      }
       setReviews(reviewJson.results.reverse());
-      setLoadingData(false);
     };
     perfromUseEffect();
-  }, [shelter_id, navigate]);
+  }, [shelter_id, page, navigate]);
 
   return loadingData ? (
     <></>
@@ -119,15 +136,22 @@ const Shelter = () => {
       <h2 className="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl mb-1 p-2 pt-4">
         Reviews
       </h2>
-      <h2 className="font-light text-gray-500 text-sm sm:text-lg md:text-xl pb-7">
+      <h2 className="font-light text-gray-500 text-sm sm:text-lg md:text-xl mb-5">
         Tell us about your adoption experience!
       </h2>
+      <div className="pb-7">
+        <PageButtons
+          page={page}
+          setPage={setPage}
+          disableRightButton={disableRightButton}
+        />
+      </div>
 
       <section id="shelter-reviews" class="w-10/12">
         <Grid cols={2}>
           {reviews.map((review, i) => {
             return (
-              <Card key={i}>
+              <Card key={review.id}>
                 <Review
                   review={review}
                   shelterUserId={shelterData.id}

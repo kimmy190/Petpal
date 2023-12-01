@@ -9,6 +9,7 @@ import Review from "../../components/Review";
 import EditableReactCarousel from "../../components/EditableReactCarousel";
 import ConfrimDenyButton from "../../components/ConfirmDenyEditButtons";
 import EditableShelterInfo from "../../components/EditableShelterInfo";
+import PageButtons from "../../components/PageButtons";
 const ShelterEditable = () => {
   const { shelter_id } = useParams();
   const navigate = useNavigate();
@@ -20,6 +21,9 @@ const ShelterEditable = () => {
   const [nextShelterImageId, setNextShelterImageId] = useState(0);
 
   const [reviews, setReviews] = useState([]);
+  const [page, setPage] = useState(1);
+  const [disableRightButton, setDisableRightButton] = useState(false);
+
   useEffect(() => {
     const perfromUseEffect = async () => {
       const onUploadedImageDelete = (currObj) => (images) => {
@@ -83,24 +87,37 @@ const ShelterEditable = () => {
         )
       );
 
-      const reviewResponse = await fetch(`/comments/shelter/${shelter_id}`, {
-        method: "GET",
-        redirect: "follow",
-        headers: {
-          accept: "application/json",
-        },
-      });
+      setLoadingData(false);
+    };
+    perfromUseEffect();
+  }, [shelter_id, navigate]);
+
+  useEffect(() => {
+    const perfromUseEffect = async () => {
+      const reviewResponse = await fetch(
+        `/comments/shelter/${shelter_id}?page=${page}`,
+        {
+          method: "GET",
+          redirect: "follow",
+          headers: {
+            accept: "application/json",
+          },
+        }
+      );
       if (!reviewResponse.ok) {
         navigate("/home");
         return;
       }
       const reviewJson = await reviewResponse.json();
-
+      if (!reviewJson.next) {
+        setDisableRightButton(true);
+      } else {
+        setDisableRightButton(false);
+      }
       setReviews(reviewJson.results.reverse());
-      setLoadingData(false);
     };
     perfromUseEffect();
-  }, [shelter_id, navigate]);
+  }, [shelter_id, page, navigate]);
 
   const addNewImage = (image) => {
     setShelterImages([
@@ -214,12 +231,19 @@ const ShelterEditable = () => {
       <h2 className="font-light text-gray-500 text-sm sm:text-lg md:text-xl pb-7">
         Tell us about your adoption experience!
       </h2>
+      <div className="pb-7">
+        <PageButtons
+          page={page}
+          setPage={setPage}
+          disableRightButton={disableRightButton}
+        />
+      </div>
 
       <section id="shelter-reviews" class="w-10/12">
         <Grid cols={2}>
           {reviews.map((review, i) => {
             return (
-              <Card key={i}>
+              <Card key={review.id}>
                 <Review review={review} shelterUserId={shelterData.id} />
               </Card>
             );
