@@ -3,16 +3,16 @@ import { createContext } from "react";
 
 export const UserContext = createContext({
   user: {},
-  setUserName: () => {},
+  setUserName: () => { },
   token: "",
   setToken: "",
 });
 
 export const useUserContext = () => {
   // const [user, setUser] = useState(null);
-  const [user, setUser] = useState({ shelter: { id: 1 } });
+  const [user, setUser] = useState({ seeker: { id: 1 } });
   const [token, setToken] = useState(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxNDUwOTg3LCJpYXQiOjE3MDEzNjQ1ODcsImp0aSI6ImVhMmUwNjBjYWRkNzQ5NTA5MGYwYjY0NjE1NDdjMGIxIiwidXNlcl9pZCI6Nn0.dMmsbUp0cfHi6vRtBmUKImivvZxrALDuhidxY_l60Bc"
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxNTY5ODkzLCJpYXQiOjE3MDE0ODM0OTMsImp0aSI6IjVjMjZkNjQzY2JkMzQ4NDg4MTZhMTY2OWNiYjczNDBiIiwidXNlcl9pZCI6NX0.YvpZvncWj4sy4Yhjgo6RmT6xDqAihmohjQ9dSHwLyWA"
   );
 
   return {
