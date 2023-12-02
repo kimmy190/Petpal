@@ -10,6 +10,7 @@ import EditableReactCarousel from "../../components/EditableReactCarousel";
 import ConfrimDenyButton from "../../components/ConfirmDenyEditButtons";
 import EditableShelterInfo from "../../components/EditableShelterInfo";
 import PageButtons from "../../components/PageButtons";
+import ErrorModal from "../../components/ErrorModal";
 const ShelterEditable = () => {
   const { shelter_id } = useParams();
   const navigate = useNavigate();
@@ -22,7 +23,13 @@ const ShelterEditable = () => {
 
   const [reviews, setReviews] = useState([]);
   const [page, setPage] = useState(1);
-  const [disableRightButton, setDisableRightButton] = useState(false);
+  const [disableRightButton, setDisableRightButton] = useState(true);
+
+  const [showError, setShowError] = useState(false);
+  const [errorObj, setErrorObj] = useState({
+    title: "There was an issue updating your shelter",
+    body: "",
+  });
 
   useEffect(() => {
     const perfromUseEffect = async () => {
@@ -136,7 +143,34 @@ const ShelterEditable = () => {
     setNextShelterImageId(nextShelterImageId + 1);
   };
 
+  const errorCheck = () => {
+    let error = false;
+    const setMsg = (msg) => {
+      setErrorObj({
+        ...errorObj,
+        body: msg,
+      });
+      error = true;
+    };
+    if (shelterImage.length === 0) {
+      setMsg("You must include at least one image for your gallery");
+    }
+
+    if (shelterData.shelter.mission_statement === "") {
+      setMsg("You must include a mission statement");
+    }
+
+    if (error) {
+      setShowError(true);
+    }
+    return error;
+  };
+
   const uploadShelterData = async () => {
+    if (errorCheck()) {
+      return;
+    }
+
     const copy = { ...shelterData.shelter };
 
     // This is really scuffed, and it should probably be done in the backend
@@ -186,6 +220,11 @@ const ShelterEditable = () => {
     <></>
   ) : (
     <div className="flex flex-col justify-center items-center bg-gray-50 py-3 min-h-screen">
+      <ErrorModal
+        errorObj={errorObj}
+        show={showError}
+        setShow={setShowError}
+      ></ErrorModal>
       <ConfrimDenyButton
         onConfirm={uploadShelterData}
         onDeny={() => navigate(`/shelter/${shelter_id}`)}
