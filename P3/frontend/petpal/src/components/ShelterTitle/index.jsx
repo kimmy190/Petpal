@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const ShelterTitle = ({ shelterData, link }) => {
-  const name = shelterData.username;
+  const name = shelterData.shelter.organization_name;
   const shelterID = shelterData.shelter.id;
   const [imageURL, setImageURL] = useState("");
 
@@ -60,7 +60,7 @@ const ShelterTitle = ({ shelterData, link }) => {
       </h1>
     </>
   );
-
+  console.log(link);
   return (
     <div className="flex justify-center items-center p-3">
       {link ? (

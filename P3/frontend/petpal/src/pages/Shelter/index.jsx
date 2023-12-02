@@ -57,8 +57,6 @@ const Shelter = () => {
         await Promise.all(
           shelterImageJson
             .map(async (imageObj) => {
-              // TODO: How to fix this?? I think this issue goes away
-              // Once we upload using React. Nope
               const url = imageObj.image.replace("http://127.0.0.1:8000", "");
               const response = await fetch(url);
               if (!response.ok) {
