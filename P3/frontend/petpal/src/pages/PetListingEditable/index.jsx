@@ -9,6 +9,7 @@ import ConfrimDenyButton from "../../components/ConfirmDenyEditButtons";
 import EditableReactCarousel from "../../components/EditableReactCarousel";
 import EditablePetListingDetails from "../../components/EditablePetListingDetails";
 import TextArea from "../../components/TextArea";
+import ErrorModal from "../../components/ErrorModal";
 const PetListingEditable = () => {
   const { pet_listing_id } = useParams();
   const navigate = useNavigate();
@@ -20,6 +21,12 @@ const PetListingEditable = () => {
   const [petImages, setPetImages] = useState([]);
   const [deletedPetImageIds, setDeletedPetImageIds] = useState([]);
   const [nextPetImageId, setNextPetImageId] = useState(0);
+
+  const [showError, setShowError] = useState(false);
+  const [errorObj, setErrorObj] = useState({
+    title: "There was an issue updating your pet listing",
+    body: "",
+  });
 
   useEffect(() => {
     const onUploadedImageDelete = (currObj) => (images) => {
@@ -118,7 +125,40 @@ const PetListingEditable = () => {
     setNextPetImageId(nextPetImageId + 1);
   };
 
+  const errorCheck = () => {
+    let error = false;
+    const setMsg = (msg) => {
+      setErrorObj({
+        ...errorObj,
+        body: msg,
+      });
+      error = true;
+      setShowError(true);
+    };
+
+    if (petImages.length === 0) {
+      setMsg("You must include at least one image for your gallery");
+    }
+    if (petData.pet_name === "" || petData.pet_name.length > 50) {
+      setMsg("The pet named you entered is invalid");
+    }
+    if (petData.medical_history === "") {
+      setMsg("You must include a medical history");
+    }
+    if (petData.requirements === "") {
+      setMsg("You must include requirements");
+    }
+    if (petData.additional_comments === "") {
+      setMsg("You must include additional comments");
+    }
+    return error;
+  };
+
   const uploadPetData = async () => {
+    if (errorCheck()) {
+      return;
+    }
+
     await fetch(`/pet_listing/${pet_listing_id}`, {
       method: "PATCH",
       headers: {
@@ -166,11 +206,16 @@ const PetListingEditable = () => {
     <></>
   ) : (
     <div className="flex flex-col justify-center items-center bg-gray-50 py-3 min-h-screen">
-      <ShelterTitle shelterData={shelterData} link={true} />
       <ConfrimDenyButton
         onConfirm={uploadPetData}
         onDeny={() => navigate(`/pet_listing/${pet_listing_id}`)}
       />
+      <ErrorModal
+        errorObj={errorObj}
+        show={showError}
+        setShow={setShowError}
+      ></ErrorModal>
+      <ShelterTitle shelterData={shelterData} link={true} />
       <section id="pet_gallery" className="p-2 w-5/6 sm:w-3/4 mb-3">
         <SideBySide>
           <EditableReactCarousel images={petImages} addNewImage={addNewImage} />
