@@ -25,6 +25,7 @@ pip install drf-yasg
 pip install pyyaml
 pip install packaging
 
+pip install django-cors-headers
 
 petpal/manage.py makemigrations
 petpal/manage.py migrate
