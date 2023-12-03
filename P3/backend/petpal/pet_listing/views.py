@@ -15,6 +15,12 @@ from rest_framework.pagination import PageNumberPagination
 from django.core.exceptions import PermissionDenied
 from django.core.exceptions import ObjectDoesNotExist
 
+from notification.views import create_notification
+from notification.serializers import NotificationSerializer
+from notification.models import Notification
+
+from accounts.models import PetSeeker
+
 
 # Taken from https://stackoverflow.com/questions/31785966/django-rest-framework-turn-on-pagination-on-a-viewset-like-modelviewset-pagina
 class StandardResultsSetPagination(PageNumberPagination):
@@ -101,6 +107,19 @@ class PetListingCreateView(PermissionPolicyMixin, ListCreateAPIView):
 
         self.response_data = serializer.data
         self.response_data["id"] = pet_listing.id
+
+        for user in PetSeeker.objects.filter(create_petlisting_notification=True):
+            create_notification(
+                NotificationSerializer(
+                    data={
+                        "message": f"{shelter.organization_name} created a new pet listing!",
+                        "notification_type": Notification.NotificationTypes.PET_LISTING,
+                        "was_read": False,
+                        "notification_type_id": pet_listing.id,
+                    }
+                ),
+                user,
+            )
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
