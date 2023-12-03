@@ -168,4 +168,17 @@ class ReplyCreateView(CreateAPIView):
     def perform_create(self, serializer):
         author = self.request.user
         parent = get_object_or_404(ShelterComment, pk=self.kwargs["parent"])
-        serializer.save(author=author, parent=parent)
+        reply = serializer.save(author=author, parent=parent)
+
+        if parent.author.id != author.id:
+            create_notification(
+                NotificationSerializer(
+                    data={
+                        "message": f"{author.username} left a reply on one of your reviews",
+                        "notification_type": Notification.NotificationTypes.REVIEW_REPLY,
+                        "was_read": False,
+                        "notification_type_id": reply.id,
+                    }
+                ),
+                parent.author,
+            )

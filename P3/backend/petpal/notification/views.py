@@ -58,15 +58,11 @@ def create_notification(serializer, user):
         case Notification.NotificationTypes.REVIEW_COMMENT:
             link = f"/shelter/{user.shelter.id}"
         case Notification.NotificationTypes.REVIEW_REPLY:
-            link = reverse(
-                "comments:get_shelter_list",
-                kwargs={
-                    "shelter": get_object_or_404(
-                        ShelterComment,
-                        pk=get_object_or_404(Reply, pk=notification_type_id).parent.pk,
-                    ).shelter.pk
-                },
-            )
+            shelter_id = get_object_or_404(
+                ShelterComment,
+                pk=get_object_or_404(Reply, pk=notification_type_id).parent.pk,
+            ).shelter.pk
+            link = f"/shelter/{shelter_id}"
 
         case Notification.NotificationTypes.APPLICATION:
             link = reverse("applications:get", kwargs={"pk": notification_type_id})
