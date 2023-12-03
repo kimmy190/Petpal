@@ -81,12 +81,12 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_METHODS = [
-    'DELETE',
-    'GET',
-    'OPTIONS',
-    'PATCH',
-    'POST',
-    'PUT',
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
 ]
 
 WSGI_APPLICATION = "petpal.wsgi.application"

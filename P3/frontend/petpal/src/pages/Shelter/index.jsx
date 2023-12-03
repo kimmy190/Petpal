@@ -11,6 +11,7 @@ import Review from "../../components/Review";
 import PostReview from "../../components/PostReview";
 import ShelterInfo from "../../components/ShelterInfo";
 import PageButtons from "../../components/PageButtons";
+import NotFound from "../NotFound";
 const Shelter = () => {
   const { shelter_id } = useParams();
   const navigate = useNavigate();
@@ -21,6 +22,12 @@ const Shelter = () => {
   const [reviews, setReviews] = useState([]);
   const [page, setPage] = useState(1);
   const [disableRightButton, setDisableRightButton] = useState(false);
+  const [notFound, set404] = useState(false);
+
+  const setNotFound = () => {
+    set404(true);
+    setLoadingData(false);
+  };
 
   useEffect(() => {
     const perfromUseEffect = async () => {
@@ -32,7 +39,7 @@ const Shelter = () => {
         },
       });
       if (!shelterResponse.ok) {
-        navigate("/home");
+        setNotFound();
         return;
       }
       const shelterJson = await shelterResponse.json();
@@ -49,7 +56,7 @@ const Shelter = () => {
         }
       );
       if (!shelterImageResponse.ok) {
-        navigate("/home");
+        setNotFound();
         return;
       }
       const shelterImageJson = await shelterImageResponse.json();
@@ -86,7 +93,7 @@ const Shelter = () => {
         }
       );
       if (!reviewResponse.ok) {
-        navigate("/home");
+        setNotFound();
         return;
       }
       const reviewJson = await reviewResponse.json();
@@ -102,6 +109,8 @@ const Shelter = () => {
 
   return loadingData ? (
     <></>
+  ) : notFound ? (
+    <NotFound></NotFound>
   ) : (
     <div className="flex flex-col justify-center items-center bg-gray-50 py-3 min-h-screen">
       {user?.shelter?.id === shelterData.shelter.id ? (

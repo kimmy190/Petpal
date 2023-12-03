@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import ReactRating from "../ReactRating";
-import { useNavigate } from "react-router-dom";
 import ProfileImage from "../ProfileImage";
 import PostReply from "../PostReply";
 import { UserContext } from "../../contexts/UserContext";
@@ -11,7 +10,6 @@ const Review = ({ review, shelterUserId, allowReply }) => {
   const [replyUsers, setReplyUsers] = useState();
   const { user } = useContext(UserContext);
   const [loadingData, setLoadingData] = useState(true);
-  const navigate = useNavigate();
   useEffect(() => {
     const perfromUseEffect = async () => {
       const userResponse = await fetch(`/accounts/seeker/${review.author}`, {
@@ -23,7 +21,6 @@ const Review = ({ review, shelterUserId, allowReply }) => {
       });
 
       if (!userResponse.ok) {
-        navigate("/home");
         return;
       }
       const userJson = await userResponse.json();
@@ -44,7 +41,6 @@ const Review = ({ review, shelterUserId, allowReply }) => {
             );
 
             if (!userResponse.ok) {
-              navigate("/home");
               return;
             }
             return userResponse.json();
@@ -55,7 +51,7 @@ const Review = ({ review, shelterUserId, allowReply }) => {
     };
 
     perfromUseEffect();
-  }, [review, navigate]);
+  }, [review]);
 
   return loadingData ? (
     <></>

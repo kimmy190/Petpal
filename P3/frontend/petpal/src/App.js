@@ -8,6 +8,7 @@ import ShelterEditable from "./pages/ShelterEditable";
 import Application from "./pages/Application";
 import ApplicationEditable from "./pages/ApplicationEditable";
 import PetListingCreation from "./pages/PetListingCreation";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
               element={<Application />}
             />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

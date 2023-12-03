@@ -9,6 +9,7 @@ import Card from "../../components/Card";
 import { Link } from "react-router-dom/dist";
 import { UserContext } from "../../contexts/UserContext";
 import EditPageButtons from "../../components/EditPageButtons";
+import NotFound from "../NotFound";
 const PetListing = () => {
   const { pet_listing_id } = useParams();
   const navigate = useNavigate();
@@ -17,6 +18,13 @@ const PetListing = () => {
   const [shelterData, setShelterData] = useState();
   const [loadingData, setLoadingData] = useState(true);
   const [petImages, setPetImages] = useState([]);
+
+  const [notFound, set404] = useState(false);
+
+  const setNotFound = () => {
+    set404(true);
+    setLoadingData(false);
+  };
 
   useEffect(() => {
     const perfromUseEffect = async () => {
@@ -28,7 +36,7 @@ const PetListing = () => {
         },
       });
       if (!petResponse.ok) {
-        navigate("/home");
+        setNotFound();
         return;
       }
       const petJson = await petResponse.json();
@@ -44,7 +52,7 @@ const PetListing = () => {
         }
       );
       if (!shelterResponse.ok) {
-        navigate("/home");
+        setNotFound();
         return;
       }
       const shelterJson = await shelterResponse.json();
@@ -61,7 +69,7 @@ const PetListing = () => {
         }
       );
       if (!petImagesResponse.ok) {
-        navigate("/home");
+        setNotFound();
         return;
       }
       const petImagesJson = await petImagesResponse.json();
@@ -89,6 +97,8 @@ const PetListing = () => {
 
   return loadingData ? (
     <></>
+  ) : notFound ? (
+    <NotFound></NotFound>
   ) : (
     <div className="flex flex-col justify-center items-center bg-gray-50 py-3 min-h-screen">
       {user?.shelter?.id === shelterData.shelter.id ? (

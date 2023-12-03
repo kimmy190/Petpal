@@ -11,10 +11,11 @@ import ConfrimDenyButton from "../../components/ConfirmDenyEditButtons";
 import EditableShelterInfo from "../../components/EditableShelterInfo";
 import PageButtons from "../../components/PageButtons";
 import ErrorModal from "../../components/ErrorModal";
+import NotFound from "../NotFound";
 const ShelterEditable = () => {
   const { shelter_id } = useParams();
   const navigate = useNavigate();
-  const { token } = useContext(UserContext);
+  const { user, token } = useContext(UserContext);
   const [shelterData, setShelterData] = useState();
   const [loadingData, setLoadingData] = useState(true);
   const [shelterImage, setShelterImages] = useState([]);
@@ -31,12 +32,23 @@ const ShelterEditable = () => {
     body: "",
   });
 
+  const [notFound, set404] = useState(false);
+
+  const setNotFound = () => {
+    set404(true);
+    setLoadingData(false);
+  };
+
   useEffect(() => {
     const perfromUseEffect = async () => {
       const onUploadedImageDelete = (currObj) => (images) => {
         setShelterImages(images.filter((image) => image.id !== currObj.id));
         setDeletedShelterImages((prev) => [...prev, currObj.id]);
       };
+
+      if (!user || !user.shelter || user.shelter.id !== parseInt(shelter_id)) {
+        setNotFound();
+      }
 
       const shelterResponse = await fetch(`/accounts/shelter/${shelter_id}`, {
         method: "GET",
@@ -46,7 +58,7 @@ const ShelterEditable = () => {
         },
       });
       if (!shelterResponse.ok) {
-        navigate("/home");
+        setNotFound();
         return;
       }
       const shelterJson = await shelterResponse.json();
@@ -63,7 +75,7 @@ const ShelterEditable = () => {
         }
       );
       if (!shelterImageResponse.ok) {
-        navigate("/home");
+        setNotFound();
         return;
       }
       const shelterImageJson = await shelterImageResponse.json();
@@ -97,7 +109,7 @@ const ShelterEditable = () => {
       setLoadingData(false);
     };
     perfromUseEffect();
-  }, [shelter_id, navigate]);
+  }, [shelter_id, user, navigate]);
 
   useEffect(() => {
     const perfromUseEffect = async () => {
@@ -112,7 +124,7 @@ const ShelterEditable = () => {
         }
       );
       if (!reviewResponse.ok) {
-        navigate("/home");
+        setNotFound(true);
         return;
       }
       const reviewJson = await reviewResponse.json();
@@ -151,7 +163,9 @@ const ShelterEditable = () => {
         body: msg,
       });
       error = true;
+      setShowError(true);
     };
+
     if (shelterImage.length === 0) {
       setMsg("You must include at least one image for your gallery");
     }
@@ -160,9 +174,6 @@ const ShelterEditable = () => {
       setMsg("You must include a mission statement");
     }
 
-    if (error) {
-      setShowError(true);
-    }
     return error;
   };
 
@@ -218,6 +229,8 @@ const ShelterEditable = () => {
 
   return loadingData ? (
     <></>
+  ) : notFound ? (
+    <NotFound></NotFound>
   ) : (
     <div className="flex flex-col justify-center items-center bg-gray-50 py-3 min-h-screen">
       <ErrorModal

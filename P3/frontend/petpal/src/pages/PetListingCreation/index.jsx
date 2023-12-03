@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import ShelterTitle from "../../components/ShelterTitle";
 import SideBySide from "../../components/SideBySide";
@@ -10,6 +10,7 @@ import EditableReactCarousel from "../../components/EditableReactCarousel";
 import EditablePetListingDetails from "../../components/EditablePetListingDetails";
 import TextArea from "../../components/TextArea";
 import ErrorModal from "../../components/ErrorModal";
+import NotFound from "../NotFound";
 const PetListingCreation = () => {
   const navigate = useNavigate();
   const { user, token } = useContext(UserContext);
@@ -44,10 +45,18 @@ const PetListingCreation = () => {
     body: "",
   });
 
+  const [notFound, set404] = useState(false);
+
+  const setNotFound = () => {
+    set404(true);
+    setLoadingData(false);
+  };
+
   useEffect(() => {
     const perfromUseEffect = async () => {
       if (!user.shelter) {
-        navigate("/home");
+        setNotFound();
+        return;
       }
 
       const shelterResponse = await fetch(
@@ -61,13 +70,14 @@ const PetListingCreation = () => {
         }
       );
       if (!shelterResponse.ok) {
-        navigate("/home");
+        setNotFound();
         return;
       }
       const shelterJson = await shelterResponse.json();
       setShelterData(shelterJson);
       if (user?.shelter?.id !== shelterJson.shelter.id) {
-        navigate("/home");
+        setNotFound();
+        return;
       }
 
       setPetData({ ...petData, location: shelterJson.shelter.address1 });
@@ -75,7 +85,7 @@ const PetListingCreation = () => {
       setLoadingData(false);
     };
     perfromUseEffect();
-  }, [navigate, user]);
+  }, [navigate, user, petData]);
 
   const addNewImage = (image) => {
     setPetImages([
@@ -160,6 +170,8 @@ const PetListingCreation = () => {
 
   return loadingData ? (
     <></>
+  ) : notFound ? (
+    <NotFound></NotFound>
   ) : (
     <div className="flex flex-col justify-center items-center bg-gray-50 py-3 min-h-screen">
       <ConfrimDenyButton

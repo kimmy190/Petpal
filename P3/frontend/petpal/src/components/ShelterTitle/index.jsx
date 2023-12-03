@@ -26,6 +26,7 @@ const ShelterTitle = ({ shelterData, link }) => {
       if (!imageResponse.ok) {
         return;
       }
+
       setImageURL(URL.createObjectURL(await imageResponse.blob()));
     };
     perfromUseEffect();
@@ -60,7 +61,6 @@ const ShelterTitle = ({ shelterData, link }) => {
       </h1>
     </>
   );
-  console.log(link);
   return (
     <div className="flex justify-center items-center p-3">
       {link ? (

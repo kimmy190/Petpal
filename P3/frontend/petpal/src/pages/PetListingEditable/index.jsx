@@ -10,6 +10,7 @@ import EditableReactCarousel from "../../components/EditableReactCarousel";
 import EditablePetListingDetails from "../../components/EditablePetListingDetails";
 import TextArea from "../../components/TextArea";
 import ErrorModal from "../../components/ErrorModal";
+import NotFound from "../NotFound";
 const PetListingEditable = () => {
   const { pet_listing_id } = useParams();
   const navigate = useNavigate();
@@ -28,6 +29,13 @@ const PetListingEditable = () => {
     body: "",
   });
 
+  const [notFound, set404] = useState(false);
+
+  const setNotFound = () => {
+    set404(true);
+    setLoadingData(false);
+  };
+
   useEffect(() => {
     const onUploadedImageDelete = (currObj) => (images) => {
       setPetImages(images.filter((image) => image.id !== currObj.id));
@@ -42,7 +50,7 @@ const PetListingEditable = () => {
         },
       });
       if (!petResponse.ok) {
-        navigate("/home");
+        setNotFound(true);
         return;
       }
       const petJson = await petResponse.json();
@@ -58,13 +66,14 @@ const PetListingEditable = () => {
         }
       );
       if (!shelterResponse.ok) {
-        navigate("/home");
+        setNotFound(true);
         return;
       }
       const shelterJson = await shelterResponse.json();
       setShelterData(shelterJson);
       if (user?.shelter?.id !== shelterJson.shelter.id) {
-        navigate("/home");
+        setNotFound(true);
+        return;
       }
 
       const petImagesResponse = await fetch(
@@ -78,7 +87,7 @@ const PetListingEditable = () => {
         }
       );
       if (!petImagesResponse.ok) {
-        navigate("/home");
+        setNotFound(true);
         return;
       }
       const petImagesJson = await petImagesResponse.json();
@@ -204,6 +213,11 @@ const PetListingEditable = () => {
 
   return loadingData ? (
     <></>
+  ) : notFound ||
+    !user ||
+    !user.shelter ||
+    user.shelter.id !== shelterData.shelter.id ? (
+    <NotFound></NotFound>
   ) : (
     <div className="flex flex-col justify-center items-center bg-gray-50 py-3 min-h-screen">
       <ConfrimDenyButton
