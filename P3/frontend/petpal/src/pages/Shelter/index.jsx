@@ -135,7 +135,7 @@ const Shelter = () => {
       </h2>
 
       <section id="shelter-pets" className="flex justify-center w-full p-4">
-        {/* <SearchGrid fetchOnLoad shelter_id={shelter_id} /> */}
+        <SearchGrid fetchOnLoad shelter_id={shelter_id} />
       </section>
 
       <h2 className="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl mb-1 p-2 pt-4">
