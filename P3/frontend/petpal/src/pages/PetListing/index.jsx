@@ -125,10 +125,10 @@ const PetListing = () => {
         </Grid>
       </section>
 
-      {/* TODO: what link to go to on click? */}
-      {user?.shelter?.id !== shelterData.shelter.id ? (
+      {user?.shelter?.id !== shelterData.shelter.id &&
+      petData.status === "Available" ? (
         <div className="flex justify-center pb-10 bg-gray-50 pt-3">
-          <Link to="">
+          <Link to={`/applications/pet_listing/${pet_listing_id}`}>
             <button className="bg-gray-700 m-3 text-white text-lg font-semibold hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-6 py-2.5 mr-2 mb-2">
               Adopt
             </button>
