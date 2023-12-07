@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "corsheaders",
+    "blog",
     "accounts",
     "phonenumber_field",
     "applications",
