@@ -85,7 +85,7 @@ const PetListingCreation = () => {
       setLoadingData(false);
     };
     perfromUseEffect();
-  }, [navigate, user, petData]);
+  }, [navigate, user]);
 
   const addNewImage = (image) => {
     setPetImages([
