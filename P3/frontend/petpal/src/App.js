@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AuthenticatedRoute from "./components/AuthenticatedRoute"
 import PetListing from "./pages/PetListing";
 import { UserContext, useUserContext } from "./contexts/UserContext";
 import PetListingEditable from "./pages/PetListingEditable";
@@ -39,11 +40,17 @@ function App() {
             />
             <Route
               path="applications/:application_id"
-              element={<Application />}
+              element={
+                  <Application />
+              }
             />
             <Route
               path="applications/"
-              element={<ApplicationList />}
+              element={
+                  <AuthenticatedRoute>
+                    <ApplicationList />
+                  </AuthenticatedRoute>
+              }
             />
             <Route
               path="search"
