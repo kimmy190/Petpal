@@ -9,14 +9,19 @@ from .models import Post
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
+from django.core.exceptions import PermissionDenied
+from django.core.exceptions import ObjectDoesNotExist
 
 @permission_classes([IsAuthenticated])
 class PostAPIView(APIView):
     def post(self, request):
         serializer = PostSerializer(data=request.data)
-        if request.user.shelter and serializer.is_valid():
-            serializer.save(author=request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        try: 
+            if request.user.shelter and serializer.is_valid():
+                serializer.save(author=request.user.shelter)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+        except ObjectDoesNotExist:
+            raise PermissionDenied
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, pk=None):
