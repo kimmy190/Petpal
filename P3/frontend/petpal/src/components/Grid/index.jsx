@@ -1,6 +1,11 @@
 const Grid = ({ cols, children }) => {
   return (
-    <div className={`mb-3 md:grid md:grid-cols-${cols} gap-4 rounded-lg`}>
+    <div
+      className={`mb-3 md:grid md:grid-cols-${cols} gap-4 rounded-lg`}
+      style={{
+        gridTemplateColumns: "1fr ".repeat(cols),
+      }}
+    >
       {children}
     </div>
   );

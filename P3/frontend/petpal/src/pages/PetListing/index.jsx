@@ -42,7 +42,7 @@ const PetListing = () => {
       const petJson = await petResponse.json();
       setPetData(petJson);
       const shelterResponse = await fetch(
-        `/accounts/shelter/${petJson.shelter}`,
+        `/accounts/shelter/${petJson.shelter.id}`,
         {
           method: "GET",
           redirect: "follow",
