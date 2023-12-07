@@ -11,6 +11,7 @@ import ApplicationList from "./pages/ApplicationList";
 import PetFinder from "./pages/Search";
 import PetListingCreation from "./pages/PetListingCreation";
 import NotFound from "./pages/NotFound";
+import MarkdownComponent from "./pages/BlogPost";
 
 function App() {
   return (
@@ -49,6 +50,10 @@ function App() {
               element={<PetFinder />}
             />
           </Route>
+          <Route
+              path="blog"
+              element={<MarkdownComponent />}
+            />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

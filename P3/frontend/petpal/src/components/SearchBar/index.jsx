@@ -46,7 +46,10 @@ function SearchBar({location="", onSubmit}) {
                 (suggestion) =>
                 suggestion.location.toLowerCase().indexOf(inputValue.toLowerCase()) > -1
             );
+            if (new_filteredSuggestions.length == 1) {
+                setInputValue({location: inputValue, id: new_filteredSuggestions[0].id});
             }
+        }
         setInputValue({location: inputValue});
         setFilteredSuggestions(new_filteredSuggestions);
         setShowSuggestions(true);
@@ -75,6 +78,7 @@ function SearchBar({location="", onSubmit}) {
                 {/* </Dropdown> */}
                 <div className="relative w-full">
                   <TextInput
+                    autocomplete="off"
                     type="search"
                     value={inputValue.location}
                     onChange={handleChange}
