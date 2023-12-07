@@ -23,6 +23,7 @@ const ShelterEditable = () => {
   const [shelterImage, setShelterImages] = useState([]);
   const [deletedShelterImages, setDeletedShelterImages] = useState([]);
   const [nextShelterImageId, setNextShelterImageId] = useState(0);
+  const [deletedPetListings, setDeletedPetListings] = useState([]);
 
   const [reviews, setReviews] = useState([]);
   const [page, setPage] = useState(1);
@@ -226,6 +227,17 @@ const ShelterEditable = () => {
       })
     );
 
+    await Promise.all(
+      deletedPetListings.map((id) => {
+        return fetch(`/pet_listing/${id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      })
+    );
+
     navigate(`/shelter/${shelter_id}`);
   };
 
@@ -274,7 +286,14 @@ const ShelterEditable = () => {
       </h2>
 
       <section id="shelter-pets" className="flex justify-center w-full p-4">
-        <SearchGrid fetchOnLoad shelter_id={shelter_id} editable={true} onEdit={() => {}}/>
+        <SearchGrid
+          fetchOnLoad
+          shelter_id={shelter_id}
+          editable={true}
+          onEdit={(petListingId) => {
+            setDeletedPetListings([...deletedPetListings, petListingId]);
+          }}
+        />
       </section>
 
       <h2 className="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl mb-1 p-2 pt-4">
