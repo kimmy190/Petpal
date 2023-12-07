@@ -1,5 +1,5 @@
 import { useEffect, useState, React } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Dropdown, Button, Radio, Label, Select } from "flowbite-react";
 import PetCard from "../PetCard";
 
@@ -213,10 +213,7 @@ function SearchGrid({
 
         <div className="gap-4 mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
           {editable && (
-            <a
-              href="/pet_creation"
-              className="relative max-h-max max-w-xs md:max-w-sm bg-white shadow rounded-lg  mb-2"
-            >
+            <Link to="/pet_listing/create">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -234,7 +231,7 @@ function SearchGrid({
               <div className="p-5 flex flex-col items-center text-medium text-gray-700">
                 Create a new pet listing!
               </div>
-            </a>
+            </Link>
           )}
           {pets.map((pet) => (
             <PetCard
