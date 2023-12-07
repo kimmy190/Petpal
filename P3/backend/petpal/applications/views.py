@@ -106,7 +106,7 @@ class ApplicationListView(ListAPIView):
     pagination_class = StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_fields = ['status']
-    ordering_fields = ['creation_time', 'last_update_time']
+    ordering_fields = ['-creation_time', '-last_update_time']
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):

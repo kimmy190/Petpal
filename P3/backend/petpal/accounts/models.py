@@ -24,7 +24,7 @@ class PetShelter(models.Model):
 
 
 class ShelterImage(models.Model):
-    shelter = models.ForeignKey(PetShelter, on_delete=models.CASCADE)
+    shelter = models.ForeignKey(PetShelter, related_name="images",on_delete=models.CASCADE)
     image = models.ImageField(upload_to="shelter_images/", null=True, blank=True)
 
 

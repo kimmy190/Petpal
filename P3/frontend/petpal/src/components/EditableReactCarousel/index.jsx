@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Carousel, initTE } from "tw-elements";
+// import { Carousel, initTE } from "tw-elements";
 import Dropzone from "../ImageDropzone";
 
 const EditableReactCarousel = ({ images, addNewImage }) => {
-  useEffect(() => {
-    initTE({ Carousel });
-  });
+  // useEffect(() => {
+  //   initTE({ Carousel });
+  // });
 
   const [active, setActive] = useState(0);
 
@@ -81,7 +81,7 @@ const EditableReactCarousel = ({ images, addNewImage }) => {
                 alt="..."
               />
               <svg
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="http:www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"

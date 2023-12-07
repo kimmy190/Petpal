@@ -85,7 +85,7 @@ class PetListingCreateView(PermissionPolicyMixin, ListCreateAPIView):
             if filter_param in self.request.GET:
                 filter[filter_param] = self.request.GET[filter_param]
 
-        return PetListing.objects.filter(**filter).order_by(order_by)
+        return PetListing.objects.filter(**filter).order_by("-" + order_by)
 
     def perform_create(self, serializer):
         shelter = self.request.user.shelter

@@ -1,3 +1,4 @@
+from accounts.serializers import ShelterInfoSerializer
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 
@@ -39,7 +40,8 @@ class PetListingSerializer(ModelSerializer):
         fields = "__all__"
 
     location = serializers.CharField(read_only=True, source="shelter.address1")
-    shelter = serializers.PrimaryKeyRelatedField(read_only=True)
+    # shelter = serializers.PrimaryKeyRelatedField(read_only=True)
+    shelter = ShelterInfoSerializer(read_only=True)
     images = serializers.ListField(child=serializers.ImageField(), write_only=True)
 
     behavior_aggresive = serializers.IntegerField(default=0, min_value=0, max_value=5)
@@ -47,3 +49,5 @@ class PetListingSerializer(ModelSerializer):
     behavior_noisy = serializers.IntegerField(default=0, min_value=0, max_value=5)
     behavior_scared = serializers.IntegerField(default=0, min_value=0, max_value=5)
     behavior_friendly = serializers.IntegerField(default=0, min_value=0, max_value=5)
+
+    images = PetListingImageSerializer(many=True, read_only=True)

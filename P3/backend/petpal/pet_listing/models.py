@@ -60,5 +60,5 @@ class PetListing(models.Model):
 
 
 class PetListingImage(models.Model):
-    pet_listing = models.ForeignKey(PetListing, on_delete=models.CASCADE)
+    pet_listing = models.ForeignKey(PetListing, related_name="images", on_delete=models.CASCADE)
     image = models.ImageField(upload_to="pet_listing_images/")

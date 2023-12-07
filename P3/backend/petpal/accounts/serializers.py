@@ -13,7 +13,7 @@ class SeekerSerializer(ModelSerializer):
     first_name = CharField(required=True)
     last_name = CharField(required=True)
     email = EmailField(validators=[UniqueValidator(queryset=PetSeeker.objects.all())])
-    password = CharField(required=True)
+    password = CharField(write_only=True, required=True)
     password2 = CharField(write_only=True, required=True)
     location = CharField(required=True)
 
@@ -77,12 +77,13 @@ class ShelterInfoSerializer(WritableNestedModelSerializer):
                     "mission_statement","country", "address1", "address2", "city", 
                     "state", "zip", "images" ]
 
+    # images = ShelterImageSerializer(read_only=True)
 
 class ShelterSerializer(WritableNestedModelSerializer):
     # Reverse OneToOne relation
     shelter = ShelterInfoSerializer()
     email = EmailField(validators=[UniqueValidator(queryset=PetSeeker.objects.all())])
-    password = CharField(required=True)
+    password = CharField(write_only=True, required=True)
     password2 = CharField(write_only=True)
 
     class Meta:

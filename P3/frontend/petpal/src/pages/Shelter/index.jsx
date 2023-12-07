@@ -11,6 +11,7 @@ import Review from "../../components/Review";
 import PostReview from "../../components/PostReview";
 import ShelterInfo from "../../components/ShelterInfo";
 import PageButtons from "../../components/PageButtons";
+import SearchGrid from "../../components/SearchGrid";
 const Shelter = () => {
   const { shelter_id } = useParams();
   const navigate = useNavigate();
@@ -120,8 +121,7 @@ const Shelter = () => {
       </section>
 
       <h2
-        className="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl
-        mt-3 mb-1 p-2"
+        className="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl mt-3 mb-1 p-2"
       >
         Pets Available for Adoption
       </h2>
@@ -131,6 +131,7 @@ const Shelter = () => {
 
       <section id="shelter-pets" className="flex justify-center w-full p-4">
         {/** TODO: add search feature via Andre component */}
+        <SearchGrid fetchOnLoad shelter_id={shelter_id} />
       </section>
 
       <h2 className="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl mb-1 p-2 pt-4">

@@ -7,6 +7,8 @@ import Shelter from "./pages/Shelter";
 import ShelterEditable from "./pages/ShelterEditable";
 import Application from "./pages/Application";
 import ApplicationEditable from "./pages/ApplicationEditable";
+import ApplicationList from "./pages/ApplicationList";
+import PetFinder from "./pages/Search";
 
 function App() {
   return (
@@ -34,6 +36,14 @@ function App() {
             <Route
               path="applications/:application_id"
               element={<Application />}
+            />
+            <Route
+              path="applications/"
+              element={<ApplicationList />}
+            />
+            <Route
+              path="search"
+              element={<PetFinder />}
             />
           </Route>
         </Routes>

@@ -34,6 +34,7 @@ class PetListing(models.Model):
 
     gender = models.CharField(max_length=50, choices=Genders.choices)
     age = models.IntegerField()
+    species = models.CharField(max_length=50, choices=Breeds.choices)
     breed = models.CharField(max_length=50, choices=Breeds.choices)
     size = models.CharField(max_length=50, choices=Sizes.choices)
     location = models.CharField(max_length=255, editable=False)
