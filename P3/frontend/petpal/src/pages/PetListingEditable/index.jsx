@@ -91,7 +91,12 @@ const PetListingEditable = () => {
         return;
       }
       const petImagesJson = await petImagesResponse.json();
-      setNextPetImageId(petImagesJson[petImagesJson.length - 1].id + 1);
+      if (petImagesJson.length !== 0) {
+        setNextPetImageId(petImagesJson[petImagesJson.length - 1].id + 1);
+      } else {
+        setNextPetImageId(0);
+      }
+
       setPetImages(
         await Promise.all(
           petImagesJson

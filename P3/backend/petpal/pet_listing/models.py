@@ -27,6 +27,10 @@ class PetListing(models.Model):
         MEDIUM = "Medium"
         SMALL = "Small"
 
+    class Species(models.TextChoices):
+        DOG = "Dog"
+        CAT = "Cat"
+
     shelter = models.ForeignKey(Shelter, on_delete=models.CASCADE)
     pet_name = models.CharField(max_length=50)
     status = models.CharField(max_length=50, choices=Statuses.choices)
@@ -36,6 +40,7 @@ class PetListing(models.Model):
     age = models.IntegerField()
     breed = models.CharField(max_length=50, choices=Breeds.choices)
     size = models.CharField(max_length=50, choices=Sizes.choices)
+    species = models.CharField(max_length=50, choices=Species.choices)
     location = models.CharField(max_length=255, editable=False)
 
     behavior_aggresive = models.IntegerField(
@@ -60,5 +65,7 @@ class PetListing(models.Model):
 
 
 class PetListingImage(models.Model):
-    pet_listing = models.ForeignKey(PetListing, related_name="images", on_delete=models.CASCADE)
+    pet_listing = models.ForeignKey(
+        PetListing, related_name="images", on_delete=models.CASCADE
+    )
     image = models.ImageField(upload_to="pet_listing_images/")

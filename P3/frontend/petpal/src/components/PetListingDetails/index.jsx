@@ -20,6 +20,10 @@ const PetListingDetails = ({ petData }) => {
       <hr className="my-2" />
 
       <div className="flex items-center justify-between mb-1">
+        <p className="font-semibold mr-4"> Species</p>
+        <p> {petData.species} </p>
+      </div>
+      <div className="flex items-center justify-between mb-1">
         <p className="font-semibold mr-4"> Gender</p>
         <p> {petData.gender} </p>
       </div>

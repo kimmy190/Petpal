@@ -16,6 +16,7 @@ const PetListingCreation = () => {
   const { user, token } = useContext(UserContext);
 
   const [petData, setPetData] = useState({
+    species: "",
     location: "",
     images: [],
     behavior_aggresive: 0,

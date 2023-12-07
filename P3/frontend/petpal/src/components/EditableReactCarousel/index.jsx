@@ -10,7 +10,7 @@ const EditableReactCarousel = ({ images, addNewImage }) => {
   const [active, setActive] = useState(0);
 
   return (
-    <div id="carousel" className="relative w-full h-[500px] bg-gray-200">
+    <div id="carousel" className="relative w-full h-[560px] bg-gray-200">
       <div className="absolute bottom-0 left-0 right-0 z-[2] mx-[15%] mb-4 flex list-none justify-center p-0">
         <button
           type="button"

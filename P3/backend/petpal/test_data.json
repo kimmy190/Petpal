@@ -118,7 +118,8 @@
       "groups": [],
       "user_permissions": []
     }
-  },{
+  },
+  {
     "model": "accounts.petseeker",
     "pk": 11,
     "fields": {
@@ -137,7 +138,7 @@
       "groups": [],
       "user_permissions": []
     }
-  }, 
+  },
 
   {
     "model": "accounts.petshelter",
@@ -190,7 +191,7 @@
       "zip": "MW34E3"
     }
   },
-   {
+  {
     "model": "applications.application",
     "pk": 1,
     "fields": {
@@ -251,6 +252,8 @@
     "pk": 1,
     "fields": {
       "shelter": 1,
+      "species": "Dog",
+
       "pet_name": "Franks",
       "status": "Available",
       "publication_date": "2023-11-09T22:46:22.212Z",
@@ -274,6 +277,8 @@
     "pk": 2,
     "fields": {
       "shelter": 1,
+      "species": "Dog",
+
       "pet_name": "Cindy",
       "status": "Available",
       "publication_date": "2023-11-09T22:47:33.628Z",
@@ -297,6 +302,8 @@
     "pk": 3,
     "fields": {
       "shelter": 2,
+      "species": "Dog",
+
       "pet_name": "Oldy",
       "status": "Withdrawn",
       "publication_date": "2023-11-09T22:48:29.195Z",
@@ -320,6 +327,8 @@
     "pk": 4,
     "fields": {
       "shelter": 2,
+      "species": "Dog",
+
       "pet_name": "Oldy2",
       "status": "Adopted",
       "publication_date": "2023-11-09T22:49:04.874Z",
@@ -343,6 +352,8 @@
     "pk": 5,
     "fields": {
       "shelter": 2,
+      "species": "Dog",
+
       "pet_name": "Sally",
       "status": "Adopted",
       "publication_date": "2023-11-09T22:49:37.785Z",
@@ -366,6 +377,8 @@
     "pk": 6,
     "fields": {
       "shelter": 2,
+      "species": "Dog",
+
       "pet_name": "Sally",
       "status": "Pending",
       "publication_date": "2023-11-09T22:50:55.628Z",
@@ -390,6 +403,8 @@
     "fields": {
       "shelter": 2,
       "pet_name": "Chad",
+      "species": "Dog",
+
       "status": "Available",
       "publication_date": "2023-11-09T22:51:41.815Z",
       "gender": "Male",
@@ -412,6 +427,8 @@
     "pk": 8,
     "fields": {
       "shelter": 1,
+      "species": "Dog",
+
       "pet_name": "Chad's Son",
       "status": "Available",
       "publication_date": "2023-11-09T22:52:34.859Z",
@@ -435,6 +452,8 @@
     "pk": 9,
     "fields": {
       "shelter": 1,
+      "species": "Dog",
+
       "pet_name": "ChiChi",
       "status": "Available",
       "publication_date": "2023-11-09T22:53:12.079Z",
@@ -458,6 +477,7 @@
     "pk": 10,
     "fields": {
       "shelter": 1,
+      "species": "Dog",
       "pet_name": "Xeres",
       "status": "Pending",
       "publication_date": "2023-11-09T22:54:27.849Z",
