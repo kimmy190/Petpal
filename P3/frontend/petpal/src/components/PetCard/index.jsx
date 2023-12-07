@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const PetCard = ({
   id,
@@ -47,7 +48,7 @@ const PetCard = ({
           </svg>
         </a>
       )}
-      <a href="./pet_detail.html">
+      <Link to={`/pet_listing/${id}`}>
         <div className="relative w-full h-56">
           <img
             className="w-full h-full object-cover rounded-t-lg"
@@ -55,7 +56,7 @@ const PetCard = ({
             alt=""
           />
         </div>
-      </a>
+      </Link>
       <div className="p-5 flex flex-col">
         <div className="flex justify-between">
           <a href="#">
