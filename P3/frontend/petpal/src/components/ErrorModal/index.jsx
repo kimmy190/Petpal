@@ -4,9 +4,9 @@ const ErrorModal = ({ errorObj, show, setShow }) => {
       <div
         className={
           "pointer-events-none fixed left-0 top-0 z-[1055] h-full w-full overflow-y-auto overflow-x-hidden outline-none " +
-          (show ? "block" : "opacity-0 visibility-0")
+          (show ? "block" : "hidden opacity-0 visibility-0")
         }
-        tabindex="-1"
+        tabIndex="-1"
       >
         <div
           className={

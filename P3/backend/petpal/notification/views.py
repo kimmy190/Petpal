@@ -26,6 +26,53 @@ class NotificationPagination(PageNumberPagination):
     max_page_size = 100
 
 
+def create_notification(serializer, user):
+    if not serializer.is_valid():
+        return
+    notification_type = serializer.validated_data.get("notification_type")
+    notification_type_id = serializer.validated_data.get("notification_type_id")
+
+    type_to_object_type = {
+        Notification.NotificationTypes.APPLICATION_COMMENT: ApplicationComment,
+        Notification.NotificationTypes.PET_LISTING: PetListing,
+        Notification.NotificationTypes.REVIEW_COMMENT: ShelterComment,
+        Notification.NotificationTypes.REVIEW_REPLY: Reply,
+        Notification.NotificationTypes.APPLICATION: Application,
+    }
+    # For comments endpoint, the notification_type_id will be the id of the comment.
+    # However, we want to extract the id of the shelter/application associated with that comment
+    link = ""
+    match notification_type:
+        case Notification.NotificationTypes.APPLICATION_COMMENT:
+            link = reverse(
+                "comments:get_application_list",
+                kwargs={
+                    "application": get_object_or_404(
+                        ApplicationComment, pk=notification_type_id
+                    ).application.pk
+                },
+            )
+        case Notification.NotificationTypes.PET_LISTING:
+            link = reverse("pet_listing:get", kwargs={"pk": notification_type_id})
+
+        case Notification.NotificationTypes.REVIEW_COMMENT:
+            link = f"/shelter/{user.shelter.id}"
+        case Notification.NotificationTypes.REVIEW_REPLY:
+            shelter_id = get_object_or_404(
+                ShelterComment,
+                pk=get_object_or_404(Reply, pk=notification_type_id).parent.pk,
+            ).shelter.pk
+            link = f"/shelter/{shelter_id}"
+
+        case Notification.NotificationTypes.APPLICATION:
+            link = reverse("applications:get", kwargs={"pk": notification_type_id})
+    # Make sure the object type exists
+    get_object_or_404(type_to_object_type[notification_type], pk=notification_type_id)
+    return Notification.objects.create(
+        **serializer.validated_data, seeker=user, link=link
+    )
+
+
 class NotificaitonListCreate(ListCreateAPIView):
     """
     Notifications for users.
@@ -58,64 +105,7 @@ class NotificaitonListCreate(ListCreateAPIView):
         return notifcations.filter(**filter)
 
     def perform_create(self, serializer):
-        seeker = self.request.user
-        notification_type = serializer.validated_data.get("notification_type")
-        notification_type_id = serializer.validated_data.get("notification_type_id")
-
-        type_to_object_type = {
-            Notification.NotificationTypes.APPLICATION_COMMENT: ApplicationComment,
-            Notification.NotificationTypes.PET_LISTING: PetListing,
-            Notification.NotificationTypes.REVIEW_COMMENT: ShelterComment,
-            Notification.NotificationTypes.REVIEW_REPLY: Reply,
-            Notification.NotificationTypes.APPLICATION: Application,
-        }
-        # For comments endpoint, the notification_type_id will be the id of the comment.
-        # However, we want to extract the id of the shelter/application associated with that comment
-        link = ""
-        match notification_type:
-            case Notification.NotificationTypes.APPLICATION_COMMENT:
-                link = reverse(
-                    "comments:get_application_list",
-                    kwargs={
-                        "application": get_object_or_404(
-                            ApplicationComment, pk=notification_type_id
-                        ).application.pk
-                    },
-                )
-            case Notification.NotificationTypes.PET_LISTING:
-                link = reverse("pet_listing:get", kwargs={"pk": notification_type_id})
-
-            case Notification.NotificationTypes.REVIEW_COMMENT:
-                link = reverse(
-                    "comments:get_shelter_list",
-                    kwargs={
-                        "shelter": get_object_or_404(
-                            ShelterComment, pk=notification_type_id
-                        ).shelter.pk
-                    },
-                )
-            case Notification.NotificationTypes.REVIEW_REPLY:
-                link = reverse(
-                    "comments:get_shelter_list",
-                    kwargs={
-                        "shelter": get_object_or_404(
-                            ShelterComment,
-                            pk=get_object_or_404(
-                                Reply, pk=notification_type_id
-                            ).parent.pk,
-                        ).shelter.pk
-                    },
-                )
-
-            case Notification.NotificationTypes.APPLICATION:
-                link = reverse("applications:get", kwargs={"pk": notification_type_id})
-        # Make sure the object type exists
-        get_object_or_404(
-            type_to_object_type[notification_type], pk=notification_type_id
-        )
-        Notification.objects.create(
-            **serializer.validated_data, seeker=seeker, link=link
-        )
+        create_notification(serializer, self.request.user)
 
 
 class NotificationRUD(RetrieveUpdateDestroyAPIView):

@@ -9,6 +9,8 @@ import Application from "./pages/Application";
 import ApplicationEditable from "./pages/ApplicationEditable";
 import ApplicationList from "./pages/ApplicationList";
 import PetFinder from "./pages/Search";
+import PetListingCreation from "./pages/PetListingCreation";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
               path="shelter/:shelter_id/edit"
               element={<ShelterEditable />}
             />
+            <Route path="pet_listing/create" element={<PetListingCreation />} />
             <Route
               path="applications/pet_listing/:pet_listing_id/"
               element={<ApplicationEditable />}
@@ -46,6 +49,7 @@ function App() {
               element={<PetFinder />}
             />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

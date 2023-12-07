@@ -92,6 +92,21 @@ CORS_ALLOW_METHODS = [
     "PUT",
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000/",
+    "http://10.0.0.220:3000/"
+    # Add other origins as needed
+]
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
 WSGI_APPLICATION = "petpal.wsgi.application"
 
 

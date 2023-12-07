@@ -12,6 +12,7 @@ import PostReview from "../../components/PostReview";
 import ShelterInfo from "../../components/ShelterInfo";
 import PageButtons from "../../components/PageButtons";
 import SearchGrid from "../../components/SearchGrid";
+import NotFound from "../NotFound";
 const Shelter = () => {
   const { shelter_id } = useParams();
   const navigate = useNavigate();
@@ -22,6 +23,12 @@ const Shelter = () => {
   const [reviews, setReviews] = useState([]);
   const [page, setPage] = useState(1);
   const [disableRightButton, setDisableRightButton] = useState(false);
+  const [notFound, set404] = useState(false);
+
+  const setNotFound = () => {
+    set404(true);
+    setLoadingData(false);
+  };
 
   useEffect(() => {
     const perfromUseEffect = async () => {
@@ -33,7 +40,7 @@ const Shelter = () => {
         },
       });
       if (!shelterResponse.ok) {
-        navigate("/home");
+        setNotFound();
         return;
       }
       const shelterJson = await shelterResponse.json();
@@ -50,7 +57,7 @@ const Shelter = () => {
         }
       );
       if (!shelterImageResponse.ok) {
-        navigate("/home");
+        setNotFound();
         return;
       }
       const shelterImageJson = await shelterImageResponse.json();
@@ -58,8 +65,6 @@ const Shelter = () => {
         await Promise.all(
           shelterImageJson
             .map(async (imageObj) => {
-              // TODO: How to fix this?? I think this issue goes away
-              // Once we upload using React. Nope
               const url = imageObj.image.replace("http://127.0.0.1:8000", "");
               const response = await fetch(url);
               if (!response.ok) {
@@ -89,7 +94,7 @@ const Shelter = () => {
         }
       );
       if (!reviewResponse.ok) {
-        navigate("/home");
+        setNotFound();
         return;
       }
       const reviewJson = await reviewResponse.json();
@@ -105,6 +110,8 @@ const Shelter = () => {
 
   return loadingData ? (
     <></>
+  ) : notFound ? (
+    <NotFound></NotFound>
   ) : (
     <div className="flex flex-col justify-center items-center bg-gray-50 py-3 min-h-screen">
       {user?.shelter?.id === shelterData.shelter.id ? (
@@ -130,7 +137,6 @@ const Shelter = () => {
       </h2>
 
       <section id="shelter-pets" className="flex justify-center w-full p-4">
-        {/** TODO: add search feature via Andre component */}
         <SearchGrid fetchOnLoad shelter_id={shelter_id} />
       </section>
 

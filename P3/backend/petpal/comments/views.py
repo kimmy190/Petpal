@@ -18,6 +18,10 @@ from .serializers import *
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.permissions import BasePermission
 
+from notification.views import create_notification
+from notification.serializers import NotificationSerializer
+from notification.models import Notification
+
 
 class CommentResultsSetPagination(PageNumberPagination):
     page_size = 10
@@ -84,7 +88,19 @@ class ShelterCommentListCreateView(ListCreateAPIView):
                 raise PermissionDenied
         except ObjectDoesNotExist:
             pass
-        serializer.save(author=author, shelter=shelter)
+        comment = serializer.save(author=author, shelter=shelter)
+
+        create_notification(
+            NotificationSerializer(
+                data={
+                    "message": f"{author.username} left a {comment.rating} star review",
+                    "notification_type": Notification.NotificationTypes.REVIEW_COMMENT,
+                    "was_read": False,
+                    "notification_type_id": comment.id,
+                }
+            ),
+            shelter.user,
+        )
 
     def get_queryset(self):
         return (
@@ -152,4 +168,17 @@ class ReplyCreateView(CreateAPIView):
     def perform_create(self, serializer):
         author = self.request.user
         parent = get_object_or_404(ShelterComment, pk=self.kwargs["parent"])
-        serializer.save(author=author, parent=parent)
+        reply = serializer.save(author=author, parent=parent)
+
+        if parent.author.id != author.id:
+            create_notification(
+                NotificationSerializer(
+                    data={
+                        "message": f"{author.username} left a reply on one of your reviews",
+                        "notification_type": Notification.NotificationTypes.REVIEW_REPLY,
+                        "was_read": False,
+                        "notification_type_id": reply.id,
+                    }
+                ),
+                parent.author,
+            )

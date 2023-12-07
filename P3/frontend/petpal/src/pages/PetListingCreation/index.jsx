@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import ShelterTitle from "../../components/ShelterTitle";
 import SideBySide from "../../components/SideBySide";
@@ -11,21 +11,37 @@ import EditablePetListingDetails from "../../components/EditablePetListingDetail
 import TextArea from "../../components/TextArea";
 import ErrorModal from "../../components/ErrorModal";
 import NotFound from "../NotFound";
-const PetListingEditable = () => {
-  const { pet_listing_id } = useParams();
+const PetListingCreation = () => {
   const navigate = useNavigate();
   const { user, token } = useContext(UserContext);
 
-  const [petData, setPetData] = useState();
+  const [petData, setPetData] = useState({
+    location: "",
+    images: [],
+    behavior_aggresive: 0,
+    behavior_social: 0,
+    behavior_noisy: 0,
+    behavior_scared: 0,
+    behavior_friendly: 0,
+    pet_name: "",
+    status: "Available",
+    publication_date: new Date().toDateString(),
+    gender: "Male",
+    age: 0,
+    breed: "Golden Doodle",
+    size: "Small",
+    medical_history: "",
+    requirements: "",
+    additional_comments: "",
+  });
   const [shelterData, setShelterData] = useState();
   const [loadingData, setLoadingData] = useState(true);
   const [petImages, setPetImages] = useState([]);
-  const [deletedPetImageIds, setDeletedPetImageIds] = useState([]);
   const [nextPetImageId, setNextPetImageId] = useState(0);
 
   const [showError, setShowError] = useState(false);
   const [errorObj, setErrorObj] = useState({
-    title: "There was an issue updating your pet listing",
+    title: "There was an issue creating your pet listing",
     body: "",
   });
 
@@ -37,26 +53,14 @@ const PetListingEditable = () => {
   };
 
   useEffect(() => {
-    const onUploadedImageDelete = (currObj) => (images) => {
-      setPetImages(images.filter((image) => image.id !== currObj.id));
-      setDeletedPetImageIds((prev) => [...prev, currObj.id]);
-    };
     const perfromUseEffect = async () => {
-      const petResponse = await fetch(`/pet_listing/${pet_listing_id}`, {
-        method: "GET",
-        redirect: "follow",
-        headers: {
-          accept: "application/json",
-        },
-      });
-      if (!petResponse.ok) {
-        setNotFound(true);
+      if (!user.shelter) {
+        setNotFound();
         return;
       }
-      const petJson = await petResponse.json();
-      setPetData(petJson);
+
       const shelterResponse = await fetch(
-        `/accounts/shelter/${petJson.shelter}`,
+        `/accounts/shelter/${user.shelter.id}`,
         {
           method: "GET",
           redirect: "follow",
@@ -66,58 +70,22 @@ const PetListingEditable = () => {
         }
       );
       if (!shelterResponse.ok) {
-        setNotFound(true);
+        setNotFound();
         return;
       }
       const shelterJson = await shelterResponse.json();
       setShelterData(shelterJson);
       if (user?.shelter?.id !== shelterJson.shelter.id) {
-        setNotFound(true);
+        setNotFound();
         return;
       }
 
-      const petImagesResponse = await fetch(
-        `/pet_listing/${pet_listing_id}/image`,
-        {
-          method: "GET",
-          redirect: "follow",
-          headers: {
-            accept: "application/json",
-          },
-        }
-      );
-      if (!petImagesResponse.ok) {
-        setNotFound(true);
-        return;
-      }
-      const petImagesJson = await petImagesResponse.json();
-      setNextPetImageId(petImagesJson[petImagesJson.length - 1].id + 1);
-      setPetImages(
-        await Promise.all(
-          petImagesJson
-            .map(async (imageObj, i) => {
-              // TODO: How to fix this?? I think this issue goes away
-              // Once we upload using React.
-              // Nope, it does not.
-              const url = imageObj.image.replace("http://127.0.0.1:8000", "");
-              const response = await fetch(url);
-              if (!response.ok) {
-                return "";
-              }
-              return {
-                url: URL.createObjectURL(await response.blob()),
-                id: imageObj.id,
-                onDelete: onUploadedImageDelete(imageObj),
-              };
-            })
-            .reverse()
-        )
-      );
+      setPetData({ ...petData, location: shelterJson.shelter.address1 });
 
       setLoadingData(false);
     };
     perfromUseEffect();
-  }, [navigate, pet_listing_id, user]);
+  }, [navigate, user, petData]);
 
   const addNewImage = (image) => {
     setPetImages([
@@ -168,8 +136,8 @@ const PetListingEditable = () => {
       return;
     }
 
-    await fetch(`/pet_listing/${pet_listing_id}`, {
-      method: "PATCH",
+    const response = await fetch(`/pet_listing/`, {
+      method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
@@ -177,33 +145,22 @@ const PetListingEditable = () => {
       body: JSON.stringify(petData),
     });
 
-    await Promise.all(
-      petImages
-        .filter((image) => !!image.file)
-        .map((image) => {
-          const imagePostBody = new FormData();
-          imagePostBody.append("image", image.file);
-          return fetch(`/pet_listing/${pet_listing_id}/image/`, {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            body: imagePostBody,
-          });
-        })
-    );
+    const json = await response.json();
+    const pet_listing_id = json.id;
 
     await Promise.all(
-      deletedPetImageIds.map((id) => {
-        return fetch(`/pet_listing/${pet_listing_id}/image/${id}`, {
-          method: "DELETE",
+      petImages.map((image) => {
+        const imagePostBody = new FormData();
+        imagePostBody.append("image", image.file);
+        return fetch(`/pet_listing/${pet_listing_id}/image/`, {
+          method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
           },
+          body: imagePostBody,
         });
       })
     );
-
     navigate(`/pet_listing/${pet_listing_id}`);
   };
 
@@ -213,16 +170,13 @@ const PetListingEditable = () => {
 
   return loadingData ? (
     <></>
-  ) : notFound ||
-    !user ||
-    !user.shelter ||
-    user.shelter.id !== shelterData.shelter.id ? (
+  ) : notFound ? (
     <NotFound></NotFound>
   ) : (
     <div className="flex flex-col justify-center items-center bg-gray-50 py-3 min-h-screen">
       <ConfrimDenyButton
         onConfirm={uploadPetData}
-        onDeny={() => navigate(`/pet_listing/${pet_listing_id}`)}
+        onDeny={() => navigate(`/shelter/${user.shelter.id}`)}
       />
       <ErrorModal
         errorObj={errorObj}
@@ -279,4 +233,4 @@ const PetListingEditable = () => {
   );
 };
 
-export default PetListingEditable;
+export default PetListingCreation;
