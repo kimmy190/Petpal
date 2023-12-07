@@ -12,6 +12,8 @@ import EditableShelterInfo from "../../components/EditableShelterInfo";
 import PageButtons from "../../components/PageButtons";
 import ErrorModal from "../../components/ErrorModal";
 import NotFound from "../NotFound";
+import SearchGrid from "../../components/SearchGrid";
+
 const ShelterEditable = () => {
   const { shelter_id } = useParams();
   const navigate = useNavigate();
@@ -272,7 +274,7 @@ const ShelterEditable = () => {
       </h2>
 
       <section id="shelter-pets" className="flex justify-center w-full p-4">
-        {/** TODO: add search feature via Andre component */}
+        <SearchGrid fetchOnLoad shelter_id={shelter_id} editable={true} onEdit={() => {}}/>
       </section>
 
       <h2 className="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl mb-1 p-2 pt-4">
