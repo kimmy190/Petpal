@@ -8,13 +8,21 @@ import ShelterEditable from "./pages/ShelterEditable";
 import Application from "./pages/Application";
 import ApplicationEditable from "./pages/ApplicationEditable";
 import PetListingCreation from "./pages/PetListingCreation";
+import Layout from "./components/Layout";
+import Login from "./pages/Login";
+import Main from "./pages/Main";
+import SeekerSignUp from "./pages/SeekerSignUp";
 
 function App() {
   return (
     <UserContext.Provider value={useUserContext()}>
       <BrowserRouter>
         <Routes>
-          <Route path="/">
+          <Route path="/" element={<Layout />}>
+            <Route
+                path="main"
+                element={<Main />}
+                />
             <Route
               path="pet_listing/:pet_listing_id"
               element={<PetListing />}
@@ -38,6 +46,15 @@ function App() {
               element={<Application />}
             />
           </Route>
+          <Route
+              path="login"
+              element={<Login />}
+            />
+            <Route
+              path="signup/seeker"
+              element={<SeekerSignUp />}
+            />
+
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

@@ -205,7 +205,7 @@ const PetListingEditable = () => {
   return loadingData ? (
     <></>
   ) : (
-    <div className="flex flex-col justify-center items-center bg-gray-50 py-3 min-h-screen">
+    <div className="flex flex-col items-center justify-center min-h-screen py-3 bg-gray-50">
       <ConfrimDenyButton
         onConfirm={uploadPetData}
         onDeny={() => navigate(`/pet_listing/${pet_listing_id}`)}
@@ -216,7 +216,7 @@ const PetListingEditable = () => {
         setShow={setShowError}
       ></ErrorModal>
       <ShelterTitle shelterData={shelterData} link={true} />
-      <section id="pet_gallery" className="p-2 w-5/6 sm:w-3/4 mb-3">
+      <section id="pet_gallery" className="w-5/6 p-2 mb-3 sm:w-3/4">
         <SideBySide>
           <EditableReactCarousel images={petImages} addNewImage={addNewImage} />
           <EditablePetListingDetails
