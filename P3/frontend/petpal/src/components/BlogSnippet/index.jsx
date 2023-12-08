@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Markdown from "react-markdown";
 import { Link } from "react-router-dom";
 import remarkGfm from "remark-gfm";
+import Post from "../BlogPost";
 
 const BlogSnippet = ({ post }) => {
   const date = new Date(post.created_at);
@@ -17,9 +18,10 @@ const BlogSnippet = ({ post }) => {
   return (
     <Link to={`/blog/${post.id}`}>
       <div ref={ref} className={`from-current overflow-hidden`}>
-        <h1 className=" from-current text-2xl font-bold">{post.title}</h1>
+        <Post {...post} />
+        {/* <h1 className=" from-current text-2xl font-bold">{post.title}</h1>
         <h1 className="text-sm italic">{`${month} ${date.getDate()}, ${date.getFullYear()}`}</h1>
-        <Markdown remarkPlugins={[remarkGfm]}>{post.content}</Markdown>
+        <Markdown remarkPlugins={[remarkGfm]}>{post.content}</Markdown> */}
       </div>
     </Link>
   );
