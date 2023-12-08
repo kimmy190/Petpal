@@ -133,7 +133,7 @@ class ApplicationCommentListCreateView(ListCreateAPIView):
         application.save()
 
         if application.applicant == author:
-            recipient = application.shelter
+            recipient = application.shelter.user
             comment_from = author.username
         else:
             recipient = application.applicant
