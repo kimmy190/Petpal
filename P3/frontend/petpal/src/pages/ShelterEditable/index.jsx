@@ -357,7 +357,7 @@ const ShelterEditable = () => {
         </Grid>
       </section>
       <section>
-        <Link to={`/blog/create`}>
+        <Link to={`/blog/new`}>
           <button className="bg-gray-700 m-3 text-white text-lg font-semibold hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-6 py-2.5 mr-2 mb-2">
             Create a new blog post!
           </button>
