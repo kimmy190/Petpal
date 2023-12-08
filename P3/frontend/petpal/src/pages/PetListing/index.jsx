@@ -10,14 +10,16 @@ import { Link } from "react-router-dom/dist";
 import { UserContext } from "../../contexts/UserContext";
 import EditPageButtons from "../../components/EditPageButtons";
 import NotFound from "../NotFound";
+import { Tooltip } from "flowbite-react";
 const PetListing = () => {
   const { pet_listing_id } = useParams();
   const navigate = useNavigate();
-  const { user } = useContext(UserContext);
+  const { user, token } = useContext(UserContext);
   const [petData, setPetData] = useState();
   const [shelterData, setShelterData] = useState();
   const [loadingData, setLoadingData] = useState(true);
   const [petImages, setPetImages] = useState([]);
+  const [application, setApplication] = useState(null);
 
   const [notFound, set404] = useState(false);
 
@@ -90,6 +92,24 @@ const PetListing = () => {
         )
       );
 
+      if (user && !user.shelter) {
+        const applicationResponse = await fetch(
+          `/applications/pet_listing/${pet_listing_id}`,
+          {
+            method: "GET",
+            redirect: "follow",
+            headers: {
+              accept: "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (applicationResponse.ok) {
+          const application = await applicationResponse.json();
+          setApplication(application);
+        }
+      }
+
       setLoadingData(false);
     };
     perfromUseEffect();
@@ -125,14 +145,23 @@ const PetListing = () => {
         </Grid>
       </section>
 
-      {user?.shelter?.id !== shelterData.shelter.id &&
-      petData.status === "Available" ? (
+      {!user?.shelter && petData.status === "Available" ? (
         <div className="flex justify-center pb-10 bg-gray-50 pt-3">
-          <Link to={`/applications/pet_listing/${pet_listing_id}`}>
-            <button className="bg-gray-700 m-3 text-white text-lg font-semibold hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-6 py-2.5 mr-2 mb-2">
-              Adopt
-            </button>
-          </Link>
+          {!application ? (
+            <Link to={`/applications/pet_listing/${pet_listing_id}`}>
+              <button className="bg-gray-700 m-3 text-white text-lg font-semibold hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-6 py-2.5 mr-2 mb-2">
+                Adopt
+              </button>
+            </Link>
+          ) : (
+            <>
+              <Tooltip content="You already have an application for this pet!">
+                <button className="bg-gray-400 m-3 text-white text-lg font-semibold focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-lg text-sm px-6 py-2.5 mr-2 mb-2">
+                  Adopt
+                </button>
+              </Tooltip>
+            </>
+          )}
         </div>
       ) : (
         <></>

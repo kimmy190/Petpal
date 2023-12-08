@@ -52,26 +52,30 @@ class ApplicationCreateView(CreateAPIView):
     - Application cannot be deleted unless the pet listing is deleted.
     - Only Users can create applications (Shelters cannot create applications).
     """
+
     serializer_class = ApplicationSerializer
     permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         try:
             if request.user.shelter:
-                return Response({"error": "Shelters cannot create application"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {"error": "Shelters cannot create application"},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
         except:
-            pet_listing = get_object_or_404(
-                PetListing, id=self.kwargs["pet_listing"]
-            )
+            pet_listing = get_object_or_404(PetListing, id=self.kwargs["pet_listing"])
 
             # User can only create one application for a pet listing
             existing_application = Application.objects.filter(
-                applicant=request.user,
-                pet_listing=pet_listing
+                applicant=request.user, pet_listing=pet_listing
             ).first()
 
             if existing_application:
-                return Response({"error": "You already have an application for this pet"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {"error": "You already have an application for this pet"},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
 
             if pet_listing.status == "Available":
                 serializer = self.get_serializer(data=request.data)
@@ -79,17 +83,29 @@ class ApplicationCreateView(CreateAPIView):
                 self.perform_create(serializer)
                 return Response(serializer.data)
             else:
-                return Response({"error": "The selected pet is not available"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {"error": "The selected pet is not available"},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+    def get(self, request, *args, **kwargs):
+        return Response(
+            ApplicationSerializer(
+                get_object_or_404(
+                    Application,
+                    applicant=request.user,
+                    pet_listing=self.kwargs["pet_listing"],
+                )
+            ).data
+        )
 
     def perform_create(self, serializer):
         applicant = self.request.user
-        pet_listing = get_object_or_404(
-            PetListing, id=self.kwargs["pet_listing"]
-        )
-        serializer.validated_data['applicant'] = applicant
-        serializer.validated_data['pet_listing'] = pet_listing
-        serializer.validated_data['shelter'] = pet_listing.shelter
-        serializer.validated_data['status'] = "Pending"
+        pet_listing = get_object_or_404(PetListing, id=self.kwargs["pet_listing"])
+        serializer.validated_data["applicant"] = applicant
+        serializer.validated_data["pet_listing"] = pet_listing
+        serializer.validated_data["shelter"] = pet_listing.shelter
+        serializer.validated_data["status"] = "Pending"
         serializer.save()
 
 
@@ -105,11 +121,12 @@ class ApplicationListView(ListAPIView):
 
     - For Users, it will display a list of all outgoing applications to shelters.
     """
+
     serializer_class = ApplicationSerializer
     pagination_class = StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter]
-    filterset_fields = ['status']
-    ordering_fields = ['-creation_time', '-last_update_time']
+    filterset_fields = ["status"]
+    ordering_fields = ["-creation_time", "-last_update_time"]
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -134,6 +151,7 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
 
     - Shelters can update their application status to either "Accepted" or "Rejected."
     """
+
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
     permission_classes = [IsAuthenticated]
@@ -148,16 +166,14 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
                     raise PermissionDenied()
                 else:
                     return Response(
-                        self.get_serializer(application).data,
-                        status=status.HTTP_200_OK
+                        self.get_serializer(application).data, status=status.HTTP_200_OK
                     )
         except:
             if applicant != application.applicant:
                 raise PermissionDenied()
             else:
                 return Response(
-                    self.get_serializer(application).data,
-                    status=status.HTTP_200_OK
+                    self.get_serializer(application).data, status=status.HTTP_200_OK
                 )
 
     def update(self, request, *args, **kwargs):
@@ -167,10 +183,16 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
         try:
             if applicant.shelter is not None:
                 # check permission
-                if application.shelter == applicant.shelter and application.status == "Pending":
-                    new_status = request.data.get('status', '')
+                if (
+                    application.shelter == applicant.shelter
+                    and application.status == "Pending"
+                ):
+                    new_status = request.data.get("status", "")
                     if new_status != "Accepted" and new_status != "Rejected":
-                        return Response({"error": "Can only change status to Accepted or Rejected"}, status=status.HTTP_400_BAD_REQUEST)
+                        return Response(
+                            {"error": "Can only change status to Accepted or Rejected"},
+                            status=status.HTTP_400_BAD_REQUEST,
+                        )
                     else:
                         application.status = new_status
                         application.save()
@@ -187,15 +209,23 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
                         )
                 else:
                     raise PermissionDenied
-                    return Response({"error": "You do not have access to this application"}, status=status.HTTP_400_BAD_REQUEST)
+                    return Response(
+                        {"error": "You do not have access to this application"},
+                        status=status.HTTP_400_BAD_REQUEST,
+                    )
 
         # if applicant, can update to Withdraw
         except:
             # check permission
-            if application.applicant == self.request.user and (application.status == "Accepted" or application.status == "Pending"):
-                new_status = request.data.get('status', '')
+            if application.applicant == self.request.user and (
+                application.status == "Accepted" or application.status == "Pending"
+            ):
+                new_status = request.data.get("status", "")
                 if new_status != "Withdrawn":
-                    return Response({"error": "Can only change status to Withdrawn"}, status=status.HTTP_400_BAD_REQUEST)
+                    return Response(
+                        {"error": "Can only change status to Withdrawn"},
+                        status=status.HTTP_400_BAD_REQUEST,
+                    )
                 else:
                     application.status = new_status
                     application.save()
@@ -211,10 +241,12 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
                         applicant,
                     )
             else:
-                return Response({"error": "You do not have access to this application"}, status=status.HTTP_400_BAD_REQUEST)
+                return Response(
+                    {"error": "You do not have access to this application"},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
 
         # Success
         return Response(
-            self.get_serializer(application).data,
-            status=status.HTTP_200_OK
+            self.get_serializer(application).data, status=status.HTTP_200_OK
         )
