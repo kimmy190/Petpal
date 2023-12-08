@@ -4,7 +4,7 @@ import { Dropdown, Button, Radio, Label, Select } from "flowbite-react";
 import PageButtons from "../PageButtons";
 import PetCard from "../PetCard";
 
-const dropdownItems = ["Dogs", "Cats"];
+const dropdownItems = ["Dog", "Cat"];
 
 function SearchGrid({
     fetchOnLoad,
@@ -67,47 +67,48 @@ function SearchGrid({
             species: species,
             shelter: shelter_id,
             order_by: orderBy,
-    };
-    let params = new URLSearchParams(x);
-    let keysForDel = [];
-    params.forEach((value, key) => {
-      if (value == "" || value == 0) {
-        keysForDel.push(key);
-      }
-    });
-    keysForDel.forEach((key) => {
-      params.delete(key);
-    });
-    // Fetch data from the API endpoint
-    // fetch(`http://127.0.0.1:8000/pet_listing?${searchParams.toString()}&shelter=${1}`,
-    fetch(`/pet_listing/?${params.toString()}&page=${page}&page_size=8`, {
-      method: "GET",
-      redirect: "follow",
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok.");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Set the retrieved data to the state
-          if (data.hasNext) {
-              setDisableRightButton(true);
-          }
-          setN(data.count);
-          setPets(data.results);
-      })
-      .catch((error) => {
-        console.error("There was a problem fetching the data:", error);
-      });
+        };
+        console.log("shelter", shelter_id);
+        let params = new URLSearchParams(x);
+        let keysForDel = [];
+        params.forEach((value, key) => {
+            if (value == "" || value == 0) {
+                keysForDel.push(key);
+            }
+        });
+        keysForDel.forEach((key) => {
+            params.delete(key);
+        });
+        // Fetch data from the API endpoint
+        // fetch(`http://127.0.0.1:8000/pet_listing?${searchParams.toString()}&shelter=${1}`,
+        fetch(`/pet_listing/?${params.toString()}&page=${page}&page_size=8`, {
+            method: "GET",
+            redirect: "follow",
+            headers: {
+                accept: "application/json",
+            },
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok.");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                // Set the retrieved data to the state
+                if (data.hasNext) {
+                    setDisableRightButton(true);
+                }
+                setN(data.count);
+                setPets(data.results);
+            })
+            .catch((error) => {
+                console.error("There was a problem fetching the data:", error);
+            });
   };
   useEffect(() => {
     if (fetchOnLoad) fetchPets();
-      }, [fetchOnLoad, lowAge, gender, size, species, orderBy]);
+      }, [fetchOnLoad, shelter_id, lowAge, gender, size, species, orderBy]);
 
   return (
     <div className="flex flex-col md:flex-row m-4 container md:max-w-full  bg-white rounded-lg shadow-md gap-4">
@@ -123,7 +124,7 @@ function SearchGrid({
           </label>
           <Dropdown
             id="species"
-            label={species === "" ? "Any species" : species}
+            label={species === "" ? "Any species" : species + "s"}
             color="dark"
             className="flex-shrink-0 z-10 inline-flex items-center py-3.5 "
           >
@@ -132,7 +133,7 @@ function SearchGrid({
                 key={index}
                 onClick={() => setSpecies(item)}
               >
-                {item}
+                {item + "s"}
               </Dropdown.Item>
             ))}
           </Dropdown>
@@ -142,15 +143,15 @@ function SearchGrid({
           </label>
           <fieldset id="size" className="flex max-w-md flex-col gap-4">
             <div className="flex items-center gap-2">
-              <Radio  value="small" checked={size == "small"} onChange={handleSize}/>
+              <Radio  value="Small" checked={size == "Small"} onChange={handleSize}/>
               <Label>Small</Label>
             </div>
             <div className="flex items-center gap-2">
-              <Radio  value="medium" checked={size == "medium"} onChange={handleSize}/>
+              <Radio  value="Medium" checked={size == "Medium"} onChange={handleSize}/>
               <Label >Medium</Label>
             </div>
             <div className="flex items-center gap-2">
-              <Radio  value="large" checked={size == "large"} onChange={handleSize}/>
+              <Radio  value="Large" checked={size == "Large"} onChange={handleSize}/>
               <Label >Large</Label>
             </div>
           </fieldset>

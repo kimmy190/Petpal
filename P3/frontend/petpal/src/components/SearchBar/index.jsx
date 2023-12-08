@@ -46,9 +46,9 @@ function SearchBar({location="", onSubmit}) {
                 (suggestion) =>
                 suggestion.location.toLowerCase().indexOf(inputValue.toLowerCase()) > -1
             );
-            if (new_filteredSuggestions.length == 1) {
-                setInputValue({location: inputValue, id: new_filteredSuggestions[0].id});
-            }
+            // if (new_filteredSuggestions.length == 1) {
+            //     setInputValue({location: inputValue, id: new_filteredSuggestions[0].id});
+            // }
         }
         setInputValue({location: inputValue});
         setFilteredSuggestions(new_filteredSuggestions);
@@ -62,20 +62,14 @@ function SearchBar({location="", onSubmit}) {
     };
 
     const handleSubmit = () => {
-        onSubmit(inputValue.location, inputValue.id)
+        console.log("Submitting");
+        onSubmit(inputValue.location, inputValue.id);
     };
 
     return (
           <div className="w-full  sm:max-w-2xl">
             <form>
               <div className="flex">
-                {/* <Dropdown size="sm" label={species} color="dark" className="flex-shrink-0 z-10 inline-flex items-center p-0" > */}
-                {/*   {dropdownItems.map((item, index) => ( */}
-                {/*       <Dropdown.Item key={index} onClick={() => handleItemClick(item)}> */}
-                {/*         {item} */}
-                {/*       </Dropdown.Item> */}
-                {/*   ))} */}
-                {/* </Dropdown> */}
                 <div className="relative w-full">
                   <TextInput
                     autocomplete="off"
