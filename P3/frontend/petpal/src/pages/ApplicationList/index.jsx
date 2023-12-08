@@ -32,7 +32,7 @@ const ApplicationList = () => {
         };
 
         fetchData();
-    }, []); // Empty dependency array to fetch data only once
+    }, [orderBy, status]); // Empty dependency array to fetch data only once
   return (
     <div className="min-h-screen bg-gray-100 py-4">
       {/* Some hacky flex boxing */}
@@ -64,7 +64,7 @@ const ApplicationList = () => {
               <Select
                 id="sort"
                 value={orderBy}
-                onChange={e => setOrderBy(e.targetValue)}
+                onChange={e => setOrderBy(e.target.value)}
               >
                 <option value="creation_time">Creation Time</option>
                 <option value="last_update_time">Update time</option>

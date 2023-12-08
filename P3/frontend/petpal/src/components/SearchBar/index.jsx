@@ -46,9 +46,9 @@ function SearchBar({location="", onSubmit}) {
                 (suggestion) =>
                 suggestion.location.toLowerCase().indexOf(inputValue.toLowerCase()) > -1
             );
-            // if (new_filteredSuggestions.length == 1) {
-            //     setInputValue({location: inputValue, id: new_filteredSuggestions[0].id});
-            // }
+            if (new_filteredSuggestions.length == 1) {
+                setInputValue({location: inputValue, id: new_filteredSuggestions[0].id});
+            }
         }
         setInputValue({location: inputValue});
         setFilteredSuggestions(new_filteredSuggestions);
