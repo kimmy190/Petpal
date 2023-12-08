@@ -13,10 +13,11 @@ import ShelterInfo from "../../components/ShelterInfo";
 import PageButtons from "../../components/PageButtons";
 import SearchGrid from "../../components/SearchGrid";
 import NotFound from "../NotFound";
+import BlogSnippet from "../../components/BlogSnippet";
 const Shelter = () => {
   const { shelter_id } = useParams();
   const navigate = useNavigate();
-  const { user } = useContext(UserContext);
+  const { user, token } = useContext(UserContext);
   const [shelterData, setShelterData] = useState();
   const [loadingData, setLoadingData] = useState(true);
   const [shelterImage, setShelterImages] = useState([]);
@@ -24,6 +25,7 @@ const Shelter = () => {
   const [page, setPage] = useState(1);
   const [disableRightButton, setDisableRightButton] = useState(false);
   const [notFound, set404] = useState(false);
+  const [posts, setPosts] = useState([]);
 
   const setNotFound = () => {
     set404(true);
@@ -75,6 +77,20 @@ const Shelter = () => {
             .reverse()
         )
       );
+
+      const blogResponse = await fetch(`/blog/posts?author_id=${shelter_id}`, {
+        method: "GET",
+        redirect: "follow",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!blogResponse.ok) {
+        setNotFound();
+        return;
+      }
+      setPosts((await blogResponse.json()).reverse());
 
       setLoadingData(false);
     };
@@ -177,6 +193,23 @@ const Shelter = () => {
           ) : (
             <></>
           )}
+        </Grid>
+      </section>
+      <h2 className="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl mb-1 p-2 pt-4">
+        Blog Posts
+      </h2>
+      <h2 className="font-light text-gray-500 text-sm sm:text-lg md:text-xl mb-5">
+        Get to know us and our values!
+      </h2>
+      <section id="shelter-blogs" className="w-10/12">
+        <Grid cols={2}>
+          {posts.map((post) => {
+            return (
+              <Card key={post.id}>
+                <BlogSnippet post={post} />
+              </Card>
+            );
+          })}
         </Grid>
       </section>
     </div>
