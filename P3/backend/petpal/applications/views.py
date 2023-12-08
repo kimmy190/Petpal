@@ -10,6 +10,9 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from django.core.exceptions import PermissionDenied
+from notification.views import create_notification
+from notification.serializers import NotificationSerializer
+from notification.models import Notification
 
 # Taken from https://stackoverflow.com/questions/31785966/django-rest-framework-turn-on-pagination-on-a-viewset-like-modelviewset-pagina
 
@@ -171,6 +174,17 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
                     else:
                         application.status = new_status
                         application.save()
+                        create_notification(
+                            NotificationSerializer(
+                                data={
+                                    "message": f"{applicant.shelter.organization_name} updated your application status.",
+                                    "notification_type": Notification.NotificationTypes.APPLICATION,
+                                    "was_read": False,
+                                    "notification_type_id": application.id,
+                                }
+                            ),
+                            applicant,
+                        )
                 else:
                     raise PermissionDenied
                     return Response({"error": "You do not have access to this application"}, status=status.HTTP_400_BAD_REQUEST)
@@ -185,6 +199,17 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
                 else:
                     application.status = new_status
                     application.save()
+                    create_notification(
+                        NotificationSerializer(
+                            data={
+                                "message": f"{applicant.username} withdrew their application.",
+                                "notification_type": Notification.NotificationTypes.APPLICATION,
+                                "was_read": False,
+                                "notification_type_id": application.id,
+                            }
+                        ),
+                        applicant,
+                    )
             else:
                 return Response({"error": "You do not have access to this application"}, status=status.HTTP_400_BAD_REQUEST)
 
