@@ -1,6 +1,8 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AuthenticatedRoute from "./components/AuthenticatedRoute"
+import AuthenticatedRoute from "./components/AuthenticatedRoute";
+import BlogNew from "./pages/BlogNew";
+import BlogPost from "./pages/BlogPost";
 import PetListing from "./pages/PetListing";
 import { UserContext, useUserContext } from "./contexts/UserContext";
 import PetListingEditable from "./pages/PetListingEditable";
@@ -51,15 +53,23 @@ function App() {
                     <ApplicationList />
                   </AuthenticatedRoute>
               }
-            />
-            <Route
-              path="search"
-              element={<PetFinder />}
-            />
-          </Route>
-          <Route
-              path="blog"
-              element={<MarkdownComponent />}
+          />
+      <Route
+      path="search"
+      element={<PetFinder />}
+          />
+      </Route>
+      <Route
+      path="blog/:id"
+      element={<BlogPost />}
+          />
+      <Route
+      path="blog/new"
+      element={
+          <AuthenticatedRoute>
+            <BlogNew />
+          </AuthenticatedRoute>
+      }
             />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -13,8 +13,8 @@ from django.core.exceptions import PermissionDenied
 from django.core.exceptions import ObjectDoesNotExist
 
 
-@permission_classes([IsAuthenticated])
 class PostAPIView(APIView):
+    @permission_classes([IsAuthenticated])
     def post(self, request):
         serializer = PostSerializer(data=request.data)
         try:

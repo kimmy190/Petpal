@@ -87,7 +87,7 @@ class PetListingCreateView(PermissionPolicyMixin, ListCreateAPIView):
 
         filter = {}
         filter["status"] = self.request.GET.get("status", "Available")
-        for filter_param in ["shelter", "breed", "age", "size"]:
+        for filter_param in ["shelter", "breed", "age__gte", "age__lte", "size", "gender"]:
             if filter_param in self.request.GET:
                 filter[filter_param] = self.request.GET[filter_param]
 

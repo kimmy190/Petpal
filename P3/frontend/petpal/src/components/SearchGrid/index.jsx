@@ -1,64 +1,72 @@
 import { useEffect, useState, React } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Dropdown, Button, Radio, Label, Select } from "flowbite-react";
+import PageButtons from "../PageButtons";
 import PetCard from "../PetCard";
 
-const dropdownItems = ["Dogs", "Cats", "Small animals"];
-
-const breeds = [
-  "Golden Retreiver",
-  "German Shepherd",
-  "Boston Terrier",
-  "Labrador",
-];
+const dropdownItems = ["Dogs", "Cats"];
 
 function SearchGrid({
-  fetchOnLoad,
-  location,
-  shelter_id,
-  editable = false,
-  onEdit,
+    fetchOnLoad,
+    location,
+    shelter_id,
+    editable = false,
+    onEdit,
 }) {
-  const [hideFilter, setHideFilter] = useState("hidden");
-  const [breed, setBreed] = useState("");
-  const [species, setSpecies] = useState("");
-  const [orderBy, setOrderBy] = useState("publication_date");
+    const [hideFilter, setHideFilter] = useState("hidden");
+    const [species, setSpecies] = useState("");
+    const [highAge, setHighAge] = useState("");
+    const [lowAge, setLowAge] = useState("");
+    const [gender, setGender] = useState("");
+    const [size, setSize] = useState("");
+    const [orderBy, setOrderBy] = useState("publication_date");
+    const [page, setPage] = useState(1);
+    const [disableRightButton, setDisableRightButton] = useState(true);
+    const [n, setN] = useState(0);
+    const [pets, setPets] = useState([]);
 
-  const toggleFilter = () => {
-    if (hideFilter === "") {
-      setHideFilter("hidden");
-    } else {
-      setHideFilter("");
-    }
-  };
-  const handleSpeciesClick = (item) => {
-    setSpecies(item);
-  };
-  const handleBreedClick = (item) => {
-    setBreed(item);
-  };
-  const handleSortChange = (event) => {
-    // Handle sort change here
-    setOrderBy(event.target.value);
-  };
+    const toggleFilter = () => {
+        if (hideFilter === "") {
+            setHideFilter("hidden");
+        } else {
+            setHideFilter("");
+        }
+    };
 
-  const clearFilters = (event) => {
-    // Handle sort change here
-    setBreed("");
-    setSpecies("");
-    // fetchPets();
-  };
-  const n = 4;
+    const handleGender = (event) => {
+        setGender(event.target.value);
+    };
+    const handleAge = (gte, lte) => {
+        setLowAge(gte);
+        setHighAge(lte);
+    };
+    const handleSize = (event) => {
+        setSize(event.target.value);
+    };
+    const handleSortChange = (event) => {
+        setOrderBy(event.target.value);
+    };
 
-  const [pets, setPets] = useState([]);
-  // this is dumb w.e
+    const clearFilters = (event) => {
+        // Handle sort change here
+        setSpecies("");
+        setLowAge("");
+        setHighAge("");
+        setSize("");
+        setGender("");
+    };
 
-  const fetchPets = () => {
-    const x = {
-      breed: breed,
-      species: species,
-      shelter: shelter_id,
-      order_by: orderBy,
+    // this is dumb w.e
+
+    const fetchPets = () => {
+        const x = {
+            age__gte: lowAge,
+            age__lte: highAge,
+            gender: gender,
+            size: size,
+            species: species,
+            shelter: shelter_id,
+            order_by: orderBy,
     };
     let params = new URLSearchParams(x);
     let keysForDel = [];
@@ -72,7 +80,7 @@ function SearchGrid({
     });
     // Fetch data from the API endpoint
     // fetch(`http://127.0.0.1:8000/pet_listing?${searchParams.toString()}&shelter=${1}`,
-    fetch(`/pet_listing/?${params.toString()}`, {
+    fetch(`/pet_listing/?${params.toString()}&page=${page}&page_size=8`, {
       method: "GET",
       redirect: "follow",
       headers: {
@@ -87,7 +95,11 @@ function SearchGrid({
       })
       .then((data) => {
         // Set the retrieved data to the state
-        setPets(data.results);
+          if (data.hasNext) {
+              setDisableRightButton(true);
+          }
+          setN(data.count);
+          setPets(data.results);
       })
       .catch((error) => {
         console.error("There was a problem fetching the data:", error);
@@ -95,7 +107,7 @@ function SearchGrid({
   };
   useEffect(() => {
     if (fetchOnLoad) fetchPets();
-  }, [fetchOnLoad, breed, species, orderBy]);
+      }, [fetchOnLoad, lowAge, gender, size, species, orderBy]);
 
   return (
     <div className="flex flex-col md:flex-row m-4 container md:max-w-full  bg-white rounded-lg shadow-md gap-4">
@@ -118,23 +130,8 @@ function SearchGrid({
             {dropdownItems.map((item, index) => (
               <Dropdown.Item
                 key={index}
-                onClick={() => handleSpeciesClick(item)}
+                onClick={() => setSpecies(item)}
               >
-                {item}
-              </Dropdown.Item>
-            ))}
-          </Dropdown>
-          <hr className="mt-4 mb-2" />
-          <label htmlFor="breed" className="mb-4 md:mb-2 mr-4 font-bold">
-            Species
-          </label>
-          <Dropdown
-            label={breed === "" ? "Any breed" : breed}
-            color="dark"
-            className="flex-shrink-0 z-10 inline-flex items-center py-3.5 "
-          >
-            {breeds.map((item, index) => (
-              <Dropdown.Item key={index} onClick={() => handleBreedClick(item)}>
                 {item}
               </Dropdown.Item>
             ))}
@@ -145,16 +142,52 @@ function SearchGrid({
           </label>
           <fieldset id="size" className="flex max-w-md flex-col gap-4">
             <div className="flex items-center gap-2">
-              <Radio id="small" value="small" defaultChecked />
-              <Label htmlFor="small">Small</Label>
+              <Radio  value="small" checked={size == "small"} onChange={handleSize}/>
+              <Label>Small</Label>
             </div>
             <div className="flex items-center gap-2">
-              <Radio id="medium" value="medium" />
-              <Label htmlFor="medium">Medium</Label>
+              <Radio  value="medium" checked={size == "medium"} onChange={handleSize}/>
+              <Label >Medium</Label>
             </div>
             <div className="flex items-center gap-2">
-              <Radio id="large" name="countries" value="large" />
-              <Label htmlFor="large">Large</Label>
+              <Radio  value="large" checked={size == "large"} onChange={handleSize}/>
+              <Label >Large</Label>
+            </div>
+          </fieldset>
+          <hr className="mt-4 mb-2" />
+          <label htmlFor="age" className="mb-4 md:mb-2 mr-4 font-bold">
+            Age
+          </label>
+          <fieldset className="flex max-w-md flex-col gap-4">
+            <div className="flex items-center gap-2">
+              <Radio value="1" checked={highAge== "1"} onChange={() => handleAge(0,1)}/>
+              <Label> Less than 1 year </Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <Radio  value="3" checked={highAge == "3"} onChange={() =>handleAge(1,3)}/>
+              <Label >1 - 3</Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <Radio  value="6" checked={highAge == "6"} onChange={() => handleAge(3,6)}/>
+              <Label >3 - 6</Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <Radio value="7" checked={lowAge == "7"} onChange={() => handleAge(7, 100)} />
+              <Label >Greater than 6</Label>
+            </div>
+          </fieldset>
+          <hr className="mt-4 mb-2" />
+          <label htmlFor="age" className="mb-4 md:mb-2 mr-4 font-bold">
+            Gender
+          </label>
+          <fieldset  id="age" className="flex max-w-md flex-col gap-4">
+          <div className="flex items-center gap-2">
+              <Radio value="Male" checked={gender == "Male"} onChange={handleGender}/>
+              <Label>Male</Label>
+            </div>
+            <div className="flex items-center gap-2">
+              <Radio  value="Female" checked={gender == "Female"} onChange={handleGender}/>
+              <Label>Female</Label>
             </div>
           </fieldset>
           <hr className="mt-4 mb-2" />
@@ -191,7 +224,7 @@ function SearchGrid({
                 />
               </svg>
             </Button>
-            <p className="bold">{n} pets available </p>
+            <p className="bold">{n} pets </p>
           </div>
           <div className="gap-4 flex flex-row flex-wrap space-between md:items-end">
             <div>
@@ -256,6 +289,14 @@ function SearchGrid({
               }
             />
           ))}
+        </div>
+
+        <div className="my-4 flex flex-col items-center md:flex-col-reverse md:items-end">
+          <PageButtons
+            page={page}
+            setPage={setPage}
+            disableRightButton={disableRightButton}
+          />
         </div>
       </div>
     </div>

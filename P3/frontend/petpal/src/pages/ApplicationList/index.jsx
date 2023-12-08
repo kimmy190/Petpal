@@ -1,6 +1,7 @@
 import ApplicationCard from "../../components/ApplicationCard";
 import React, { useState, useEffect } from 'react';
 import {useUserContext} from "../../contexts/UserContext";
+import { Select } from "flowbite-react";
 
 
 const ApplicationList = () => {
@@ -37,41 +38,37 @@ const ApplicationList = () => {
       {/* Some hacky flex boxing */}
       <div className="flex justify-center mx-4">
         <div className="flex flex-col content-center w-full md:w-3/4 lg:w-1/2">
-          <div className="flex flex-row items-center justify-between mt-4 mb-2">
+          <div className="flex flex-row flex-wrap items-center justify-between mt-4 mb-2">
             <div>
               <h1 className="mb-4 text-2xl font-bold leading-none tracking-tight text-gray-900 md:text-3xl">
                 Adoption Applications
               </h1>
             </div>
             <div className="flex items-center gap-2">
-              <label htmlFor="sort" className="block text-sm font-medium text-gray-900 dark:text-white">
+              <label htmlFor="status" className="block text-sm font-medium text-gray-900 dark:text-white">
                 Status
               </label>
-              {/* TODO switch me to a button that is clickable to reverse order, that is sufficient here */}
-              <select
-                id="Status"
-                className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-
+              <Select
+                id="status"
                 value={status}
                 onChange={e => setStatus(e.target.value)}
               >
                 <option value="Pending">Pending</option>
                 <option value="Withdrawn">Withdrawn</option>
                 <option value="Accepted">Accepted</option>
-              </select>
+              </Select>
 
               <label htmlFor="sort" className="block text-sm font-medium text-gray-900 dark:text-white">
                 Sort by
               </label>
-              <select
+              <Select
                 id="sort"
-                className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 value={orderBy}
                 onChange={e => setOrderBy(e.targetValue)}
               >
                 <option value="creation_time">Creation Time</option>
                 <option value="last_update_time">Update time</option>
-              </select>
+              </Select>
             </div>
           </div>
           <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">

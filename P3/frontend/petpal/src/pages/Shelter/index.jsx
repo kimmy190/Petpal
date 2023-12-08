@@ -92,7 +92,7 @@ const Shelter = () => {
       }
       setPosts((await blogResponse.json()).reverse());
 
-      setLoadingData(false);
+     setLoadingData(false);
     };
     perfromUseEffect();
   }, [shelter_id, navigate]);

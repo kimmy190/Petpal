@@ -1,20 +1,39 @@
-import Markdown from 'react-markdown';
-import remarkGfm from 'remark-gfm'
+import Markdown from '../../components/Markdown';
+import remarkGfm from 'remark-gfm';
+import { useParams } from 'react-router-dom'; 
+import {useState, useEffect} from 'react';
+import Post from "../../components/BlogPost";
 
-const MarkdownComponent = ({ heroImage, markdownContent }) => {
-    return (
-        <div className="max-w-4xl mx-auto">
-          <img src={heroImage} alt="Hero" className="w-full h-64 object-cover object-center" />
+const BlogPost = () => {
+    const { id } = useParams();
+    const [blogPost, setBlogPost] = useState(null);
 
-          <div className="p-4 md:p-8">
-            <div className="prose lg:prose-xl">
-              <Markdown remarkPlugins={[remarkGfm]}>{blogpost}</Markdown>
-            </div>
-          </div>
-        </div>
-    );
+    useEffect(() => {
+        const fetchBlogPost = async () => {
+            try {
+                const response = await fetch(`/blog/posts/${id}`); // Assuming your API endpoint is correct
+                if (response.ok) {
+                    const postData = await response.json();
+                    setBlogPost(postData);
+                } else {
+                    // Handle error cases if needed
+                    console.error('Failed to fetch blog post');
+                }
+            } catch (error) {
+                console.error('Error fetching blog post:', error);
+            }
+        };
+
+        fetchBlogPost();
+    }, [id]);
+
+    if (!blogPost) {
+        return <div>Loading...</div>; // Placeholder for loading state
+    }
+
+    return (<Post {...blogPost}/> );
 };
-export default MarkdownComponent;
+export default BlogPost;
 
 const blogpost = `
 # Finding Forever Homes: A Look Inside Our Dog Shelter
