@@ -1,11 +1,16 @@
 import FormPage from "../../components/FormPage"; 
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useUserContext, UserContext } from "../../contexts/UserContext";
+import { useNavigate, Link } from 'react-router-dom';
+import { useUserContext } from "../../contexts/UserContext";
+import Cookies from 'universal-cookie';
+
 
 const Login = () => {
-    const { user, token, setToken, setUser } = useUserContext();
-    console.log('Component is re-rendered!');
+    // const { user } = useUserContext();
+    const cookies = new Cookies();
+    const { user, setUser } = useUserContext();
+
+    // console.log('Component is re-rendered!');
     
     let navigate = useNavigate(); 
     
@@ -14,30 +19,30 @@ const Login = () => {
     const [errorMessage1, setErrorMessage1] = useState(null);
     const [errorMessage2, setErrorMessage2] = useState(null);
 
-    // const [userData, setUserData] = useState({ user, token });
-
-
     // useEffect(() => {
-    //     // both user & token info updated
-    //     // console.log("Updated userName:", userData.user);
-    //     // console.log("Updated token:", userData.token);
-    //     navigate("/main");  
-    // }, [userData]);
+    //     // setUserData({ user, token });
+    //     if (user !== null && token !== "") {
+    //         console.log(user); 
+    //         console.log(token);
 
-    useEffect(() => {
-        // setUserData({ user, token });
-        if (user !== null && token !== "") {
-            console.log(user); 
-            console.log(token);
-            navigate("/main");
-        }
-    }, [user, token]);
+    //         // https://systemweakness.com/enhancing-security-in-react-applications-storing-tokens-in-http-only-cookies-instead-of-local-a2eba9b16d49
+    //         // set cookie 
+    //         cookies.set('access_token', token, {
+    //             path: '/',
+    //             httpOnly: true,
+    //             secure: false // Set to true if using HTTPS
+    //         });
+            
+    //         navigate("/main");
+    //     }
+    // }, [user, token]);
 
     const LoginSubmit = async(e) => {
         e.preventDefault(); //prevents from page reload 
 
-        const response = await fetch('http://127.0.0.1:8000/api/token/', {
+        const response = await fetch('/api/token/', {
             method: 'POST',
+            // credentials: "include",
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -60,30 +65,55 @@ const Login = () => {
             // console.log(data.detail);
         } else {
             // login success
-            console.log('Authentication successful', data);
+            // console.log('Authentication successful', data);
             setErrorMessage1(null);
             setErrorMessage2(null);
             // update the token 
             // const id = data.user_id; 
-            let user_info; 
-            if(data.is_shelter === 1){
-                user_info = {
-                    shelter: {id: data.user_id}
-                }
-            } else {
-                user_info = {
-                    seeker: {id: data.user_id}
-                }
-            }
+            // let user_info; 
+            // if(data.is_shelter === 1){
+            //     user_info = {
+            //         shelter: {id: data.user_id}
+            //     }
+            // } else {
+            //     user_info = {
+            //         seeker: {id: data.user_id}
+            //     }
+            // }
+            console.log("SART"); 
+            // setUser(user_info); 
+            const accessToken = data.access;
+            console.log(accessToken);
+            cookies.set('access_token', accessToken, {
+                path: '/',
+                httpOnly: false,
+                secure: true, 
+                sameSite: 'None',
+            });
+            // console.log(document.cookie);
+            console.log("dd"); 
+            console.log(cookies.get('access_token')); 
 
-            setUser(user_info); 
-            // const accessToken = data.access;
-            setToken(data.access); 
+            if (accessToken) {
+                // If a token is present, fetch the current user
+                const response = await fetch('/accounts/user/', {
+                    headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    },
+                });
+    
+                if (response.ok) {
+                    const userData = await response.json();
+                    setUser(userData);
+                } 
+            } 
+            console.log("LOGIN DONE ")
+            
+            navigate("/main");
         }
     }
 
     return (
-    <UserContext.Provider value={{ user, setUser, token, setToken }}>
     <FormPage title="Log In">
         <form className="space-y-4 md:space-y-6" onSubmit={LoginSubmit}>
             <div>
@@ -142,16 +172,14 @@ const Login = () => {
             
             <p className="text-sm font-medium text-gray-500">
                 Don't have an account?{" "}
-                <a
-                href="./seeker_signup.html"
+                <Link to="/signup/seeker"
                 className="font-medium text-blue-600 hover:underline"
                 >
                 Sign Up
-                </a>
+                </Link>
             </p>
         </form>
     </FormPage>
-    </UserContext.Provider>
     ); 
 }
 

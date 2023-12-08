@@ -2,31 +2,37 @@ import FormPage from "../../components/FormPage";
 import { useFormik } from 'formik';
 import Input from "../../components/Input";
 import { useState } from 'react';
-
+import Cookies from 'universal-cookie'; 
+import { useUserContext } from "../../contexts/UserContext";
+import { useNavigate, Link} from 'react-router-dom';
+import ProfileDropZone from "../../components/ProfileDropZone";
+import FormLink from "../../components/FormLink";
 // const handleFileChange = (e) => {
 //     const selectedFile = e.target.files[0];
 //     // Perform any necessary logic with the selected file
 // };
 
 const SeekerSignUp = () => {
+    const cookies = new Cookies(); 
+    const navigate = useNavigate(); 
+    const { setUser } = useUserContext();
     
     const [profileImg, setProfileImg] = useState(null);
     const [userError, setUserError] = useState(null);
     const [emailError, setEmailError] = useState(null);
     const [pwError, setPwError] = useState(null);
-    
-    const handleFileChange = (e) => {
-        const selectedFile = e.target.files[0];
-        console.log(selectedFile);
+
+    const handleFileChange = (selectedFile) => {
+        // const selectedFile = e.target.files[0];
+        // console.log(selectedFile);
         
-        const profileBlobUrl = URL.createObjectURL(selectedFile); 
-        console.log(profileBlobUrl);
+        // const profileBlobUrl = URL.createObjectURL(selectedFile); 
+        // console.log(profileBlobUrl);
 
         // setProfileImg(URL.createObjectURL(selectedFile));
         setProfileImg(selectedFile);
 
     };
-    
     
     const formik = useFormik({
         initialValues: {
@@ -74,7 +80,7 @@ const SeekerSignUp = () => {
                 console.log(key, value);
             }
             
-            const response = await fetch('http://127.0.0.1:8000/accounts/seeker/', {
+            const response = await fetch('/accounts/seeker/', {
                 method: 'POST',
                 // headers: {
                 //     'Content-Type': 'application/json',
@@ -96,69 +102,17 @@ const SeekerSignUp = () => {
                 setUserError(null);
                 setEmailError(null); 
                 setPwError(null);
-
-                // based on the data, need to login and navigate to main page
+                navigate("/login");
             }
         },
     });
 
-    // useEffect(() => {
-    //     if (profileImg) {
-    //       // Trigger form submission
-    //             handleFileChange(); 
-    //         }
-    //     }, []);
-
     return (
         <FormPage title="Seeker Sign Up">
             <form onSubmit={formik.handleSubmit}>
-                <div className="mb-4">
-                    <div className="flex items-center justify-center w-full mb-1">
-                        <label
-                            // htmlFor="dropzone-file"
-                            htmlFor="profileImg"
-                            className="flex flex-col items-center justify-center border-2 border-gray-300 border-dashed rounded-full cursor-pointer w-14 h-14 bg-gray-50 hover:bg-gray-100"
-                        >
-                        <div className="flex flex-col items-center">
-                            
-                        {profileImg ? (
-                            <img
-                                src={URL.createObjectURL(profileImg)}
-                                alt="profile"
-                                className="object-cover rounded-full w-14 h-14"
-                            />
-                        ) : (
-                            <svg
-                                className="object-center w-6 h-6 text-gray-500"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 20 16"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                                />
-                            </svg>
-                        )}
-                        
-                        </div>
-                        <input 
-                            id="profileImg" 
-                            type="file" 
-                            className="hidden"
-                            onChange={handleFileChange} />
-                    </label>
-                    </div>
-                    <p className="block text-sm font-normal text-center text-gray-700">
-                    Upload Profile Pic
-                    </p>
-                </div>
+                <ProfileDropZone title="Upload Profile Picture" onProfileImgChange={handleFileChange}/>
                 
-                <div className="grid gap-6 mb-4 md:grid-cols-2">
+                <div className="grid gap-6 mb-2 md:grid-cols-2">
                     <div>
                         <Input 
                         label="First name"
@@ -183,7 +137,7 @@ const SeekerSignUp = () => {
                     />
                     </div>
                 </div>
-                <div className="mb-4">
+                <div className="mb-2">
                     <Input 
                     label="Username"
                     id="username"
@@ -197,7 +151,7 @@ const SeekerSignUp = () => {
 
                 </div>
                 
-                <div className="mb-4">
+                <div className="mb-2">
                     <Input
                     label="Location"
                     id="location"
@@ -209,7 +163,7 @@ const SeekerSignUp = () => {
                 />
                 </div>
                 
-                <div className="mb-4">
+                <div className="mb-2">
                 <Input
                     label="Email address"
                     id="email"
@@ -222,7 +176,7 @@ const SeekerSignUp = () => {
                     {emailError && <p className="mt-2 text-xs text-red-600">{emailError}</p>}
 
                 </div>
-                <div className="mb-4">
+                <div className="mb-2">
                     <Input
                         label="Password"
                         id="password"
@@ -233,7 +187,7 @@ const SeekerSignUp = () => {
                         value={formik.values.password}
                     />
                 </div>
-                <div className="mb-3">
+                <div className="mb-2">
                 <Input
                     label="Confirm Password"
                     id="password2"
@@ -276,28 +230,7 @@ const SeekerSignUp = () => {
                     Sign Up
                     </button>
                 </div>
-                <div className="mb-2">
-                    <p className="text-sm font-medium text-gray-500">
-                    Not a Pet Seeker?{" "}
-                    <a
-                        href="./first_shelter_signup.html"
-                        className="font-medium text-blue-600 hover:underline"
-                    >
-                        Pet Shelter Sign Up
-                    </a>
-                    </p>
-                </div>
-                <div>
-                    <p className="text-sm font-medium text-gray-500">
-                    Already have an account?{" "}
-                    <a
-                        href="./login.html"
-                        className="font-medium text-blue-600 hover:underline"
-                    >
-                        Login
-                    </a>
-                    </p>
-                </div>
+                <FormLink who="seeker"/>
             </form>
         </FormPage>
     );

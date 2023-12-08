@@ -1,12 +1,44 @@
 import SignUpDropDown from "../SignUpDropDown";
-import { UserContext, useUserContext } from "../../contexts/UserContext";
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+// import { UserContext, useUserContext } from "../../contexts/UserContext";
+import Cookies from 'universal-cookie';
+import { useNavigate } from 'react-router-dom';
+import Notification from "../Notification";
+import ProfileDropdown from "../ProfileDropdown";
 
-const LeftNav = ({user, token}) => {
+import { useUserContext } from "../../contexts/UserContext";
+
+
+const LeftNav = () => {
+    const cookies = new Cookies();
+    const { user, loading } = useUserContext();
+
+    const [isMenuVisible, setIsMenuVisible] = useState(false);
+    const toggleMenu = () => {
+        setIsMenuVisible(!isMenuVisible);
+    };
+
+    const closeMenu = () => {
+        setIsMenuVisible(false);
+    };
+
     
+    // console.log("PRINT");
+    const token = cookies.get('access_token')
+    // console.log(cookies.get('access_token')); 
+    
+    // if(loading){
+    //     console.log("loading bt")
+    // }
+    // console.log("lEGT FLE")
+    // console.log(user); 
+
     return (
         <>
-        { token === "" ? 
-         <div className="flex items-center space-x-4 md:order-2">
+        {/* <h1>{user.username}</h1> */}
+        { token === undefined ? 
+        <div className="flex items-center space-x-4 md:order-2">
             <a href="/login"
             className="text-base font-medium text-black hover:underline"
             >
@@ -22,7 +54,8 @@ const LeftNav = ({user, token}) => {
                 type="button"
                 className="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
                 aria-controls="navbar-cta"
-                aria-expanded="false"
+                onClick={toggleMenu}
+                aria-expanded={isMenuVisible}
             >
             <span className="sr-only">Open main menu</span>
                 <svg
@@ -43,14 +76,17 @@ const LeftNav = ({user, token}) => {
             </button>
         </div>   :
         <div className="flex items-center md:order-2">
-        {/* // notification 
-        // profile dropdown  */}
+            <Notification/>
+            <ProfileDropdown />
+            {/* hamburger */}
             <button
             data-collapse-toggle="navbar-user"
             type="button"
             className="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
             aria-controls="navbar-user"
-            aria-expanded="false"
+            onClick={toggleMenu}
+            aria-expanded={isMenuVisible}
+
             >
             <span className="sr-only">Open main menu</span>
             <svg

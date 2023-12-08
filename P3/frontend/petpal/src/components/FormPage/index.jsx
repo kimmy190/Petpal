@@ -9,7 +9,6 @@ const FormPage = ({title, children})=>{
                 {/* <a href="./main.html" className="flex items-center">
                 
                 </a> */}
-
                 <Link to="/main" className="flex items-center">
                     <span className="self-center text-3xl font-bold whitespace-nowrap">
                         Pet Pal

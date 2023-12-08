@@ -1,7 +1,8 @@
 import "./App.css";
+import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PetListing from "./pages/PetListing";
-import { UserContext, useUserContext } from "./contexts/UserContext";
+// import { UserContext, useUserContext } from "./contexts/UserContext";
 import PetListingEditable from "./pages/PetListingEditable";
 import Shelter from "./pages/Shelter";
 import ShelterEditable from "./pages/ShelterEditable";
@@ -12,10 +13,15 @@ import Layout from "./components/Layout";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
 import SeekerSignUp from "./pages/SeekerSignUp";
+import ShelterSignUp from "./pages/ShelterSignUp";
+import Setting from "./pages/Setting";
+import { UserProvider } from "./contexts/UserContext";
 
 function App() {
   return (
-    <UserContext.Provider value={useUserContext()}>
+    // <UserContext.Provider value={useUserContext()}>
+    <React.StrictMode>
+    <UserProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -23,6 +29,10 @@ function App() {
                 path="main"
                 element={<Main />}
                 />
+            <Route
+              path="setting"
+              element={<Setting />}
+            />
             <Route
               path="pet_listing/:pet_listing_id"
               element={<PetListing />}
@@ -45,6 +55,7 @@ function App() {
               path="applications/:application_id"
               element={<Application />}
             />
+            
           </Route>
           <Route
               path="login"
@@ -54,10 +65,15 @@ function App() {
               path="signup/seeker"
               element={<SeekerSignUp />}
             />
+            <Route
+              path="signup/shelter"
+              element={<ShelterSignUp />}
+            />
 
         </Routes>
       </BrowserRouter>
-    </UserContext.Provider>
+    </UserProvider>
+    </React.StrictMode>
   );
 }
 

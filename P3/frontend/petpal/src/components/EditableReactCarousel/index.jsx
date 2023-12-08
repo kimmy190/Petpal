@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Carousel, initTE } from "tw-elements";
+// import { Carousel, initTE } from "tw-elements";
 import Dropzone from "../ImageDropzone";
 
 const EditableReactCarousel = ({ images, addNewImage }) => {
-  useEffect(() => {
-    initTE({ Carousel });
-  });
+//   useEffect(() => {
+//     initTE({ Carousel });
+//   });
 
   const [active, setActive] = useState(0);
 
@@ -86,7 +86,7 @@ const EditableReactCarousel = ({ images, addNewImage }) => {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="absolute top-2 text-gray-700 right-2 w-12 h-12 lg:w-14 lg:h-14 hover:cursor-pointer hover:scale-110"
+                className="absolute w-12 h-12 text-gray-700 top-2 right-2 lg:w-14 lg:h-14 hover:cursor-pointer hover:scale-110"
                 onClick={() => {
                   setActive(i);
                   obj.onDelete(images);
