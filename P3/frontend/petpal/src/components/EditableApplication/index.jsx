@@ -6,6 +6,7 @@ import SubmitButton from "../SubmitButton";
 
 const EditableApplication = () => {
   const [error, setError] = useState(null);
+  const [petName, setPetName] = useState(null);
   const [formData, setFormData] = useState({
     pet_name: "",
     owner_name: "",
@@ -35,6 +36,20 @@ const EditableApplication = () => {
       [id]: value,
     }));
   };
+
+  const fetchPetName = async () => {
+    const response = await fetch(`http://localhost:8000/pet_listing/${pet_listing_id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+      setPetName(data.pet_name);
+    }
+  }
+  fetchPetName();
 
   const submitData = async (e) => {
     e.preventDefault();
@@ -88,6 +103,7 @@ const EditableApplication = () => {
               id="pet_name"
               className="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4 mt-1"
               placeholder="Pet Name"
+              defaultValue={petName}
               required
             />
 
@@ -99,11 +115,12 @@ const EditableApplication = () => {
             </label>
             <input
               onChange={handleChange}
-              type="name"
+              type="text"
               name="name"
               id="owner_name"
               className="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4"
               placeholder="Full Name"
+              defaultValue={user.first_name + " " + user.last_name}
               required
             />
 
@@ -131,6 +148,7 @@ const EditableApplication = () => {
                   id="phone_number"
                   className="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4"
                   placeholder="Phone Number"
+                  defaultValue={user.phone_number}
                   required
                 />
               </div>
@@ -146,6 +164,7 @@ const EditableApplication = () => {
               id="email"
               className="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4"
               placeholder="name@company.com"
+              defaultValue={user.email}
               required
             />
 
@@ -234,7 +253,7 @@ const EditableApplication = () => {
                       id="pet_ownership"
                       type="radio"
                       className="form-radio text-blue-600"
-                      name="choice"
+                      name="pet_ownership"
                       value="yes"
                     />
                     <span className="ml-2">Yes</span>
@@ -245,7 +264,7 @@ const EditableApplication = () => {
                       id="pet_ownership"
                       type="radio"
                       className="form-radio text-red-600"
-                      name="choice"
+                      name="pet_ownership"
                       value="no"
                     />
                     <span className="ml-2">No</span>
@@ -303,7 +322,7 @@ const EditableApplication = () => {
                       id="home_ownership"
                       type="radio"
                       className="form-radio text-blue-600"
-                      name="choice"
+                      name="home_ownership"
                       value="own"
                     />
                     <span className="ml-2">Own</span>
@@ -314,7 +333,7 @@ const EditableApplication = () => {
                       id="home_ownership"
                       type="radio"
                       className="form-radio text-red-600"
-                      name="choice"
+                      name="home_ownership"
                       value="rent"
                     />
                     <span className="ml-2">Rent</span>
