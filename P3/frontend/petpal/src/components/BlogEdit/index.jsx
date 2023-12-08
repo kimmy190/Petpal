@@ -75,7 +75,7 @@ const TextEditComponent = () => {
                         console.error('Error occurred while posting.');
                     }
                 }).then((data) => {
-                    navigate(`/blog/${data.id}`);
+                    navigate(`/blog/${data.id}?success=true`);
                 })
                 .catch((error) => {
                     setErrorMessage("Error occured:" + error);
