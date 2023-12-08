@@ -86,11 +86,11 @@ const TextEditComponent = () => {
         }
     };
 
-    if (!user.shelter) {
-        navigate("/404");
-    }
     useEffect(() => {
-        console.log("Fetching");
+        if (!user.shelter) {
+            navigate("/404");
+            return;
+        }
         fetch(`/accounts/shelter/${user.shelter.id}`,
               {method: "GET",
               redirect: "follow",
