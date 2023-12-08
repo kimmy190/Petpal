@@ -131,6 +131,24 @@ class ApplicationCommentListCreateView(ListCreateAPIView):
         application = get_object_or_404(Application, pk=self.kwargs["application"])
         application.last_update_time = datetime.now()
         application.save()
+
+        if application.applicant == author:
+            recipient = application.shelter
+            comment_from = author.username
+        else:
+            recipient = application.applicant
+            comment_from = author.shelter.organization_name
+        create_notification(
+            NotificationSerializer(
+                data={
+                    "message": f"{comment_from} made a new comment on your application!",
+                    "notification_type": Notification.NotificationTypes.APPLICATION_COMMENT,
+                    "was_read": False,
+                    "notification_type_id": application.id,
+                    }
+            ),
+            recipient
+        )
         serializer.save(author=author, application=application)
 
     def get_queryset(self):
