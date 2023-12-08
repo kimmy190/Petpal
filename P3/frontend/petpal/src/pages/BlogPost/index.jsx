@@ -2,7 +2,7 @@ import { Modal, Toast } from 'flowbite-react';
 import { HiCheck} from 'react-icons/hi';
 import Markdown from '../../components/Markdown';
 import remarkGfm from 'remark-gfm';
-import { useParams, useSearchParams } from 'react-router-dom'; 
+import { useParams, useSearchParams, useNavigate } from 'react-router-dom'; 
 import {useState, useEffect} from 'react';
 import Post from "../../components/BlogPost";
 
@@ -11,18 +11,18 @@ const BlogPost = () => {
     const [blogPost, setBlogPost] = useState(null);
     const [openModal, setOpenModal] = useState(true);
     const [ searchParams, _ ] = useSearchParams();
+    const navigate = useNavigate();
 
 
     useEffect(() => {
         const fetchBlogPost = async () => {
             try {
-                const response = await fetch(`/blog/posts/${id}`); // Assuming your API endpoint is correct
+                const response = await fetch(`/blog/posts/${id}`);
                 if (response.ok) {
                     const postData = await response.json();
                     setBlogPost(postData);
                 } else {
-                    // Handle error cases if needed
-                    console.error('Failed to fetch blog post');
+                    navigate("/404");
                 }
             } catch (error) {
                 console.error('Error fetching blog post:', error);

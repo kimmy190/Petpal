@@ -96,9 +96,12 @@ function SearchGrid({
             })
             .then((data) => {
                 // Set the retrieved data to the state
-                if (data.hasNext) {
+                if (!data.hasNext) {
+                    setDisableRightButton(true);
+                } else {
                     setDisableRightButton(true);
                 }
+
                 setN(data.count);
                 setPets(data.results);
             })
