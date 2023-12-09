@@ -64,6 +64,7 @@ const ApplicationList = () => {
                 <option value="Pending">Pending</option>
                 <option value="Withdrawn">Withdrawn</option>
                 <option value="Accepted">Accepted</option>
+                <option value="Rejected">Rejected</option>
               </Select>
 
               <label htmlFor="sort" className="block text-sm font-medium text-gray-900 dark:text-white">
