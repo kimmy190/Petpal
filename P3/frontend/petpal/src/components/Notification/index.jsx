@@ -6,6 +6,7 @@ import { Button } from "flowbite-react";
 
 const Notification = () => {
   const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(1);
   const [hasNext, setHasNext] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -49,7 +50,7 @@ const Notification = () => {
 
   const fetchNotifications = async (deleting) => {
     try {
-        const response = await fetch(`http://localhost:8000/notification?page_size=1&page=${page}`, {
+        const response = await fetch(`http://localhost:8000/notification?page_size=${pageSize}&page=${page}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -213,6 +214,8 @@ const Notification = () => {
                         Authorization: `Bearer ${token}`, // Add your authorization token here
                       },
                     });
+                    setPage(1);
+                    setPageSize(notifications.length);
                     fetchNotifications(true);
                   }}
                 >
