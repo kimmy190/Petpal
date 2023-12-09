@@ -215,9 +215,9 @@ const Notification = () => {
                         Authorization: `Bearer ${token}`, // Add your authorization token here
                       },
                     });
-                    setPage(1);
-                    setPageSize(notifications.length);
-                    setDeleting(true);
+                      setDeleting(true);
+                      setPage(1);
+                    /* setPageSize(notifications.length); */
                     /* fetchNotifications(true); */
                   }}
                 >
