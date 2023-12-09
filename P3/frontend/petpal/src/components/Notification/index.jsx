@@ -5,7 +5,8 @@ import { UserContext } from "../../contexts/UserContext";
 import { Button } from "flowbite-react";
 
 const Notification = () => {
-  const [page, setPage] = useState(1);
+    const [deleting, setDeleting] = useState(false);
+    const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(1);
   const [hasNext, setHasNext] = useState(false);
   const [notifications, setNotifications] = useState([]);
@@ -216,7 +217,8 @@ const Notification = () => {
                     });
                     setPage(1);
                     setPageSize(notifications.length);
-                    fetchNotifications(true);
+                    setDeleting(true);
+                    /* fetchNotifications(true); */
                   }}
                 >
                   <path
@@ -227,7 +229,7 @@ const Notification = () => {
                 </svg>
               </div>
             ))}
-          {hasNext && (<Button color="gray" onClick={() => setPage(page+1) } className="w-full"> See more </Button>) }
+          {hasNext && (<Button color="gray" onClick={() => {setDeleting(false); setPage(page+1); }  } className="w-full"> See more </Button>) }
         </div>
       </div>
     </>
