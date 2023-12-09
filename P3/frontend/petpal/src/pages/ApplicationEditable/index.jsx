@@ -13,6 +13,11 @@ const UserApplication = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const performUseEffect = async () => {
+      if (user.shelter) {
+        navigate("/*");
+        return;
+      }
+
       const applicationResponse = await fetch(
         `/applications/pet_listing/${pet_listing_id}`,
         {
@@ -34,7 +39,6 @@ const UserApplication = () => {
   return (
     <div className="flex flex-col justify-center items-center bg-gray-50 py-4">
       <Header />
-      <Chatbox />
       {/* make sure shelter cannot create applications? or backend check? */}
       <EditableApplication />
     </div>

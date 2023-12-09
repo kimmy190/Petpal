@@ -1,12 +1,34 @@
 import React from "react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import SubmitButton from "../SubmitButton";
 
 const EditableApplication = () => {
+  const { user, token } = useContext(UserContext);
+  const { pet_listing_id } = useParams();
+  const fetchPetName = async () => {
+    const response = await fetch(`http://localhost:8000/pet_listing/${pet_listing_id}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+      if (data.status !== "Available") {
+        navigate(`/*`);
+        return;
+      }
+      setPetName(data.pet_name);
+    }
+  }
+
+
   const [error, setError] = useState(null);
-  const [petName, setPetName] = useState(null);
+  const [petName, setPetName] = useState();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     pet_name: "",
     owner_name: "",
@@ -24,9 +46,27 @@ const EditableApplication = () => {
     home_ownership: "",
     signature: "",
   });
-  const navigate = useNavigate();
-  const { user, token } = useContext(UserContext);
-  const { pet_listing_id } = useParams();
+  fetchPetName();
+
+  useEffect(() => {
+    fetchPetName();
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      ["owner_name"]: user.first_name + " " + user.last_name,
+      ["email"]: user.email,
+      ["phone_number"]: user.phone_number
+    }));
+
+  }, []);
+
+  useEffect(() => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      ["pet_name"]: petName,
+    }));
+
+  }, [petName]);
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -37,19 +77,6 @@ const EditableApplication = () => {
     }));
   };
 
-  const fetchPetName = async () => {
-    const response = await fetch(`http://localhost:8000/pet_listing/${pet_listing_id}`, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-    });
-    if (response.ok) {
-      const data = await response.json();
-      console.log(data);
-      setPetName(data.pet_name);
-    }
-  }
-  fetchPetName();
 
   const submitData = async (e) => {
     e.preventDefault();
@@ -97,18 +124,17 @@ const EditableApplication = () => {
               Name of Pet You Wish to Adopt:<span className="text-red-500">*</span>
             </label>
             <input
-              onChange={handleChange}
-              type="pet name"
-              name="pet name"
+              type="text"
+              name="pet_name"
               id="pet_name"
               className="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4 mt-1"
               placeholder="Pet Name"
-              defaultValue={petName}
+              value={petName}
               required
             />
 
             <label
-              for="owner_name"
+              htmlFor="owner_name"
               className="mt-1 p-2 block font-bold text-gray-700"
             >
               Your Name:<span className="text-red-500">*</span>
@@ -120,12 +146,12 @@ const EditableApplication = () => {
               id="owner_name"
               className="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4"
               placeholder="Full Name"
-              defaultValue={user.first_name + " " + user.last_name}
+              defaultValue={user.first_name && user.last_name ? `${user.first_name} ${user.last_name}` : ''}
               required
             />
 
             <label
-              for="phone_number"
+              htmlFor="phone_number"
               className="mt-1 p-2 block font-bold text-gray-700"
             >
               Phone Number:<span className="text-red-500">*</span>
@@ -148,13 +174,13 @@ const EditableApplication = () => {
                   id="phone_number"
                   className="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4"
                   placeholder="Phone Number"
-                  defaultValue={user.phone_number}
+                  defaultValue={user.phone_number || ''}
                   required
                 />
               </div>
             </div>
 
-            <label for="email" className="mt-1 p-2 block font-bold text-gray-700">
+            <label htmlFor="email" className="mt-1 p-2 block font-bold text-gray-700">
               Email:<span className="text-red-500">*</span>
             </label>
             <input
@@ -164,9 +190,10 @@ const EditableApplication = () => {
               id="email"
               className="bg-white-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 mb-4"
               placeholder="name@company.com"
-              defaultValue={user.email}
+              defaultValue={user.email || ''}
               required
             />
+
 
             <label for="address" className="mt-1 p-2 block font-bold text-gray-700">
               Address:<span className="text-red-500">*</span>
@@ -344,8 +371,8 @@ const EditableApplication = () => {
           </div>
 
           <div className="flex justify-start p-2 mb-10 items-center">
-            <input type="checkbox" className="form-checkbox text-indigo-600 mr-3" />
-            <p className="input-left-text" required>
+            <input type="checkbox" className="form-checkbox text-indigo-600 mr-3" required />
+            <p className="input-left-text">
               I have read and agree to the terms and conditions.
             </p>
           </div>
