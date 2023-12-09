@@ -15,6 +15,7 @@ import PetFinder from "./pages/Search";
 import PetListingCreation from "./pages/PetListingCreation";
 import NotFound from "./pages/NotFound";
 import MarkdownComponent from "./pages/BlogPost";
+import Main from "./pages/Main";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
+            <Route path="main" element={<Main />} />
             <Route
               path="pet_listing/:pet_listing_id"
               element={<PetListing />}
@@ -42,35 +44,27 @@ function App() {
             />
             <Route
               path="applications/:application_id"
-              element={
-                  <Application />
-              }
+              element={<Application />}
             />
             <Route
               path="applications/"
               element={
-                  <AuthenticatedRoute>
-                    <ApplicationList />
-                  </AuthenticatedRoute>
+                <AuthenticatedRoute>
+                  <ApplicationList />
+                </AuthenticatedRoute>
               }
-          />
-      <Route
-      path="search"
-      element={<PetFinder />}
-          />
-      </Route>
-      <Route
-      path="blog/:id"
-      element={<BlogPost />}
-          />
-      <Route
-      path="blog/new"
-      element={
-          <AuthenticatedRoute>
-            <BlogNew />
-          </AuthenticatedRoute>
-      }
             />
+            <Route path="search" element={<PetFinder />} />
+          </Route>
+          <Route path="blog/:id" element={<BlogPost />} />
+          <Route
+            path="blog/new"
+            element={
+              <AuthenticatedRoute>
+                <BlogNew />
+              </AuthenticatedRoute>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
