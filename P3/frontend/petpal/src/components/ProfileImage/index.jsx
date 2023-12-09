@@ -10,8 +10,7 @@ const ProfileImage = ({ user }) => {
     const perfromUseEffect = async () => {
       // const url = user.profile_image.replace("http://127.0.0.1:8000", "");
       let url;
-
-      if (user.hasOwnProperty("shelter")) {
+      if (user.shelter) {
         // User has a shelter property
         url = user.shelter.logo_image.replace("http://127.0.0.1:8000", "");
       } else {
