@@ -2,8 +2,11 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
+import { Button } from "flowbite-react";
 
 const Notification = () => {
+  const [page, setPage] = useState(1);
+  const [hasNext, setHasNext] = useState(false);
   const [notifications, setNotifications] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { user, token } = useContext(UserContext);
@@ -46,7 +49,7 @@ const Notification = () => {
 
   const fetchNotifications = async () => {
     try {
-      const response = await fetch("http://localhost:8000/notification", {
+        const response = await fetch(`http://localhost:8000/notification?page_size=1&page=${page}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -54,7 +57,9 @@ const Notification = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setNotifications(data.results);
+        const notifs = notifications;
+        setNotifications(notifs.concat(data.results));
+        setHasNext(data.next !== null);
       } else {
         console.error("Error fetching notifications:", response.statusText);
       }
@@ -94,7 +99,7 @@ const Notification = () => {
 
   useEffect(() => {
     fetchNotifications();
-  }, []);
+  }, [page]);
 
   return (
     <>
@@ -173,24 +178,25 @@ const Notification = () => {
             .slice()
             .reverse()
             .map((notification) => (
-              <a
-                key={notification.id}
-                href={notification.link}
-                className={`flex px-4 py-3 hover:bg-gray-100 ${
+                <a
+                  key={notification.id}
+                  href={notification.link}
+                  className={`flex px-4 py-3 hover:bg-gray-100 ${
                   notification.was_read ? "" : "font-semibold"
                 } text-gray-900`}
-                onClick={() => handleNotificationClick(notification.id)}
-              >
-                <div className="w-full pl-3">
-                  <div className="text-gray-500 text-base mb-1.5">
-                    {notification.message}
+                  onClick={() => handleNotificationClick(notification.id)}
+                >
+                  <div className="w-full pl-3">
+                    <div className="text-gray-500 text-base mb-1.5">
+                      {notification.message}
+                    </div>
+                    <div className="text-xs text-blue-600">
+                      {formatDate(notification.creation_date)}
+                    </div>
                   </div>
-                  <div className="text-xs text-blue-600">
-                    {formatDate(notification.creation_date)}
-                  </div>
-                </div>
-              </a>
+                </a>
             ))}
+          {hasNext && (<Button color="gray" onClick={() => setPage(page+1) } className="w-full"> See more </Button>) }
         </div>
       </div>
     </>
