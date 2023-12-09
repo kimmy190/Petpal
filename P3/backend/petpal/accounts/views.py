@@ -4,7 +4,7 @@ from rest_framework.generics import (
     RetrieveUpdateDestroyAPIView,
     CreateAPIView,
     RetrieveDestroyAPIView,
-    RetrieveAPIView, 
+    RetrieveAPIView,
 )
 from rest_framework.permissions import IsAuthenticated
 from .serializers import (
@@ -35,6 +35,7 @@ class StandardResultsSetPagination(PageNumberPagination):
     page_size_query_param = "page_size"
     max_page_size = 10
 
+
 # class RegistrationAPIView(APIView):
 #     def post(self, request, *args, **kwargs):
 #         # Your registration logic here...
@@ -48,7 +49,6 @@ class StandardResultsSetPagination(PageNumberPagination):
 
 #         # Return the token in the response
 #         return Response({'access': access_token}, status=status.HTTP_201_CREATED)
-
 
 
 # Taken from https://b0uh.github.io/drf-viewset-permission-policy-per-method.html
@@ -133,6 +133,11 @@ class PetSeekerDetail(PermissionPolicyMixin, RetrieveUpdateDestroyAPIView):
     permission_classes_per_method = {"GET": []}
     serializer_class = SeekerSerializer
 
+    def perform_update(self, serializer):
+        seeker = serializer.save()
+        seeker.set_password(seeker.password)
+        serializer.save()
+
     def get_object(self):
         """
         Get the specific pet seeker object based on the provided ID.
@@ -189,7 +194,7 @@ class PetShelterDetail(PermissionPolicyMixin, RetrieveUpdateDestroyAPIView):
 
     def get_object(self):
         return get_object_or_404(PetShelter, id=self.kwargs["pk"]).user
-    
+
     # def perform_update(self, serializer):
     #     # Update the fields of the PetShelter model
     #     uuser = get_object_or_404(PetShelter, id=self.kwargs["pk"]).user
@@ -261,8 +266,8 @@ class PetShelterImageDetail(RetrieveDestroyAPIView):
         instance.delete()
 
 
-# get user based on the token value 
-class GetUser(RetrieveAPIView): 
+# get user based on the token value
+class GetUser(RetrieveAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     # serializer_class = SeekerSerializer
@@ -273,23 +278,23 @@ class GetUser(RetrieveAPIView):
     #         return PetShelterSerializer
     #     else:
     #         return PetSeekerSerializer
-    def get_serializer_class(self): 
-        # if hasattr(self.request.user, "shelter"): 
-        if (self.request.user.first_name == ""): 
+    def get_serializer_class(self):
+        # if hasattr(self.request.user, "shelter"):
+        if self.request.user.first_name == "":
             return ShelterSerializer
-        else: 
+        else:
             return SeekerSerializer
 
     def get(self, request):
         user = request.user
-        instance = None; 
+        instance = None
         # seeker_instance = get_object_or_404(PetSeeker, id=user.id)
         # if getattr(user, 'shelter', False):
-        if hasattr(user, "shelter"): 
+        if hasattr(user, "shelter"):
             instance = get_object_or_404(PetShelter, user=user).user
         else:
             instance = get_object_or_404(PetSeeker, id=user.id)
-    
+
         serializer = self.get_serializer(instance)
 
         return Response(serializer.data)
