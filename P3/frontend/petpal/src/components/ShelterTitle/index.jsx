@@ -53,9 +53,11 @@ const ShelterTitle = ({ shelterData, link }) => {
 
   const NameSection = () => (
     <>
-      <div className="rounded-full w-6 h-6 mr-2 mb-1">
-        <img src={imageURL} alt="logo" />
-      </div>
+      <img
+        src={imageURL}
+        className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover mr-2"
+        alt="logo"
+      />
       <h1 className="text-2xl font-bold text-gray-900 md:text-3xl lg:text-3xl">
         {name}
       </h1>
