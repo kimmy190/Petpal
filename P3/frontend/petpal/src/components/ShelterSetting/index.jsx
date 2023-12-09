@@ -125,11 +125,16 @@ const ShelterSetting = () => {
                     // let pw1; 
                     // let pw2; 
                     if (values[key] !== user[key]){
-                        if(key === "password" && values[key] !== ""){
-                            formData.append(key, values[key]);
+                        if(key === "password"){
+                            if(values[key] !== ""){
+                                formData.append(key, values[key]);
+                            }
+                            
                         } 
-                        else if( key === "password2"&& values[key] !== ""){
-                            formData.append(key, values[key]);
+                        else if( key === "password2"){
+                            if(values[key] !== ""){
+                                formData.append(key, values[key]);
+                            }
                         } else {
             
                             formData.append(key, values[key]);
@@ -187,8 +192,9 @@ const ShelterSetting = () => {
                 setPwError(null);
                 setSuccess(true); 
                 setPhoneError(null); 
+                setUser(data); 
                 navigate("/main"); 
-                // setUser(data); 
+
                 
                 // navigate("/login");
             }
@@ -390,7 +396,7 @@ const ShelterSetting = () => {
             type="button"
             className="py-2.5 px-5 mr-2 mb-5 text-medium font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 w-1/2"
             >
-            <Link to="/main">Cancel</Link>
+            <Link to="/main" href="./main_after_login.html">Cancel</Link>
             {/* when get rid of the a tag inside button, will not proceed to main after login */}
             </button>
             <button

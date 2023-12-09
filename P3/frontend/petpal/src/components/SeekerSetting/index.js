@@ -16,7 +16,7 @@ const SeekerSetting = ()=>{
     // const cookies = new Cookies();
     // const token = useToken(); 
 
-    // const navigate = useNavigate();   
+    const navigate = useNavigate();   
     // const history = useHistory();  
     
     const [profileImg, setProfileImg] = useState(null);
@@ -87,7 +87,15 @@ const SeekerSetting = ()=>{
             Object.keys(values).forEach((key) => {
                 // if (values[key] !== formik.initialValues[key]) {
                 if (values[key] !== user[key]) {
-                    formData.append(key, values[key]);
+                    if(key === "password" && values[key] !== ""){
+                        formData.append(key, values[key]);
+                    } 
+                    else if( key === "password2"&& values[key] !== ""){
+                        formData.append(key, values[key]);
+                    } else {
+        
+                        formData.append(key, values[key]);
+                    }
                 }
             });
 
@@ -132,6 +140,7 @@ const SeekerSetting = ()=>{
                 setUser(data); 
                 setFormKey((prevKey) => prevKey + 1);
                 // window.location.reload();
+                navigate("/main");
                 // formik.handleSubmit(); 
                 
                 // update the value 
