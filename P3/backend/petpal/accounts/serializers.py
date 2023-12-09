@@ -10,6 +10,14 @@ from drf_writable_nested.serializers import WritableNestedModelSerializer
 from django.db import transaction
 
 
+class ShelterInfoSerializer(WritableNestedModelSerializer):
+    images = ListField(child = ImageField(), write_only=True)
+
+    class Meta:
+        model = PetShelter 
+        fields = ["user", "id", "organization_name", "logo_image", "phone_number", 
+                    "mission_statement","country", "address1", "address2", "city", 
+                    "state", "zip", "images" ]
 class SeekerSerializer(ModelSerializer):
     first_name = CharField(required=True)
     last_name = CharField(required=True)
@@ -17,12 +25,13 @@ class SeekerSerializer(ModelSerializer):
     password = CharField(required=True)
     password2 = CharField(write_only=True, required=True)
     location = CharField(required=True)
+    shelter = ShelterInfoSerializer(read_only=True)
 
     class Meta:
         model = PetSeeker
         # fields = "__all__"
         fields = ["id","username", "email", "first_name", "last_name", "date_joined",
-                    "password", "password2","location", "profile_image"]
+                    "password", "password2","location", "profile_image", "shelter"]
 
     def validate(self, data):
         pw1 =  data.get('password')
@@ -69,14 +78,6 @@ class ShelterImageSerializer(ModelSerializer):
     shelter = PrimaryKeyRelatedField(read_only=True)
 
 
-class ShelterInfoSerializer(WritableNestedModelSerializer):
-    images = ListField(child = ImageField(), write_only=True)
-
-    class Meta:
-        model = PetShelter 
-        fields = ["user", "id", "organization_name", "logo_image", "phone_number", 
-                    "mission_statement","country", "address1", "address2", "city", 
-                    "state", "zip", "images" ]
 
 
 class ShelterSerializer(WritableNestedModelSerializer):
