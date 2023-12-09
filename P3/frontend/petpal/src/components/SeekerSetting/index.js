@@ -12,9 +12,9 @@ import { useToken } from "../../contexts/UserContext";
 // import Cookies from 'universal-cookie';
 
 const SeekerSetting = ()=>{
-    const { user, setUser } = useUserContext();
+    const { user, setUser, token } = useUserContext();
     // const cookies = new Cookies();
-    const token = useToken(); 
+    // const token = useToken(); 
 
     // const navigate = useNavigate();   
     // const history = useHistory();  
@@ -33,7 +33,7 @@ const SeekerSetting = ()=>{
         
     };
     // const key = JSON.stringify(user); 
-    console.log("is pw")
+    console.log(user)
     // console.log(Array.isArray(pwError)); 
     // let pwErrorArray = ""
         // let pwErrorString= pwError.join(', ‘); 
