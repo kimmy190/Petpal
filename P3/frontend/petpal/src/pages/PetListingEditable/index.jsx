@@ -156,6 +156,9 @@ const PetListingEditable = () => {
     if (petData.pet_name === "" || petData.pet_name.length > 50) {
       setMsg("The pet named you entered is invalid");
     }
+    if (petData.breed === "" || petData.breed.length > 50) {
+      setMsg("The pet breed you entered is invalid");
+    }
     if (petData.medical_history === "") {
       setMsg("You must include a medical history");
     }

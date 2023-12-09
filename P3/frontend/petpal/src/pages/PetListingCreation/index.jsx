@@ -16,7 +16,7 @@ const PetListingCreation = () => {
   const { user, token } = useContext(UserContext);
 
   const [petData, setPetData] = useState({
-    species: "",
+    species: "Dog",
     location: "",
     images: [],
     behavior_aggresive: 0,
@@ -29,7 +29,7 @@ const PetListingCreation = () => {
     publication_date: new Date().toDateString(),
     gender: "Male",
     age: 0,
-    breed: "Golden Doodle",
+    breed: "",
     size: "Small",
     medical_history: "",
     requirements: "",
@@ -123,6 +123,9 @@ const PetListingCreation = () => {
     if (petData.medical_history === "") {
       setMsg("You must include a medical history");
     }
+    if (petData.breed === "" || petData.breed.length > 50) {
+      setMsg("The pet breed you entered is invalid");
+    }
     if (petData.requirements === "") {
       setMsg("You must include requirements");
     }
@@ -145,7 +148,10 @@ const PetListingCreation = () => {
       },
       body: JSON.stringify(petData),
     });
-
+    if (!response.ok) {
+      console.log(petData, "BAD SUBMIT");
+      return;
+    }
     const json = await response.json();
     const pet_listing_id = json.id;
 

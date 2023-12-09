@@ -1,4 +1,4 @@
-clean-and-setup: clean setup
+clean-and-setup: clean setup loaddata
 	
 clean:
 	rm -rf petpal/db.sqlite3
@@ -7,6 +7,8 @@ clean:
 setup:
 	python3 petpal/manage.py makemigrations
 	python3 petpal/manage.py migrate
+
+loaddata:
 	python3 petpal/manage.py loaddata petpal/test_data.json
 
 run:

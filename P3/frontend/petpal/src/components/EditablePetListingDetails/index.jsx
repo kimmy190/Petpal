@@ -115,7 +115,18 @@ const EditablePetListingDetails = ({ petData, updateParam }) => {
       <div className="flex items-center justify-between mb-1">
         <p className="font-semibold mr-4"> Breed</p>
         <div className="relative w-32 sm:w-48">
-          <select
+          <input
+            value={petData.breed}
+            type="text"
+            id="breed"
+            className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Breed"
+            onChange={(e) => {
+              updateParam("breed", e.target.value);
+            }}
+            required
+          />
+          {/* <select
             id="breed"
             className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             defaultValue={petData.breed}
@@ -126,7 +137,7 @@ const EditablePetListingDetails = ({ petData, updateParam }) => {
             <option value="Golden Doodle">Golden Doodle</option>
             <option value="Boston Terrier">Boston Terrier</option>
             <option value="Australian Terrier">Australian Terrier</option>
-          </select>
+          </select> */}
         </div>
       </div>
       <div className="flex items-center justify-between mb-1">

@@ -1,0 +1,89 @@
+[
+{
+    "model": "accounts.shelterimage",
+    "pk": 1,
+    "fields": {
+        "shelter": 1,
+        "image": "shelter_images/shelter_2.png"
+    }
+},
+{
+    "model": "accounts.petseeker",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$2yqJL5kLMc9QWswOGQ5Cyl$LjxZ1vEMa+Ma/54hrH0ZAaeeh1SbyPvHLPW2MHO5e4E=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "SeanSong",
+        "first_name": "Sean",
+        "last_name": "Song",
+        "email": "sean.song@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-12-09T06:48:51.394Z",
+        "profile_image": "",
+        "location": "Canada",
+        "create_petlisting_notification": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.petseeker",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$aW7QEvEYYeVKEVkj6NjKeR$bVerElm15NfXp9RAOkysenQgWiV7VkVKxoe/AdCX53A=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Pat",
+        "first_name": "Patricia",
+        "last_name": "Prit",
+        "email": "pat.prit@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-12-09T06:51:35.040Z",
+        "profile_image": "",
+        "location": "Canada",
+        "create_petlisting_notification": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.petseeker",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$BiTPFiimVbdwHad65lfh4w$EaUj8XKsd+9172xiBJcRBKbVZvblDBkscSS8aOPmTlw=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "TorontoAdoptionCenter",
+        "first_name": "",
+        "last_name": "",
+        "email": "toronto.shelter@adoption.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-12-09T06:58:04.720Z",
+        "profile_image": "",
+        "location": null,
+        "create_petlisting_notification": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.petshelter",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "TorontoAdoptionCenter"
+        ],
+        "organization_name": "Toronto Adoption Center",
+        "logo_image": "logo_images/shelter.png",
+        "phone_number": "+16473081980",
+        "mission_statement": "Temp",
+        "country": "Canada",
+        "address1": "1201 Dundas St. E",
+        "address2": "-",
+        "city": "Toronto",
+        "state": "Ontario",
+        "zip": "a1b 2c3"
+    }
+}
+]

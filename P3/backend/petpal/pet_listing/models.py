@@ -17,11 +17,6 @@ class PetListing(models.Model):
         MALE = "Male"
         FEMALE = "Female"
 
-    class Breeds(models.TextChoices):
-        GOLDEN_DOODLE = "Golden Doodle"
-        BOSTON_TERRIER = "Boston Terrier"
-        AUSTRALIAN_TERRIER = "Australian Terrier"
-
     class Sizes(models.TextChoices):
         LARGE = "Large"
         MEDIUM = "Medium"
@@ -38,7 +33,7 @@ class PetListing(models.Model):
 
     gender = models.CharField(max_length=50, choices=Genders.choices)
     age = models.IntegerField()
-    breed = models.CharField(max_length=50, choices=Breeds.choices)
+    breed = models.CharField(max_length=50)
     size = models.CharField(max_length=50, choices=Sizes.choices)
     species = models.CharField(max_length=50, choices=Species.choices)
     location = models.CharField(max_length=255, editable=False)
