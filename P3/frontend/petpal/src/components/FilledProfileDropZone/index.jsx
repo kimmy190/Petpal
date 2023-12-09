@@ -20,7 +20,7 @@ const FilledProfileDropZone = ({title, onProfileImgChange}) => {
     };
 
 
-    const backgroundImageUrl = user.hasOwnProperty('shelter') ? user.shelter.logo_image : user.profile_image;  
+    const backgroundImageUrl = user.shelter ? user.shelter.logo_image : user.profile_image;  
 
 
     return (
