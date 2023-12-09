@@ -28,21 +28,22 @@ const ApplicationCard = ({
     // const isShelter = false;
     if (user && user.shelter) {
       return (
-        <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+          <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+            Application from:{" "}
+            <span>
+              {applicant.first_name} {applicant.last_name}
+            </span>
+          </p>
+      );
+    }
+      return (
+          <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
           Application to:{" "}
           <a href={`/shelter/${shelter.id}`}>
             <span>{shelter.organization_name}</span>
           </a>
         </p>
-      );
-    }
-    return (
-      <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-        Application from:{" "}
-        <span>
-          {applicant.first_name} {applicant.last_name}
-        </span>
-      </p>
+
     ); // Render nothing if the current user is not a shelter
   };
 
