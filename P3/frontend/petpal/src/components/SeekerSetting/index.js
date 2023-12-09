@@ -22,7 +22,7 @@ const SeekerSetting = ()=>{
     const [profileImg, setProfileImg] = useState(null);
     const [userError, setUserError] = useState(null);
     const [emailError, setEmailError] = useState(null);
-    const [pwError, setPwError] = useState(null);
+    const [pwError, setPwError] = useState("");
 
     const [formKey, setFormKey] = useState(0);
 
@@ -32,47 +32,8 @@ const SeekerSetting = ()=>{
         // formik.setFieldValue('profile_img', selectedFile);
         
     };
-    // const key = JSON.stringify(user); 
-    console.log(user)
-    // console.log(Array.isArray(pwError)); 
-    // let pwErrorArray = ""
-        // let pwErrorString= pwError.join(', ‘); 
     let pwErrorString = ""; 
     let pwErrorElement; 
-    
-
-    // if(pwError){
-    //     pwErrorString = pwError.join(', ');
-    //     let pwErrorArray; 
-
-    //     if(pwErrorString.includes('[') ){
-    //             pwErrorArray = JSON.parse(pwErrorString.replace(/'/g, '"'));
-    //             console.log(pwErrorArray); 
-    //         }
-
-    //     pwErrorElement = pwErrorArray.map((error, index) => (
-    //         <li className="mt-2 text-xs text-red-600" key={index}>{error}</li>
-    //     ));
-
-    // }
-    
-
-    // if(pwError){
-    //     pwErrorString = pwError.join(', ');
-
-    //     // console.log(pwErrorString.includes('['));
-
-    //     if(pwErrorString.includes('[') ){
-    //         pwErrorArray = JSON.parse(pwErrorString.replace(/'/g, '"'));
-    //     }
-
-    //     const pwErrorElement = pwErrorArray.map((error, index) => (
-    //         <li className="mt-2 text-xs text-red-600" key={index}>{error}</li>
-    //     ));
-    // }
-    
-    
-
 
     const formik = useFormik({
         key: formKey, // will reinitalize the value of the form 
@@ -82,8 +43,8 @@ const SeekerSetting = ()=>{
           username: user.username, 
           location: user.location, 
           email: user.email,
-          password: user.password, 
-          password2: user.password2, 
+            password: "",
+            password2: "",
         //   profile_img: user.profile_image, 
         },
 
@@ -147,15 +108,15 @@ const SeekerSetting = ()=>{
             
             if(!response.ok){
                 // login unsuccessful 
-                setUserError(data.username? data.username : null);
-                setEmailError(data.email? data.email : null); 
-                setPwError(data.password? data.password : null); 
+                setUserError(data.username? data.username : "");
+                setEmailError(data.email? data.email : ""); 
+                setPwError(data.password? data.password : ""); 
 
             } else {
                 console.log(data); 
-                setUserError(null);
-                setEmailError(null); 
-                setPwError(null);
+                setUserError("");
+                setEmailError(""); 
+                setPwError("");
                 setUser(data); 
                 setFormKey((prevKey) => prevKey + 1);
                 // window.location.reload();
@@ -250,10 +211,10 @@ const SeekerSetting = ()=>{
                         label="Password"
                         id="password"
                         type="password"
-                        placeholder="•••••••••"
+                        placeholder=""
                         required
                         onChange={formik.handleChange} // Pass the custom function
-                        // value={formik.values.password}
+                        value={formik.values.password}
                     />
                 </div>
                 <div className="mb-4">
@@ -261,10 +222,10 @@ const SeekerSetting = ()=>{
                     label="Confirm Password"
                     id="password2"
                     type="password"
-                    placeholder="•••••••••"
+                    placeholder=""
                     required
                     onChange={formik.handleChange} // Pass the custom function
-                    value={user.password2}
+                    value={formik.values.password2}
                 />  
                 
                 {/* { pwErrorString.includes('[') && (

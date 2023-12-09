@@ -43,8 +43,8 @@ const ShelterSetting = () => {
         initialValues: {
             username: user.username, 
             email: user.email,
-            password: user.password, 
-            password2: user.password2, 
+            password: "",
+            password2: "",
             shelter: {
                 organization_name: shelter.organization_name,
                 phone_number: shelter.phone_number,
@@ -290,7 +290,7 @@ const ShelterSetting = () => {
                 label="Password"
                 id="password"
                 type="password"
-                placeholder="•••••••••"
+                placeholder=""
                 required
                 onChange={formik.handleChange} // Pass the custom function
                 value={formik.values.password}
@@ -301,7 +301,7 @@ const ShelterSetting = () => {
             label="Confirm Password"
             id="password2"
             type="password"
-            placeholder="•••••••••"
+            placeholder=""
             required
             onChange={formik.handleChange} // Pass the custom function
             value={formik.values.password2}
