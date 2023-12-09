@@ -73,7 +73,7 @@ const ApplicationList = () => {
               <Select
                 id="sort"
                 value={orderBy}
-                onChange={e => e => {setStatus(e.target.value); setPage(1);}}
+                onChange={e => {setOrderBy(e.target.value); setPage(1);}}
               >
                 <option value="creation_time">Creation Time</option>
                 <option value="last_update_time">Update time</option>
