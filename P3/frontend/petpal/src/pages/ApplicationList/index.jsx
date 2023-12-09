@@ -38,7 +38,6 @@ const ApplicationList = () => {
                 console.error('Error fetching data:', error);
             }
         };
-
         fetchData();
     }, [orderBy, status]); // Empty dependency array to fetch data only once
   return (
@@ -59,8 +58,9 @@ const ApplicationList = () => {
               <Select
                 id="status"
                 value={status}
-                onChange={e => setStatus(e.target.value)}
+                onChange={e => {setStatus(e.target.value); setPage(1);}}
               >
+    setPage(1);
                 <option value="Pending">Pending</option>
                 <option value="Withdrawn">Withdrawn</option>
                 <option value="Accepted">Accepted</option>
@@ -73,7 +73,7 @@ const ApplicationList = () => {
               <Select
                 id="sort"
                 value={orderBy}
-                onChange={e => setOrderBy(e.target.value)}
+                onChange={e => e => {setStatus(e.target.value); setPage(1);}}
               >
                 <option value="creation_time">Creation Time</option>
                 <option value="last_update_time">Update time</option>
