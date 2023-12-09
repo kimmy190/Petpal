@@ -63,7 +63,7 @@ const SeekerSetting = ()=>{
             
             if(profileImg){
                 if(prev_img !== profileImg.name){
-                    formData.append('profile_img', profileImg, profileImg.name);
+                    formData.append('profile_image', profileImg, profileImg.name);
                 }
             }
             
