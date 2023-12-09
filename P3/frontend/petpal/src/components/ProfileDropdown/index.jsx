@@ -69,28 +69,15 @@ const ProfileDropdown = () => {
             </Link>
         </li>
         <li>
-            <Link to="#"
+            <Link to="applications"
             // href="./list_seeker_applications.html"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
             >
             My Application
             </Link>
         </li>
-        <li>
-            <Link to="#"
-            // href="#"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
-            Saved
-            </Link>
-        </li>
-        <li>
-            <Link to="#"
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-            >
-            Notification
-            </Link>
-        </li>
+    
+    
         </ul>
         <div className="py-1">
         <button
