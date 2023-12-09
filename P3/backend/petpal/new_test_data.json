@@ -488,6 +488,34 @@
     }
 },
 {
+    "model": "comments.sheltercomment",
+    "pk": 2,
+    "fields": {
+        "body": "I did not get a good dog from this shelter.",
+        "created_at": "2023-12-09T17:40:32.815Z",
+        "updated_at": "2023-12-09T17:40:32.816Z",
+        "author": [
+            "Pat"
+        ],
+        "shelter": 1,
+        "rating": 1
+    }
+},
+{
+    "model": "comments.sheltercomment",
+    "pk": 3,
+    "fields": {
+        "body": "Love this shelter!!",
+        "created_at": "2023-12-09T17:41:12.662Z",
+        "updated_at": "2023-12-09T17:41:12.662Z",
+        "author": [
+            "SeanSong"
+        ],
+        "shelter": 1,
+        "rating": 5
+    }
+},
+{
     "model": "comments.reply",
     "pk": 1,
     "fields": {
@@ -511,6 +539,19 @@
             "TorontoAdoptionCenter"
         ],
         "parent": 1
+    }
+},
+{
+    "model": "comments.reply",
+    "pk": 3,
+    "fields": {
+        "body": "Really!? They have the best pets!",
+        "created_at": "2023-12-09T17:41:40.240Z",
+        "updated_at": "2023-12-09T17:41:40.240Z",
+        "author": [
+            "SeanSong"
+        ],
+        "parent": 2
     }
 },
 {
@@ -541,6 +582,51 @@
         "link": "/shelter/1",
         "notification_type": "Review Reply",
         "notification_type_id": 2
+    }
+},
+{
+    "model": "notification.notification",
+    "pk": 3,
+    "fields": {
+        "seeker": [
+            "TorontoAdoptionCenter"
+        ],
+        "message": "Pat left a 1 star review",
+        "creation_date": "2023-12-09T17:40:32.822Z",
+        "was_read": false,
+        "link": "/shelter/1",
+        "notification_type": "Review Comment",
+        "notification_type_id": 2
+    }
+},
+{
+    "model": "notification.notification",
+    "pk": 4,
+    "fields": {
+        "seeker": [
+            "TorontoAdoptionCenter"
+        ],
+        "message": "SeanSong left a 5 star review",
+        "creation_date": "2023-12-09T17:41:12.668Z",
+        "was_read": false,
+        "link": "/shelter/1",
+        "notification_type": "Review Comment",
+        "notification_type_id": 3
+    }
+},
+{
+    "model": "notification.notification",
+    "pk": 5,
+    "fields": {
+        "seeker": [
+            "Pat"
+        ],
+        "message": "SeanSong left a reply on one of your reviews",
+        "creation_date": "2023-12-09T17:41:40.248Z",
+        "was_read": true,
+        "link": "/shelter/1",
+        "notification_type": "Review Reply",
+        "notification_type_id": 3
     }
 }
 ]
