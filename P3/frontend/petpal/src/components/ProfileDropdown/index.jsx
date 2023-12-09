@@ -47,7 +47,7 @@ const ProfileDropdown = () => {
     <div
         // className="z-50 hidden my-4 text-base list-none bg-white border divide-y divide-gray-100 rounded-lg shadow"
         // id="user-dropdown"
-        className={`z-50 ${isUserDropdownOpen ? 'block' : 'hidden'} my-4 text-base list-none bg-white border divide-y divide-gray-100 rounded-lg shadow`}
+        className={`z-50 ${isUserDropdownOpen ? 'absolute' : 'hidden'} my-4 text-base list-none bg-white border divide-y divide-gray-100 rounded-lg shadow top-16`}
                 id="user-dropdown"
     >
         <div className="px-4 py-3 bg-gray-50">
@@ -79,11 +79,11 @@ const ProfileDropdown = () => {
     
     
         </ul>
-        <div className="py-1">
+        <div className="py-1  hover:bg-gray-100">
         <button
             onClick={() => {
                 handleSignOut();}}
-            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            className="block px-4 py-2 text-sm text-gray-700"
         >
             Sign out
         </button>

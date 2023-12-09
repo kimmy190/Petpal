@@ -120,9 +120,19 @@ const Notification = () => {
       {/* Notification Dropdown menu */}
       <div
         id="dropdownNotification"
-        className={`z-20 ${
+        aria-orientation="vertical"
+        className={`z-10 ${
           isDropdownOpen ? "block" : "hidden"
-        } w-full max-w-xs max-h-96 overflow-y-scroll bg-white border divide-y divide-gray-100 rounded-lg shadow sm:max-w-sm`}
+        } w-full max-w-xs max-h-96 overflow-y-scroll bg-white border divide-y divide-gray-100 right-0 rounded-lg shadow sm:max-w-sm top-20 absolute`}
+        style={{
+            left: "70%", 
+            // position: "absolute",
+            // top:16, 
+            // inset: "0px auto auto 0px",
+            // margin: 0,
+            // transform: "translate3d(1153.5px, 74px, 0px)"
+          }}
+      
       >
         <div className="block px-4 py-2 font-medium text-center text-gray-700 rounded-t-lg bg-gray-50">
           Notifications
