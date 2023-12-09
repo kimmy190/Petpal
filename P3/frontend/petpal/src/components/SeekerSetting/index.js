@@ -36,6 +36,8 @@ const SeekerSetting = ()=>{
         // formik.setFieldValue('profile_img', selectedFile);
         
     };
+    let pwErrorString = ""; 
+    let pwErrorElement; 
     // console.log("error checking")
     // console.log(pwError[0].includes('8')); 
     // let pwErrorString = ""; 
@@ -247,16 +249,17 @@ const SeekerSetting = ()=>{
                     )} */}
                     
                     
-                {pwError[0].includes('8')? 
-                <p className="mt-2 text-xs text-red-600">
-                This password is too short. It must contain at least 8 characters.
-                </p> : 
-                (<p className="mt-2 text-xs text-red-600">{pwError[0]}</p>)  
-                
+                {pwError? 
+                    pwError[0].includes('8')?
+                    <p className="mt-2 text-xs text-red-600">
+                    This password is too short. It must contain at least 8 characters.
+                    </p> : 
+                    (<p className="mt-2 text-xs text-red-600">{pwError[0]}</p>)  
+                    : <></>
                     }
 
                 </div>
-                {success ? <p className="mt-2 text-xs text-green-600">Successfully updated!</p> : <></>}
+                {success ? <p className="mt-0 text-xs text-green-600">Successfully updated!</p> : <></>}
 
                 <div className="mb-4">
                 <p className="block font-medium text-gray-900">Preferences</p>

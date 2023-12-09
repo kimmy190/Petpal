@@ -358,7 +358,7 @@
 {
     "model": "accounts.petseeker",
     "fields": {
-        "password": "123@Test",
+        "password": "pbkdf2_sha256$600000$LuxhleTB1yu8zx2s5gyXiM$gUmUPyhpeyqB2K/XWnClKB48Wkm4wYncU0PkRh2Ob3Q=",
         "last_login": null,
         "is_superuser": false,
         "username": "SeanSong",
@@ -368,7 +368,7 @@
         "is_staff": false,
         "is_active": true,
         "date_joined": "2023-12-09T06:48:51.394Z",
-        "profile_image": "profile_images/Sean_Song.png",
+        "profile_image": "profile_images/Sean_Song_mms0RCw.png",
         "location": "Canada",
         "create_petlisting_notification": false,
         "groups": [],
@@ -378,7 +378,7 @@
 {
     "model": "accounts.petseeker",
     "fields": {
-        "password": "123@Test",
+        "password": "pbkdf2_sha256$600000$DiFMBrBGxgaHGhV5j3ijQh$GwnUvAwRjB7qRKdWd9V8C90Z/+1hYVZE5r6UZoUi8D0=",
         "last_login": null,
         "is_superuser": false,
         "username": "Pat",
@@ -388,7 +388,7 @@
         "is_staff": false,
         "is_active": true,
         "date_joined": "2023-12-09T06:51:35.040Z",
-        "profile_image": "profile_images/Patricia_S0qQHI0.png",
+        "profile_image": "profile_images/Patricia_hxMJsbU.png",
         "location": "Canada",
         "create_petlisting_notification": false,
         "groups": [],
