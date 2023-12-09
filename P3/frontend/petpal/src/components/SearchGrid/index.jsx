@@ -7,111 +7,111 @@ import PetCard from "../PetCard";
 const dropdownItems = ["Dog", "Cat"];
 
 function SearchGrid({
-    fetchOnLoad,
-    location,
-    shelter_id,
-    editable = false,
-    onEdit,
+  fetchOnLoad,
+  location,
+  shelter_id,
+  editable = false,
+  onEdit,
 }) {
-    const [hideFilter, setHideFilter] = useState("hidden");
-    const [species, setSpecies] = useState("");
-    const [highAge, setHighAge] = useState("");
-    const [lowAge, setLowAge] = useState("");
-    const [gender, setGender] = useState("");
-    const [size, setSize] = useState("");
-    const [orderBy, setOrderBy] = useState("publication_date");
-    const [page, setPage] = useState(1);
-    const [disableRightButton, setDisableRightButton] = useState(true);
-    const [n, setN] = useState(0);
-    const [pets, setPets] = useState([]);
+  const [hideFilter, setHideFilter] = useState("hidden");
+  const [species, setSpecies] = useState("");
+  const [highAge, setHighAge] = useState("");
+  const [lowAge, setLowAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [size, setSize] = useState("");
+  const [orderBy, setOrderBy] = useState("publication_date");
+  const [page, setPage] = useState(1);
+  const [disableRightButton, setDisableRightButton] = useState(true);
+  const [n, setN] = useState(0);
+  const [pets, setPets] = useState([]);
 
-    const toggleFilter = () => {
-        if (hideFilter === "") {
-            setHideFilter("hidden");
-        } else {
-            setHideFilter("");
+  const toggleFilter = () => {
+    if (hideFilter === "") {
+      setHideFilter("hidden");
+    } else {
+      setHideFilter("");
+    }
+  };
+
+  const handleGender = (event) => {
+    setGender(event.target.value);
+  };
+  const handleAge = (gte, lte) => {
+    setLowAge(gte);
+    setHighAge(lte);
+  };
+  const handleSize = (event) => {
+    setSize(event.target.value);
+  };
+  const handleSortChange = (event) => {
+    setOrderBy(event.target.value);
+  };
+
+  const clearFilters = (event) => {
+    // Handle sort change here
+    setSpecies("");
+    setLowAge("");
+    setHighAge("");
+    setSize("");
+    setGender("");
+  };
+
+  // this is dumb w.e
+
+  const fetchPets = () => {
+    const x = {
+      age__gte: lowAge,
+      age__lte: highAge,
+      gender: gender,
+      size: size,
+      species: species,
+      shelter: shelter_id,
+      order_by: orderBy,
+    };
+    console.log("shelter", shelter_id);
+    let params = new URLSearchParams(x);
+    let keysForDel = [];
+    params.forEach((value, key) => {
+      if (value == "" || value == 0) {
+        keysForDel.push(key);
+      }
+    });
+    keysForDel.forEach((key) => {
+      params.delete(key);
+    });
+    // Fetch data from the API endpoint
+    // fetch(`http://127.0.0.1:8000/pet_listing?${searchParams.toString()}&shelter=${1}`,
+    fetch(`/pet_listing/?${params.toString()}&page=${page}&page_size=8`, {
+      method: "GET",
+      redirect: "follow",
+      headers: {
+        accept: "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok.");
         }
-    };
+        return response.json();
+      })
+      .then((data) => {
+        // Set the retrieved data to the state
+        if (!data.hasNext) {
+          setDisableRightButton(true);
+        } else {
+          setDisableRightButton(false);
+        }
 
-    const handleGender = (event) => {
-        setGender(event.target.value);
-    };
-    const handleAge = (gte, lte) => {
-        setLowAge(gte);
-        setHighAge(lte);
-    };
-    const handleSize = (event) => {
-        setSize(event.target.value);
-    };
-    const handleSortChange = (event) => {
-        setOrderBy(event.target.value);
-    };
-
-    const clearFilters = (event) => {
-        // Handle sort change here
-        setSpecies("");
-        setLowAge("");
-        setHighAge("");
-        setSize("");
-        setGender("");
-    };
-
-    // this is dumb w.e
-
-    const fetchPets = () => {
-        const x = {
-            age__gte: lowAge,
-            age__lte: highAge,
-            gender: gender,
-            size: size,
-            species: species,
-            shelter: shelter_id,
-            order_by: orderBy,
-        };
-        console.log("shelter", shelter_id);
-        let params = new URLSearchParams(x);
-        let keysForDel = [];
-        params.forEach((value, key) => {
-            if (value == "" || value == 0) {
-                keysForDel.push(key);
-            }
-        });
-        keysForDel.forEach((key) => {
-            params.delete(key);
-        });
-        // Fetch data from the API endpoint
-        // fetch(`http://127.0.0.1:8000/pet_listing?${searchParams.toString()}&shelter=${1}`,
-        fetch(`/pet_listing/?${params.toString()}&page=${page}&page_size=8`, {
-            method: "GET",
-            redirect: "follow",
-            headers: {
-                accept: "application/json",
-            },
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok.");
-                }
-                return response.json();
-            })
-            .then((data) => {
-                // Set the retrieved data to the state
-                if (!data.hasNext) {
-                    setDisableRightButton(true);
-                } else {
-                    setDisableRightButton(true);
-                }
-
-                setN(data.count);
-                setPets(data.results);
-            })
-            .catch((error) => {
-                console.error("There was a problem fetching the data:", error);
-            });
+        setN(data.count);
+        setPets(data.results);
+      })
+      .catch((error) => {
+        console.error("There was a problem fetching the data:", error);
+      });
   };
   useEffect(() => {
     if (fetchOnLoad) fetchPets();
-      }, [fetchOnLoad, shelter_id, lowAge, gender, size, species, orderBy]);
+  }, [fetchOnLoad, shelter_id, lowAge, gender, size, species, orderBy]);
 
   return (
     <div className="flex flex-col md:flex-row m-4 container md:max-w-full  bg-white rounded-lg shadow-md gap-4">
@@ -132,10 +132,7 @@ function SearchGrid({
             className="flex-shrink-0 z-10 inline-flex items-center py-3.5 "
           >
             {dropdownItems.map((item, index) => (
-              <Dropdown.Item
-                key={index}
-                onClick={() => setSpecies(item)}
-              >
+              <Dropdown.Item key={index} onClick={() => setSpecies(item)}>
                 {item + "s"}
               </Dropdown.Item>
             ))}
@@ -146,16 +143,28 @@ function SearchGrid({
           </label>
           <fieldset id="size" className="flex max-w-md flex-col gap-4">
             <div className="flex items-center gap-2">
-              <Radio  value="Small" checked={size == "Small"} onChange={handleSize}/>
+              <Radio
+                value="Small"
+                checked={size == "Small"}
+                onChange={handleSize}
+              />
               <Label>Small</Label>
             </div>
             <div className="flex items-center gap-2">
-              <Radio  value="Medium" checked={size == "Medium"} onChange={handleSize}/>
-              <Label >Medium</Label>
+              <Radio
+                value="Medium"
+                checked={size == "Medium"}
+                onChange={handleSize}
+              />
+              <Label>Medium</Label>
             </div>
             <div className="flex items-center gap-2">
-              <Radio  value="Large" checked={size == "Large"} onChange={handleSize}/>
-              <Label >Large</Label>
+              <Radio
+                value="Large"
+                checked={size == "Large"}
+                onChange={handleSize}
+              />
+              <Label>Large</Label>
             </div>
           </fieldset>
           <hr className="mt-4 mb-2" />
@@ -164,33 +173,57 @@ function SearchGrid({
           </label>
           <fieldset className="flex max-w-md flex-col gap-4">
             <div className="flex items-center gap-2">
-              <Radio value="1" checked={highAge== "1"} onChange={() => handleAge(0,1)}/>
+              <Radio
+                value="1"
+                checked={highAge == "1"}
+                onChange={() => handleAge(0, 1)}
+              />
               <Label> Less than 1 year </Label>
             </div>
             <div className="flex items-center gap-2">
-              <Radio  value="3" checked={highAge == "3"} onChange={() =>handleAge(1,3)}/>
-              <Label >1 - 3</Label>
+              <Radio
+                value="3"
+                checked={highAge == "3"}
+                onChange={() => handleAge(1, 3)}
+              />
+              <Label>1 - 3</Label>
             </div>
             <div className="flex items-center gap-2">
-              <Radio  value="6" checked={highAge == "6"} onChange={() => handleAge(3,6)}/>
-              <Label >3 - 6</Label>
+              <Radio
+                value="6"
+                checked={highAge == "6"}
+                onChange={() => handleAge(3, 6)}
+              />
+              <Label>3 - 6</Label>
             </div>
             <div className="flex items-center gap-2">
-              <Radio value="7" checked={lowAge == "7"} onChange={() => handleAge(7, 100)} />
-              <Label >Greater than 6</Label>
+              <Radio
+                value="7"
+                checked={lowAge == "7"}
+                onChange={() => handleAge(7, 100)}
+              />
+              <Label>Greater than 6</Label>
             </div>
           </fieldset>
           <hr className="mt-4 mb-2" />
           <label htmlFor="age" className="mb-4 md:mb-2 mr-4 font-bold">
             Gender
           </label>
-          <fieldset  id="age" className="flex max-w-md flex-col gap-4">
-          <div className="flex items-center gap-2">
-              <Radio value="Male" checked={gender == "Male"} onChange={handleGender}/>
+          <fieldset id="age" className="flex max-w-md flex-col gap-4">
+            <div className="flex items-center gap-2">
+              <Radio
+                value="Male"
+                checked={gender == "Male"}
+                onChange={handleGender}
+              />
               <Label>Male</Label>
             </div>
             <div className="flex items-center gap-2">
-              <Radio  value="Female" checked={gender == "Female"} onChange={handleGender}/>
+              <Radio
+                value="Female"
+                checked={gender == "Female"}
+                onChange={handleGender}
+              />
               <Label>Female</Label>
             </div>
           </fieldset>
