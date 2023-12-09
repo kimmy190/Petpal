@@ -40,9 +40,11 @@ const ProfileDropdown = () => {
 
         <div className="relative">
         {/* <ProfileImage user={user} className="object-cover w-8 h-8 rounded-full md:w-10 md:h-10"
-        />
-         */}
-         <ProfileDropDownImage user={user}/>
+        /> */}
+        <ProfileDropDownImage/>
+
+        
+         {/* <ProfileDropDownImage user={user}/> */}
         </div>
     </button>
     {/* Dropdown menu */}

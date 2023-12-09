@@ -1,45 +1,55 @@
 import { useEffect, useState } from "react";
+import { useUserContext } from "../../contexts/UserContext";
 
 //const ProfileImage = ({ user }) => {
-const ProfileDropDownImage = ({ user }) => {
+const ProfileDropDownImage = () => {
+    const {user} = useUserContext();
 
+    console.log(user); 
     const defaultImageUrl = process.env.PUBLIC_URL + '/default.jpeg';
 
-    const [imageURL, setImageURL] = useState(false);
+    // const [imageURL, setImageURL] = useState(null);
+    const imageURL = user.hasOwnProperty('shelter') ? user.shelter.logo_image : user.profile_image;  
 
-    useEffect(() => {
-        const perfromUseEffect = async () => {
-        // const url = user.profile_image.replace("http://127.0.0.1:8000", "");
-        let url;
 
-        if (user.hasOwnProperty('shelter')) {
-            // User has a shelter property
-            url = user.shelter.logo_image.replace("http://127.0.0.1:8000", ""); 
-        } else {
-            // User does not have a shelter property
-            url = user.profile_image.replace("http://127.0.0.1:8000", "");
-        }
+    // useEffect(() => {
+    //     const perfromUseEffect = async () => {
+    //     // const url = user.profile_image.replace("http://127.0.0.1:8000", "");
+    //     let url;
 
-        const imageResponse = await fetch(url, {
-            method: "GET",
-            redirect: "follow",
-            headers: {
-            accept: "application/json",
-            },
-        });
+    //     if (user.shelter) {
+    //         // User has a shelter property
+    //         console.log("its me"); 
+    //         setImageURL(user.shelter.logo_image); 
+    //         url = user.shelter.logo_image.replace("http://127.0.0.1:8000", ""); 
+    //     } else {
+    //         // User does not have a shelter property
+    //         setImageURL(user.profile_image); 
+    //         url = user.profile_image.replace("http://127.0.0.1:8000", "");
+    //     }
+        
+    //     // const imageResponse = await fetch(url, {
+    //     //     method: "GET",
+    //     //     redirect: "follow",
+    //     //     headers: {
+    //     //     accept: "application/json",
+    //     //     },
+    //     // });
 
-        if (!imageResponse.ok) {
-            return;
-        }
-        setImageURL(URL.createObjectURL(await imageResponse.blob()));
-        };
+    //     // if (!imageResponse.ok) {
+    //     //     return;
+    //     // }
+    //     // setImageURL(URL.createObjectURL(await imageResponse.blob()));
+    //     // };
     
-        if (user.profile_image) {
-        perfromUseEffect();
-        } else if( user ? false : user.shelter.logo_image){
-            perfromUseEffect();
-        }
-    }, [user]);
+    //     if (user.profile_image) {
+    //     perfromUseEffect();
+    //     } else if( user ? false : user.shelter.logo_image){
+    //         perfromUseEffect();
+    //     }
+
+    //     }
+    // }, [user]);
     return imageURL ? (
         <img
         src={imageURL}

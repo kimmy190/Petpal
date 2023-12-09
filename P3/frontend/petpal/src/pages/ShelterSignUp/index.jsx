@@ -252,7 +252,7 @@ const ShelterSignUp = () =>{
             label="Email address"
             id="email"
             type="email"
-            placeholder="sean.song@gmail.com"
+            placeholder="toronto.shelter@community.ca"
             required
             onChange={formik.handleChange} // Pass the custom function
             value={formik.values.email}
