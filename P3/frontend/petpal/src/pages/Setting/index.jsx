@@ -5,27 +5,15 @@ import ShelterSetting from "../../components/ShelterSetting";
 const Setting = () => {
     const { user, loading } = useUserContext();
 
-    if(user){
-        console.log(user); 
-        console.log()
-        if (user.hasOwnProperty('shelter')) {
-        // shelter 
-            return(
-                <>
-                <ShelterSetting /> 
-                </>
-            );
-
-        } else {
-            // seeker 
-            return(
-                <>
-                <SeekerSetting/> 
-                </>
-            );
-            
-        }
+    if (user.shelter) {
+        return(
+            <ShelterSetting />
+        );
+    } else {
+        return(
+            <SeekerSetting/>
+        );
     }
-    
 }
+
 export default Setting; 

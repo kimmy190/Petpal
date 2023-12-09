@@ -35,7 +35,11 @@ function App() {
               <Route path="" element={<Main />} />
 
               <Route path="main" element={<Main />} />
-              <Route path="setting" element={<Setting />} />
+              <Route path="setting" element={
+                  <AuthenticatedRoute>
+                    <Setting />
+                  </AuthenticatedRoute>
+              } />
               <Route
                 path="pet_listing/:pet_listing_id"
                 element={<PetListing />}
@@ -56,9 +60,9 @@ function App() {
               <Route
                 path="applications/pet_listing/:pet_listing_id/"
                 element={
-                  <AuthenticatedRoute>
-                    <ApplicationEditable />
-                  </AuthenticatedRoute>
+                    <AuthenticatedRoute>
+                      <ApplicationEditable />
+                    </AuthenticatedRoute>
                 }
               />
               <Route
