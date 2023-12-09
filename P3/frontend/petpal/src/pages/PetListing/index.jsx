@@ -20,14 +20,13 @@ const PetListing = () => {
   const [loadingData, setLoadingData] = useState(true);
   const [petImages, setPetImages] = useState([]);
   const [application, setApplication] = useState(null);
-
+  console.log(user, token);
   const [notFound, set404] = useState(false);
 
   const setNotFound = () => {
     set404(true);
     setLoadingData(false);
   };
-
   useEffect(() => {
     const perfromUseEffect = async () => {
       const petResponse = await fetch(`/pet_listing/${pet_listing_id}`, {
@@ -145,7 +144,7 @@ const PetListing = () => {
         </Grid>
       </section>
 
-      {!user?.shelter && petData.status === "Available" ? (
+      {user && !user?.shelter && petData.status === "Available" ? (
         <div className="flex justify-center pb-10 bg-gray-50 pt-3">
           {!application ? (
             <Link to={`/applications/pet_listing/${pet_listing_id}`}>

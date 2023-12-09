@@ -17,7 +17,7 @@ import BlogSnippet from "../../components/BlogSnippet";
 const Shelter = () => {
   const { shelter_id } = useParams();
   const navigate = useNavigate();
-  const { user, token } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [shelterData, setShelterData] = useState();
   const [loadingData, setLoadingData] = useState(true);
   const [shelterImage, setShelterImages] = useState([]);
@@ -83,7 +83,6 @@ const Shelter = () => {
         redirect: "follow",
         headers: {
           accept: "application/json",
-          Authorization: `Bearer ${token}`,
         },
       });
       if (!blogResponse.ok) {
@@ -92,7 +91,7 @@ const Shelter = () => {
       }
       setPosts((await blogResponse.json()).reverse());
 
-     setLoadingData(false);
+      setLoadingData(false);
     };
     perfromUseEffect();
   }, [shelter_id, navigate]);

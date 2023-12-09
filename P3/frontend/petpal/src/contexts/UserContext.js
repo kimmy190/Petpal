@@ -33,8 +33,7 @@ export const UserProvider = ({ children }) => {
         // Check if a token is stored (you might use localStorage or sessionStorage)
         const token = cookies.get("access_token"); //localStorage.getItem('accessToken');
         // console.log("FETCH USER IN USER CONTEXT")
-        console.log(token);
-
+        console.log("HELP");
         if (token) {
           // If a token is present, fetch the current user
           const response = await fetch("/accounts/user/", {
@@ -80,7 +79,9 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, token, loading, signOut }}>
+    <UserContext.Provider
+      value={{ user, setUser, token, setToken, loading, signOut }}
+    >
       {children}
     </UserContext.Provider>
   );

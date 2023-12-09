@@ -19,7 +19,6 @@ import MarkdownComponent from "./pages/BlogPost";
 import Main from "./pages/Main";
 import Layout from "./components/Layout";
 import Login from "./pages/Login";
-import Main from "./pages/Main";
 import SeekerSignUp from "./pages/SeekerSignUp";
 import ShelterSignUp from "./pages/ShelterSignUp";
 import Setting from "./pages/Setting";
@@ -33,6 +32,8 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
+              <Route path="" element={<Main />} />
+
               <Route path="main" element={<Main />} />
               <Route path="setting" element={<Setting />} />
               <Route
