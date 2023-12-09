@@ -257,7 +257,7 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
                                 "notification_type_id": application.id,
                             }
                         ),
-                        applicant.shelter,
+                        application.shelter.user,
                     )
             else:
                 return Response(
