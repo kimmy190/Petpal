@@ -30,7 +30,8 @@ def create_notification(serializer, user):
     if not serializer.is_valid():
         return
     notification_type = serializer.validated_data.get("notification_type")
-    notification_type_id = serializer.validated_data.get("notification_type_id")
+    notification_type_id = serializer.validated_data.get(
+        "notification_type_id")
 
     type_to_object_type = {
         Notification.NotificationTypes.APPLICATION_COMMENT: ApplicationComment,
@@ -44,16 +45,11 @@ def create_notification(serializer, user):
     link = ""
     match notification_type:
         case Notification.NotificationTypes.APPLICATION_COMMENT:
-            link = reverse(
-                "comments:get_application_list",
-                kwargs={
-                    "application": get_object_or_404(
-                        ApplicationComment, pk=notification_type_id
-                    ).application.pk
-                },
-            )
+            link = reverse("applications:get", kwargs={
+                           "pk": notification_type_id})
         case Notification.NotificationTypes.PET_LISTING:
-            link = reverse("pet_listing:get", kwargs={"pk": notification_type_id})
+            link = reverse("pet_listing:get", kwargs={
+                           "pk": notification_type_id})
 
         case Notification.NotificationTypes.REVIEW_COMMENT:
             link = f"/shelter/{user.shelter.id}"
@@ -65,9 +61,11 @@ def create_notification(serializer, user):
             link = f"/shelter/{shelter_id}"
 
         case Notification.NotificationTypes.APPLICATION:
-            link = reverse("applications:get", kwargs={"pk": notification_type_id})
+            link = reverse("applications:get", kwargs={
+                           "pk": notification_type_id})
     # Make sure the object type exists
-    get_object_or_404(type_to_object_type[notification_type], pk=notification_type_id)
+    get_object_or_404(
+        type_to_object_type[notification_type], pk=notification_type_id)
     return Notification.objects.create(
         **serializer.validated_data, seeker=user, link=link
     )

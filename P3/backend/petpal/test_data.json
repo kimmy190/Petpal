@@ -139,7 +139,6 @@
       "user_permissions": []
     }
   },
-
   {
     "model": "accounts.petshelter",
     "pk": 1,
@@ -253,7 +252,6 @@
     "fields": {
       "shelter": 1,
       "species": "Dog",
-
       "pet_name": "Franks",
       "status": "Available",
       "publication_date": "2023-11-09T22:46:22.212Z",
@@ -278,7 +276,6 @@
     "fields": {
       "shelter": 1,
       "species": "Dog",
-
       "pet_name": "Cindy",
       "status": "Available",
       "publication_date": "2023-11-09T22:47:33.628Z",
@@ -303,7 +300,6 @@
     "fields": {
       "shelter": 2,
       "species": "Dog",
-
       "pet_name": "Oldy",
       "status": "Withdrawn",
       "publication_date": "2023-11-09T22:48:29.195Z",
@@ -328,7 +324,6 @@
     "fields": {
       "shelter": 2,
       "species": "Dog",
-
       "pet_name": "Oldy2",
       "status": "Adopted",
       "publication_date": "2023-11-09T22:49:04.874Z",
@@ -353,7 +348,6 @@
     "fields": {
       "shelter": 2,
       "species": "Dog",
-
       "pet_name": "Sally",
       "status": "Adopted",
       "publication_date": "2023-11-09T22:49:37.785Z",
@@ -378,7 +372,6 @@
     "fields": {
       "shelter": 2,
       "species": "Dog",
-
       "pet_name": "Sally",
       "status": "Pending",
       "publication_date": "2023-11-09T22:50:55.628Z",
@@ -404,7 +397,6 @@
       "shelter": 2,
       "pet_name": "Chad",
       "species": "Dog",
-
       "status": "Available",
       "publication_date": "2023-11-09T22:51:41.815Z",
       "gender": "Male",
@@ -428,7 +420,6 @@
     "fields": {
       "shelter": 1,
       "species": "Dog",
-
       "pet_name": "Chad's Son",
       "status": "Available",
       "publication_date": "2023-11-09T22:52:34.859Z",
@@ -453,7 +444,6 @@
     "fields": {
       "shelter": 1,
       "species": "Dog",
-
       "pet_name": "ChiChi",
       "status": "Available",
       "publication_date": "2023-11-09T22:53:12.079Z",
@@ -665,7 +655,7 @@
       "message": "Some message here",
       "creation_date": "2023-11-13T03:40:40.862Z",
       "was_read": false,
-      "link": "/comments/shelter/1",
+      "link": "/shelter/1",
       "notification_type": "Review Comment",
       "notification_type_id": 2
     }
@@ -678,7 +668,7 @@
       "message": "Some message here",
       "creation_date": "2023-11-13T03:43:58.916Z",
       "was_read": false,
-      "link": "/comments/shelter/1",
+      "link": "/shelter/1",
       "notification_type": "Review Reply",
       "notification_type_id": 1
     }
@@ -704,7 +694,7 @@
       "message": "Some message here2",
       "creation_date": "2023-11-13T03:48:12.280Z",
       "was_read": false,
-      "link": "/comments/application/1",
+      "link": "/applications/1",
       "notification_type": "Application Comment",
       "notification_type_id": 3
     }

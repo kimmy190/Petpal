@@ -6,6 +6,7 @@ import AcceptRejectButtons from "../../components/shelter_application/AcceptReje
 import Header from "../../components/shelter_application/Header";
 import Breadcrumb from "../../components/shelter_application/Breadcrumb";
 import ThankYou from "../../components/ThankYou";
+import Notification from "../../components/Notification";
 import WithdrawnStatus from "../../components/WithdrawnStatus";
 import AcceptedStatus from "../../components/AcceptedStatus";
 import RejectedStatus from "../../components/RejectedStatus";
@@ -96,7 +97,6 @@ const Application = () => {
   ) : (
     <div className="flex flex-col justify-center items-center bg-gray-50 py-4">
       <ShelterTitle shelterData={shelterData} link={true} />
-
       <Breadcrumb />
       <Chatbox />
 
