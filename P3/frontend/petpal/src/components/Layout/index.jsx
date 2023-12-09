@@ -2,26 +2,13 @@ import { Outlet, Link } from "react-router-dom";
 // import { Dropdown, Button } from 'flowbite-react';
 import LeftNav from "../LeftNav";
 import React, { useEffect } from "react";
-import {
-  useUserContext,
-  usePrevUser,
-  UserContext,
-} from "../../contexts/UserContext";
+import { useUserContext, usePrevUser, UserContext} from "../../contexts/UserContext";
 
 const Layout = () => {
-  // const { user, token } = usePrevUser();
-
-  // useEffect(() => {
-  //     // Do something with updated user and token values
-  //     console.log("Updated user:", user);
-  //     console.log("Updated token:", token);
-  // }, [user, token]);
-
-  return (
-    <>
-      <nav className="border-gray-200">
-        <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
-          <a href="/main" className="flex items-center">
+    return (<>
+    <nav className="border-gray-200">
+    <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
+        <a href="/main" className="flex items-center">
             <span className="self-center text-3xl font-bold whitespace-nowrap">
               Pet Pal
             </span>
