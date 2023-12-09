@@ -84,7 +84,7 @@ const PetListing = () => {
               if (!response.ok) {
                 return "";
               }
-              return URL.createObjectURL(await response.blob());
+              return { url: URL.createObjectURL(await response.blob()) };
             })
             .reverse()
         )
