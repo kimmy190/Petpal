@@ -8,11 +8,11 @@ const Layout = () => {
     return (<>
     <nav className="border-gray-200">
     <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
-        <a href="/main" className="flex items-center">
+        <Link to="/main" className="flex items-center">
             <span className="self-center text-3xl font-bold whitespace-nowrap">
               Pet Pal
             </span>
-          </a>
+          </Link>
 
           {/* this will be replaced when log in  */}
           <LeftNav />
@@ -25,7 +25,7 @@ const Layout = () => {
             <ul className="flex flex-col p-4 mt-4 font-medium border rounded-lg md:p-0 border-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0">
               <li>
                 <Link
-                  to="#"
+                  to="/main"
                   className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:bg-transparent md:bg-gray-100 md:p-0"
                   aria-current="page"
                 >
@@ -42,7 +42,7 @@ const Layout = () => {
               </li>
               <li>
                 <Link
-                  to="#"
+                  to="/search"
                   className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:underline md:hover:bg-transparent md:p-0"
                 >
                   Adopt

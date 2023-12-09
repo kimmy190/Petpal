@@ -80,6 +80,19 @@ const ProfileDropdown = () => {
             My Application
             </Link>
         </li>
+
+        {user.shelter ? 
+        <li>
+        <Link to={`shelter/${user.shelter.id}`}
+        // href="./list_seeker_applications.html"
+        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+        >
+        My Dashboard
+        </Link>
+    </li> : 
+    <></>
+        
+    }
     
     
         </ul>
