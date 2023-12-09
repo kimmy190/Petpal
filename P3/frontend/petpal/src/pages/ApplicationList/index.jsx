@@ -17,7 +17,7 @@ const ApplicationList = () => {
         // Fetch data from the '/applications/' endpoint
         const fetchData = async () => {
             try {
-                const response = await fetch(`/applications/?order_by=${orderBy}&status=${status}&page=${page}`, {
+                const response = await fetch(`/applications/?order_by=${orderBy}&status=${status}&page=${page}&page_size=1`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         'Content-Type': 'application/json', // Add other headers if needed
@@ -28,7 +28,7 @@ const ApplicationList = () => {
                     throw new Error('Network response was not ok.');
                 }
                 const data = await response.json();
-                if (!data.hasNext) {
+                if (!data.next) {
                     setDisableRightButton(true);
                 } else {
                     setDisableRightButton(false);
@@ -39,7 +39,7 @@ const ApplicationList = () => {
             }
         };
         fetchData();
-    }, [orderBy, status]); // Empty dependency array to fetch data only once
+    }, [page, orderBy, status]); // Empty dependency array to fetch data only once
   return (
     <div className="min-h-screen bg-gray-100 py-4">
       {/* Some hacky flex boxing */}
