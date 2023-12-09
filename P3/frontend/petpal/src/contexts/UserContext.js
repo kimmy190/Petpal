@@ -82,7 +82,7 @@ export const UserProvider = ({ children }) => {
     <UserContext.Provider
       value={{ user, setUser, token, setToken, loading, signOut }}
     >
-      {children}
+      {loading ? <></> : children}
     </UserContext.Provider>
   );
 };

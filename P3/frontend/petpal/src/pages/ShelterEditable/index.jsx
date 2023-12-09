@@ -133,7 +133,7 @@ const ShelterEditable = () => {
   useEffect(() => {
     const perfromUseEffect = async () => {
       const reviewResponse = await fetch(
-        `/comments/shelter/${shelter_id}?page=${page}`,
+        `/comments/shelter/${shelter_id}?page=${page}&page_size=2`,
         {
           method: "GET",
           redirect: "follow",

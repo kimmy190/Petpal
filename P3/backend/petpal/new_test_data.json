@@ -1,5 +1,17 @@
 [
 {
+    "model": "blog.post",
+    "pk": 1,
+    "fields": {
+        "title": "An Intro to Our Beautiful Pet Shelter",
+        "content": "Welcome to a haven where wagging tails, playful purrs, and unconditional love come together—our beautiful pet shelter. In this introductory post, we invite you to explore the heart and soul of our sanctuary, where the mission is simple yet profound: to connect animals in need with loving homes.\r\n\r\nA Sanctuary of Compassion:\r\nStep into our pet shelter, and you'll instantly sense the warmth and compassion that defines our space. Every paw print, every whisker, and every soul that enters our doors is met with genuine care and an unwavering commitment to their well-being.\r\n\r\nDiverse Companions Await:\r\nOur shelter is a mosaic of furry personalities, each with a unique story to tell. From the spirited playfulness of kittens to the wise gaze of senior dogs, our residents represent a tapestry of backgrounds and breeds, all sharing the common thread of seeking a second chance and a loving family.",
+        "author": 1,
+        "created_at": "2023-12-09T17:35:52.341Z",
+        "updated_at": "2023-12-09T17:35:52.341Z",
+        "image": "blog_images/shelter_1.png"
+    }
+},
+{
     "model": "accounts.shelterimage",
     "pk": 1,
     "fields": {
@@ -459,6 +471,76 @@
         "city": "Toronto",
         "state": "Ontario",
         "zip": "123 abc"
+    }
+},
+{
+    "model": "comments.sheltercomment",
+    "pk": 1,
+    "fields": {
+        "body": "Our experience working with this shelter was amazing! They really care for their pets!",
+        "created_at": "2023-12-09T17:02:49.860Z",
+        "updated_at": "2023-12-09T17:02:49.860Z",
+        "author": [
+            "BestFriend"
+        ],
+        "shelter": 1,
+        "rating": 5
+    }
+},
+{
+    "model": "comments.reply",
+    "pk": 1,
+    "fields": {
+        "body": "Oh! Forgot to mention, we are working on partnering up with this shelter. Stay tuned!",
+        "created_at": "2023-12-09T17:14:38.737Z",
+        "updated_at": "2023-12-09T17:14:38.737Z",
+        "author": [
+            "BestFriend"
+        ],
+        "parent": 1
+    }
+},
+{
+    "model": "comments.reply",
+    "pk": 2,
+    "fields": {
+        "body": "Thanks so much!",
+        "created_at": "2023-12-09T17:15:51.793Z",
+        "updated_at": "2023-12-09T17:15:51.793Z",
+        "author": [
+            "TorontoAdoptionCenter"
+        ],
+        "parent": 1
+    }
+},
+{
+    "model": "notification.notification",
+    "pk": 1,
+    "fields": {
+        "seeker": [
+            "TorontoAdoptionCenter"
+        ],
+        "message": "BestFriend left a 5 star review",
+        "creation_date": "2023-12-09T17:02:49.866Z",
+        "was_read": false,
+        "link": "/shelter/1",
+        "notification_type": "Review Comment",
+        "notification_type_id": 1
+    }
+},
+{
+    "model": "notification.notification",
+    "pk": 2,
+    "fields": {
+        "seeker": [
+            "BestFriend"
+        ],
+        "message": "TorontoAdoptionCenter left a reply on one of your reviews",
+        "creation_date": "2023-12-09T17:15:51.800Z",
+        "was_read": true,
+        "link": "/shelter/1",
+        "notification_type": "Review Reply",
+        "notification_type_id": 2
     }
 }
 ]
