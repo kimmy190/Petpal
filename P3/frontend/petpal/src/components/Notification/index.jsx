@@ -49,7 +49,7 @@ const Notification = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const fetchNotifications = async (deleting) => {
+  const fetchNotifications = async () => {
     try {
         const response = await fetch(`http://localhost:8000/notification?page_size=${pageSize}&page=${page}`, {
         headers: {
