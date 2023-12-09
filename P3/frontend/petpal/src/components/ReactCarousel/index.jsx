@@ -1,11 +1,4 @@
-// import { useEffect } from "react";
-// import { Carousel, initTE } from "tw-elements";
-
 const ReactCarousel = ({ images }) => {
-  // useEffect(() => {
-  //   initTE({ Carousel });
-  // });
-
   return (
     <div
       id="carousel"
