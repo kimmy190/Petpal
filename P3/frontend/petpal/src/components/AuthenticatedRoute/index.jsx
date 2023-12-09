@@ -1,22 +1,22 @@
-import {React, useEffect} from 'react';
-import { Route, useNavigate } from 'react-router-dom';
-import {useUserContext} from "../../contexts/UserContext";
+import { React, useEffect, useState } from "react";
+import { Route, useNavigate } from "react-router-dom";
+import { useUserContext } from "../../contexts/UserContext";
+import NotFound from "../../pages/NotFound";
 
 const AuthenticatedRoute = ({ children, ...rest }) => {
-    const { user } = useUserContext();
-    const navigate = useNavigate();
+  const { user } = useUserContext();
+  const navigate = useNavigate();
+  const [bad, setBad] = useState(false);
+  // const isAuthenticated = user ? true : false;
 
-    // const isAuthenticated = user ? true : false;
+  useEffect(() => {
+    if (!user) {
+      setBad(true);
+      return; // Return null while redirecting
+    }
+  });
 
-    useEffect(() => {
-        console.log(user);
-        if (!user) {
-            navigate('/home'); // Redirect to home if not authenticated
-            return null; // Return null while redirecting
-        }
-    });
-
-    return children;
+  return bad ? <NotFound /> : children;
 };
 
 export default AuthenticatedRoute;
