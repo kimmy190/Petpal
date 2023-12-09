@@ -35,13 +35,16 @@ function SearchGrid({
 
   const handleGender = (event) => {
     setGender(event.target.value);
+    setPage(1);
   };
   const handleAge = (gte, lte) => {
     setLowAge(gte);
     setHighAge(lte);
+    setPage(1);
   };
   const handleSize = (event) => {
     setSize(event.target.value);
+    setPage(1);
   };
   const handleSortChange = (event) => {
     setOrderBy(event.target.value);
@@ -54,6 +57,7 @@ function SearchGrid({
     setHighAge("");
     setSize("");
     setGender("");
+    setPage(1);
   };
 
   // this is dumb w.e
@@ -133,7 +137,13 @@ function SearchGrid({
             className="flex-shrink-0 z-10 inline-flex items-center py-3.5 "
           >
             {dropdownItems.map((item, index) => (
-              <Dropdown.Item key={index} onClick={() => setSpecies(item)}>
+              <Dropdown.Item
+                key={index}
+                onClick={() => {
+                  setSpecies(item);
+                  setPage(1);
+                }}
+              >
                 {item + "s"}
               </Dropdown.Item>
             ))}
