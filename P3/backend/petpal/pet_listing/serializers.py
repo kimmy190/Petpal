@@ -42,7 +42,7 @@ class PetListingSerializer(ModelSerializer):
     location = serializers.CharField(read_only=True, source="shelter.address1")
     # shelter = serializers.PrimaryKeyRelatedField(read_only=True)
     shelter = ShelterInfoSerializer(read_only=True)
-    images = serializers.ListField(child=serializers.ImageField(), write_only=True)
+    images = serializers.ListField(child=serializers.ImageField())
 
     behavior_aggresive = serializers.IntegerField(default=0, min_value=0, max_value=5)
     behavior_social = serializers.IntegerField(default=0, min_value=0, max_value=5)

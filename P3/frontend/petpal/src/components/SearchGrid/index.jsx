@@ -96,7 +96,8 @@ function SearchGrid({
       })
       .then((data) => {
         // Set the retrieved data to the state
-        if (!data.hasNext) {
+        console.log(data);
+        if (!data.next) {
           setDisableRightButton(true);
         } else {
           setDisableRightButton(false);
@@ -111,7 +112,7 @@ function SearchGrid({
   };
   useEffect(() => {
     if (fetchOnLoad) fetchPets();
-  }, [fetchOnLoad, shelter_id, lowAge, gender, size, species, orderBy]);
+  }, [fetchOnLoad, shelter_id, lowAge, gender, size, species, orderBy, page]);
 
   return (
     <div className="flex flex-col md:flex-row m-4 container md:max-w-full  bg-white rounded-lg shadow-md gap-4">

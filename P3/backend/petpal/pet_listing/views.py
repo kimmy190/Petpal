@@ -105,7 +105,6 @@ class PetListingCreateView(PermissionPolicyMixin, ListCreateAPIView):
         shelter = self.request.user.shelter
 
         pet_images = serializer.validated_data.pop("images", tuple())
-
         pet_listing = PetListing.objects.create(
             **serializer.validated_data, shelter=shelter
         )
