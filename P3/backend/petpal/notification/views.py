@@ -34,7 +34,7 @@ def create_notification(serializer, user):
         "notification_type_id")
 
     type_to_object_type = {
-        Notification.NotificationTypes.APPLICATION_COMMENT: ApplicationComment,
+        Notification.NotificationTypes.APPLICATION_COMMENT: Application,
         Notification.NotificationTypes.PET_LISTING: PetListing,
         Notification.NotificationTypes.REVIEW_COMMENT: ShelterComment,
         Notification.NotificationTypes.REVIEW_REPLY: Reply,

@@ -74,7 +74,6 @@ const Application = () => {
       }
     };
 
-    console.log(user);
     fetchApplicationStatus();
   }, [application_id]);
 
