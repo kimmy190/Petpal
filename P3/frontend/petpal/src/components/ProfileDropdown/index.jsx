@@ -5,7 +5,7 @@ import { Dropdown, DropdownItem, Avatar } from 'flowbite-react';
 import React, { useState } from 'react';
 import ProfileImage from '../ProfileImage';
 import { useNavigate, Link } from "react-router-dom";
-
+import ProfileDropDownImage from '../ProfileDropDownImage';
 
 
 const ProfileDropdown = () => {
@@ -39,8 +39,10 @@ const ProfileDropdown = () => {
         <span className="sr-only">Open user menu</span>
 
         <div className="relative">
-
-        <ProfileImage user={user} className="object-cover w-8 h-8 rounded-full md:w-10 md:h-10"/>
+        {/* <ProfileImage user={user} className="object-cover w-8 h-8 rounded-full md:w-10 md:h-10"
+        />
+         */}
+         <ProfileDropDownImage user={user}/>
         </div>
     </button>
     {/* Dropdown menu */}
