@@ -10,12 +10,14 @@ import { useUserContext } from "../../contexts/UserContext";
 import { useToken } from "../../contexts/UserContext";
 
 const ShelterSetting = () => {
+    const navigate = useNavigate(); 
     const { user, setUser } = useUserContext(); 
     const shelter = user.shelter; 
     const token = useToken(); 
 
     const [profileImg, setProfileImg] = useState(null);
     const [shelterImgs, setShelterImgs] = useState([]);
+    const [success, setSuccess] = useState(false); 
     
     // ERROR FIELDS 
     const [userError, setUserError] = useState(null);
@@ -65,6 +67,7 @@ const ShelterSetting = () => {
             const prefix = "http://127.0.0.1:8000/images/logo_images/";
             // formData.append('profile_img', profileImg, profileImg.name);
             const prev_img = user.shelter.logo_image.substring(prefix.length); 
+            console.log("rpev imge")
             console.log(prev_img); 
             
             if(profileImg){
@@ -119,13 +122,31 @@ const ShelterSetting = () => {
                     
                   });
                 } else {
+                    // let pw1; 
+                    // let pw2; 
                     if (values[key] !== user[key]){
-                        formData.append(key, values[key]);
+                        if(key === "password" && values[key] !== ""){
+                            formData.append(key, values[key]);
+                        } 
+                        else if( key === "password2"&& values[key] !== ""){
+                            formData.append(key, values[key]);
+                        } else {
+            
+                            formData.append(key, values[key]);
+                        }
                     }
+                    // if(pw1 !== "" && pw2 !== ""){
+                    //     // if(pw1 === pw2){
+                    //         formData.append("password", pw1);
+                    //         formData.append("password2", pw2); 
+                        // } else {
+                        //     setPwError(["Two Passwords fields does not match"]);
+                        // }
+                    }
+            
                 
-                }
-              });
-        
+            });
+
             // appendToFormData(values);
 
             // will print out all the entries, including the next 
@@ -150,16 +171,24 @@ const ShelterSetting = () => {
                 // login unsuccessful 
                 setUserError(data.username? data.username : null);
                 setEmailError(data.email? data.email : null); 
-                setPwError(data.password? data.password : null); 
+                if(data.password){
+                                    setPwError(data.password? data.password : null); 
+                } else if(data.password2){
+                                    setPwError(data.password2? data.password2 : null); 
+
+                }
                 setPhoneError(data.shelter.phone_number? data.shelter.phone_number : null); 
-                
+                setSuccess(false); 
+
             } else {
                 // console.log(data); 
                 setUserError(null);
                 setEmailError(null); 
                 setPwError(null);
+                setSuccess(true); 
                 setPhoneError(null); 
-                setUser(data); 
+                navigate("/main"); 
+                // setUser(data); 
                 
                 // navigate("/login");
             }
@@ -219,39 +248,6 @@ const ShelterSetting = () => {
             />
             {phoneError && <p className="mt-2 text-xs text-red-600">{phoneError}</p>}
         </div>
-        {/* Shelter gallery */}
-        <div className="mb-2">
-            <p className="block mb-2 text-sm font-medium text-gray-900">
-            Upload Shelter Pictures
-            </p>
-            <div className="flex justify-center mb-2">
-            <div>
-                <label
-                htmlFor="dropzone-file"
-                className="flex flex-col items-center justify-center border-2 border-gray-300 border-dashed rounded-lg cursor-pointer w-14 h-14 sm:w-16 sm:h-16 bg-gray-50 hover:bg-gray-100"
-                >
-                <div className="flex flex-col items-center">
-                    <svg
-                    className="object-center w-6 h-6 text-gray-500"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 20 16"
-                    >
-                    <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                    />
-                    </svg>
-                </div>
-                <input id="dropzone-file" type="file" className="hidden" onChange={handleShelterFileChange}/>
-                </label>
-            </div>
-            </div>
-        </div>
         
         {/* Mission Statement */}
         <div className="mb-2">
@@ -291,7 +287,7 @@ const ShelterSetting = () => {
                 id="password"
                 type="password"
                 placeholder=""
-                required
+                // required
                 onChange={formik.handleChange} // Pass the custom function
                 value={formik.values.password}
                 />
@@ -302,13 +298,22 @@ const ShelterSetting = () => {
             id="password2"
             type="password"
             placeholder=""
-            required
+            // required
             onChange={formik.handleChange} // Pass the custom function
             value={formik.values.password2}
             />
         </div>
-        {pwError && <p className="mt-2 text-xs text-red-600">{pwError}</p>}
+        {/* {pwError && <p className="mt-2 text-xs text-red-600">{pwError}</p>} */}
+        {pwError? 
+                    pwError[0].includes('8')?
+                    <p className="m-0 text-xs text-red-600">
+                    This password is too short. It must contain at least 8 characters.
+                    </p> : 
+                    (<p className="m-0 text-xs text-red-600">{pwError[0]}</p>)  
+                    : <></>
+                    }
     </div>
+
     {/* Address Section */}
     <div className="mb-4">
         <p className="block mb-2 text-sm font-medium text-gray-900">Address</p>
@@ -377,13 +382,15 @@ const ShelterSetting = () => {
             value={formik.values.shelter.zip}
         />
     </div>
+    {success===true ? <p className="mb-2 text-xs text-green-600">Successfully updated!</p> : <></>}
+
     {/* BUTTONS */}
     <div className="flex flex-row gap-4 mt-2">
             <button
             type="button"
             className="py-2.5 px-5 mr-2 mb-5 text-medium font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 w-1/2"
             >
-            <a href="./main_after_login.html">Cancel</a>
+            <Link to="/main">Cancel</Link>
             {/* when get rid of the a tag inside button, will not proceed to main after login */}
             </button>
             <button

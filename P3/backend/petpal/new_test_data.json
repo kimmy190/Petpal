@@ -514,7 +514,7 @@
         "shelter": 1,
         "status": "Pending",
         "creation_time": "2023-12-09T17:59:07.202Z",
-        "last_update_time": "2023-12-09T17:59:07.202Z",
+        "last_update_time": "2023-12-09T19:33:41.494Z",
         "pet_name": "Finn",
         "owner_name": "Sean Song",
         "area_code": "1",
@@ -544,7 +544,7 @@
         "shelter": 1,
         "status": "Pending",
         "creation_time": "2023-12-09T17:59:45.966Z",
-        "last_update_time": "2023-12-09T17:59:45.966Z",
+        "last_update_time": "2023-12-09T19:33:53.670Z",
         "pet_name": "FuFu",
         "owner_name": "Sean Song",
         "area_code": "1",
@@ -604,7 +604,7 @@
         "shelter": 1,
         "status": "Pending",
         "creation_time": "2023-12-09T18:09:26.696Z",
-        "last_update_time": "2023-12-09T18:09:26.696Z",
+        "last_update_time": "2023-12-09T19:27:22.579Z",
         "pet_name": "Ruffles",
         "owner_name": "Bitty",
         "area_code": "1",
@@ -634,7 +634,7 @@
         "shelter": 1,
         "status": "Pending",
         "creation_time": "2023-12-09T18:10:16.841Z",
-        "last_update_time": "2023-12-09T18:10:16.841Z",
+        "last_update_time": "2023-12-09T19:27:49.491Z",
         "pet_name": "Freddy",
         "owner_name": "Bitty",
         "area_code": "775",
@@ -735,6 +735,97 @@
     }
 },
 {
+    "model": "comments.applicationcomment",
+    "pk": 1,
+    "fields": {
+        "body": "Hi, this is Patricia.",
+        "created_at": "2023-12-09T19:27:08.522Z",
+        "updated_at": "2023-12-09T19:27:08.522Z",
+        "author": [
+            "Pat"
+        ],
+        "application": 5
+    }
+},
+{
+    "model": "comments.applicationcomment",
+    "pk": 2,
+    "fields": {
+        "body": "When can I expect to hear back from you guys?",
+        "created_at": "2023-12-09T19:27:22.628Z",
+        "updated_at": "2023-12-09T19:27:22.628Z",
+        "author": [
+            "Pat"
+        ],
+        "application": 5
+    }
+},
+{
+    "model": "comments.applicationcomment",
+    "pk": 3,
+    "fields": {
+        "body": "Hi, this is Patricia. Please let me know if you have any questions.",
+        "created_at": "2023-12-09T19:27:49.541Z",
+        "updated_at": "2023-12-09T19:27:49.541Z",
+        "author": [
+            "Pat"
+        ],
+        "application": 6
+    }
+},
+{
+    "model": "comments.applicationcomment",
+    "pk": 4,
+    "fields": {
+        "body": "Hi, this is Sean. I hope you are well.",
+        "created_at": "2023-12-09T19:31:18.004Z",
+        "updated_at": "2023-12-09T19:31:18.004Z",
+        "author": [
+            "SeanSong"
+        ],
+        "application": 2
+    }
+},
+{
+    "model": "comments.applicationcomment",
+    "pk": 5,
+    "fields": {
+        "body": "Is FuFu allergic to anything?",
+        "created_at": "2023-12-09T19:31:41.857Z",
+        "updated_at": "2023-12-09T19:31:41.858Z",
+        "author": [
+            "SeanSong"
+        ],
+        "application": 3
+    }
+},
+{
+    "model": "comments.applicationcomment",
+    "pk": 6,
+    "fields": {
+        "body": "Hello Sean, we are doing fine.",
+        "created_at": "2023-12-09T19:33:41.536Z",
+        "updated_at": "2023-12-09T19:33:41.536Z",
+        "author": [
+            "TorontoAdoptionCenter"
+        ],
+        "application": 2
+    }
+},
+{
+    "model": "comments.applicationcomment",
+    "pk": 7,
+    "fields": {
+        "body": "No, she is a very healthy cat.",
+        "created_at": "2023-12-09T19:33:53.711Z",
+        "updated_at": "2023-12-09T19:33:53.711Z",
+        "author": [
+            "TorontoAdoptionCenter"
+        ],
+        "application": 3
+    }
+},
+{
     "model": "notification.notification",
     "pk": 1,
     "fields": {
@@ -806,6 +897,81 @@
         "was_read": true,
         "link": "/shelter/1",
         "notification_type": "Review Reply",
+        "notification_type_id": 3
+    }
+},
+{
+    "model": "notification.notification",
+    "pk": 6,
+    "fields": {
+        "seeker": [
+            "TorontoAdoptionCenter"
+        ],
+        "message": "Pat made a new comment on your application!",
+        "creation_date": "2023-12-09T19:27:08.502Z",
+        "was_read": false,
+        "link": "/applications/5/",
+        "notification_type": "Application Comment",
+        "notification_type_id": 5
+    }
+},
+{
+    "model": "notification.notification",
+    "pk": 7,
+    "fields": {
+        "seeker": [
+            "TorontoAdoptionCenter"
+        ],
+        "message": "Pat made a new comment on your application!",
+        "creation_date": "2023-12-09T19:27:22.610Z",
+        "was_read": false,
+        "link": "/applications/5/",
+        "notification_type": "Application Comment",
+        "notification_type_id": 5
+    }
+},
+{
+    "model": "notification.notification",
+    "pk": 8,
+    "fields": {
+        "seeker": [
+            "TorontoAdoptionCenter"
+        ],
+        "message": "Pat made a new comment on your application!",
+        "creation_date": "2023-12-09T19:27:49.523Z",
+        "was_read": false,
+        "link": "/applications/6/",
+        "notification_type": "Application Comment",
+        "notification_type_id": 6
+    }
+},
+{
+    "model": "notification.notification",
+    "pk": 9,
+    "fields": {
+        "seeker": [
+            "TorontoAdoptionCenter"
+        ],
+        "message": "SeanSong made a new comment on your application!",
+        "creation_date": "2023-12-09T19:31:17.986Z",
+        "was_read": false,
+        "link": "/applications/2/",
+        "notification_type": "Application Comment",
+        "notification_type_id": 2
+    }
+},
+{
+    "model": "notification.notification",
+    "pk": 10,
+    "fields": {
+        "seeker": [
+            "TorontoAdoptionCenter"
+        ],
+        "message": "SeanSong made a new comment on your application!",
+        "creation_date": "2023-12-09T19:31:41.837Z",
+        "was_read": false,
+        "link": "/applications/3/",
+        "notification_type": "Application Comment",
         "notification_type_id": 3
     }
 }
