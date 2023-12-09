@@ -17,7 +17,8 @@ const EditableApplication = () => {
       const data = await response.json();
       console.log(data);
       if (data.status !== "Available") {
-        navigate(`/*`)
+        navigate(`/*`);
+        return;
       }
       setPetName(data.pet_name);
     }
