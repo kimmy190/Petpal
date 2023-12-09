@@ -76,27 +76,26 @@ const Main = () => {
           Pets Available for Adoption
         </h2>
         {/* card list */}
-        <div className="flex justify-center items-center w-10/12">
-          <Grid cols={4}>
-            {pets.map((pet) => {
-              return (
-                <PetCard
-                  key={pet.id}
-                  id={pet.id}
-                  imageUrl={pet.images[0].image}
-                  petName={pet.pet_name}
-                  availability={pet.status}
-                  gender={pet.gender}
-                  age={pet.age}
-                  breed={pet.breed}
-                  adoptionCenter={pet.shelter.organization_name}
-                  adoptionDate={pet.publication_date}
-                  editable={false}
-                  onEdit={null}
-                />
-              );
-            })}
-          </Grid>
+
+        <div className="w-10/12 gap-4 mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+          {pets.map((pet) => {
+            return (
+              <PetCard
+                key={pet.id}
+                id={pet.id}
+                imageUrl={pet.images[0].image}
+                petName={pet.pet_name}
+                availability={pet.status}
+                gender={pet.gender}
+                age={pet.age}
+                breed={pet.breed}
+                adoptionCenter={pet.shelter.organization_name}
+                adoptionDate={pet.publication_date}
+                editable={false}
+                onEdit={null}
+              />
+            );
+          })}
         </div>
       </section>
       {/* About Section */}
