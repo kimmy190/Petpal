@@ -33,6 +33,46 @@ const SeekerSetting = ()=>{
         
     };
     // const key = JSON.stringify(user); 
+    console.log("is pw")
+    // console.log(Array.isArray(pwError)); 
+    // let pwErrorArray = ""
+        // let pwErrorString= pwError.join(', ‘); 
+    let pwErrorString = ""; 
+    let pwErrorElement; 
+    
+
+    // if(pwError){
+    //     pwErrorString = pwError.join(', ');
+    //     let pwErrorArray; 
+
+    //     if(pwErrorString.includes('[') ){
+    //             pwErrorArray = JSON.parse(pwErrorString.replace(/'/g, '"'));
+    //             console.log(pwErrorArray); 
+    //         }
+
+    //     pwErrorElement = pwErrorArray.map((error, index) => (
+    //         <li className="mt-2 text-xs text-red-600" key={index}>{error}</li>
+    //     ));
+
+    // }
+    
+
+    // if(pwError){
+    //     pwErrorString = pwError.join(', ');
+
+    //     // console.log(pwErrorString.includes('['));
+
+    //     if(pwErrorString.includes('[') ){
+    //         pwErrorArray = JSON.parse(pwErrorString.replace(/'/g, '"'));
+    //     }
+
+    //     const pwErrorElement = pwErrorArray.map((error, index) => (
+    //         <li className="mt-2 text-xs text-red-600" key={index}>{error}</li>
+    //     ));
+    // }
+    
+    
+
 
     const formik = useFormik({
         key: formKey, // will reinitalize the value of the form 
@@ -110,6 +150,7 @@ const SeekerSetting = ()=>{
                 setUserError(data.username? data.username : null);
                 setEmailError(data.email? data.email : null); 
                 setPwError(data.password? data.password : null); 
+
             } else {
                 console.log(data); 
                 setUserError(null);
@@ -212,7 +253,7 @@ const SeekerSetting = ()=>{
                         placeholder="•••••••••"
                         required
                         onChange={formik.handleChange} // Pass the custom function
-                        value={formik.values.password}
+                        // value={formik.values.password}
                     />
                 </div>
                 <div className="mb-4">
@@ -224,8 +265,25 @@ const SeekerSetting = ()=>{
                     required
                     onChange={formik.handleChange} // Pass the custom function
                     value={user.password2}
-                />
-                    {pwError && <p className="mt-2 text-xs text-red-600">{pwError}</p>}
+                />  
+                
+                {/* { pwErrorString.includes('[') && (
+                    {pwErrorElement}
+                        ) : (
+                            <p className="mt-2 text-xs text-red-600">{pwError}</p>
+                        )}
+                    // </div>
+                    )} */}
+                    
+                    
+                {pwError.includes('This password is too short.')? 
+                <p className="mt-2 text-xs text-red-600">
+                This password is too short. It must contain at least 8 characters.
+                </p> : 
+                (<p className="mt-2 text-xs text-red-600">{pwError[0]}</p>)  
+                
+                    }
+
                 </div>
 
                 
@@ -235,7 +293,7 @@ const SeekerSetting = ()=>{
             type="button"
             className="py-2.5 px-5 mr-2 mb-5 text-medium font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 w-1/2"
             >
-            <a href="./main_after_login.html">Cancel</a>
+            <Link to="/main" href="./main_after_login.html">Cancel</Link>
             {/* when get rid of the a tag inside button, will not proceed to main after login */}
             </button>
             <button
