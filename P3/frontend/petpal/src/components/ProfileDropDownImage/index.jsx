@@ -5,7 +5,7 @@ import { useUserContext } from "../../contexts/UserContext";
 const ProfileDropDownImage = () => {
   const { user } = useUserContext();
 
-  console.log(user);
+//   console.log(user);
   const defaultImageUrl = process.env.PUBLIC_URL + "/default.jpeg";
 
   // const [imageURL, setImageURL] = useState(null);
@@ -49,16 +49,17 @@ const ProfileDropDownImage = () => {
 
   //     }
   // }, [user]);
+  console.log(imageURL)
   return imageURL ? (
     <img
       src={imageURL}
-      className="object-cover w-8 h-8 rounded-full md:w-10 md:h-10"
+      className="object-cover w-8 h-8 rounded-full md:w-10 md:h-10 bg-white"
       alt="Profile"
     />
   ) : (
     <img
       src={defaultImageUrl}
-      className="object-cover w-8 h-8 rounded-full md:w-10 md:h-10"
+      className="object-cover w-8 h-8 rounded-full md:w-10 md:h-10 bg-white"
       alt="Profile"
     />
   );
