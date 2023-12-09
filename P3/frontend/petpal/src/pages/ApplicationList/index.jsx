@@ -2,9 +2,12 @@ import ApplicationCard from "../../components/ApplicationCard";
 import React, { useState, useEffect } from 'react';
 import {useUserContext} from "../../contexts/UserContext";
 import { Select } from "flowbite-react";
+import PageButtons from "../../components/PageButtons";
 
 
 const ApplicationList = () => {
+    const [page, setPage] = useState(1);
+    const [disableRightButton, setDisableRightButton] = useState(true);
     const [applications, setApplications] = useState([]);
     const [orderBy, setOrderBy] = useState("creation_time");
     const [status, setStatus] = useState("Pending");
@@ -14,7 +17,7 @@ const ApplicationList = () => {
         // Fetch data from the '/applications/' endpoint
         const fetchData = async () => {
             try {
-                const response = await fetch(`/applications/?order_by=${orderBy}&status=${status}`, {
+                const response = await fetch(`/applications/?order_by=${orderBy}&status=${status}&page=${page}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         'Content-Type': 'application/json', // Add other headers if needed
@@ -25,6 +28,11 @@ const ApplicationList = () => {
                     throw new Error('Network response was not ok.');
                 }
                 const data = await response.json();
+                if (!data.hasNext) {
+                    setDisableRightButton(true);
+                } else {
+                    setDisableRightButton(false);
+                }
                 setApplications(data.results); // Assuming the response contains an array of application data
             } catch (error) {
                 console.error('Error fetching data:', error);
@@ -72,12 +80,19 @@ const ApplicationList = () => {
             </div>
           </div>
           <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-              {applications.map((application, index) => (
-                  <li key={index} className="w-full border-b border-gray-200 dark:border-gray-600">
-                    <ApplicationCard {...application} />
-                  </li>
-              ))}
+            {applications.map((application, index) => (
+                <li key={index} className="w-full border-b border-gray-200 dark:border-gray-600">
+                  <ApplicationCard {...application} />
+                </li>
+            ))}
           </ul>
+          <div className="my-4 flex flex-col items-center">
+          <PageButtons
+            page={page}
+            setPage={setPage}
+            disableRightButton={disableRightButton}
+          />
+        </div>
         </div>
       </div>
     </div>
