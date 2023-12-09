@@ -20,7 +20,6 @@ const PetListing = () => {
   const [loadingData, setLoadingData] = useState(true);
   const [petImages, setPetImages] = useState([]);
   const [application, setApplication] = useState(null);
-  console.log(user, token);
   const [notFound, set404] = useState(false);
 
   const setNotFound = () => {

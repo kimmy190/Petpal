@@ -26,7 +26,6 @@ class PostAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, pk=None):
-        print("GOT", pk)
         if pk is not None:
             post = get_object_or_404(Post, pk=pk)
             serializer = PostSerializer(post)

@@ -1,57 +1,66 @@
-import { Modal, Toast } from 'flowbite-react';
-import { HiCheck} from 'react-icons/hi';
-import Markdown from '../../components/Markdown';
-import remarkGfm from 'remark-gfm';
-import { useParams, useSearchParams, useNavigate } from 'react-router-dom'; 
-import {useState, useEffect} from 'react';
+import { Modal, Toast } from "flowbite-react";
+import { HiCheck } from "react-icons/hi";
+import Markdown from "../../components/Markdown";
+import remarkGfm from "remark-gfm";
+import { useParams, useSearchParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Post from "../../components/BlogPost";
 
 const BlogPost = () => {
-    const { id } = useParams();
-    const [blogPost, setBlogPost] = useState(null);
-    const [openModal, setOpenModal] = useState(true);
-    const [ searchParams, _ ] = useSearchParams();
-    const navigate = useNavigate();
+  const { id } = useParams();
+  const [blogPost, setBlogPost] = useState(null);
+  const [openModal, setOpenModal] = useState(true);
+  const [searchParams, _] = useSearchParams();
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchBlogPost = async () => {
+      try {
+        const response = await fetch(`/blog/posts/${id}`);
+        if (response.ok) {
+          const postData = await response.json();
+          setBlogPost(postData);
+        } else {
+          navigate("/404");
+        }
+      } catch (error) {
+        console.error("Error fetching blog post:", error);
+      }
+    };
 
-    useEffect(() => {
-        const fetchBlogPost = async () => {
-            try {
-                const response = await fetch(`/blog/posts/${id}`);
-                if (response.ok) {
-                    const postData = await response.json();
-                    setBlogPost(postData);
-                } else {
-                    navigate("/404");
-                }
-            } catch (error) {
-                console.error('Error fetching blog post:', error);
-            }
-        };
+    fetchBlogPost();
+  }, [id]);
 
-        fetchBlogPost();
-    }, [id]);
+  if (!blogPost) {
+    return <div>Loading...</div>; // Placeholder for loading state
+  }
 
-    if (!blogPost) {
-        return <div>Loading...</div>; // Placeholder for loading state
-    }
-
-    return (<>
-            {searchParams.get("success") && (<Modal show={openModal} position="top-center" onClose={() => setOpenModal(false)}>
-            <div className="w-full flex items-center justify-center">
+  return (
+    <>
+      {searchParams.get("success") && (
+        <Modal
+          show={openModal}
+          position="top-center"
+          onClose={() => setOpenModal(false)}
+        >
+          <div className="w-full flex items-center justify-center">
             <Toast className="max-w-full">
-                <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200">
-                  <HiCheck className="h-5 w-5" />
-                </div>
-                <div className="ml-3 text-sm font-normal">Item moved successfully.</div>
-                <Toast.Toggle onClick={() => setOpenModal(false)} />
-              </Toast>
-            </div>
-            </Modal>)}
-              <div className="p-16">
-                <Post {...blogPost}/>
+              <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200">
+                <HiCheck className="h-5 w-5" />
               </div>
-           </>);
+              <div className="ml-3 text-sm font-normal">
+                Item moved successfully.
+              </div>
+              <Toast.Toggle onClick={() => setOpenModal(false)} />
+            </Toast>
+          </div>
+        </Modal>
+      )}
+      <div className="p-16 bg-gray-50 min-h-screen">
+        <Post {...blogPost} />
+      </div>
+    </>
+  );
 };
 export default BlogPost;
 

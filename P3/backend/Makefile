@@ -5,9 +5,9 @@ clean:
 	rm -rf petpal/*/migrations/0*.py
 
 setup:
-	petpal/manage.py makemigrations
-	petpal/manage.py migrate
-	petpal/manage.py loaddata petpal/test_data.json
+	python3 petpal/manage.py makemigrations
+	python3 petpal/manage.py migrate
+	python3 petpal/manage.py loaddata petpal/test_data.json
 
 run:
-	python petpal/manage.py runserver
+	python3 petpal/manage.py runserver

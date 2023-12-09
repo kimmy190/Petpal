@@ -4,3 +4,7 @@
 
 # 1. All the packages you need to install
 # 2. How to configure various servers (e.g., Nginx, Apache, etc)
+
+1.
+- run npm install under the frontend/petpal directory
+- run bash setup.sh under the backend directory
