@@ -124,18 +124,26 @@ class ApplicationListView(ListAPIView):
 
     serializer_class = ApplicationSerializer
     pagination_class = StandardResultsSetPagination
-    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filter_backends = [OrderingFilter]
     filterset_fields = ["status"]
-    ordering_fields = ["-creation_time", "-last_update_time"]
+    ordering_fields = ["creation_time", "last_update_time"]
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         owner = self.request.user
+        order_by = self.request.GET.get("order_by", "id")
+        use_id = True
+        for field in Application._meta.get_fields():
+            if field.name == order_by:
+                use_id = False
+                break
+        if use_id:
+            order_by = "id"
         try:
             if owner.shelter is not None:
-                queryset = Application.objects.filter(shelter=owner.shelter)
+                queryset = Application.objects.filter(shelter=owner.shelter).order_by("-" + order_by)
         except:
-            queryset = Application.objects.filter(applicant=owner)
+            queryset = Application.objects.filter(applicant=owner).order_by("-" + order_by)
         return queryset
 
 
