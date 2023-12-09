@@ -73,6 +73,7 @@ export const UserProvider = ({ children }) => {
     // Clear user-related data
     setUser(null);
     cookies.remove("access_token");
+    setToken(null);
     // You might want to redirect the user to the login page after signing out
     // Example: window.location.href = '/login';
   };
