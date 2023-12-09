@@ -64,7 +64,8 @@ class ApplicationCreateView(CreateAPIView):
                     status=status.HTTP_400_BAD_REQUEST,
                 )
         except:
-            pet_listing = get_object_or_404(PetListing, id=self.kwargs["pet_listing"])
+            pet_listing = get_object_or_404(
+                PetListing, id=self.kwargs["pet_listing"])
 
             # User can only create one application for a pet listing
             existing_application = Application.objects.filter(
@@ -101,7 +102,8 @@ class ApplicationCreateView(CreateAPIView):
 
     def perform_create(self, serializer):
         applicant = self.request.user
-        pet_listing = get_object_or_404(PetListing, id=self.kwargs["pet_listing"])
+        pet_listing = get_object_or_404(
+            PetListing, id=self.kwargs["pet_listing"])
         serializer.validated_data["applicant"] = applicant
         serializer.validated_data["pet_listing"] = pet_listing
         serializer.validated_data["shelter"] = pet_listing.shelter
@@ -141,9 +143,11 @@ class ApplicationListView(ListAPIView):
             order_by = "id"
         try:
             if owner.shelter is not None:
-                queryset = Application.objects.filter(shelter=owner.shelter).order_by("-" + order_by)
+                queryset = Application.objects.filter(
+                    shelter=owner.shelter).order_by("-" + order_by)
         except:
-            queryset = Application.objects.filter(applicant=owner).order_by("-" + order_by)
+            queryset = Application.objects.filter(
+                applicant=owner).order_by("-" + order_by)
         return queryset
 
 
@@ -174,14 +178,16 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
                     raise PermissionDenied()
                 else:
                     return Response(
-                        self.get_serializer(application).data, status=status.HTTP_200_OK
+                        self.get_serializer(
+                            application).data, status=status.HTTP_200_OK
                     )
         except:
             if applicant != application.applicant:
                 raise PermissionDenied()
             else:
                 return Response(
-                    self.get_serializer(application).data, status=status.HTTP_200_OK
+                    self.get_serializer(
+                        application).data, status=status.HTTP_200_OK
                 )
 
     def update(self, request, *args, **kwargs):
@@ -246,7 +252,7 @@ class ApplicationUpdateView(RetrieveUpdateAPIView):
                                 "notification_type_id": application.id,
                             }
                         ),
-                        applicant,
+                        applicant.shelter,
                     )
             else:
                 return Response(
