@@ -1,812 +1,812 @@
 [
-    {
-        "model": "blog.post",
-        "pk": 1,
-        "fields": {
-            "title": "An Intro to Our Beautiful Pet Shelter",
-            "content": "Welcome to a haven where wagging tails, playful purrs, and unconditional love come together—our beautiful pet shelter. In this introductory post, we invite you to explore the heart and soul of our sanctuary, where the mission is simple yet profound: to connect animals in need with loving homes.\r\n\r\nA Sanctuary of Compassion:\r\nStep into our pet shelter, and you'll instantly sense the warmth and compassion that defines our space. Every paw print, every whisker, and every soul that enters our doors is met with genuine care and an unwavering commitment to their well-being.\r\n\r\nDiverse Companions Await:\r\nOur shelter is a mosaic of furry personalities, each with a unique story to tell. From the spirited playfulness of kittens to the wise gaze of senior dogs, our residents represent a tapestry of backgrounds and breeds, all sharing the common thread of seeking a second chance and a loving family.",
-            "author": 1,
-            "created_at": "2023-12-09T17:35:52.341Z",
-            "updated_at": "2023-12-09T17:35:52.341Z",
-            "image": "blog_images/shelter_1.png"
-        }
-    },
-    {
-        "model": "accounts.shelterimage",
-        "pk": 1,
-        "fields": {
-            "shelter": 1,
-            "image": "shelter_images/shelter_2.png"
-        }
-    },
-    {
-        "model": "accounts.shelterimage",
-        "pk": 2,
-        "fields": {
-            "shelter": 1,
-            "image": "shelter_images/shelter_1.png"
-        }
-    },
-    {
-        "model": "accounts.shelterimage",
-        "pk": 3,
-        "fields": {
-            "shelter": 2,
-            "image": "shelter_images/shelter_3.jpg"
-        }
-    },
-    {
-        "model": "pet_listing.petlisting",
-        "pk": 1,
-        "fields": {
-            "shelter": 1,
-            "pet_name": "Bruce",
-            "status": "Available",
-            "publication_date": "2023-12-09T16:26:24.338Z",
-            "gender": "Male",
-            "age": 7,
-            "breed": "Pug",
-            "size": "Medium",
-            "species": "Dog",
-            "location": "",
-            "behavior_aggresive": 2,
-            "behavior_social": 3,
-            "behavior_noisy": 5,
-            "behavior_scared": 2,
-            "behavior_friendly": 3,
-            "medical_history": "Bruce has been diagnosed with a mild form of BAS, a common respiratory condition in brachycephalic breeds like pugs. This may cause occasional snoring and difficulty breathing, especially during strenuous activities. Regular monitoring and avoiding excessive exercise are recommended.",
-            "requirements": "Pugs may have a tendency to gain weight, so potential adopters should be dedicated to providing daily walks and playtime to keep them healthy.",
-            "additional_comments": "Meet Bruce, a sprightly 2-year-old pug with boundless energy and a heart full of curiosity. This little guy is the epitome of youthful exuberance, ready to bring vitality and laughter into your home."
-        }
-    },
-    {
-        "model": "pet_listing.petlisting",
-        "pk": 2,
-        "fields": {
-            "shelter": 1,
-            "pet_name": "Snickers",
-            "status": "Available",
-            "publication_date": "2023-12-09T16:28:55.706Z",
-            "gender": "Female",
-            "age": 4,
-            "breed": "Pug",
-            "size": "Small",
-            "species": "Dog",
-            "location": "",
-            "behavior_aggresive": 4,
-            "behavior_social": 4,
-            "behavior_noisy": 3,
-            "behavior_scared": 2,
-            "behavior_friendly": 4,
-            "medical_history": "Snickers has exhibited sensitivity to certain ingredients in commercial dog food. A hypoallergenic diet has been prescribed to alleviate gastrointestinal distress and skin irritations.",
-            "requirements": "Pugs, like any breed, benefit from positive reinforcement training. Adopters should be patient and willing to invest time in basic obedience training to ensure a well-behaved and happy pug.",
-            "additional_comments": "Snickers is a social butterfly with a heart for furry friends. Whether it's a fellow dog or a curious cat, Snicker's friendly disposition and easygoing nature make him an ideal addition to any multi-pet household."
-        }
-    },
-    {
-        "model": "pet_listing.petlisting",
-        "pk": 3,
-        "fields": {
-            "shelter": 1,
-            "pet_name": "Mill",
-            "status": "Available",
-            "publication_date": "2023-12-09T16:32:56.376Z",
-            "gender": "Male",
-            "age": 1,
-            "breed": "Siamese",
-            "size": "Small",
-            "species": "Cat",
-            "location": "",
-            "behavior_aggresive": 3,
-            "behavior_social": 3,
-            "behavior_noisy": 3,
-            "behavior_scared": 4,
-            "behavior_friendly": 2,
-            "medical_history": "Mill has undergone corrective surgery for entropion, a condition where the eyelids roll inward, causing discomfort. Post-surgery, he may require periodic check-ups to ensure optimal eye health.",
-            "requirements": "A commitment to responsible pet ownership, including providing a balanced diet, maintaining a healthy weight, and ensuring proper identification through microchipping.",
-            "additional_comments": "With up-to-date vaccinations and a clean bill of health, he's a robust and resilient cat eager to embark on new adventures with his forever family."
-        }
-    },
-    {
-        "model": "pet_listing.petlisting",
-        "pk": 4,
-        "fields": {
-            "shelter": 1,
-            "pet_name": "FuFu",
-            "status": "Available",
-            "publication_date": "2023-12-09T16:36:10.404Z",
-            "gender": "Female",
-            "age": 10,
-            "breed": "British Shorthair",
-            "size": "Large",
-            "species": "Cat",
-            "location": "",
-            "behavior_aggresive": 1,
-            "behavior_social": 3,
-            "behavior_noisy": 5,
-            "behavior_scared": 3,
-            "behavior_friendly": 2,
-            "medical_history": "FuFu is on a specialized weight management diet to address his tendency to gain weight. A controlled diet and regular exercise routine are crucial to maintain a healthy weight and prevent obesity-related issues.",
-            "requirements": "A commitment to responsible pet ownership, including providing a balanced diet, maintaining a healthy weight, and ensuring proper identification through microchipping.",
-            "additional_comments": "With up-to-date vaccinations and a clean bill of health, she's a robust and resilient cat eager to embark on new adventures with his forever family."
-        }
-    },
-    {
-        "model": "pet_listing.petlisting",
-        "pk": 5,
-        "fields": {
-            "shelter": 1,
-            "pet_name": "Lucy",
-            "status": "Available",
-            "publication_date": "2023-12-09T16:38:51.874Z",
-            "gender": "Female",
-            "age": 2,
-            "breed": "Labrador Retriever",
-            "size": "Large",
-            "species": "Dog",
-            "location": "",
-            "behavior_aggresive": 1,
-            "behavior_social": 3,
-            "behavior_noisy": 3,
-            "behavior_scared": 4,
-            "behavior_friendly": 5,
-            "medical_history": "Lucy is on a specialized weight management diet to address his tendency to gain weight. A controlled diet and regular exercise routine are crucial to maintain a healthy weight and prevent obesity-related issues.",
-            "requirements": "Lucy benefits from positive reinforcement training. Adopters should be patient and willing to invest time in basic obedience training to ensure a well-behaved and happy Lucy.",
-            "additional_comments": "Lucy is the picture of canine health! With up-to-date vaccinations and a clean bill of health, she's a robust and resilient dog eager to embark on new adventures with her forever family."
-        }
-    },
-    {
-        "model": "pet_listing.petlisting",
-        "pk": 6,
-        "fields": {
-            "shelter": 1,
-            "pet_name": "Jarvis",
-            "status": "Available",
-            "publication_date": "2023-12-09T16:42:34.073Z",
-            "gender": "Male",
-            "age": 8,
-            "breed": "Labrador Retriever",
-            "size": "Medium",
-            "species": "Dog",
-            "location": "",
-            "behavior_aggresive": 4,
-            "behavior_social": 2,
-            "behavior_noisy": 4,
-            "behavior_scared": 2,
-            "behavior_friendly": 4,
-            "medical_history": "Jarvis exhibits a mild Ocular Protrusion Tendency, which is typical in pugs with prominent eyes. This may increase the risk of eye injuries, so caution is advised during playtime and outdoor activities.",
-            "requirements": "Labrador Retrievers shed, and their wrinkles require regular cleaning to prevent skin issues. Adopters should be ready for grooming responsibilities, including brushing and cleaning facial folds.",
-            "additional_comments": "Jarvis is not just a Labrador Retirever; he's a scholar in the making! Already familiar with basic commands, house-trained, and a leash aficionado, Jarvis is the perfect blend of intelligence and charm."
-        }
-    },
-    {
-        "model": "pet_listing.petlisting",
-        "pk": 7,
-        "fields": {
-            "shelter": 1,
-            "pet_name": "Ruffles",
-            "status": "Available",
-            "publication_date": "2023-12-09T16:44:33.294Z",
-            "gender": "Female",
-            "age": 2,
-            "breed": "Husky",
-            "size": "Large",
-            "species": "Dog",
-            "location": "",
-            "behavior_aggresive": 5,
-            "behavior_social": 1,
-            "behavior_noisy": 2,
-            "behavior_scared": 3,
-            "behavior_friendly": 4,
-            "medical_history": "Ruffles has undergone corrective surgery for entropion, a condition where the eyelids roll inward, causing discomfort. Post-surgery, he may require periodic check-ups to ensure optimal eye health.",
-            "requirements": "Huskies like any breed, benefit from positive reinforcement training. Adopters should be patient and willing to invest time in basic obedience training to ensure a well-behaved and happy husky.",
-            "additional_comments": "Tired of the same old routine? Meet Ruffles, your new fitness companion! This energetic husky is always up for a game of fetch or a brisk walk, making him the perfect match for an active family ready for fun and adventure."
-        }
-    },
-    {
-        "model": "pet_listing.petlisting",
-        "pk": 8,
-        "fields": {
-            "shelter": 1,
-            "pet_name": "Freddy",
-            "status": "Available",
-            "publication_date": "2023-12-09T16:46:59.821Z",
-            "gender": "Male",
-            "age": 4,
-            "breed": "Husky",
-            "size": "Small",
-            "species": "Dog",
-            "location": "",
-            "behavior_aggresive": 2,
-            "behavior_social": 3,
-            "behavior_noisy": 4,
-            "behavior_scared": 2,
-            "behavior_friendly": 4,
-            "medical_history": "Freddy has exhibited sensitivity to certain ingredients in commercial dog food. A hypoallergenic diet has been prescribed to alleviate gastrointestinal distress and skin irritations.",
-            "requirements": "A commitment to responsible pet ownership, including providing a balanced diet, maintaining a healthy weight, and ensuring proper identification through microchipping.",
-            "additional_comments": "Tired of the same old routine? Meet Freddy, your new fitness companion! This energetic husky is always up for a game of fetch or a brisk walk, making him the perfect match for an active family ready for fun and adventure."
-        }
-    },
-    {
-        "model": "pet_listing.petlisting",
-        "pk": 9,
-        "fields": {
-            "shelter": 1,
-            "pet_name": "Finn",
-            "status": "Available",
-            "publication_date": "2023-12-09T16:48:56.670Z",
-            "gender": "Male",
-            "age": 6,
-            "breed": "Border Collie",
-            "size": "Small",
-            "species": "Dog",
-            "location": "",
-            "behavior_aggresive": 2,
-            "behavior_social": 5,
-            "behavior_noisy": 2,
-            "behavior_scared": 3,
-            "behavior_friendly": 5,
-            "medical_history": "Finn has exhibited sensitivity to certain ingredients in commercial dog food. A hypoallergenic diet has been prescribed to alleviate gastrointestinal distress and skin irritations.",
-            "requirements": "Border collies are prone to certain health issues, including obesity, hip dysplasia, and eye problems. A commitment to regular veterinary check-ups and preventive care is crucial.",
-            "additional_comments": "Introducing Finn, the suave and neutered gentleman of the border collie world. This debonair canine is not just a heart-stealer; he's also a responsible companion ready to join your home."
-        }
-    },
-    {
-        "model": "pet_listing.petlisting",
-        "pk": 10,
-        "fields": {
-            "shelter": 2,
-            "pet_name": "Bitty",
-            "status": "Available",
-            "publication_date": "2023-12-09T17:01:46.641Z",
-            "gender": "Female",
-            "age": 8,
-            "breed": "Golden Retriever",
-            "size": "Small",
-            "species": "Dog",
-            "location": "",
-            "behavior_aggresive": 0,
-            "behavior_social": 0,
-            "behavior_noisy": 0,
-            "behavior_scared": 0,
-            "behavior_friendly": 0,
-            "medical_history": "Bitty has exhibited sensitivity to certain ingredients in commercial dog food. A hypoallergenic diet has been prescribed to alleviate gastrointestinal distress and skin irritations.",
-            "requirements": "Veterinary expenses can accrue, especially for a breed with specific health considerations. Adopters should be financially prepared to cover routine veterinary care and potential medical expenses.",
-            "additional_comments": "Bitty, our charismatic golden retriever, is known for his outgoing personality and charming antics. Whether he's striking a pose or engaging in playful antics, Bitty is sure to be the life of the party in your household."
-        }
-    },
-    {
-        "model": "pet_listing.petlistingimage",
-        "pk": 1,
-        "fields": {
-            "pet_listing": 1,
-            "image": "pet_listing_images/n02110958_15527.jpg"
-        }
-    },
-    {
-        "model": "pet_listing.petlistingimage",
-        "pk": 2,
-        "fields": {
-            "pet_listing": 2,
-            "image": "pet_listing_images/n02110958_15217_5ElAoz5.jpg"
-        }
-    },
-    {
-        "model": "pet_listing.petlistingimage",
-        "pk": 3,
-        "fields": {
-            "pet_listing": 3,
-            "image": "pet_listing_images/siamese.jpg"
-        }
-    },
-    {
-        "model": "pet_listing.petlistingimage",
-        "pk": 4,
-        "fields": {
-            "pet_listing": 4,
-            "image": "pet_listing_images/British_Shorthair.jpg"
-        }
-    },
-    {
-        "model": "pet_listing.petlistingimage",
-        "pk": 5,
-        "fields": {
-            "pet_listing": 5,
-            "image": "pet_listing_images/n02099712_5343.jpg"
-        }
-    },
-    {
-        "model": "pet_listing.petlistingimage",
-        "pk": 6,
-        "fields": {
-            "pet_listing": 6,
-            "image": "pet_listing_images/n02099712_7802.jpg"
-        }
-    },
-    {
-        "model": "pet_listing.petlistingimage",
-        "pk": 7,
-        "fields": {
-            "pet_listing": 7,
-            "image": "pet_listing_images/n02110185_698.jpg"
-        }
-    },
-    {
-        "model": "pet_listing.petlistingimage",
-        "pk": 8,
-        "fields": {
-            "pet_listing": 8,
-            "image": "pet_listing_images/n02110185_4186.jpg"
-        }
-    },
-    {
-        "model": "pet_listing.petlistingimage",
-        "pk": 9,
-        "fields": {
-            "pet_listing": 9,
-            "image": "pet_listing_images/n02106166_3416.jpg"
-        }
-    },
-    {
-        "model": "pet_listing.petlistingimage",
-        "pk": 10,
-        "fields": {
-            "pet_listing": 10,
-            "image": "pet_listing_images/n02099601_7019.jpg"
-        }
-    },
-    {
-        "model": "accounts.petseeker",
-        "fields": {
-            "password": "pbkdf2_sha256$600000$2yqJL5kLMc9QWswOGQ5Cyl$LjxZ1vEMa+Ma/54hrH0ZAaeeh1SbyPvHLPW2MHO5e4E=",
-            "last_login": null,
-            "is_superuser": false,
-            "username": "SeanSong",
-            "first_name": "Sean",
-            "last_name": "Song",
-            "email": "sean.song@gmail.com",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2023-12-09T06:48:51.394Z",
-            "profile_image": "",
-            "location": "Canada",
-            "create_petlisting_notification": false,
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "accounts.petseeker",
-        "fields": {
-            "password": "pbkdf2_sha256$600000$aW7QEvEYYeVKEVkj6NjKeR$bVerElm15NfXp9RAOkysenQgWiV7VkVKxoe/AdCX53A=",
-            "last_login": null,
-            "is_superuser": false,
-            "username": "Pat",
-            "first_name": "Patricia",
-            "last_name": "Prit",
-            "email": "pat.prit@gmail.com",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2023-12-09T06:51:35.040Z",
-            "profile_image": "",
-            "location": "Canada",
-            "create_petlisting_notification": false,
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "accounts.petseeker",
-        "fields": {
-            "password": "pbkdf2_sha256$600000$BiTPFiimVbdwHad65lfh4w$EaUj8XKsd+9172xiBJcRBKbVZvblDBkscSS8aOPmTlw=",
-            "last_login": null,
-            "is_superuser": false,
-            "username": "TorontoAdoptionCenter",
-            "first_name": "",
-            "last_name": "",
-            "email": "toronto.shelter@adoption.com",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2023-12-09T06:58:04.720Z",
-            "profile_image": "",
-            "location": null,
-            "create_petlisting_notification": false,
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "accounts.petseeker",
-        "fields": {
-            "password": "pbkdf2_sha256$600000$8kuaJqFC6K8gRovVYGdZOl$EI6vBzPNqFLWR2CD577D+Wo3elK063VvvvfVe4Wq1GU=",
-            "last_login": null,
-            "is_superuser": false,
-            "username": "BestFriend",
-            "first_name": "",
-            "last_name": "",
-            "email": "best.friend@gmail.com",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2023-12-09T16:58:24.416Z",
-            "profile_image": "",
-            "location": null,
-            "create_petlisting_notification": false,
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "accounts.petshelter",
-        "pk": 1,
-        "fields": {
-            "user": [
-                "TorontoAdoptionCenter"
-            ],
-            "organization_name": "Toronto Adoption Center",
-            "logo_image": "logo_images/shelter.png",
-            "phone_number": "+16473081980",
-            "mission_statement": "Temp",
-            "country": "Canada",
-            "address1": "1201 Dundas St. E",
-            "address2": "-",
-            "city": "Toronto",
-            "state": "Ontario",
-            "zip": "a1b 2c3"
-        }
-    },
-    {
-        "model": "accounts.petshelter",
-        "pk": 2,
-        "fields": {
-            "user": [
-                "BestFriend"
-            ],
-            "organization_name": "BestFriend Adoption Center",
-            "logo_image": "logo_images/download.png",
-            "phone_number": "+16479646442",
-            "mission_statement": "Temp",
-            "country": "Canada",
-            "address1": "123 Dundas St.",
-            "address2": "-",
-            "city": "Toronto",
-            "state": "Ontario",
-            "zip": "123 abc"
-        }
-    },
-    {
-        "model": "applications.application",
-        "pk": 1,
-        "fields": {
-            "applicant": [
-                "SeanSong"
-            ],
-            "pet_listing": 10,
-            "shelter": 2,
-            "status": "Pending",
-            "creation_time": "2023-12-09T17:56:59.068Z",
-            "last_update_time": "2023-12-09T17:56:59.068Z",
-            "pet_name": "Bitty",
-            "owner_name": "Sean Song",
-            "area_code": "1",
-            "phone_number": "6475552594",
-            "email": "sean.song@gmail.com",
-            "address1": "100 Bay Street",
-            "address2": "NA",
-            "city": "Toronto",
-            "state": "Ontario",
-            "zip": "M5LM3L",
-            "country": "Canada",
-            "pet_ownership": "yes",
-            "breed": "Firebird, 3 years old",
-            "past_pet": "Just my current for 2 years",
-            "home_ownership": "own",
-            "signature": "Sean Song"
-        }
-    },
-    {
-        "model": "applications.application",
-        "pk": 2,
-        "fields": {
-            "applicant": [
-                "SeanSong"
-            ],
-            "pet_listing": 9,
-            "shelter": 1,
-            "status": "Pending",
-            "creation_time": "2023-12-09T17:59:07.202Z",
-            "last_update_time": "2023-12-09T17:59:07.202Z",
-            "pet_name": "Finn",
-            "owner_name": "Sean Song",
-            "area_code": "1",
-            "phone_number": "6475552594",
-            "email": "sean.song@gmail.com",
-            "address1": "100 Bay Street",
-            "address2": "NA",
-            "city": "Toronto",
-            "state": "Ontario",
-            "zip": "M5LM3L",
-            "country": "Canada",
-            "pet_ownership": "yes",
-            "breed": "Firebird, 3 years old",
-            "past_pet": "Just my current for 2 years",
-            "home_ownership": "own",
-            "signature": "Sean Song"
-        }
-    },
-    {
-        "model": "applications.application",
-        "pk": 3,
-        "fields": {
-            "applicant": [
-                "SeanSong"
-            ],
-            "pet_listing": 4,
-            "shelter": 1,
-            "status": "Pending",
-            "creation_time": "2023-12-09T17:59:45.966Z",
-            "last_update_time": "2023-12-09T17:59:45.966Z",
-            "pet_name": "FuFu",
-            "owner_name": "Sean Song",
-            "area_code": "1",
-            "phone_number": "6475552594",
-            "email": "sean.song@gmail.com",
-            "address1": "100 Bay Street",
-            "address2": "NA",
-            "city": "Toronto",
-            "state": "Ontario",
-            "zip": "M5LM3L",
-            "country": "Canada",
-            "pet_ownership": "yes",
-            "breed": "Firebird, 3 years old",
-            "past_pet": "Just my current for 2 years",
-            "home_ownership": "own",
-            "signature": "Sean Song"
-        }
-    },
-    {
-        "model": "applications.application",
-        "pk": 4,
-        "fields": {
-            "applicant": [
-                "Pat"
-            ],
-            "pet_listing": 10,
-            "shelter": 2,
-            "status": "Pending",
-            "creation_time": "2023-12-09T18:04:01.684Z",
-            "last_update_time": "2023-12-09T18:04:01.684Z",
-            "pet_name": "Bitty",
-            "owner_name": "Patricia Prit",
-            "area_code": "1",
-            "phone_number": "7758652597",
-            "email": "pat.prit@gmail.com",
-            "address1": "28 Wellesley",
-            "address2": "#409",
-            "city": "Toronto",
-            "state": "Ontario",
-            "zip": "M2M 2NA",
-            "country": "Canada",
-            "pet_ownership": "no",
-            "breed": "NA",
-            "past_pet": "NA",
-            "home_ownership": "rent",
-            "signature": "Patricia Prit"
-        }
-    },
-    {
-        "model": "applications.application",
-        "pk": 5,
-        "fields": {
-            "applicant": [
-                "Pat"
-            ],
-            "pet_listing": 7,
-            "shelter": 1,
-            "status": "Pending",
-            "creation_time": "2023-12-09T18:09:26.696Z",
-            "last_update_time": "2023-12-09T18:09:26.696Z",
-            "pet_name": "Ruffles",
-            "owner_name": "Bitty",
-            "area_code": "1",
-            "phone_number": "7758652597",
-            "email": "pat.prit@gmail.com",
-            "address1": "28 Wellesley",
-            "address2": "#409",
-            "city": "Toronto",
-            "state": "Ontario",
-            "zip": "M2M 2NA",
-            "country": "Canada",
-            "pet_ownership": "no",
-            "breed": "NA",
-            "past_pet": "NA",
-            "home_ownership": "rent",
-            "signature": "Pat"
-        }
-    },
-    {
-        "model": "applications.application",
-        "pk": 6,
-        "fields": {
-            "applicant": [
-                "Pat"
-            ],
-            "pet_listing": 8,
-            "shelter": 1,
-            "status": "Pending",
-            "creation_time": "2023-12-09T18:10:16.841Z",
-            "last_update_time": "2023-12-09T18:10:16.841Z",
-            "pet_name": "Freddy",
-            "owner_name": "Bitty",
-            "area_code": "775",
-            "phone_number": "8652597",
-            "email": "pat.prit@gmail.com",
-            "address1": "28 Wellesley",
-            "address2": "NA",
-            "city": "Toronto",
-            "state": "Ontario",
-            "zip": "M2M 2NA",
-            "country": "Canada",
-            "pet_ownership": "no",
-            "breed": "NA",
-            "past_pet": "NA",
-            "home_ownership": "rent",
-            "signature": "Patricia Prit"
-        }
-    },
-    {
-        "model": "comments.sheltercomment",
-        "pk": 1,
-        "fields": {
-            "body": "Our experience working with this shelter was amazing! They really care for their pets!",
-            "created_at": "2023-12-09T17:02:49.860Z",
-            "updated_at": "2023-12-09T17:02:49.860Z",
-            "author": [
-                "BestFriend"
-            ],
-            "shelter": 1,
-            "rating": 5
-        }
-    },
-    {
-        "model": "comments.sheltercomment",
-        "pk": 2,
-        "fields": {
-            "body": "I did not get a good dog from this shelter.",
-            "created_at": "2023-12-09T17:40:32.815Z",
-            "updated_at": "2023-12-09T17:40:32.816Z",
-            "author": [
-                "Pat"
-            ],
-            "shelter": 1,
-            "rating": 1
-        }
-    },
-    {
-        "model": "comments.sheltercomment",
-        "pk": 3,
-        "fields": {
-            "body": "Love this shelter!!",
-            "created_at": "2023-12-09T17:41:12.662Z",
-            "updated_at": "2023-12-09T17:41:12.662Z",
-            "author": [
-                "SeanSong"
-            ],
-            "shelter": 1,
-            "rating": 5
-        }
-    },
-    {
-        "model": "comments.reply",
-        "pk": 1,
-        "fields": {
-            "body": "Oh! Forgot to mention, we are working on partnering up with this shelter. Stay tuned!",
-            "created_at": "2023-12-09T17:14:38.737Z",
-            "updated_at": "2023-12-09T17:14:38.737Z",
-            "author": [
-                "BestFriend"
-            ],
-            "parent": 1
-        }
-    },
-    {
-        "model": "comments.reply",
-        "pk": 2,
-        "fields": {
-            "body": "Thanks so much!",
-            "created_at": "2023-12-09T17:15:51.793Z",
-            "updated_at": "2023-12-09T17:15:51.793Z",
-            "author": [
-                "TorontoAdoptionCenter"
-            ],
-            "parent": 1
-        }
-    },
-    {
-        "model": "comments.reply",
-        "pk": 3,
-        "fields": {
-            "body": "Really!? They have the best pets!",
-            "created_at": "2023-12-09T17:41:40.240Z",
-            "updated_at": "2023-12-09T17:41:40.240Z",
-            "author": [
-                "SeanSong"
-            ],
-            "parent": 2
-        }
-    },
-    {
-        "model": "notification.notification",
-        "pk": 1,
-        "fields": {
-            "seeker": [
-                "TorontoAdoptionCenter"
-            ],
-            "message": "BestFriend left a 5 star review",
-            "creation_date": "2023-12-09T17:02:49.866Z",
-            "was_read": false,
-            "link": "/shelter/1",
-            "notification_type": "Review Comment",
-            "notification_type_id": 1
-        }
-    },
-    {
-        "model": "notification.notification",
-        "pk": 2,
-        "fields": {
-            "seeker": [
-                "BestFriend"
-            ],
-            "message": "TorontoAdoptionCenter left a reply on one of your reviews",
-            "creation_date": "2023-12-09T17:15:51.800Z",
-            "was_read": true,
-            "link": "/shelter/1",
-            "notification_type": "Review Reply",
-            "notification_type_id": 2
-        }
-    },
-    {
-        "model": "notification.notification",
-        "pk": 3,
-        "fields": {
-            "seeker": [
-                "TorontoAdoptionCenter"
-            ],
-            "message": "Pat left a 1 star review",
-            "creation_date": "2023-12-09T17:40:32.822Z",
-            "was_read": false,
-            "link": "/shelter/1",
-            "notification_type": "Review Comment",
-            "notification_type_id": 2
-        }
-    },
-    {
-        "model": "notification.notification",
-        "pk": 4,
-        "fields": {
-            "seeker": [
-                "TorontoAdoptionCenter"
-            ],
-            "message": "SeanSong left a 5 star review",
-            "creation_date": "2023-12-09T17:41:12.668Z",
-            "was_read": false,
-            "link": "/shelter/1",
-            "notification_type": "Review Comment",
-            "notification_type_id": 3
-        }
-    },
-    {
-        "model": "notification.notification",
-        "pk": 5,
-        "fields": {
-            "seeker": [
-                "Pat"
-            ],
-            "message": "SeanSong left a reply on one of your reviews",
-            "creation_date": "2023-12-09T17:41:40.248Z",
-            "was_read": true,
-            "link": "/shelter/1",
-            "notification_type": "Review Reply",
-            "notification_type_id": 3
-        }
+{
+    "model": "blog.post",
+    "pk": 1,
+    "fields": {
+        "title": "An Intro to Our Beautiful Pet Shelter",
+        "content": "Welcome to a haven where wagging tails, playful purrs, and unconditional love come together—our beautiful pet shelter. In this introductory post, we invite you to explore the heart and soul of our sanctuary, where the mission is simple yet profound: to connect animals in need with loving homes.\r\n\r\nA Sanctuary of Compassion:\r\nStep into our pet shelter, and you'll instantly sense the warmth and compassion that defines our space. Every paw print, every whisker, and every soul that enters our doors is met with genuine care and an unwavering commitment to their well-being.\r\n\r\nDiverse Companions Await:\r\nOur shelter is a mosaic of furry personalities, each with a unique story to tell. From the spirited playfulness of kittens to the wise gaze of senior dogs, our residents represent a tapestry of backgrounds and breeds, all sharing the common thread of seeking a second chance and a loving family.",
+        "author": 1,
+        "created_at": "2023-12-09T17:35:52.341Z",
+        "updated_at": "2023-12-09T17:35:52.341Z",
+        "image": "blog_images/shelter_1.png"
     }
+},
+{
+    "model": "accounts.shelterimage",
+    "pk": 1,
+    "fields": {
+        "shelter": 1,
+        "image": "shelter_images/shelter_2.png"
+    }
+},
+{
+    "model": "accounts.shelterimage",
+    "pk": 2,
+    "fields": {
+        "shelter": 1,
+        "image": "shelter_images/shelter_1.png"
+    }
+},
+{
+    "model": "accounts.shelterimage",
+    "pk": 3,
+    "fields": {
+        "shelter": 2,
+        "image": "shelter_images/shelter_3.jpg"
+    }
+},
+{
+    "model": "pet_listing.petlisting",
+    "pk": 1,
+    "fields": {
+        "shelter": 1,
+        "pet_name": "Bruce",
+        "status": "Available",
+        "publication_date": "2023-12-09T16:26:24.338Z",
+        "gender": "Male",
+        "age": 7,
+        "breed": "Pug",
+        "size": "Medium",
+        "species": "Dog",
+        "location": "",
+        "behavior_aggresive": 2,
+        "behavior_social": 3,
+        "behavior_noisy": 5,
+        "behavior_scared": 2,
+        "behavior_friendly": 3,
+        "medical_history": "Bruce has been diagnosed with a mild form of BAS, a common respiratory condition in brachycephalic breeds like pugs. This may cause occasional snoring and difficulty breathing, especially during strenuous activities. Regular monitoring and avoiding excessive exercise are recommended.",
+        "requirements": "Pugs may have a tendency to gain weight, so potential adopters should be dedicated to providing daily walks and playtime to keep them healthy.",
+        "additional_comments": "Meet Bruce, a sprightly 2-year-old pug with boundless energy and a heart full of curiosity. This little guy is the epitome of youthful exuberance, ready to bring vitality and laughter into your home."
+    }
+},
+{
+    "model": "pet_listing.petlisting",
+    "pk": 2,
+    "fields": {
+        "shelter": 1,
+        "pet_name": "Snickers",
+        "status": "Available",
+        "publication_date": "2023-12-09T16:28:55.706Z",
+        "gender": "Female",
+        "age": 4,
+        "breed": "Pug",
+        "size": "Small",
+        "species": "Dog",
+        "location": "",
+        "behavior_aggresive": 4,
+        "behavior_social": 4,
+        "behavior_noisy": 3,
+        "behavior_scared": 2,
+        "behavior_friendly": 4,
+        "medical_history": "Snickers has exhibited sensitivity to certain ingredients in commercial dog food. A hypoallergenic diet has been prescribed to alleviate gastrointestinal distress and skin irritations.",
+        "requirements": "Pugs, like any breed, benefit from positive reinforcement training. Adopters should be patient and willing to invest time in basic obedience training to ensure a well-behaved and happy pug.",
+        "additional_comments": "Snickers is a social butterfly with a heart for furry friends. Whether it's a fellow dog or a curious cat, Snicker's friendly disposition and easygoing nature make him an ideal addition to any multi-pet household."
+    }
+},
+{
+    "model": "pet_listing.petlisting",
+    "pk": 3,
+    "fields": {
+        "shelter": 1,
+        "pet_name": "Mill",
+        "status": "Available",
+        "publication_date": "2023-12-09T16:32:56.376Z",
+        "gender": "Male",
+        "age": 1,
+        "breed": "Siamese",
+        "size": "Small",
+        "species": "Cat",
+        "location": "",
+        "behavior_aggresive": 3,
+        "behavior_social": 3,
+        "behavior_noisy": 3,
+        "behavior_scared": 4,
+        "behavior_friendly": 2,
+        "medical_history": "Mill has undergone corrective surgery for entropion, a condition where the eyelids roll inward, causing discomfort. Post-surgery, he may require periodic check-ups to ensure optimal eye health.",
+        "requirements": "A commitment to responsible pet ownership, including providing a balanced diet, maintaining a healthy weight, and ensuring proper identification through microchipping.",
+        "additional_comments": "With up-to-date vaccinations and a clean bill of health, he's a robust and resilient cat eager to embark on new adventures with his forever family."
+    }
+},
+{
+    "model": "pet_listing.petlisting",
+    "pk": 4,
+    "fields": {
+        "shelter": 1,
+        "pet_name": "FuFu",
+        "status": "Available",
+        "publication_date": "2023-12-09T16:36:10.404Z",
+        "gender": "Female",
+        "age": 10,
+        "breed": "British Shorthair",
+        "size": "Large",
+        "species": "Cat",
+        "location": "",
+        "behavior_aggresive": 1,
+        "behavior_social": 3,
+        "behavior_noisy": 5,
+        "behavior_scared": 3,
+        "behavior_friendly": 2,
+        "medical_history": "FuFu is on a specialized weight management diet to address his tendency to gain weight. A controlled diet and regular exercise routine are crucial to maintain a healthy weight and prevent obesity-related issues.",
+        "requirements": "A commitment to responsible pet ownership, including providing a balanced diet, maintaining a healthy weight, and ensuring proper identification through microchipping.",
+        "additional_comments": "With up-to-date vaccinations and a clean bill of health, she's a robust and resilient cat eager to embark on new adventures with his forever family."
+    }
+},
+{
+    "model": "pet_listing.petlisting",
+    "pk": 5,
+    "fields": {
+        "shelter": 1,
+        "pet_name": "Lucy",
+        "status": "Available",
+        "publication_date": "2023-12-09T16:38:51.874Z",
+        "gender": "Female",
+        "age": 2,
+        "breed": "Labrador Retriever",
+        "size": "Large",
+        "species": "Dog",
+        "location": "",
+        "behavior_aggresive": 1,
+        "behavior_social": 3,
+        "behavior_noisy": 3,
+        "behavior_scared": 4,
+        "behavior_friendly": 5,
+        "medical_history": "Lucy is on a specialized weight management diet to address his tendency to gain weight. A controlled diet and regular exercise routine are crucial to maintain a healthy weight and prevent obesity-related issues.",
+        "requirements": "Lucy benefits from positive reinforcement training. Adopters should be patient and willing to invest time in basic obedience training to ensure a well-behaved and happy Lucy.",
+        "additional_comments": "Lucy is the picture of canine health! With up-to-date vaccinations and a clean bill of health, she's a robust and resilient dog eager to embark on new adventures with her forever family."
+    }
+},
+{
+    "model": "pet_listing.petlisting",
+    "pk": 6,
+    "fields": {
+        "shelter": 1,
+        "pet_name": "Jarvis",
+        "status": "Available",
+        "publication_date": "2023-12-09T16:42:34.073Z",
+        "gender": "Male",
+        "age": 8,
+        "breed": "Labrador Retriever",
+        "size": "Medium",
+        "species": "Dog",
+        "location": "",
+        "behavior_aggresive": 4,
+        "behavior_social": 2,
+        "behavior_noisy": 4,
+        "behavior_scared": 2,
+        "behavior_friendly": 4,
+        "medical_history": "Jarvis exhibits a mild Ocular Protrusion Tendency, which is typical in pugs with prominent eyes. This may increase the risk of eye injuries, so caution is advised during playtime and outdoor activities.",
+        "requirements": "Labrador Retrievers shed, and their wrinkles require regular cleaning to prevent skin issues. Adopters should be ready for grooming responsibilities, including brushing and cleaning facial folds.",
+        "additional_comments": "Jarvis is not just a Labrador Retirever; he's a scholar in the making! Already familiar with basic commands, house-trained, and a leash aficionado, Jarvis is the perfect blend of intelligence and charm."
+    }
+},
+{
+    "model": "pet_listing.petlisting",
+    "pk": 7,
+    "fields": {
+        "shelter": 1,
+        "pet_name": "Ruffles",
+        "status": "Available",
+        "publication_date": "2023-12-09T16:44:33.294Z",
+        "gender": "Female",
+        "age": 2,
+        "breed": "Husky",
+        "size": "Large",
+        "species": "Dog",
+        "location": "",
+        "behavior_aggresive": 5,
+        "behavior_social": 1,
+        "behavior_noisy": 2,
+        "behavior_scared": 3,
+        "behavior_friendly": 4,
+        "medical_history": "Ruffles has undergone corrective surgery for entropion, a condition where the eyelids roll inward, causing discomfort. Post-surgery, he may require periodic check-ups to ensure optimal eye health.",
+        "requirements": "Huskies like any breed, benefit from positive reinforcement training. Adopters should be patient and willing to invest time in basic obedience training to ensure a well-behaved and happy husky.",
+        "additional_comments": "Tired of the same old routine? Meet Ruffles, your new fitness companion! This energetic husky is always up for a game of fetch or a brisk walk, making him the perfect match for an active family ready for fun and adventure."
+    }
+},
+{
+    "model": "pet_listing.petlisting",
+    "pk": 8,
+    "fields": {
+        "shelter": 1,
+        "pet_name": "Freddy",
+        "status": "Available",
+        "publication_date": "2023-12-09T16:46:59.821Z",
+        "gender": "Male",
+        "age": 4,
+        "breed": "Husky",
+        "size": "Small",
+        "species": "Dog",
+        "location": "",
+        "behavior_aggresive": 2,
+        "behavior_social": 3,
+        "behavior_noisy": 4,
+        "behavior_scared": 2,
+        "behavior_friendly": 4,
+        "medical_history": "Freddy has exhibited sensitivity to certain ingredients in commercial dog food. A hypoallergenic diet has been prescribed to alleviate gastrointestinal distress and skin irritations.",
+        "requirements": "A commitment to responsible pet ownership, including providing a balanced diet, maintaining a healthy weight, and ensuring proper identification through microchipping.",
+        "additional_comments": "Tired of the same old routine? Meet Freddy, your new fitness companion! This energetic husky is always up for a game of fetch or a brisk walk, making him the perfect match for an active family ready for fun and adventure."
+    }
+},
+{
+    "model": "pet_listing.petlisting",
+    "pk": 9,
+    "fields": {
+        "shelter": 1,
+        "pet_name": "Finn",
+        "status": "Available",
+        "publication_date": "2023-12-09T16:48:56.670Z",
+        "gender": "Male",
+        "age": 6,
+        "breed": "Border Collie",
+        "size": "Small",
+        "species": "Dog",
+        "location": "",
+        "behavior_aggresive": 2,
+        "behavior_social": 5,
+        "behavior_noisy": 2,
+        "behavior_scared": 3,
+        "behavior_friendly": 5,
+        "medical_history": "Finn has exhibited sensitivity to certain ingredients in commercial dog food. A hypoallergenic diet has been prescribed to alleviate gastrointestinal distress and skin irritations.",
+        "requirements": "Border collies are prone to certain health issues, including obesity, hip dysplasia, and eye problems. A commitment to regular veterinary check-ups and preventive care is crucial.",
+        "additional_comments": "Introducing Finn, the suave and neutered gentleman of the border collie world. This debonair canine is not just a heart-stealer; he's also a responsible companion ready to join your home."
+    }
+},
+{
+    "model": "pet_listing.petlisting",
+    "pk": 10,
+    "fields": {
+        "shelter": 2,
+        "pet_name": "Bitty",
+        "status": "Available",
+        "publication_date": "2023-12-09T17:01:46.641Z",
+        "gender": "Female",
+        "age": 8,
+        "breed": "Golden Retriever",
+        "size": "Small",
+        "species": "Dog",
+        "location": "",
+        "behavior_aggresive": 0,
+        "behavior_social": 0,
+        "behavior_noisy": 0,
+        "behavior_scared": 0,
+        "behavior_friendly": 0,
+        "medical_history": "Bitty has exhibited sensitivity to certain ingredients in commercial dog food. A hypoallergenic diet has been prescribed to alleviate gastrointestinal distress and skin irritations.",
+        "requirements": "Veterinary expenses can accrue, especially for a breed with specific health considerations. Adopters should be financially prepared to cover routine veterinary care and potential medical expenses.",
+        "additional_comments": "Bitty, our charismatic golden retriever, is known for his outgoing personality and charming antics. Whether he's striking a pose or engaging in playful antics, Bitty is sure to be the life of the party in your household."
+    }
+},
+{
+    "model": "pet_listing.petlistingimage",
+    "pk": 1,
+    "fields": {
+        "pet_listing": 1,
+        "image": "pet_listing_images/n02110958_15527.jpg"
+    }
+},
+{
+    "model": "pet_listing.petlistingimage",
+    "pk": 2,
+    "fields": {
+        "pet_listing": 2,
+        "image": "pet_listing_images/n02110958_15217_5ElAoz5.jpg"
+    }
+},
+{
+    "model": "pet_listing.petlistingimage",
+    "pk": 3,
+    "fields": {
+        "pet_listing": 3,
+        "image": "pet_listing_images/siamese.jpg"
+    }
+},
+{
+    "model": "pet_listing.petlistingimage",
+    "pk": 4,
+    "fields": {
+        "pet_listing": 4,
+        "image": "pet_listing_images/British_Shorthair.jpg"
+    }
+},
+{
+    "model": "pet_listing.petlistingimage",
+    "pk": 5,
+    "fields": {
+        "pet_listing": 5,
+        "image": "pet_listing_images/n02099712_5343.jpg"
+    }
+},
+{
+    "model": "pet_listing.petlistingimage",
+    "pk": 6,
+    "fields": {
+        "pet_listing": 6,
+        "image": "pet_listing_images/n02099712_7802.jpg"
+    }
+},
+{
+    "model": "pet_listing.petlistingimage",
+    "pk": 7,
+    "fields": {
+        "pet_listing": 7,
+        "image": "pet_listing_images/n02110185_698.jpg"
+    }
+},
+{
+    "model": "pet_listing.petlistingimage",
+    "pk": 8,
+    "fields": {
+        "pet_listing": 8,
+        "image": "pet_listing_images/n02110185_4186.jpg"
+    }
+},
+{
+    "model": "pet_listing.petlistingimage",
+    "pk": 9,
+    "fields": {
+        "pet_listing": 9,
+        "image": "pet_listing_images/n02106166_3416.jpg"
+    }
+},
+{
+    "model": "pet_listing.petlistingimage",
+    "pk": 10,
+    "fields": {
+        "pet_listing": 10,
+        "image": "pet_listing_images/n02099601_7019.jpg"
+    }
+},
+{
+    "model": "accounts.petseeker",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$LuxhleTB1yu8zx2s5gyXiM$gUmUPyhpeyqB2K/XWnClKB48Wkm4wYncU0PkRh2Ob3Q=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "SeanSong",
+        "first_name": "Sean",
+        "last_name": "Song",
+        "email": "sean.song@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-12-09T06:48:51.394Z",
+        "profile_image": "profile_images/Sean_Song_mms0RCw.png",
+        "location": "Canada",
+        "create_petlisting_notification": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.petseeker",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$DiFMBrBGxgaHGhV5j3ijQh$GwnUvAwRjB7qRKdWd9V8C90Z/+1hYVZE5r6UZoUi8D0=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Pat",
+        "first_name": "Patricia",
+        "last_name": "Prit",
+        "email": "pat.prit@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-12-09T06:51:35.040Z",
+        "profile_image": "profile_images/Patricia_hxMJsbU.png",
+        "location": "Canada",
+        "create_petlisting_notification": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.petseeker",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$BiTPFiimVbdwHad65lfh4w$EaUj8XKsd+9172xiBJcRBKbVZvblDBkscSS8aOPmTlw=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "TorontoAdoptionCenter",
+        "first_name": "",
+        "last_name": "",
+        "email": "toronto.shelter@adoption.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-12-09T06:58:04.720Z",
+        "profile_image": "",
+        "location": null,
+        "create_petlisting_notification": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.petseeker",
+    "fields": {
+        "password": "pbkdf2_sha256$600000$8kuaJqFC6K8gRovVYGdZOl$EI6vBzPNqFLWR2CD577D+Wo3elK063VvvvfVe4Wq1GU=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "BestFriend",
+        "first_name": "",
+        "last_name": "",
+        "email": "best.friend@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-12-09T16:58:24.416Z",
+        "profile_image": "",
+        "location": null,
+        "create_petlisting_notification": false,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "accounts.petshelter",
+    "pk": 1,
+    "fields": {
+        "user": [
+            "TorontoAdoptionCenter"
+        ],
+        "organization_name": "Toronto Adoption Center",
+        "logo_image": "logo_images/shelter.png",
+        "phone_number": "+16473081980",
+        "mission_statement": "Temp",
+        "country": "Canada",
+        "address1": "1201 Dundas St. E",
+        "address2": "-",
+        "city": "Toronto",
+        "state": "Ontario",
+        "zip": "a1b 2c3"
+    }
+},
+{
+    "model": "accounts.petshelter",
+    "pk": 2,
+    "fields": {
+        "user": [
+            "BestFriend"
+        ],
+        "organization_name": "BestFriend Adoption Center",
+        "logo_image": "logo_images/download.png",
+        "phone_number": "+16479646442",
+        "mission_statement": "Temp",
+        "country": "Canada",
+        "address1": "123 Dundas St.",
+        "address2": "-",
+        "city": "Toronto",
+        "state": "Ontario",
+        "zip": "123 abc"
+    }
+},
+{
+    "model": "applications.application",
+    "pk": 1,
+    "fields": {
+        "applicant": [
+            "SeanSong"
+        ],
+        "pet_listing": 10,
+        "shelter": 2,
+        "status": "Pending",
+        "creation_time": "2023-12-09T17:56:59.068Z",
+        "last_update_time": "2023-12-09T17:56:59.068Z",
+        "pet_name": "Bitty",
+        "owner_name": "Sean Song",
+        "area_code": "1",
+        "phone_number": "6475552594",
+        "email": "sean.song@gmail.com",
+        "address1": "100 Bay Street",
+        "address2": "NA",
+        "city": "Toronto",
+        "state": "Ontario",
+        "zip": "M5LM3L",
+        "country": "Canada",
+        "pet_ownership": "yes",
+        "breed": "Firebird, 3 years old",
+        "past_pet": "Just my current for 2 years",
+        "home_ownership": "own",
+        "signature": "Sean Song"
+    }
+},
+{
+    "model": "applications.application",
+    "pk": 2,
+    "fields": {
+        "applicant": [
+            "SeanSong"
+        ],
+        "pet_listing": 9,
+        "shelter": 1,
+        "status": "Pending",
+        "creation_time": "2023-12-09T17:59:07.202Z",
+        "last_update_time": "2023-12-09T17:59:07.202Z",
+        "pet_name": "Finn",
+        "owner_name": "Sean Song",
+        "area_code": "1",
+        "phone_number": "6475552594",
+        "email": "sean.song@gmail.com",
+        "address1": "100 Bay Street",
+        "address2": "NA",
+        "city": "Toronto",
+        "state": "Ontario",
+        "zip": "M5LM3L",
+        "country": "Canada",
+        "pet_ownership": "yes",
+        "breed": "Firebird, 3 years old",
+        "past_pet": "Just my current for 2 years",
+        "home_ownership": "own",
+        "signature": "Sean Song"
+    }
+},
+{
+    "model": "applications.application",
+    "pk": 3,
+    "fields": {
+        "applicant": [
+            "SeanSong"
+        ],
+        "pet_listing": 4,
+        "shelter": 1,
+        "status": "Pending",
+        "creation_time": "2023-12-09T17:59:45.966Z",
+        "last_update_time": "2023-12-09T17:59:45.966Z",
+        "pet_name": "FuFu",
+        "owner_name": "Sean Song",
+        "area_code": "1",
+        "phone_number": "6475552594",
+        "email": "sean.song@gmail.com",
+        "address1": "100 Bay Street",
+        "address2": "NA",
+        "city": "Toronto",
+        "state": "Ontario",
+        "zip": "M5LM3L",
+        "country": "Canada",
+        "pet_ownership": "yes",
+        "breed": "Firebird, 3 years old",
+        "past_pet": "Just my current for 2 years",
+        "home_ownership": "own",
+        "signature": "Sean Song"
+    }
+},
+{
+    "model": "applications.application",
+    "pk": 4,
+    "fields": {
+        "applicant": [
+            "Pat"
+        ],
+        "pet_listing": 10,
+        "shelter": 2,
+        "status": "Pending",
+        "creation_time": "2023-12-09T18:04:01.684Z",
+        "last_update_time": "2023-12-09T18:04:01.684Z",
+        "pet_name": "Bitty",
+        "owner_name": "Patricia Prit",
+        "area_code": "1",
+        "phone_number": "7758652597",
+        "email": "pat.prit@gmail.com",
+        "address1": "28 Wellesley",
+        "address2": "#409",
+        "city": "Toronto",
+        "state": "Ontario",
+        "zip": "M2M 2NA",
+        "country": "Canada",
+        "pet_ownership": "no",
+        "breed": "NA",
+        "past_pet": "NA",
+        "home_ownership": "rent",
+        "signature": "Patricia Prit"
+    }
+},
+{
+    "model": "applications.application",
+    "pk": 5,
+    "fields": {
+        "applicant": [
+            "Pat"
+        ],
+        "pet_listing": 7,
+        "shelter": 1,
+        "status": "Pending",
+        "creation_time": "2023-12-09T18:09:26.696Z",
+        "last_update_time": "2023-12-09T18:09:26.696Z",
+        "pet_name": "Ruffles",
+        "owner_name": "Bitty",
+        "area_code": "1",
+        "phone_number": "7758652597",
+        "email": "pat.prit@gmail.com",
+        "address1": "28 Wellesley",
+        "address2": "#409",
+        "city": "Toronto",
+        "state": "Ontario",
+        "zip": "M2M 2NA",
+        "country": "Canada",
+        "pet_ownership": "no",
+        "breed": "NA",
+        "past_pet": "NA",
+        "home_ownership": "rent",
+        "signature": "Pat"
+    }
+},
+{
+    "model": "applications.application",
+    "pk": 6,
+    "fields": {
+        "applicant": [
+            "Pat"
+        ],
+        "pet_listing": 8,
+        "shelter": 1,
+        "status": "Pending",
+        "creation_time": "2023-12-09T18:10:16.841Z",
+        "last_update_time": "2023-12-09T18:10:16.841Z",
+        "pet_name": "Freddy",
+        "owner_name": "Bitty",
+        "area_code": "775",
+        "phone_number": "8652597",
+        "email": "pat.prit@gmail.com",
+        "address1": "28 Wellesley",
+        "address2": "NA",
+        "city": "Toronto",
+        "state": "Ontario",
+        "zip": "M2M 2NA",
+        "country": "Canada",
+        "pet_ownership": "no",
+        "breed": "NA",
+        "past_pet": "NA",
+        "home_ownership": "rent",
+        "signature": "Patricia Prit"
+    }
+},
+{
+    "model": "comments.sheltercomment",
+    "pk": 1,
+    "fields": {
+        "body": "Our experience working with this shelter was amazing! They really care for their pets!",
+        "created_at": "2023-12-09T17:02:49.860Z",
+        "updated_at": "2023-12-09T17:02:49.860Z",
+        "author": [
+            "BestFriend"
+        ],
+        "shelter": 1,
+        "rating": 5
+    }
+},
+{
+    "model": "comments.sheltercomment",
+    "pk": 2,
+    "fields": {
+        "body": "I did not get a good dog from this shelter.",
+        "created_at": "2023-12-09T17:40:32.815Z",
+        "updated_at": "2023-12-09T17:40:32.816Z",
+        "author": [
+            "Pat"
+        ],
+        "shelter": 1,
+        "rating": 1
+    }
+},
+{
+    "model": "comments.sheltercomment",
+    "pk": 3,
+    "fields": {
+        "body": "Love this shelter!!",
+        "created_at": "2023-12-09T17:41:12.662Z",
+        "updated_at": "2023-12-09T17:41:12.662Z",
+        "author": [
+            "SeanSong"
+        ],
+        "shelter": 1,
+        "rating": 5
+    }
+},
+{
+    "model": "comments.reply",
+    "pk": 1,
+    "fields": {
+        "body": "Oh! Forgot to mention, we are working on partnering up with this shelter. Stay tuned!",
+        "created_at": "2023-12-09T17:14:38.737Z",
+        "updated_at": "2023-12-09T17:14:38.737Z",
+        "author": [
+            "BestFriend"
+        ],
+        "parent": 1
+    }
+},
+{
+    "model": "comments.reply",
+    "pk": 2,
+    "fields": {
+        "body": "Thanks so much!",
+        "created_at": "2023-12-09T17:15:51.793Z",
+        "updated_at": "2023-12-09T17:15:51.793Z",
+        "author": [
+            "TorontoAdoptionCenter"
+        ],
+        "parent": 1
+    }
+},
+{
+    "model": "comments.reply",
+    "pk": 3,
+    "fields": {
+        "body": "Really!? They have the best pets!",
+        "created_at": "2023-12-09T17:41:40.240Z",
+        "updated_at": "2023-12-09T17:41:40.240Z",
+        "author": [
+            "SeanSong"
+        ],
+        "parent": 2
+    }
+},
+{
+    "model": "notification.notification",
+    "pk": 1,
+    "fields": {
+        "seeker": [
+            "TorontoAdoptionCenter"
+        ],
+        "message": "BestFriend left a 5 star review",
+        "creation_date": "2023-12-09T17:02:49.866Z",
+        "was_read": false,
+        "link": "/shelter/1",
+        "notification_type": "Review Comment",
+        "notification_type_id": 1
+    }
+},
+{
+    "model": "notification.notification",
+    "pk": 2,
+    "fields": {
+        "seeker": [
+            "BestFriend"
+        ],
+        "message": "TorontoAdoptionCenter left a reply on one of your reviews",
+        "creation_date": "2023-12-09T17:15:51.800Z",
+        "was_read": true,
+        "link": "/shelter/1",
+        "notification_type": "Review Reply",
+        "notification_type_id": 2
+    }
+},
+{
+    "model": "notification.notification",
+    "pk": 3,
+    "fields": {
+        "seeker": [
+            "TorontoAdoptionCenter"
+        ],
+        "message": "Pat left a 1 star review",
+        "creation_date": "2023-12-09T17:40:32.822Z",
+        "was_read": false,
+        "link": "/shelter/1",
+        "notification_type": "Review Comment",
+        "notification_type_id": 2
+    }
+},
+{
+    "model": "notification.notification",
+    "pk": 4,
+    "fields": {
+        "seeker": [
+            "TorontoAdoptionCenter"
+        ],
+        "message": "SeanSong left a 5 star review",
+        "creation_date": "2023-12-09T17:41:12.668Z",
+        "was_read": false,
+        "link": "/shelter/1",
+        "notification_type": "Review Comment",
+        "notification_type_id": 3
+    }
+},
+{
+    "model": "notification.notification",
+    "pk": 5,
+    "fields": {
+        "seeker": [
+            "Pat"
+        ],
+        "message": "SeanSong left a reply on one of your reviews",
+        "creation_date": "2023-12-09T17:41:40.248Z",
+        "was_read": true,
+        "link": "/shelter/1",
+        "notification_type": "Review Reply",
+        "notification_type_id": 3
+    }
+}
 ]

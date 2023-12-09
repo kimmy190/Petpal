@@ -136,7 +136,7 @@ class PetSeekerDetail(PermissionPolicyMixin, RetrieveUpdateDestroyAPIView):
     def perform_update(self, serializer):
         seeker = serializer.save()
         seeker.set_password(seeker.password)
-        serializer.save()
+        seeker.save()
 
     def get_object(self):
         """
