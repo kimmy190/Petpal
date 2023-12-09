@@ -34,12 +34,12 @@ const LeftNav = () => {
         { token === undefined ? 
         
         <div className="flex md:order-2 items-center space-x-4">
-        <a
-            href="./login.html"
+        <Link to="login"
+            
             className="text-black text-base hover:underline font-medium"
         >
             Login
-        </a>
+        </Link>
 
         <button
             id="dropdownNavbarLink"
