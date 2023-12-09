@@ -9,7 +9,25 @@ const AcceptRejectButtons = ({ onAccept, onReject }) => {
 
     const handleAccept = async () => {
         try {
-            const response = await fetch(`/applications/${application_id}/`, {
+            const applicationResponse = await fetch(`/applications/${application_id}/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (!applicationResponse.ok) {
+                throw new Error('Failed to fetch application');
+            }
+
+            const applicationData = await applicationResponse.json();
+            console.log('appData', applicationData)
+            const pet_listing = applicationData.pet_listing;
+            console.log('Before update - Pet Listing Status:', pet_listing?.status);
+
+            // Update application status
+            const updateApplicationResponse = await fetch(`/applications/${application_id}/`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -18,8 +36,22 @@ const AcceptRejectButtons = ({ onAccept, onReject }) => {
                 body: JSON.stringify({ status: 'Accepted' }),
             });
 
-            if (!response.ok) {
+            if (!updateApplicationResponse.ok) {
                 throw new Error('Failed to Accept application');
+            }
+
+            // Update pet listing status
+            const updatePetListingResponse = await fetch(`http://127.0.0.1:8000/pet_listing/${pet_listing.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ status: 'Adopted' }),
+            });
+            console.log('After update - Pet Listing Status:', updatePetListingResponse.status);
+            if (!updatePetListingResponse.ok) {
+                throw new Error('Failed to update pet listing status');
             }
 
             onAccept();  // Trigger the provided callback after successful withdrawal

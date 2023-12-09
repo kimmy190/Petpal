@@ -200,22 +200,22 @@ const Chatbox = ({ }) => {
                                     {chatHistory.slice().reverse().map((message) => (
                                         <div
                                             key={message.id}
-                                            className={`message ${message.author === user.shelter.id ? 'sent' : 'received'}`}
+                                            className={`message ${message.author === user.shelter.user ? 'sent' : 'received'}`}
                                             style={{
-                                                backgroundColor: message.author === user.shelter.id ? '#a7e6a1' : '#ADD8E6',
+                                                backgroundColor: message.author === user.shelter.user ? '#a7e6a1' : '#ADD8E6',
                                                 padding: '10px',
                                                 margin: '5px',
                                                 borderRadius: '12px',
                                                 alignSelf: 'flex-start',
                                                 width: 'fit-content',
-                                                marginLeft: message.author === user.shelter.id ? 'auto' : '',
+                                                marginLeft: message.author === user.shelter.user ? 'auto' : '',
                                             }}
                                         >
                                             <p
                                                 style={{
                                                     fontSize: '0.9rem',
-                                                    color: message.author === user.shelter.id ? '#333' : '#666',
-                                                    textAlign: message.author === user.shelter.id ? 'right' : 'left',
+                                                    color: message.author === user.shelter.user ? '#333' : '#666',
+                                                    textAlign: message.author === user.shelter.user ? 'right' : 'left',
                                                 }}
                                             >
                                                 {message.body}
@@ -224,11 +224,11 @@ const Chatbox = ({ }) => {
                                                 style={{
                                                     fontSize: '0.8rem',
                                                     color: '#888',
-                                                    textAlign: message.author === user.shelter.id ? 'right' : 'left',
+                                                    textAlign: message.author === user.shelter.user ? 'right' : 'left',
                                                     marginTop: '5px',
                                                 }}
                                             >
-                                                {message.author === user.shelter.id ? 'You' : `${userName}`}
+                                                {message.author === user.shelter.user ? 'You' : `${userName}`}
                                             </p>
                                         </div>
                                     ))}
