@@ -24,8 +24,8 @@ const UserApplication = () => {
   };
   useEffect(() => {
     const performUseEffect = async () => {
-      if (user.shelter) {
-        navigate("/*");
+      if (!user || user.shelter) {
+        setNotFound();
         return;
       }
 

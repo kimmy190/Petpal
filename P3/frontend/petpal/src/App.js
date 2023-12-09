@@ -55,7 +55,11 @@ function App() {
               />
               <Route
                 path="applications/pet_listing/:pet_listing_id/"
-                element={<ApplicationEditable />}
+                element={
+                  <AuthenticatedRoute>
+                    <ApplicationEditable />
+                  </AuthenticatedRoute>
+                }
               />
               <Route
                 path="applications/:application_id"

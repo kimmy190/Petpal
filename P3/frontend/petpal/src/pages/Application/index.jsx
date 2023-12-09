@@ -46,7 +46,7 @@ const Application = () => {
         });
 
         if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+          setNotFound();
         }
 
         const data = await response.json();
