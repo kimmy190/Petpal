@@ -12,11 +12,21 @@ import Cookies from 'universal-cookie';
 export const UserContext = createContext(); 
 
 export const useUserContext = () => {
+    
     return useContext(UserContext);
+};
+
+export const useToken = () => {
+    const cookies = new Cookies();
+    const token = cookies.get('access_token');
+    return token;
 };
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    // set the token 
+    // const [token, setToken] = useState(null); 
+
     const [loading, setLoading] = useState(true);
 
     const cookies = new Cookies();
@@ -62,6 +72,7 @@ export const UserProvider = ({ children }) => {
 
         // Call the fetchUser function when the component mounts
         // const token = cookies.get('access_token');
+        const token = cookies.get('access_token');
         fetchUser();
     }, []);
 
