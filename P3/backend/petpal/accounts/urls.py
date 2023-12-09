@@ -1,6 +1,6 @@
 # from django.shortcuts import render
 from django.urls import path
-from .views import PetSeekerCreate, PetSeekerDetail, PetShelterListCreate, PetShelterDetail, PetShelterImageListCreate, PetShelterImageDetail
+from .views import PetSeekerCreate, PetSeekerDetail, PetShelterListCreate, PetShelterDetail, PetShelterImageListCreate, PetShelterImageDetail, GetUser
 
 app_name = "accounts"
 urlpatterns = [
@@ -11,5 +11,5 @@ urlpatterns = [
     # endpoint for shelter images 
     path('shelter/<int:pk>/image/', PetShelterImageListCreate.as_view(), name='shelter-image'),
     path('shelter/<int:pk>/image/<int:img_id>/', PetShelterImageDetail.as_view(), name='shelter-image-detail'),
-
+    path('user/', GetUser.as_view(), name='user-details'), 
 ]

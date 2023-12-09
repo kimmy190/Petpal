@@ -4,6 +4,7 @@ from rest_framework.generics import (
     RetrieveUpdateDestroyAPIView,
     CreateAPIView,
     RetrieveDestroyAPIView,
+    RetrieveAPIView, 
 )
 from rest_framework.permissions import IsAuthenticated
 from .serializers import (
@@ -15,18 +16,39 @@ from .serializers import (
 from .models import PetSeeker, PetShelter, ShelterImage
 from rest_framework.permissions import AllowAny
 from rest_framework.pagination import PageNumberPagination
-
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.authentication import TokenAuthentication
+from rest_framework.authtoken.models import Token
 from rest_framework.permissions import BasePermission
 from rest_framework.exceptions import PermissionDenied
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import permissions
+from rest_framework.response import Response
+
+from rest_framework.views import APIView
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework import status
 
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 10
     page_size_query_param = "page_size"
     max_page_size = 10
+
+# class RegistrationAPIView(APIView):
+#     def post(self, request, *args, **kwargs):
+#         # Your registration logic here...
+
+#         # Assuming you have a `user` object after successful registration
+#         user = ...
+
+#         # Manually create a JWT token
+#         refresh = RefreshToken.for_user(user)
+#         access_token = str(refresh.access_token)
+
+#         # Return the token in the response
+#         return Response({'access': access_token}, status=status.HTTP_201_CREATED)
+
 
 
 # Taken from https://b0uh.github.io/drf-viewset-permission-policy-per-method.html
@@ -167,6 +189,26 @@ class PetShelterDetail(PermissionPolicyMixin, RetrieveUpdateDestroyAPIView):
 
     def get_object(self):
         return get_object_or_404(PetShelter, id=self.kwargs["pk"]).user
+    
+    # def perform_update(self, serializer):
+    #     # Update the fields of the PetShelter model
+    #     uuser = get_object_or_404(PetShelter, id=self.kwargs["pk"]).user
+    #     shelter = uuser.shelter
+    #     uuser.username = serializer.validated_data.get("username", uuser.username)
+    #     # uuser.email = serializer.validated_data.get("organization_name", uuser.username)
+    #     uuser.shelter.organization_name = serializer.validated_data.get("organization_name", shelter.organization_name)
+    #     uuser.shelter.logo_image = serializer.validated_data.get("logo_image", shelter.logo_image)
+    #     uuser.shelter.phone_number = serializer.validated_data.get("phone_number", shelter.phone_number)
+    #     uuser.shelter.mission_statement = serializer.validated_data.get("mission_statement", shelter.mission_statement)
+    #     uuser.shelter.country = serializer.validated_data.get("country", shelter.country)
+    #     uuser.shelter.address1 = serializer.validated_data.get("address1", shelter.address1)
+    #     uuser.shelter.address2 = serializer.validated_data.get("address2", shelter.address2)
+    #     uuser.shelter.city = serializer.validated_data.get("city", shelter.city)
+    #     uuser.shelter.state = serializer.validated_data.get("state", shelter.state)
+    #     uuser.shelter.zip = serializer.validated_data.get("zip", shelter.zip)
+
+    #     # Save the updated PetShelter instance
+    #     shelter.save()
 
 
 # retrieve, and update(only be done by user) the image for shelter
@@ -217,3 +259,37 @@ class PetShelterImageDetail(RetrieveDestroyAPIView):
         # delete the actual image file from storage
         instance.image.delete()  # Assuming 'image' is the ImageField in ShelterImage model
         instance.delete()
+
+
+# get user based on the token value 
+class GetUser(RetrieveAPIView): 
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    # serializer_class = SeekerSerializer
+
+    # def get_serializer_class(self):
+    #     # Check if the user has a column named 'shelter' and its value is True
+    #     if getattr(self.request.user, 'shelter', False):
+    #         return PetShelterSerializer
+    #     else:
+    #         return PetSeekerSerializer
+    def get_serializer_class(self): 
+        # if hasattr(self.request.user, "shelter"): 
+        if (self.request.user.first_name == ""): 
+            return ShelterSerializer
+        else: 
+            return SeekerSerializer
+
+    def get(self, request):
+        user = request.user
+        instance = None; 
+        # seeker_instance = get_object_or_404(PetSeeker, id=user.id)
+        # if getattr(user, 'shelter', False):
+        if hasattr(user, "shelter"): 
+            instance = get_object_or_404(PetShelter, user=user).user
+        else:
+            instance = get_object_or_404(PetSeeker, id=user.id)
+    
+        serializer = self.get_serializer(instance)
+
+        return Response(serializer.data)
