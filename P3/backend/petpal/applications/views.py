@@ -141,13 +141,18 @@ class ApplicationListView(ListAPIView):
                 break
         if use_id:
             order_by = "id"
+
+        filter = {}
+        for filter_param in ["status"]:
+            if filter_param in self.request.GET:
+                filter[filter_param] = self.request.GET[filter_param]
         try:
             if owner.shelter is not None:
                 queryset = Application.objects.filter(
-                    shelter=owner.shelter).order_by("-" + order_by)
+                    shelter=owner.shelter).filter(**filter).order_by("-" + order_by)
         except:
             queryset = Application.objects.filter(
-                applicant=owner).order_by("-" + order_by)
+                applicant=owner).filter(**filter).order_by("-" + order_by)
         return queryset
 
 
