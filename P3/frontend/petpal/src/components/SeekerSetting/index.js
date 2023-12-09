@@ -20,6 +20,7 @@ const SeekerSetting = ()=>{
     // const history = useHistory();  
     
     const [profileImg, setProfileImg] = useState(null);
+    const [email, setEmail] = useState(false); 
     const [userError, setUserError] = useState(null);
     const [emailError, setEmailError] = useState(null);
     const [pwError, setPwError] = useState("");
@@ -67,12 +68,15 @@ const SeekerSetting = ()=>{
                 }
             }
             
+            formData.append('create_petlisting_notification', email);
+            
+            
             // formData.append('profile_img', profileImg, profileImg.name);
 
             console.log("all entires");
-            // for (let entry of formData.entries()) {
-            //     console.log(entry);
-            // }
+            for (let entry of formData.entries()) {
+                console.log(entry);
+            }
             Object.keys(values).forEach((key) => {
                 // if (values[key] !== formik.initialValues[key]) {
                 if (values[key] !== user[key]) {
@@ -255,24 +259,12 @@ const SeekerSetting = ()=>{
                     <input
                     id="default-checkbox"
                     type="checkbox"
-                    defaultValue=""
+                    checked={email}
+                    onChange={() => {setEmail(!email)}}
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     />
                     <span className="block text-sm font-medium text-gray-900 ml-2">
                     I wish to be sent emails about new pets available for adoption
-                    </span>
-                </label>
-                </div>
-                <div className="mt-2">
-                <label className="inline-flex items-center">
-                    <input
-                    id="default-checkbox"
-                    type="checkbox"
-                    defaultValue=""
-                    className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <span className="block  text-sm font-medium text-gray-900 ml-2">
-                    I wish to be sent emails about updates to my ongoing adoptions
                     </span>
                 </label>
                 </div>
