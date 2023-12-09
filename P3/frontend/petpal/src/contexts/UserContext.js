@@ -25,11 +25,15 @@ export const useToken = () => {
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     // set the token 
-    // const [token, setToken] = useState(null); 
+    const [token, setToken] = useState(null); 
+    const cookies = new Cookies();
 
     const [loading, setLoading] = useState(true);
 
-    const cookies = new Cookies();
+    const updateToken = (newToken) => {
+        setToken(newToken);
+    };
+    
     // const token = cookies.get('access_token');
 
     useEffect(() => {
@@ -37,7 +41,7 @@ export const UserProvider = ({ children }) => {
         try {
             // Check if a token is stored (you might use localStorage or sessionStorage)
             const token = cookies.get('access_token'); //localStorage.getItem('accessToken');
-            console.log("FETCH USER IN USER CONTEXT")
+            // console.log("FETCH USER IN USER CONTEXT")
             console.log(token)
 
             if (token) {
@@ -73,6 +77,7 @@ export const UserProvider = ({ children }) => {
         // Call the fetchUser function when the component mounts
         // const token = cookies.get('access_token');
         const token = cookies.get('access_token');
+        updateToken(token); 
         fetchUser();
     }, []);
 
@@ -85,7 +90,7 @@ export const UserProvider = ({ children }) => {
     };
 
     return (
-        <UserContext.Provider value={{ user, setUser, loading, signOut}}>
+        <UserContext.Provider value={{ user, setUser, token, loading, signOut}}>
         {children}
         </UserContext.Provider>
     );
