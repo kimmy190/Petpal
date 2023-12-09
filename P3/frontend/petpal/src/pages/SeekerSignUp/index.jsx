@@ -54,14 +54,13 @@ const SeekerSignUp = () => {
 
             // if (profileImg) {
                 // const blobFile = await fetch(profileImg).then((res) => res.blob());
-            formData.append('profile_img', profileImg, profileImg.name);
+            console.log(profileImg)
+                formData.append('profile_image', profileImg, profileImg.name ? profileImg.name : null );
                 // console.log(formData.Input.FormData.profileImg);
             // }
             
             console.log("all entires");
-            // for (let entry of formData.entries()) {
-            //     console.log(entry);
-            // }
+
             Object.keys(values).forEach((key) => {
                 formData.append(key, values[key]);
             });
