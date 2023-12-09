@@ -47,7 +47,7 @@ const Notification = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const fetchNotifications = async () => {
+  const fetchNotifications = async (deleting) => {
     try {
         const response = await fetch(`http://localhost:8000/notification?page_size=1&page=${page}`, {
         headers: {
@@ -58,7 +58,11 @@ const Notification = () => {
       if (response.ok) {
         const data = await response.json();
         const notifs = notifications;
-        setNotifications(notifs.concat(data.results));
+          if (deleting) {
+              setNotifications(data.results);
+          } else {
+              setNotifications(notifs.concat(data.results));
+          }
         setHasNext(data.next !== null);
       } else {
         console.error("Error fetching notifications:", response.statusText);
@@ -130,14 +134,13 @@ const Notification = () => {
           isDropdownOpen ? "block" : "hidden"
         } w-full max-w-xs max-h-96 overflow-y-scroll bg-white border divide-y divide-gray-100 right-0 rounded-lg shadow sm:max-w-sm top-20 absolute`}
         style={{
-            left: "70%", 
-            // position: "absolute",
-            // top:16, 
-            // inset: "0px auto auto 0px",
-            // margin: 0,
-            // transform: "translate3d(1153.5px, 74px, 0px)"
-          }}
-      
+          left: "70%",
+          // position: "absolute",
+          // top:16,
+          // inset: "0px auto auto 0px",
+          // margin: 0,
+          // transform: "translate3d(1153.5px, 74px, 0px)"
+        }}
       >
         <div className="block px-4 py-2 font-medium text-center text-gray-700 rounded-t-lg bg-gray-50">
           Notifications
@@ -178,12 +181,12 @@ const Notification = () => {
             .slice()
             .reverse()
             .map((notification) => (
+              <div className="relative" key={notification.id}>
                 <a
-                  key={notification.id}
                   href={notification.link}
-                  className={`flex px-4 py-3 hover:bg-gray-100 ${
-                  notification.was_read ? "" : "font-semibold"
-                } text-gray-900`}
+                  className={`relative flex px-4 py-3 hover:bg-gray-100 ${
+                    notification.was_read ? "" : "font-semibold"
+                  } text-gray-900`}
                   onClick={() => handleNotificationClick(notification.id)}
                 >
                   <div className="w-full pl-3">
@@ -195,6 +198,31 @@ const Notification = () => {
                     </div>
                   </div>
                 </a>
+                <svg
+                  xmlns="http:www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="absolute w-5 h-5 text-gray-700 top-1 right-1 hover:cursor-pointer hover:scale-110"
+                  onClick={async () => {
+                    await fetch(`/notification/${notification.id}`, {
+                      method: "DELETE",
+                      headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`, // Add your authorization token here
+                      },
+                    });
+                    fetchNotifications(true);
+                  }}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
             ))}
           {hasNext && (<Button color="gray" onClick={() => setPage(page+1) } className="w-full"> See more </Button>) }
         </div>
