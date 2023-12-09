@@ -22,7 +22,7 @@ const ProfileDropdown = () => {
         navigate('/main'); // Redirect to the /main page after signing out
     };
 
-    if(user !== null){
+    if(user){
     
     return (
     <>
@@ -52,8 +52,9 @@ const ProfileDropdown = () => {
     >
         <div className="px-4 py-3 bg-gray-50">
         <span className="block text-sm font-medium text-gray-900">
-            {user.hasOwnProperty('shelter') ? user.shelter.organization_name : 
-            user.first_name + " " + user.last_name}
+            {user.shelter ? user.shelter.organization_name : `${user.first_name} ${user.last_name}`}
+            {/* {user.hasOwnProperty('shelter') ? user.shelter.organization_name : 
+            user.first_name + " " + user.last_name} */}
         </span>
         <span className="block text-sm text-gray-500 truncate">
             {user.email}

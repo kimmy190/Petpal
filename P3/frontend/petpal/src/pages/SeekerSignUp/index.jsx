@@ -18,18 +18,12 @@ const SeekerSignUp = () => {
     const { setUser } = useUserContext();
     
     const [profileImg, setProfileImg] = useState(null);
+    
     const [userError, setUserError] = useState(null);
     const [emailError, setEmailError] = useState(null);
     const [pwError, setPwError] = useState(null);
 
     const handleFileChange = (selectedFile) => {
-        // const selectedFile = e.target.files[0];
-        // console.log(selectedFile);
-        
-        // const profileBlobUrl = URL.createObjectURL(selectedFile); 
-        // console.log(profileBlobUrl);
-
-        // setProfileImg(URL.createObjectURL(selectedFile));
         setProfileImg(selectedFile);
 
     };
